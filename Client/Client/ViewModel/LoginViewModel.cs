@@ -73,17 +73,12 @@ namespace Client.ViewModel
 
         void OkButtonClick()
         {
-            var q = string.Format("{{user:\"{0}\", password:\"{1}\"}}", User, Pass);
-            q = WebUtility.UrlEncode(q);
-            var uri = string.Format("{0}/user/token?json={1}", Settings.Instance.UriRoot, q);
-            var client = new MyWebClient();
-
             try
             {
                 Msg = "";
-                var token = client.DownloadString(uri);
-                ProtobufWebClient.Instance.Token = token;
 
+                ProtobufWebClient.Instance.Login(User, Pass);
+                 
                 var w = new MainWindow();
                 w.Show();
                 _window.Close();
@@ -111,16 +106,6 @@ namespace Client.ViewModel
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-        }
-    }
-
-    public class MyWebClient : WebClient
-    {
-        protected override WebRequest GetWebRequest(Uri address)
-        {
-            HttpWebRequest request = base.GetWebRequest(address) as HttpWebRequest;
-            request.AutomaticDecompression = DecompressionMethods.Deflate | DecompressionMethods.GZip;
-            return request;
         }
     }
 }

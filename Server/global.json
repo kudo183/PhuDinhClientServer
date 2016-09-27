@@ -1,5 +1,5 @@
 {
-  "projects": [ "src", "test", "../../huypq.SwaMiddleware/src" ],
+  "projects": [ "src", "test", "../../huypq.SwaMiddleware/src", "../Shared" ],
   "sdk": {
     "version": "1.0.0-preview2-003121"
   }
