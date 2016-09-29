@@ -1,4 +1,6 @@
-﻿using System;
+﻿using QueryBuilder;
+using System;
+using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.IO;
 using System.Net;
@@ -14,42 +16,52 @@ namespace Client
             get { return _instance; }
         }
 
-        public string Token { get; set; }
-
-        public T Post<T>(string controller, string action, NameValueCollection data)
+        public DTO.PagingResultDto<T> Get<T>(string controller, string action)
+            where T : DTO.IDto
         {
             var uri = GetUri(controller, action);
 
-            return FromBytes<T>(Post(uri, data));
-        }
-
-        public T Post<T>(string controller, string action, string json)
-        {
-            var uri = GetUri(controller, action);
-
-            return FromBytes<T>(Post(uri, json));
-        }
-
-        public T Get<T>(string controller, string action)
-        {
-            var uri = GetUri(controller, action);
-
-            return Get<T>(uri);
-        }
-
-        public T Get<T>(string uri)
-        {
-            return FromBytes<T>(Get(uri));
+            var pagingResult = FromBytes<DTO.PagingResultDto<T>>(Get(uri));
+            foreach (var item in pagingResult.Items)
+            {
+                item.SetCurrentValueAsOriginalValue();
+            }
+            return pagingResult;
         }
 
         public void Login(string user, string pass)
         {
-            var json = string.Format("{{user:\"{0}\", password:\"{1}\"}}", user, pass);
-            var uri = string.Format("{0}/user/token", Settings.Instance.UriRoot);
+            var uri = GetUri("user", "token");
 
-            var token = Post(uri, json);
+            var data = new NameValueCollection();
+            data["user"] = user;
+            data["pass"] = pass;
 
-            Token = System.Text.Encoding.ASCII.GetString(token, 1, token.Length - 2);
+            Token = Post(uri, data);
+        }
+
+        public string Token { get; set; }
+
+        public DTO.PagingResultDto<T> Post<T>(string controller, string action, QueryExpression qe)
+            where T : DTO.IDto
+        {
+            var uri = GetUri(controller, action);
+
+            var pagingResult = FromBytes<DTO.PagingResultDto<T>>(Post(uri, ToBytes(qe)));
+            foreach (var item in pagingResult.Items)
+            {
+                item.SetCurrentValueAsOriginalValue();
+            }
+            return pagingResult;
+        }
+
+        public string Save<T>(string controller, string action, List<DTO.ChangedItem<T>> changedItem)
+        {
+            var uri = GetUri(controller, action);
+
+            var response = Post(uri, ToBytes(changedItem));
+
+            return System.Text.Encoding.UTF8.GetString(response, 1, response.Length - 2);
         }
 
         private byte[] Get(string uri)
@@ -63,32 +75,48 @@ namespace Client
             return response;
         }
 
-        private byte[] Post(string uri, string json)
+        private byte[] Post(string uri, byte[] data)
         {
-            var data = new NameValueCollection();
-            data.Add("json", json);
-
-            return Post(uri, data);
-        }
-
-        private byte[] Post(string uri, NameValueCollection data)
-        {
-            var client = new WebClient();
+            var client = new MyWebClient();
+            client.Headers["request"] = "protobuf";
             client.Headers["response"] = "protobuf";
             client.Headers["token"] = Token;
 
-            var response = client.UploadValues(uri, data);
+            var response = client.UploadData(uri, data);
 
             return response;
         }
 
+        private string Post(string uri, NameValueCollection data)
+        {
+            var client = new MyWebClient();
+
+            //choose json response type because when respone is a string, json is better than protobuf
+            client.Headers["response"] = "json";
+
+            var token = client.UploadValues(uri, data);
+
+            //skip begin end double quote
+            return System.Text.Encoding.UTF8.GetString(token, 1, token.Length - 2);
+        }
+
         private T FromBytes<T>(byte[] data)
         {
-            var ms = new MemoryStream(data);
+            using (var ms = new MemoryStream(data))
+            {
+                var r = ProtoBuf.Serializer.Deserialize<T>(ms);
 
-            var r = ProtoBuf.Serializer.Deserialize<T>(ms);
+                return r;
+            }
+        }
 
-            return r;
+        private byte[] ToBytes<T>(T data)
+        {
+            using (var ms = new MemoryStream())
+            {
+                ProtoBuf.Serializer.Serialize(ms, data);
+                return ms.ToArray();
+            }
         }
 
         private string GetUri(string controller, string action)

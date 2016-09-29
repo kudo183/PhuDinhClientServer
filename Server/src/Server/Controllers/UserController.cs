@@ -3,7 +3,7 @@ using Server.Entities;
 
 namespace Server.Controllers
 {
-    public class UserController : SwaUserBaseController<PhuDinhServerContext, User>
+    public class UserController : SwaUserBaseController<PhuDinhServerContext, User, object>
     {
         
     }

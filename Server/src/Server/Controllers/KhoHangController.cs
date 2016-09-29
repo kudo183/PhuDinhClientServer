@@ -1,10 +1,12 @@
 ﻿using huypq.SwaMiddleware;
 using Server.Entities;
 using System.Collections.Generic;
+using System;
+using DTO;
 
 namespace Server.Controllers
 {
-    public class KhoHangController : SwaEntityBaseController<PhuDinhServerContext, KhoHang>
+    public class KhoHangController : SwaEntityBaseController<PhuDinhServerContext, KhoHang, DTO.KhoHangDto>
     {
         public override SwaActionResult ActionInvoker(string actionName, Dictionary<string, object> parameter)
         {
@@ -13,24 +15,13 @@ namespace Server.Controllers
             switch (actionName)
             {
                 case "getall":
-                    var pagingResult = GetAll(DBContext.KhoHang);
-                    var pagingResultDto = new DTO.PagingResultDto<DTO.KhoHangDto>();
-                    pagingResultDto.PageCount = pagingResult.PageCount;
-                    pagingResultDto.PageIndex = pagingResult.PageIndex;
-                    pagingResultDto.TotalItemCount = pagingResult.TotalItemCount;
-                    pagingResultDto.Items = new List<DTO.KhoHangDto>();
-                    foreach(var item in pagingResult.Items)
-                    {
-                        var khoHangDto = new DTO.KhoHangDto();
-                        khoHangDto.Ma = item.Ma;
-                        khoHangDto.TenKho = item.TenKho;
-                        khoHangDto.TrangThai = item.TrangThai;
-                        pagingResultDto.Items.Add(khoHangDto);
-                    }
-                    result = CreateObjectResult(pagingResultDto);
+                    result = CreateObjectResult(GetAll(DBContext.KhoHang));
+                    break;
+                case "get":
+                    result = CreateObjectResult(Get(parameter["body"] as System.IO.Stream, DBContext.KhoHang));
                     break;
                 case "save":
-                    result = Save(parameter["json"].ToString());
+                    result = Save(parameter["body"] as System.IO.Stream);
                     break;
                 case "test":
                     result = Test();
@@ -40,6 +31,24 @@ namespace Server.Controllers
             }
 
             return result;
+        }
+        
+        public override KhoHangDto ConvertToDto(KhoHang entity)
+        {
+            var dto = new DTO.KhoHangDto();
+            dto.Ma = entity.Ma;
+            dto.TenKho = entity.TenKho;
+            dto.TrangThai = entity.TrangThai;
+            return dto;
+        }
+
+        public override KhoHang ConvertToEntity(KhoHangDto dto)
+        {
+            var entity = new KhoHang();
+            entity.Ma = dto.Ma;
+            entity.TenKho = dto.TenKho;
+            entity.TrangThai = dto.TrangThai;
+            return entity;
         }
 
         public SwaActionResult Test()

@@ -1,6 +1,4 @@
-﻿using Newtonsoft.Json;
-using Newtonsoft.Json.Serialization;
-using System.ComponentModel;
+﻿using System.ComponentModel;
 
 namespace Client
 {
@@ -17,15 +15,7 @@ namespace Client
         {
             _pageSize = Properties.Settings.Default.PageSize;
             _fontSize = Properties.Settings.Default.FontSize;
-            UriRoot = Properties.Settings.Default.UriRoot;
-
-            var settings = new JsonSerializerSettings
-            {
-                DateFormatHandling = DateFormatHandling.IsoDateFormat,
-                DateTimeZoneHandling = DateTimeZoneHandling.Local
-            };
-
-            JsonSerializer = JsonSerializer.Create(settings);
+            UriRoot = Properties.Settings.Default.UriRoot;            
         }
 
         public void SaveSettings()
@@ -36,8 +26,6 @@ namespace Client
 
             Properties.Settings.Default.Save();
         }
-
-        public JsonSerializer JsonSerializer;
         
         public string UriRoot { get; set; }
 
@@ -68,7 +56,7 @@ namespace Client
                 OnPropertyChanged("FontSize");
             }
         }
-
+        
         public event PropertyChangedEventHandler PropertyChanged;
 
         private void OnPropertyChanged(string propertyName)

@@ -6,6 +6,7 @@ namespace Server.Entities
     {
         public PhuDinhServerContext(DbContextOptions<PhuDinhServerContext> options) : base(options)
         {
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
             ChangeTracker.AutoDetectChangesEnabled = false;
         }
 

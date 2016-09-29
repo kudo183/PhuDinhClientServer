@@ -7,7 +7,5 @@
         mc:Ignorable="d"
         WindowState="Maximized"
         Title="MainWindow">
-    <Grid>
-        
-    </Grid>
+    <local:KhoHangView></local:KhoHangView>
 </Window>

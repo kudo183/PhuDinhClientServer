@@ -13,6 +13,7 @@
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -34,9 +35,6 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="DTO">
-      <HintPath>..\..\Shared\DTO\bin\Debug\netstandard1.0\DTO.dll</HintPath>
-    </Reference>
     <Reference Include="Newtonsoft.Json, Version=9.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.9.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
@@ -44,10 +42,6 @@
     <Reference Include="protobuf-net, Version=2.1.0.0, Culture=neutral, PublicKeyToken=257b51d87d2e4d67, processorArchitecture=MSIL">
       <HintPath>..\packages\protobuf-net.2.1.0\lib\net45\protobuf-net.dll</HintPath>
       <Private>True</Private>
-    </Reference>
-    <Reference Include="QueryBuilder, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\..\QueryBuilder\src\QueryBuilder\bin\Debug\netstandard1.6\QueryBuilder.dll</HintPath>
     </Reference>
     <Reference Include="SimpleDataGrid">
       <HintPath>..\..\..\huypq.SimpleDataGrid\SimpleDataGrid\bin\Debug\SimpleDataGrid.dll</HintPath>
@@ -72,6 +66,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="KhoHangView.xaml.cs">
+      <DependentUpon>KhoHangView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Properties\Resources.vi-vn.Designer.cs">
       <DependentUpon>Resources.vi-vn.resx</DependentUpon>
       <AutoGen>True</AutoGen>
@@ -84,7 +81,12 @@
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="ViewModel\KhoHangViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
+    <Page Include="KhoHangView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Login.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -140,6 +142,16 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\QueryBuilder\old.NET\QueryBuilder\QueryBuilder\QueryBuilder.csproj">
+      <Project>{e9fbfac6-4189-4eb2-bea0-d81d78687c17}</Project>
+      <Name>QueryBuilder</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Shared\Old.NET\DTO\DTO.csproj">
+      <Project>{42577427-a49b-477b-a0d0-c39a21e7dec5}</Project>
+      <Name>DTO</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
