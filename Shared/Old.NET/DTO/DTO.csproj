@@ -53,11 +53,35 @@
     <Compile Include="..\..\DTO\IDto.cs">
       <Link>IDto.cs</Link>
     </Compile>
-    <Compile Include="..\..\DTO\KhoHangDto.cs">
-      <Link>KhoHangDto.cs</Link>
-    </Compile>
     <Compile Include="..\..\DTO\PagingResultDto.cs">
       <Link>PagingResultDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RBaiXeDto.cs">
+      <Link>RBaiXeDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RChanhDto.cs">
+      <Link>RChanhDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RDiaDiemDto.cs">
+      <Link>RDiaDiemDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RKhachHangChanhDto.cs">
+      <Link>RKhachHangChanhDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RKhachHangDto.cs">
+      <Link>RKhachHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RKhoHangDto.cs">
+      <Link>RKhoHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RLoaiHangDto.cs">
+      <Link>RLoaiHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RNuocDto.cs">
+      <Link>RNuocDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TMatHangDto.cs">
+      <Link>TMatHangDto.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

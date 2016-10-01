@@ -1,29 +1,29 @@
 ﻿namespace DTO
 {
     [ProtoBuf.ProtoContract]
-    public class KhoHangDto : IDto
+    public class RLoaiHangDto : IDto
     {
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get; set; }
         [ProtoBuf.ProtoMember(2)]
-        public string TenKho { get; set; }
+        public bool HangNhaLam { get; set; }
         [ProtoBuf.ProtoMember(3)]
-        public bool TrangThai { get; set; }
+        public string TenLoai { get; set; }
 
         int _ma;
-        string _tenKho;
-        bool _trangThai;
+        bool _hangNhaLam;
+        string _tenLoai;
 
         public void SetCurrentValueAsOriginalValue()
         {
             _ma = Ma;
-            _tenKho = TenKho;
-            _trangThai = TrangThai;
+            _hangNhaLam = HangNhaLam;
+            _tenLoai = TenLoai;
         }
 
         public bool HasChange()
         {
-            return (_ma != Ma) || (_tenKho != TenKho) || (_trangThai != TrangThai);
+            return (_ma != Ma) || (_hangNhaLam != HangNhaLam) || (_tenLoai != TenLoai);
         }
     }
 }

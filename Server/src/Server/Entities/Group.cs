@@ -1,17 +1,19 @@
-﻿using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public class Group : huypq.SwaMiddleware.SwaIEntity
+    public partial class Group
     {
-        [Key]
-        public int Ma { get; set; }
-        [Required]
-        [MaxLength(256)]
-        public string TenGroup { get; set; }
-        public System.DateTime NgayTao { get; set; }
+        public Group()
+        {
+            UserGroup = new HashSet<UserGroup>();
+        }
 
-        public List<UserGroup> UserGroups { get; set; }
+        public int Ma { get; set; }
+        public DateTime NgayTao { get; set; }
+        public string TenGroup { get; set; }
+
+        public virtual ICollection<UserGroup> UserGroup { get; set; }
     }
 }

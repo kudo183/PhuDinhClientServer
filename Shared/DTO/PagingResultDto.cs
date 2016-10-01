@@ -13,5 +13,10 @@ namespace DTO
         public int PageCount { get; set; }
         [ProtoBuf.ProtoMember(4)]
         public List<T> Items { get; set; }
+
+        public PagingResultDto()
+        {
+            Items = new List<T>();
+        }
     }
 }

@@ -1,9 +1,20 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public class User : huypq.SwaMiddleware.SwaUser
+    public partial class User : huypq.SwaMiddleware.SwaIUser
     {
-        public List<UserGroup> UserGroups { get; set; }
+        public User()
+        {
+            UserGroup = new HashSet<UserGroup>();
+        }
+
+        public int Ma { get; set; }
+        public string Email { get; set; }
+        public DateTime NgayTao { get; set; }
+        public string PasswordHash { get; set; }
+
+        public virtual ICollection<UserGroup> UserGroup { get; set; }
     }
 }

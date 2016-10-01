@@ -1,21 +1,16 @@
-﻿using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
+﻿using System;
+using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public class UserGroup : huypq.SwaMiddleware.SwaIEntity
+    public partial class UserGroup
     {
-        [Key]
         public int Ma { get; set; }
-        [Required]
-        public int MaUser { get; set; }
-        [Required]
-        public int MaGroup { get; set; }
         public bool LaChuGroup { get; set; }
+        public int MaGroup { get; set; }
+        public int MaUser { get; set; }
 
-        [ForeignKey("MaUser")]
-        public User User { get; set; }
-        [ForeignKey("MaGroup")]
-        public Group Group { get; set; }
+        public virtual Group MaGroupNavigation { get; set; }
+        public virtual User MaUserNavigation { get; set; }
     }
 }
