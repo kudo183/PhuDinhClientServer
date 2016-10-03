@@ -66,7 +66,7 @@ namespace Client
 
         private byte[] Get(string uri)
         {
-            var client = new WebClient();
+            var client = new MyWebClient();
             client.Headers["response"] = "protobuf";
             client.Headers["token"] = Token;
 
