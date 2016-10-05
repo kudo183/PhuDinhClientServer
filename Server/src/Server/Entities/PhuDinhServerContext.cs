@@ -1,5 +1,4 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata;
 using huypq.SwaMiddleware;
 
@@ -8,7 +7,11 @@ namespace Server.Entities
     public partial class PhuDinhServerContext : DbContext, SwaIDbContext<User>
     {
         public PhuDinhServerContext(DbContextOptions<PhuDinhServerContext> options)
-            : base(options) { }
+            : base(options)
+        {
+            ChangeTracker.AutoDetectChangesEnabled = false;
+            ChangeTracker.QueryTrackingBehavior = QueryTrackingBehavior.NoTracking;
+        }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

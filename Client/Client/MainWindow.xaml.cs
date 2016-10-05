@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using System.Windows.Controls;
 
 namespace Client
 {
@@ -10,6 +11,25 @@ namespace Client
         public MainWindow()
         {
             InitializeComponent();
+        }
+
+        private void StackPanel_Click(object sender, RoutedEventArgs e)
+        {
+            var button = (e.OriginalSource as Button);
+            if (button == null)
+            {
+                return;
+            }
+
+            var viewType = System.Type.GetType("Client.View." + button.Tag);
+            var w = new Window()
+            {
+                Title = button.Content.ToString(),
+                FontSize = Settings.Instance.FontSize,
+                WindowState = WindowState.Maximized,
+                Content = System.Activator.CreateInstance(viewType)
+            };
+            w.Show();
         }
     }
 }

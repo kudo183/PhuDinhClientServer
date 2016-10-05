@@ -4,8 +4,54 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Client"
+        xmlns:Controls="clr-namespace:System.Windows.Controls;assembly=System.Windows.Controls.Layout.Toolkit"
         mc:Ignorable="d"
         WindowState="Maximized"
-        Title="MainWindow">
-    <local:KhoHangView></local:KhoHangView>
+        FontSize="{Binding Source={ x:Static local:Settings.Instance}, Path=FontSize}"
+        Title="MainWindow"
+        Background="#FF627E97">
+    <Window.Resources>
+        <Style TargetType="Button">
+            <Setter Property="FontSize" Value="16"/>
+            <Setter Property="Margin" Value="10"/>
+        </Style>
+    </Window.Resources>
+    <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Button.Click="StackPanel_Click">
+        <StackPanel Width="200" Orientation="Vertical">
+            <Button Height="80" Content="Tat ca" Tag="AllView"/>
+            <Button Height="80" Content="Canh Bao Ton Kho"/>
+            <Button Height="80" Content="Chi Phi"/>
+            <Button Height="80" Content="Kho Hang" Tag="RKhoHangView"/>
+        </StackPanel>
+        <StackPanel Width="150" Orientation="Vertical">
+            <Button Height="80" Content="Nhan Vien"/>
+            <Button Height="80" Content="Nhap Hang"/>
+            <Button Height="80" Content="Don Hang"/>
+            <Button Height="80" Content="Chuyen Hang"/>
+        </StackPanel>
+        <StackPanel Width="150" Orientation="Vertical">
+            <Button Height="80" Content="Mat Hang"/>
+            <Button Height="80" Content="Khach Hang"/>
+            <Button Height="80" Content="Ton Kho"/>
+            <Button Height="80" Content="Chuyen Kho"/>
+        </StackPanel>
+        <StackPanel Width="150" Orientation="Vertical" Background="BlanchedAlmond">
+            <Button Height="80" Content="Toa Hang"/>
+            <Button Height="80" Content="Nhan Tien"/>
+            <Button Height="80" Content="Cong No"/>
+            <Button Height="80" Content="Phu Thu"/>
+            <Button Height="80" Content="Giam Tru"/>
+        </StackPanel>
+        <StackPanel Width="280" Orientation="Vertical" Background="Red">
+            <Button Height="80" Content="Thong Ke Theo Mat Hang"/>
+            <Button Height="80" Content="Thong Ke Theo Loai Hang"/>
+            <Button Height="80" Content="Thong Ke Theo Khach Hang"/>
+            <Button Height="80" Content="Thong Ke Hang Ngay"/>
+            <Button Height="80" Content="Thong Ke Chi Phi"/>
+        </StackPanel>
+        <StackPanel Width="280" Orientation="Vertical" Background="Blue">
+            <Button Height="80" Content="Thong Ke Nhap Hang"/>
+            <Button Height="80" Content="Thong Ke Nhap Nguyen Lieu"/>
+        </StackPanel>
+    </StackPanel>
 </Window>

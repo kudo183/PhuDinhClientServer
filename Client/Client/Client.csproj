@@ -43,11 +43,9 @@
       <HintPath>..\packages\protobuf-net.2.1.0\lib\net45\protobuf-net.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SimpleDataGrid">
-      <HintPath>..\..\..\huypq.SimpleDataGrid\SimpleDataGrid\bin\Debug\SimpleDataGrid.dll</HintPath>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Windows.Controls.Layout.Toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -60,14 +58,26 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="KhoHangView.xaml.cs">
-      <DependentUpon>KhoHangView.xaml</DependentUpon>
+    <Compile Include="ProtoBufDataService.cs" />
+    <Compile Include="ReferenceDataManager.cs" />
+    <Compile Include="ViewModel\RChanhViewModel.cs" />
+    <Compile Include="ViewModel\RBaiXeViewModel.cs" />
+    <Compile Include="ViewModel\RNuocViewModel.cs" />
+    <Compile Include="AllView.xaml.cs">
+      <DependentUpon>AllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RChanhView.xaml.cs">
+      <DependentUpon>RChanhView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RKhoHangView.xaml.cs">
+      <DependentUpon>RKhoHangView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\Resources.vi-vn.Designer.cs">
       <DependentUpon>Resources.vi-vn.resx</DependentUpon>
@@ -81,9 +91,23 @@
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ViewModel\KhoHangViewModel.cs" />
+    <Compile Include="ViewModel\RKhoHangViewModel.cs" />
     <Compile Include="ViewModel\LoginViewModel.cs" />
-    <Page Include="KhoHangView.xaml">
+    <Compile Include="View\RBaiXeView.xaml.cs">
+      <DependentUpon>RBaiXeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RNuocView.xaml.cs">
+      <DependentUpon>RNuocView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="AllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RChanhView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RKhoHangView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -106,6 +130,14 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\RBaiXeView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RNuocView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -144,6 +176,10 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\..\huypq.SimpleDataGrid\SimpleDataGrid\SimpleDataGrid.csproj">
+      <Project>{9cfa4fe9-01d0-4bd1-aa8a-bca4b4a60375}</Project>
+      <Name>SimpleDataGrid</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\QueryBuilder\old.NET\QueryBuilder\QueryBuilder\QueryBuilder.csproj">
       <Project>{e9fbfac6-4189-4eb2-bea0-d81d78687c17}</Project>
       <Name>QueryBuilder</Name>
@@ -151,6 +187,10 @@
     <ProjectReference Include="..\..\Shared\Old.NET\DTO\DTO.csproj">
       <Project>{42577427-a49b-477b-a0d0-c39a21e7dec5}</Project>
       <Name>DTO</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Client.Abstraction\Client.Abstraction.csproj">
+      <Project>{f773e77b-c582-412f-a450-ae06547d8070}</Project>
+      <Name>Client.Abstraction</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

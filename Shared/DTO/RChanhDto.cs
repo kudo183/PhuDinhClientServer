@@ -25,5 +25,7 @@
         {
             return (_ma != Ma) || (_maBaiXe != MaBaiXe) || (_tenChanh != TenChanh);
         }
+
+        public System.Collections.Generic.List<RBaiXeDto> BaiXes { get; set; }
     }
 }
