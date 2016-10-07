@@ -1,7 +1,5 @@
 ﻿using Client.Abstraction;
 using Client.ViewModel;
-using SimpleDataGrid.ViewModel;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace Client.View
@@ -11,11 +9,11 @@ namespace Client.View
     /// </summary>
     public partial class RNuocView : BaseView<DTO.RNuocDto>
     {
-        public RNuocView() : base("RNuocView")
+        public RNuocView() : base()
         {
             InitializeComponent();
             
-            var vm = new RNuocViewModel(new ProtoBufDataService<DTO.RNuocDto>("rnuoc"));
+            var vm = new RNuocViewModel(new ProtoBufDataService<DTO.RNuocDto>());
 
             InitView(vm, gridView);
         }

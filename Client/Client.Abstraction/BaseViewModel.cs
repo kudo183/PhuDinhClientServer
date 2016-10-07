@@ -14,9 +14,9 @@ namespace Client.Abstraction
 
         private IDataService<T> _dataService { get; set; }
 
-        public BaseViewModel(string debugName, IDataService<T> dataService)
+        public BaseViewModel(IDataService<T> dataService)
         {
-            _debugName = debugName;
+            _debugName = NameManager.Instance.GetViewModelName<T>();
             _dataService = dataService;
 
             Entities = new ObservableCollection<T>();
@@ -54,6 +54,7 @@ namespace Client.Abstraction
 
         public void Load()
         {
+            Console.WriteLine(_debugName + " BaseViewModel Load");
             Entities.Clear();
             Entities.CollectionChanged -= Entities_CollectionChanged;
             _originalEntities.Clear();

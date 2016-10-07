@@ -1,7 +1,5 @@
 ﻿using Client.Abstraction;
 using Client.ViewModel;
-using SimpleDataGrid.ViewModel;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace Client.View
@@ -11,11 +9,11 @@ namespace Client.View
     /// </summary>
     public partial class RBaiXeView : BaseView<DTO.RBaiXeDto>
     {
-        public RBaiXeView() : base("RBaiXeView")
+        public RBaiXeView() : base()
         {
             InitializeComponent();
             
-            var vm = new RBaiXeViewModel(new ProtoBufDataService<DTO.RBaiXeDto>("RBaiXe"));
+            var vm = new RBaiXeViewModel(new ProtoBufDataService<DTO.RBaiXeDto>());
 
             InitView(vm, gridView);
         }

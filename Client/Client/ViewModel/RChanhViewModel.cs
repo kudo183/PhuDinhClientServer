@@ -1,8 +1,7 @@
 ﻿using SimpleDataGrid.ViewModel;
-using System.Collections.Generic;
 using DTO;
 using SimpleDataGrid;
-using System.Linq;
+using System.Windows;
 
 namespace Client.ViewModel
 {
@@ -11,16 +10,15 @@ namespace Client.ViewModel
         private HeaderComboBoxFilterModel _baiXeFilter;
 
         public RChanhViewModel(Abstraction.IDataService<DTO.RChanhDto> dataService)
-            : base("RChanhViewModel", dataService)
+            : base(dataService)
         {
             _baiXeFilter = new HeaderComboBoxFilterModel(
                 "Bai Xe", HeaderComboBoxFilterModel.ComboBoxFilter, "MaBaiXe", typeof(int));
             _baiXeFilter.AddCommand = new SimpleCommand("BaiXeAddCommand",
-                () => { AddBaiXe(); },
+                () => { ProccessHeaderAddCommand("RBaiXeView", "Bai Xe"); },
                 () => true
             );
-            _baiXeFilter.ItemSource = ReferenceDataManager.Instance.BaiXes()
-                .ToDictionary(p => p.Ma, p => p.DiaDiemBaiXe);
+            _baiXeFilter.ItemSource = ReferenceDataManager.Instance.BaiXes();
 
             HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
             HeaderFilters.Add(_baiXeFilter);
@@ -31,21 +29,37 @@ namespace Client.ViewModel
                 filter.ActionFilterValueChanged = Load;
                 filter.ActionIsUsedChanged = Load;
             }
+
+            ReferenceDataManager.Instance.LoadBaiXes();
         }
 
-        void AddBaiXe()
+        void ProccessHeaderAddCommand(string viewName, string title)
         {
+            var viewType = System.Type.GetType("Client.View." + viewName);
+            var w = new Window()
+            {
+                Title = title,
+                FontSize = Settings.Instance.FontSize,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                Content = System.Activator.CreateInstance(viewType)
+            };
+            w.ShowDialog();
 
+            ReferenceDataManager.Instance.LoadBaiXes();
         }
 
         protected override void ProcessDtoBeforeAddToEntities(RChanhDto dto)
         {
-            dto.BaiXes = new List<RBaiXeDto>(ReferenceDataManager.Instance.BaiXes());
+            dto.BaiXes = ReferenceDataManager.Instance.BaiXes();
         }
 
         protected override void ProcessNewAddedDto(RChanhDto dto)
         {
-            dto.BaiXes = new List<RBaiXeDto>(ReferenceDataManager.Instance.BaiXes());
+            if (_baiXeFilter.FilterValue != null)
+            {
+                dto.MaBaiXe = (int)_baiXeFilter.FilterValue;
+            }
+            dto.BaiXes = ReferenceDataManager.Instance.BaiXes();
         }
     }
 }

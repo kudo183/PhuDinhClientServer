@@ -50,6 +50,7 @@
     <Compile Include="IBaseViewModel.cs" />
     <Compile Include="IDataService.cs" />
     <Compile Include="IFilter.cs" />
+    <Compile Include="NameManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseComplexView.cs" />
   </ItemGroup>

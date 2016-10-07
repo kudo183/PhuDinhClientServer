@@ -1,7 +1,5 @@
 ﻿using Client.Abstraction;
 using Client.ViewModel;
-using SimpleDataGrid.ViewModel;
-using System.Collections.Generic;
 using System.Windows;
 
 namespace Client.View
@@ -11,11 +9,11 @@ namespace Client.View
     /// </summary>
     public partial class RKhoHangView : BaseView<DTO.RKhoHangDto>
     {
-        public RKhoHangView() : base("RKhoHangView")
+        public RKhoHangView() : base()
         {
             InitializeComponent();
             
-            var vm = new RKhoHangViewModel(new ProtoBufDataService<DTO.RKhoHangDto>("rkhohang"));
+            var vm = new RKhoHangViewModel(new ProtoBufDataService<DTO.RKhoHangDto>());
 
             InitView(vm, gridView);
         }

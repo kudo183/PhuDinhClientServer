@@ -17,9 +17,9 @@ namespace Client.Abstraction
         public event EventHandler MoveFocusToNextView;
         public event SelectionChangedEventHandler SelectionChanged;
 
-        public BaseView(string debugName)
+        public BaseView()
         {
-            _debugName = debugName;
+            _debugName = NameManager.Instance.GetViewName<T>();
             var designTime = System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject());
             if (designTime == true)
             {

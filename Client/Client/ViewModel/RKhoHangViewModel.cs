@@ -5,7 +5,7 @@ namespace Client.ViewModel
     public class RKhoHangViewModel : Abstraction.BaseViewModel<DTO.RKhoHangDto>
     {
         public RKhoHangViewModel(Abstraction.IDataService<DTO.RKhoHangDto> dataService)
-            : base("RKhoHangViewModel", dataService)
+            : base(dataService)
         {
             HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
             HeaderFilters.Add(new HeaderTextFilterModel("Ten kho", "TenKho", typeof(string)));
