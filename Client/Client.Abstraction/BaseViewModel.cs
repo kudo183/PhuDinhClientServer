@@ -41,14 +41,13 @@ namespace Client.Abstraction
             PagerViewModel.ActionIsEnablePagingChanged = Load;
         }
 
-        protected virtual void ProccessHeaderAddCommand(string viewName, string title)
+        protected virtual void ProccessHeaderAddCommand(object view,  string title)
         {
-            var viewType = System.Type.GetType("Client.View." + viewName);
             var w = new Window()
             {
                 Title = title,
                 WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                Content = System.Activator.CreateInstance(viewType)
+                Content = view
             };
             w.ShowDialog();
         }
