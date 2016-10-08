@@ -66,7 +66,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ProtoBufDataService.cs" />
-    <Compile Include="ReferenceDataManager.cs" />
     <Compile Include="ViewModel\RChanhViewModel.cs" />
     <Compile Include="ViewModel\RBaiXeViewModel.cs" />
     <Compile Include="ViewModel\RNuocViewModel.cs" />

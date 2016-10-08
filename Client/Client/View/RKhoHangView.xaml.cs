@@ -13,7 +13,7 @@ namespace Client.View
         {
             InitializeComponent();
             
-            var vm = new RKhoHangViewModel(new ProtoBufDataService<DTO.RKhoHangDto>());
+            var vm = new RKhoHangViewModel();
 
             InitView(vm, gridView);
         }

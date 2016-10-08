@@ -13,7 +13,7 @@ namespace Client.View
         {
             InitializeComponent();
 
-            var vm = new RChanhViewModel(new ProtoBufDataService<DTO.RChanhDto>());
+            var vm = new RChanhViewModel();
 
             InitView(vm, gridView);
         }

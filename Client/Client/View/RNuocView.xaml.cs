@@ -12,8 +12,8 @@ namespace Client.View
         public RNuocView() : base()
         {
             InitializeComponent();
-            
-            var vm = new RNuocViewModel(new ProtoBufDataService<DTO.RNuocDto>());
+
+            var vm = new RNuocViewModel();
 
             InitView(vm, gridView);
         }

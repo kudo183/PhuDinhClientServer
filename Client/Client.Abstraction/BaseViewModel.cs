@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using SimpleDataGrid.ViewModel;
 using System.Linq;
+using System.Windows;
 
 namespace Client.Abstraction
 {
@@ -12,12 +13,19 @@ namespace Client.Abstraction
 
         protected readonly List<T> _originalEntities = new List<T>();
 
-        private IDataService<T> _dataService { get; set; }
+        private IDataService<T> _dataService = ServiceLocator.Instance.GetInstance<IDataService<T>>();
+        public IDataService<T> DataService
+        {
+            get
+            {
+                return _dataService;
+            }
+            private set { }
+        }
 
-        public BaseViewModel(IDataService<T> dataService)
+        public BaseViewModel()
         {
             _debugName = NameManager.Instance.GetViewModelName<T>();
-            _dataService = dataService;
 
             Entities = new ObservableCollection<T>();
             HeaderFilters = new List<HeaderFilterBaseModel>();
@@ -33,6 +41,18 @@ namespace Client.Abstraction
             PagerViewModel.ActionIsEnablePagingChanged = Load;
         }
 
+        protected virtual void ProccessHeaderAddCommand(string viewName, string title)
+        {
+            var viewType = System.Type.GetType("Client.View." + viewName);
+            var w = new Window()
+            {
+                Title = title,
+                WindowStartupLocation = WindowStartupLocation.CenterScreen,
+                Content = System.Activator.CreateInstance(viewType)
+            };
+            w.ShowDialog();
+        }
+
         protected virtual void ProcessDtoBeforeAddToEntities(T dto)
         {
 
@@ -43,6 +63,10 @@ namespace Client.Abstraction
 
         }
 
+        protected virtual void LoadedData(DTO.PagingResultDto<T> data)
+        {
+            ReferenceDataManager<T>.Instance.Reset(data.Items);
+        }
         #region IBaseViewModel interface
         public bool IsValid { get; set; }
 
@@ -73,6 +97,7 @@ namespace Client.Abstraction
             });
 
             result = _dataService.Get(qe);
+            LoadedData(result);
 
             foreach (var dto in result.Items)
             {

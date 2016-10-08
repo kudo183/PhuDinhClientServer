@@ -2,23 +2,24 @@
 using DTO;
 using SimpleDataGrid;
 using System.Windows;
+using Client.Abstraction;
 
 namespace Client.ViewModel
 {
-    public class RChanhViewModel : Abstraction.BaseViewModel<DTO.RChanhDto>
+    public class RChanhViewModel : BaseViewModel<RChanhDto>
     {
         private HeaderComboBoxFilterModel _baiXeFilter;
 
-        public RChanhViewModel(Abstraction.IDataService<DTO.RChanhDto> dataService)
-            : base(dataService)
+        public RChanhViewModel() : base()
         {
             _baiXeFilter = new HeaderComboBoxFilterModel(
-                "Bai Xe", HeaderComboBoxFilterModel.ComboBoxFilter, "MaBaiXe", typeof(int));
+                "Bai Xe", HeaderComboBoxFilterModel.ComboBoxFilter,
+                "MaBaiXe", typeof(int), "DiaDiemBaiXe", "Ma");
             _baiXeFilter.AddCommand = new SimpleCommand("BaiXeAddCommand",
-                () => { ProccessHeaderAddCommand("RBaiXeView", "Bai Xe"); },
+                () => { base.ProccessHeaderAddCommand("RBaiXeView", "Bai Xe"); },
                 () => true
             );
-            _baiXeFilter.ItemSource = ReferenceDataManager.Instance.BaiXes();
+            _baiXeFilter.ItemSource = ReferenceDataManager<RBaiXeDto>.Instance.Get();
 
             HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
             HeaderFilters.Add(_baiXeFilter);
@@ -30,27 +31,12 @@ namespace Client.ViewModel
                 filter.ActionIsUsedChanged = Load;
             }
 
-            ReferenceDataManager.Instance.LoadBaiXes();
-        }
-
-        void ProccessHeaderAddCommand(string viewName, string title)
-        {
-            var viewType = System.Type.GetType("Client.View." + viewName);
-            var w = new Window()
-            {
-                Title = title,
-                FontSize = Settings.Instance.FontSize,
-                WindowStartupLocation = WindowStartupLocation.CenterScreen,
-                Content = System.Activator.CreateInstance(viewType)
-            };
-            w.ShowDialog();
-
-            ReferenceDataManager.Instance.LoadBaiXes();
+            ReferenceDataManager<RBaiXeDto>.Instance.Load();
         }
 
         protected override void ProcessDtoBeforeAddToEntities(RChanhDto dto)
         {
-            dto.BaiXes = ReferenceDataManager.Instance.BaiXes();
+            dto.BaiXes = ReferenceDataManager<RBaiXeDto>.Instance.Get();
         }
 
         protected override void ProcessNewAddedDto(RChanhDto dto)
@@ -59,7 +45,7 @@ namespace Client.ViewModel
             {
                 dto.MaBaiXe = (int)_baiXeFilter.FilterValue;
             }
-            dto.BaiXes = ReferenceDataManager.Instance.BaiXes();
+            dto.BaiXes = ReferenceDataManager<RBaiXeDto>.Instance.Get();
         }
     }
 }

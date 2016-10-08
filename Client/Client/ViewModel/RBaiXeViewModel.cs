@@ -1,11 +1,12 @@
-﻿using SimpleDataGrid.ViewModel;
+﻿using Client.Abstraction;
+using DTO;
+using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
-    public class RBaiXeViewModel : Abstraction.BaseViewModel<DTO.RBaiXeDto>
+    public class RBaiXeViewModel : BaseViewModel<RBaiXeDto>
     {
-        public RBaiXeViewModel(Abstraction.IDataService<DTO.RBaiXeDto> dataService)
-            : base(dataService)
+        public RBaiXeViewModel() : base()
         {
             HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
             HeaderFilters.Add(new HeaderTextFilterModel("Dia Diem", "DiaDiemBaiXe", typeof(string)));

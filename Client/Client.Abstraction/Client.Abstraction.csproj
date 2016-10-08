@@ -53,6 +53,8 @@
     <Compile Include="NameManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseComplexView.cs" />
+    <Compile Include="ReferenceDataManager.cs" />
+    <Compile Include="ServiceLocator.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\..\huypq.SimpleDataGrid\SimpleDataGrid\SimpleDataGrid.csproj">

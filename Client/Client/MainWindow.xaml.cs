@@ -25,7 +25,6 @@ namespace Client
             var w = new Window()
             {
                 Title = button.Content.ToString(),
-                FontSize = Settings.Instance.FontSize,
                 WindowState = WindowState.Maximized,
                 Content = System.Activator.CreateInstance(viewType)
             };

@@ -4,8 +4,7 @@ namespace Client.ViewModel
 {
     public class RNuocViewModel : Abstraction.BaseViewModel<DTO.RNuocDto>
     {
-        public RNuocViewModel(Abstraction.IDataService<DTO.RNuocDto> dataService)
-            : base(dataService)
+        public RNuocViewModel() : base()
         {
             HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
             HeaderFilters.Add(new HeaderTextFilterModel("Ten nuoc", "TenNuoc", typeof(string)));

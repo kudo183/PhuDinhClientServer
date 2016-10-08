@@ -13,7 +13,7 @@ namespace Client.View
         {
             InitializeComponent();
             
-            var vm = new RBaiXeViewModel(new ProtoBufDataService<DTO.RBaiXeDto>());
+            var vm = new RBaiXeViewModel();
 
             InitView(vm, gridView);
         }
