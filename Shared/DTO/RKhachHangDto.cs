@@ -32,5 +32,8 @@
                 || (_maDiaDiem != MaDiaDiem)
                 || (_tenKhachHang != TenKhachHang);
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public object DiaDiems { get; set; }
     }
 }

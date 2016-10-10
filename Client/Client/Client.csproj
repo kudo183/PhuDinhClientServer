@@ -66,11 +66,19 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ProtoBufDataService.cs" />
+    <Compile Include="ViewModel\RKhachHangViewModel.cs" />
+    <Compile Include="ViewModel\RDiaDiemViewModel.cs" />
     <Compile Include="ViewModel\RChanhViewModel.cs" />
     <Compile Include="ViewModel\RBaiXeViewModel.cs" />
     <Compile Include="ViewModel\RNuocViewModel.cs" />
     <Compile Include="AllView.xaml.cs">
       <DependentUpon>AllView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RKhachHangView.xaml.cs">
+      <DependentUpon>RKhachHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\RDiaDiemView.xaml.cs">
+      <DependentUpon>RDiaDiemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\RChanhView.xaml.cs">
       <DependentUpon>RChanhView.xaml</DependentUpon>
@@ -101,6 +109,14 @@
     <Page Include="AllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\RKhachHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\RDiaDiemView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\RChanhView.xaml">
       <Generator>MSBuild:Compile</Generator>

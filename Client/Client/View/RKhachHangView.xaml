@@ -1,0 +1,23 @@
+﻿<Abstraction:BaseView x:TypeArguments="Dto:RKhachHangDto"
+                      x:Class="Client.View.RKhachHangView"
+                      xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                      xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                      xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+                      xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+                      xmlns:SimpleDataGrid="clr-namespace:SimpleDataGrid;assembly=SimpleDataGrid"
+                      xmlns:Dto="clr-namespace:DTO;assembly=DTO"
+                      xmlns:Abstraction="clr-namespace:Client.Abstraction;assembly=Client.Abstraction"
+                      mc:Ignorable="d">
+    <SimpleDataGrid:EditableGridView x:Name="gridView" Button.Click="EditableGridView_Click">
+        <SimpleDataGrid:EditableGridView.Columns>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridComboBoxColumnExt Header="Combobox"
+                                                      SelectedValuePath="Ma"
+                                                      DisplayMemberPath="Tinh"
+                                                      SelectedValueBinding="{Binding MaDiaDiem, UpdateSourceTrigger=PropertyChanged}"
+                                                      ItemsSource="{Binding DiaDiems}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten Khach Hang" Binding="{Binding TenKhachHang, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridCheckBoxColumnExt Header="Khach Rieng" Binding="{Binding KhachRieng, UpdateSourceTrigger=PropertyChanged}"/>
+        </SimpleDataGrid:EditableGridView.Columns>
+    </SimpleDataGrid:EditableGridView>
+</Abstraction:BaseView>

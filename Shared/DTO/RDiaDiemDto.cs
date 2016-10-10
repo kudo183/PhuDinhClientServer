@@ -25,5 +25,9 @@
         {
             return (_ma != Ma) || (_maNuoc != MaNuoc) || (_tinh != Tinh);
         }
+
+
+        [Newtonsoft.Json.JsonIgnore]
+        public object Nuocs { get; set; }
     }
 }
