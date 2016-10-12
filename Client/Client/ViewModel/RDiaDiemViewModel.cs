@@ -15,12 +15,8 @@ namespace Client.ViewModel
                 "Nuoc", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaNuoc", typeof(int), "TenNuoc", "Ma");
             _nuocFilter.AddCommand = new SimpleCommand("NuocAddCommand",
-                () =>
-                {
-                    base.ProccessHeaderAddCommand(
-                new View.RNuocView(), "Nuoc", ReferenceDataManager<RNuocDto>.Instance.Load);
-                },
-                () => true
+                () => base.ProccessHeaderAddCommand(
+                new View.RNuocView(), "Nuoc", ReferenceDataManager<RNuocDto>.Instance.Load)
             );
             _nuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
 

@@ -1,7 +1,6 @@
 ﻿using SimpleDataGrid;
 using System.ComponentModel;
 using System.Net;
-using System;
 using System.Windows;
 
 namespace Client.ViewModel

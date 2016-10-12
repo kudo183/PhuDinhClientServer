@@ -2,6 +2,7 @@
 using System;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Input;
 
 namespace Client.Abstraction
 {
@@ -35,6 +36,9 @@ namespace Client.Abstraction
             _gridView = gridView;
 
             ViewModel = viewModel;
+
+            InputBindings.Add(new KeyBinding(new SimpleCommand("F3", () => viewModel.Save()), new KeyGesture(Key.F3)));
+            InputBindings.Add(new KeyBinding(new SimpleCommand("F5", () => viewModel.Load()), new KeyGesture(Key.F5)));
 
             DataContext = ViewModel;
 

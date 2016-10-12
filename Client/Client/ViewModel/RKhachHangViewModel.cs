@@ -15,12 +15,8 @@ namespace Client.ViewModel
                 "Dia Diem", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaDiaDiem", typeof(int), "Tinh", "Ma");
             _diaDiemFilter.AddCommand = new SimpleCommand("DiaDiemAddCommand",
-                () =>
-                {
-                    base.ProccessHeaderAddCommand(
-                new View.RDiaDiemView(), "Dia Diem", ReferenceDataManager<RDiaDiemDto>.Instance.Load);
-                },
-                () => true
+                () =>base.ProccessHeaderAddCommand(
+                new View.RDiaDiemView(), "Dia Diem", ReferenceDataManager<RDiaDiemDto>.Instance.Load)
             );
             _diaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
 

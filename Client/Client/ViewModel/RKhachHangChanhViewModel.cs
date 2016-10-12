@@ -16,12 +16,8 @@ namespace Client.ViewModel
                 "Khach Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaKhachHang", typeof(int), "TenKhachHang", "Ma");
             _khachHangFilter.AddCommand = new SimpleCommand("KhachHangAddCommand",
-                () =>
-                {
-                    base.ProccessHeaderAddCommand(
-                new View.RKhachHangView(), "Khach Hang", ReferenceDataManager<RKhachHangDto>.Instance.Load);
-                },
-                () => true
+                () => base.ProccessHeaderAddCommand(
+                new View.RKhachHangView(), "Khach Hang", ReferenceDataManager<RKhachHangDto>.Instance.Load)
             );
             _khachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
 

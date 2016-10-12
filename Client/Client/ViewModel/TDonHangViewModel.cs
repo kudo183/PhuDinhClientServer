@@ -18,12 +18,8 @@ namespace Client.ViewModel
                 "Khach Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaKhachHang", typeof(int), "TenKhachHang", "Ma");
             _khachHangFilter.AddCommand = new SimpleCommand("KhachHangAddCommand",
-                () =>
-                {
-                    base.ProccessHeaderAddCommand(
-                  new View.RKhachHangView(), "Khach Hang Chanh", ReferenceDataManager<RKhachHangDto>.Instance.Load);
-                },
-                () => true
+                () => base.ProccessHeaderAddCommand(
+                  new View.RKhachHangView(), "Khach Hang Chanh", ReferenceDataManager<RKhachHangDto>.Instance.Load)
             );
             _khachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
 
@@ -31,12 +27,8 @@ namespace Client.ViewModel
                 "Kho Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaKhoHang", typeof(int), "TenKhoHang", "Ma");
             _khoHangFilter.AddCommand = new SimpleCommand("KhoHangAddCommand",
-                () =>
-                {
-                    base.ProccessHeaderAddCommand(
-                  new View.RKhoHangView(), "Kho Hang", ReferenceDataManager<RKhoHangDto>.Instance.Load);
-                },
-                () => true
+                () => base.ProccessHeaderAddCommand(
+                  new View.RKhoHangView(), "Kho Hang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
             );
             _khoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
 
@@ -44,12 +36,8 @@ namespace Client.ViewModel
                 "Chanh", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaChanh", typeof(int), "TenChanh", "Ma");
             _chanhFilter.AddCommand = new SimpleCommand("ChanhAddCommand",
-                () =>
-                {
-                    base.ProccessHeaderAddCommand(
-                new View.RKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog);
-                },
-                () => true
+                () => base.ProccessHeaderAddCommand(
+                new View.RKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog)
             );
             _chanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
 
