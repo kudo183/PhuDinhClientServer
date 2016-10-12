@@ -15,9 +15,11 @@
             <Button Content="RBaiXe"/>
             <Button Content="RChanh"/>
             <Button Content="RDiaDiem"/>
+            <Button Content="RKhachHangChanh"/>
             <Button Content="RKhachHang"/>
             <Button Content="RKhoHang"/>
             <Button Content="RNuoc"/>
+            <Button Content="TDonHang"/>
         </StackPanel>
         <GridSplitter Grid.Column="0" VerticalAlignment="Stretch" Margin="5"/>
         <Border Grid.Column="1" x:Name="brd"/>

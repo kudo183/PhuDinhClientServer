@@ -15,7 +15,11 @@ namespace Client.ViewModel
                 "Dia Diem", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaDiaDiem", typeof(int), "Tinh", "Ma");
             _diaDiemFilter.AddCommand = new SimpleCommand("DiaDiemAddCommand",
-                () => { base.ProccessHeaderAddCommand(new View.RDiaDiemView(), "Dia Diem"); },
+                () =>
+                {
+                    base.ProccessHeaderAddCommand(
+                new View.RDiaDiemView(), "Dia Diem", ReferenceDataManager<RDiaDiemDto>.Instance.Load);
+                },
                 () => true
             );
             _diaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
@@ -30,7 +34,10 @@ namespace Client.ViewModel
                 filter.ActionFilterValueChanged = Load;
                 filter.ActionIsUsedChanged = Load;
             }
+        }
 
+        protected override void LoadedData(PagingResultDto<RKhachHangDto> data)
+        {
             ReferenceDataManager<RDiaDiemDto>.Instance.Load();
         }
 

@@ -32,5 +32,11 @@
             || (_maChanh != MaChanh)
             || (_maKhachHang != MaKhachHang);
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public object KhachHangs { get; set; }
+        
+        [Newtonsoft.Json.JsonIgnore]
+        public object Chanhs { get; set; }
     }
 }

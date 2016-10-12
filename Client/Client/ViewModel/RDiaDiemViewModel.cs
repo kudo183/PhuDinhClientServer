@@ -15,7 +15,11 @@ namespace Client.ViewModel
                 "Nuoc", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaNuoc", typeof(int), "TenNuoc", "Ma");
             _nuocFilter.AddCommand = new SimpleCommand("NuocAddCommand",
-                () => { base.ProccessHeaderAddCommand(new View.RNuocView(), "Nuoc"); },
+                () =>
+                {
+                    base.ProccessHeaderAddCommand(
+                new View.RNuocView(), "Nuoc", ReferenceDataManager<RNuocDto>.Instance.Load);
+                },
                 () => true
             );
             _nuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
@@ -29,7 +33,10 @@ namespace Client.ViewModel
                 filter.ActionFilterValueChanged = Load;
                 filter.ActionIsUsedChanged = Load;
             }
+        }
 
+        protected override void LoadedData(PagingResultDto<RDiaDiemDto> data)
+        {
             ReferenceDataManager<RNuocDto>.Instance.Load();
         }
 

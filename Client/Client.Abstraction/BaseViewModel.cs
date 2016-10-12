@@ -41,7 +41,7 @@ namespace Client.Abstraction
             PagerViewModel.ActionIsEnablePagingChanged = Load;
         }
 
-        protected virtual void ProccessHeaderAddCommand(object view,  string title)
+        protected virtual void ProccessHeaderAddCommand(object view,  string title, Action AfterCloseDialogAction)
         {
             var w = new Window()
             {
@@ -50,6 +50,11 @@ namespace Client.Abstraction
                 Content = view
             };
             w.ShowDialog();
+
+            if (AfterCloseDialogAction != null)
+            {
+                AfterCloseDialogAction();
+            }
         }
 
         protected virtual void ProcessDtoBeforeAddToEntities(T dto)
@@ -64,7 +69,7 @@ namespace Client.Abstraction
 
         protected virtual void LoadedData(DTO.PagingResultDto<T> data)
         {
-            ReferenceDataManager<T>.Instance.Reset(data.Items);
+            
         }
         #region IBaseViewModel interface
         public bool IsValid { get; set; }
@@ -196,6 +201,15 @@ namespace Client.Abstraction
                             Predicate = "=",
                             PropertyPath = filter.PropertyName,
                             Value = (bool)filter.FilterValue
+                        });
+                    }
+                    else if (filter.PropertyType == typeof(DateTime))
+                    {
+                        result.Add(new QueryBuilder.WhereExpression.WhereOptionDate()
+                        {
+                            Predicate = "=",
+                            PropertyPath = filter.PropertyName,
+                            Value = (DateTime)filter.FilterValue
                         });
                     }
                 }

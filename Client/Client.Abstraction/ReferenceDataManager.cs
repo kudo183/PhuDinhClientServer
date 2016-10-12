@@ -25,12 +25,15 @@ namespace Client.Abstraction
         private readonly ObservableCollectionEx<T> _datas
             = new ObservableCollectionEx<T>();
 
+        private readonly List<T> _datasList = new List<T>();
+
         public void Load()
         {
             var qe = new QueryBuilder.QueryExpression();
             qe.PageIndex = 0;
-
-            _datas.Reset(DataService.Get(qe).Items);
+            _datasList.Clear();
+            _datasList.AddRange(DataService.Get(qe).Items);
+            _datas.Reset(_datasList);
         }
 
         public ObservableCollectionEx<T> Get(bool forceReload = false)
@@ -40,6 +43,15 @@ namespace Client.Abstraction
                 Load();
             }
             return _datas;
+        }
+
+        public List<T> GetList(bool forceReload = false)
+        {
+            if (forceReload)
+            {
+                Load();
+            }
+            return _datasList;
         }
 
         public void Reset(IEnumerable<T> data)

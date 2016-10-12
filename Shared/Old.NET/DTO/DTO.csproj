@@ -84,6 +84,9 @@
     <Compile Include="..\..\DTO\RNuocDto.cs">
       <Link>RNuocDto.cs</Link>
     </Compile>
+    <Compile Include="..\..\DTO\TDonHangDto.cs">
+      <Link>TDonHangDto.cs</Link>
+    </Compile>
     <Compile Include="..\..\DTO\TMatHangDto.cs">
       <Link>TMatHangDto.cs</Link>
     </Compile>

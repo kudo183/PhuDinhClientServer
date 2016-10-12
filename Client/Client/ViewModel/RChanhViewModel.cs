@@ -16,7 +16,11 @@ namespace Client.ViewModel
                 "Bai Xe", HeaderComboBoxFilterModel.ComboBoxFilter,
                 "MaBaiXe", typeof(int), "DiaDiemBaiXe", "Ma");
             _baiXeFilter.AddCommand = new SimpleCommand("BaiXeAddCommand",
-                () => { base.ProccessHeaderAddCommand(new View.RBaiXeView(), "Bai Xe"); },
+                () =>
+                {
+                    base.ProccessHeaderAddCommand(
+                new View.RBaiXeView(), "Bai Xe", ReferenceDataManager<RBaiXeDto>.Instance.Load);
+                },
                 () => true
             );
             _baiXeFilter.ItemSource = ReferenceDataManager<RBaiXeDto>.Instance.Get();
@@ -30,7 +34,10 @@ namespace Client.ViewModel
                 filter.ActionFilterValueChanged = Load;
                 filter.ActionIsUsedChanged = Load;
             }
+        }
 
+        protected override void LoadedData(PagingResultDto<RChanhDto> data)
+        {
             ReferenceDataManager<RBaiXeDto>.Instance.Load();
         }
 
