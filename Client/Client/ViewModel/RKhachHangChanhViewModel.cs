@@ -14,7 +14,10 @@ namespace Client.ViewModel
         {
             _khachHangFilter = new HeaderComboBoxFilterModel(
                 "Khach Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
-                "MaKhachHang", typeof(int), "TenKhachHang", "Ma");
+                nameof(RKhachHangChanhDto.MaKhachHang),
+                typeof(int),
+                nameof(RKhachHangDto.TenKhachHang),
+                nameof(RKhachHangDto.Ma));
             _khachHangFilter.AddCommand = new SimpleCommand("KhachHangAddCommand",
                 () => base.ProccessHeaderAddCommand(
                 new View.RKhachHangView(), "Khach Hang", ReferenceDataManager<RKhachHangDto>.Instance.Load)
@@ -23,7 +26,10 @@ namespace Client.ViewModel
 
             _chanhFilter = new HeaderComboBoxFilterModel(
                 "Chanh", HeaderComboBoxFilterModel.ComboBoxFilter,
-                "MaChanh", typeof(int), "TenChanh", "Ma");
+                nameof(RKhachHangChanhDto.MaChanh),
+                typeof(int),
+                nameof(RChanhDto.TenChanh),
+                nameof(RChanhDto.Ma));
             _chanhFilter.AddCommand = new SimpleCommand("ChanhAddCommand",
                 () =>
                 {
@@ -34,10 +40,10 @@ namespace Client.ViewModel
             );
             _chanhFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
+            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RKhachHangChanhDto.Ma), typeof(int)));
             HeaderFilters.Add(_khachHangFilter);
             HeaderFilters.Add(_chanhFilter);
-            HeaderFilters.Add(new HeaderCheckFilterModel("La Mac Dinh", "LaMacDinh", typeof(bool)));
+            HeaderFilters.Add(new HeaderCheckFilterModel("La Mac Dinh", nameof(RKhachHangChanhDto.LaMacDinh), typeof(bool)));
 
             foreach (var filter in HeaderFilters)
             {

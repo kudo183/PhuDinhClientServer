@@ -13,17 +13,18 @@ namespace Client.ViewModel
         {
             _diaDiemFilter = new HeaderComboBoxFilterModel(
                 "Dia Diem", HeaderComboBoxFilterModel.ComboBoxFilter,
-                "MaDiaDiem", typeof(int), "Tinh", "Ma");
+                nameof(RKhachHangDto.MaDiaDiem),
+                typeof(int), nameof(RDiaDiemDto.Tinh), nameof(RDiaDiemDto.Ma));
             _diaDiemFilter.AddCommand = new SimpleCommand("DiaDiemAddCommand",
-                () =>base.ProccessHeaderAddCommand(
+                () => base.ProccessHeaderAddCommand(
                 new View.RDiaDiemView(), "Dia Diem", ReferenceDataManager<RDiaDiemDto>.Instance.Load)
             );
             _diaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
+            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RKhachHangDto.Ma), typeof(int)));
             HeaderFilters.Add(_diaDiemFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten Khach Hang", "TenKhachHang", typeof(string)));
-            HeaderFilters.Add(new HeaderCheckFilterModel("Khach Rieng", "KhachRieng", typeof(bool)));
+            HeaderFilters.Add(new HeaderTextFilterModel("Ten Khach Hang", nameof(RKhachHangDto.TenKhachHang), typeof(string)));
+            HeaderFilters.Add(new HeaderCheckFilterModel("Khach Rieng", nameof(RKhachHangDto.KhachRieng), typeof(bool)));
 
             foreach (var filter in HeaderFilters)
             {

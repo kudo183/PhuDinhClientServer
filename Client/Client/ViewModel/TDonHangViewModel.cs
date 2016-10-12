@@ -16,7 +16,10 @@ namespace Client.ViewModel
         {
             _khachHangFilter = new HeaderComboBoxFilterModel(
                 "Khach Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
-                "MaKhachHang", typeof(int), "TenKhachHang", "Ma");
+                nameof(TDonHangDto.MaKhachHang),
+                typeof(int),
+                nameof(RKhachHangDto.TenKhachHang),
+                nameof(RKhachHangDto.Ma));
             _khachHangFilter.AddCommand = new SimpleCommand("KhachHangAddCommand",
                 () => base.ProccessHeaderAddCommand(
                   new View.RKhachHangView(), "Khach Hang Chanh", ReferenceDataManager<RKhachHangDto>.Instance.Load)
@@ -25,7 +28,10 @@ namespace Client.ViewModel
 
             _khoHangFilter = new HeaderComboBoxFilterModel(
                 "Kho Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
-                "MaKhoHang", typeof(int), "TenKhoHang", "Ma");
+                nameof(TDonHangDto.MaKhoHang),
+                typeof(int),
+                nameof(RKhoHangDto.TenKho),
+                nameof(RKhoHangDto.Ma));
             _khoHangFilter.AddCommand = new SimpleCommand("KhoHangAddCommand",
                 () => base.ProccessHeaderAddCommand(
                   new View.RKhoHangView(), "Kho Hang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
@@ -34,20 +40,23 @@ namespace Client.ViewModel
 
             _chanhFilter = new HeaderComboBoxFilterModel(
                 "Chanh", HeaderComboBoxFilterModel.ComboBoxFilter,
-                "MaChanh", typeof(int), "TenChanh", "Ma");
+                nameof(TDonHangDto.MaChanh),
+                typeof(int),
+                nameof(RChanhDto.TenChanh),
+                nameof(RChanhDto.Ma));
             _chanhFilter.AddCommand = new SimpleCommand("ChanhAddCommand",
                 () => base.ProccessHeaderAddCommand(
                 new View.RKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog)
             );
             _chanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
-            HeaderFilters.Add(new HeaderDateFilterModel("Ngay", "Ngay", typeof(System.DateTime)));
+            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(TDonHangDto.Ma), typeof(int)));
+            HeaderFilters.Add(new HeaderDateFilterModel("Ngay", nameof(TDonHangDto.Ngay), typeof(System.DateTime)));
             HeaderFilters.Add(_khachHangFilter);
             HeaderFilters.Add(_khoHangFilter);
             HeaderFilters.Add(_chanhFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("So Luong", "TongSoLuong", typeof(int)));
-            HeaderFilters.Add(new HeaderCheckFilterModel("Xong", "Xong", typeof(bool)));
+            HeaderFilters.Add(new HeaderTextFilterModel("So Luong", nameof(TDonHangDto.TongSoLuong), typeof(int)));
+            HeaderFilters.Add(new HeaderCheckFilterModel("Xong", nameof(TDonHangDto.Xong), typeof(bool)));
 
             foreach (var filter in HeaderFilters)
             {

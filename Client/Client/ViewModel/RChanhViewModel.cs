@@ -13,16 +13,16 @@ namespace Client.ViewModel
         {
             _baiXeFilter = new HeaderComboBoxFilterModel(
                 "Bai Xe", HeaderComboBoxFilterModel.ComboBoxFilter,
-                "MaBaiXe", typeof(int), "DiaDiemBaiXe", "Ma");
+                nameof(RChanhDto.MaBaiXe), typeof(int), nameof(RBaiXeDto.DiaDiemBaiXe), nameof(RBaiXeDto.Ma));
             _baiXeFilter.AddCommand = new SimpleCommand("BaiXeAddCommand",
                 () => base.ProccessHeaderAddCommand(
                 new View.RBaiXeView(), "Bai Xe", ReferenceDataManager<RBaiXeDto>.Instance.Load)
             );
             _baiXeFilter.ItemSource = ReferenceDataManager<RBaiXeDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", "Ma", typeof(int)));
+            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RChanhDto.Ma), typeof(int)));
             HeaderFilters.Add(_baiXeFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten Chanh", "TenChanh", typeof(string)));
+            HeaderFilters.Add(new HeaderTextFilterModel("Ten Chanh", nameof(RChanhDto.TenChanh), typeof(string)));
 
             foreach (var filter in HeaderFilters)
             {
