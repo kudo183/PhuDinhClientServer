@@ -47,5 +47,8 @@
                 || (_tenMatHangDayDu != TenMatHangDayDu)
                 || (_tenMatHangIn != TenMatHangIn);
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public object LoaiHangs { get; set; }
     }
 }
