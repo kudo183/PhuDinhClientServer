@@ -12,11 +12,16 @@ namespace Client.Abstraction
             get { return _instance; }
         }
 
-        private IDataService<T> _dataService = ServiceLocator.Instance.GetInstance<IDataService<T>>();
+        private IDataService<T> _dataService;
         public IDataService<T> DataService
         {
             get
             {
+                if (_dataService == null)
+                {
+                    _dataService = ServiceLocator.Instance.GetInstance<IDataService<T>>();
+                }
+
                 return _dataService;
             }
             private set { }

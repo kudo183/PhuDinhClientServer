@@ -79,6 +79,9 @@
     <Compile Include="AllView.xaml.cs">
       <DependentUpon>AllView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\complexDonHangView.xaml.cs">
+      <DependentUpon>complexDonHangView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TChiTietDonHangView.xaml.cs">
       <DependentUpon>TChiTietDonHangView.xaml</DependentUpon>
     </Compile>
@@ -127,6 +130,10 @@
       <DependentUpon>RNuocView.xaml</DependentUpon>
     </Compile>
     <Page Include="AllView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\complexDonHangView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

@@ -37,8 +37,24 @@ namespace Client.Abstraction
 
             ViewModel = viewModel;
 
-            InputBindings.Add(new KeyBinding(new SimpleCommand("F3", () => viewModel.Save()), new KeyGesture(Key.F3)));
-            InputBindings.Add(new KeyBinding(new SimpleCommand("F5", () => viewModel.Load()), new KeyGesture(Key.F5)));
+            InputBindings.Add(
+                new KeyBinding(
+                    new SimpleCommand("F3",
+                    () =>
+                    {
+                        _gridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
+                        viewModel.Save();
+                    }),
+                    new KeyGesture(Key.F3)));
+            InputBindings.Add(
+                new KeyBinding(
+                    new SimpleCommand("F5",
+                    () =>
+                    {
+                        _gridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
+                        viewModel.Load();
+                    }),
+                    new KeyGesture(Key.F5)));
 
             DataContext = ViewModel;
 

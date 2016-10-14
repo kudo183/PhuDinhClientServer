@@ -5,5 +5,6 @@
         bool IsValid { get; set; }
         void Load();
         void Save();
+        System.Action<int> ActionSelectedIndexChanged { get; set; }
     }
 }

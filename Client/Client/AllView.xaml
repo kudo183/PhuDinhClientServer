@@ -12,6 +12,7 @@
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Button.Click="StackPanel_Click">
+            <Button Content="complexDonHang"/>
             <Button Content="RBaiXe"/>
             <Button Content="RChanh"/>
             <Button Content="RDiaDiem"/>

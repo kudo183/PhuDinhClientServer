@@ -1,23 +1,28 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using SimpleDataGrid.ViewModel;
 using System.Linq;
 using System.Windows;
+using SimpleDataGrid;
+using System.ComponentModel;
 
 namespace Client.Abstraction
 {
-    public abstract class BaseViewModel<T> : IBaseViewModel<T> where T : class, DTO.IDto
+    public abstract class BaseViewModel<T> : IBaseViewModel<T>, INotifyPropertyChanged where T : class, DTO.IDto
     {
         protected string _debugName;
 
         protected readonly List<T> _originalEntities = new List<T>();
 
-        private IDataService<T> _dataService = ServiceLocator.Instance.GetInstance<IDataService<T>>();
+        private IDataService<T> _dataService;
         public IDataService<T> DataService
         {
             get
             {
+                if (_dataService == null)
+                {
+                    _dataService = ServiceLocator.Instance.GetInstance<IDataService<T>>();
+                }
                 return _dataService;
             }
             private set { }
@@ -27,7 +32,8 @@ namespace Client.Abstraction
         {
             _debugName = NameManager.Instance.GetViewModelName<T>();
 
-            Entities = new ObservableCollection<T>();
+            Entities = new ObservableCollectionEx<T>();
+            Entities.CollectionChanged += Entities_CollectionChanged;
             HeaderFilters = new List<HeaderFilterBaseModel>();
             PagerViewModel = new PagerViewModel()
             {
@@ -39,9 +45,11 @@ namespace Client.Abstraction
 
             PagerViewModel.ActionCurrentPageIndexChanged = Load;
             PagerViewModel.ActionIsEnablePagingChanged = Load;
+
+            SelectedValuePath = nameof(DTO.IDto.Ma);
         }
 
-        protected virtual void ProccessHeaderAddCommand(object view,  string title, Action AfterCloseDialogAction)
+        protected virtual void ProccessHeaderAddCommand(object view, string title, Action AfterCloseDialogAction)
         {
             var w = new Window()
             {
@@ -69,23 +77,62 @@ namespace Client.Abstraction
 
         protected virtual void LoadedData(DTO.PagingResultDto<T> data)
         {
-            
+
         }
+
+        #region INotifyPropertyChanged
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected void OnPropertyChanged(string name)
+        {
+            var handler = PropertyChanged;
+            if (handler != null)
+            {
+                handler(this, new PropertyChangedEventArgs(name));
+            }
+        }
+        #endregion
+
         #region IBaseViewModel interface
         public bool IsValid { get; set; }
 
-        public ObservableCollection<T> Entities { get; set; }
+        public ObservableCollectionEx<T> Entities { get; set; }
+
+        private int _selectedIndex;
+
+        public int SelectedIndex
+        {
+            get { return _selectedIndex; }
+            set
+            {
+                if (_selectedIndex == value)
+                {
+                    return;
+                }
+
+                _selectedIndex = value;
+
+                if (ActionSelectedIndexChanged != null && Entities.IsResetting == false)
+                {
+                    ActionSelectedIndexChanged(_selectedIndex);
+                }
+
+                OnPropertyChanged(nameof(SelectedIndex));
+            }
+        }
+
+        public Action<int> ActionSelectedIndexChanged { get; set; }
 
         public List<HeaderFilterBaseModel> HeaderFilters { get; set; }
 
         public PagerViewModel PagerViewModel { get; set; }
 
+        public string SelectedValuePath { get; set; }
+
         public void Load()
         {
             Console.WriteLine(_debugName + " BaseViewModel Load");
-            Entities.Clear();
-            Entities.CollectionChanged -= Entities_CollectionChanged;
-            _originalEntities.Clear();
 
             DTO.PagingResultDto<T> result;
 
@@ -100,25 +147,33 @@ namespace Client.Abstraction
                 PropertyPath = "Ma"
             });
 
-            result = _dataService.Get(qe);
+            result = DataService.Get(qe);
             LoadedData(result);
+
+            _originalEntities.Clear();
 
             foreach (var dto in result.Items)
             {
                 ProcessDtoBeforeAddToEntities(dto);
-                Entities.Add(dto);
                 _originalEntities.Add(dto);
             }
 
+            var selectedIndex = SelectedIndex;
+            Entities.Reset(result.Items);
+            SelectedIndex = selectedIndex;
+
             PagerViewModel.ItemCount = Entities.Count;
             PagerViewModel.PageCount = result.PageCount;
-
-            Entities.CollectionChanged += Entities_CollectionChanged;
         }
 
         private void Entities_CollectionChanged(
             object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
+            if (Entities.IsResetting == true)
+            {
+                return;
+            }
+
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
                 ProcessNewAddedDto(e.NewItems[0] as T);
@@ -161,7 +216,7 @@ namespace Client.Abstraction
                 }
             }
 
-            var response = _dataService.Save(changedItems);
+            var response = DataService.Save(changedItems);
 
             Load();
         }

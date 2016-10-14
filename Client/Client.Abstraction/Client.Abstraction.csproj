@@ -45,11 +45,9 @@
   <ItemGroup>
     <Compile Include="BaseView.cs" />
     <Compile Include="BaseViewModel.cs" />
-    <Compile Include="FilterBase.cs" />
     <Compile Include="IBaseView.cs" />
     <Compile Include="IBaseViewModel.cs" />
     <Compile Include="IDataService.cs" />
-    <Compile Include="IFilter.cs" />
     <Compile Include="NameManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="BaseComplexView.cs" />
