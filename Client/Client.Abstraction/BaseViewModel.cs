@@ -99,7 +99,7 @@ namespace Client.Abstraction
 
         public ObservableCollectionEx<T> Entities { get; set; }
 
-        private int _selectedIndex;
+        private int _selectedIndex = -1;
 
         public int SelectedIndex
         {

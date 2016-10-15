@@ -19,7 +19,7 @@ namespace Client.View
             }
 
             tDonHang.ViewModel.ActionSelectedIndexChanged = ProcessSelectedIndexChanged;
-            tChiTietDonHang.ViewModel.HeaderFilters[1].IsUsed = true;
+            tChiTietDonHang.ViewModel.HeaderFilters[1].DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = 0; });
         }
 
         private void ProcessSelectedIndexChanged(int index)
