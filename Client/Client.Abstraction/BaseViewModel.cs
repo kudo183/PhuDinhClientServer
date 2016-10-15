@@ -130,6 +130,10 @@ namespace Client.Abstraction
 
         public string SelectedValuePath { get; set; }
 
+        public SimpleCommand LoadCommand { get; set; }
+
+        public SimpleCommand SaveCommand { get; set; }
+
         public void Load()
         {
             Console.WriteLine(_debugName + " BaseViewModel Load");

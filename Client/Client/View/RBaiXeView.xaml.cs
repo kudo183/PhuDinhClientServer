@@ -1,6 +1,5 @@
 ﻿using Client.Abstraction;
 using Client.ViewModel;
-using System.Windows;
 
 namespace Client.View
 {
@@ -16,11 +15,6 @@ namespace Client.View
             var vm = new RBaiXeViewModel();
 
             InitView(vm, gridView);
-        }
-
-        private void EditableGridView_Click(object sender, RoutedEventArgs e)
-        {
-            ProcessMenuButtonClick(sender, e);
         }
     }
 }

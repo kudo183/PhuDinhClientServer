@@ -8,7 +8,7 @@
                       xmlns:Dto="clr-namespace:DTO;assembly=DTO"
                       xmlns:Abstraction="clr-namespace:Client.Abstraction;assembly=Client.Abstraction"
                       mc:Ignorable="d">
-    <SimpleDataGrid:EditableGridView x:Name="gridView" Button.Click="EditableGridView_Click">
+    <SimpleDataGrid:EditableGridView x:Name="gridView">
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridDateColumn Width="80" Header="Ngay" Binding="{Binding Ngay, UpdateSourceTrigger=PropertyChanged}"/>

@@ -37,61 +37,36 @@ namespace Client.Abstraction
 
             ViewModel = viewModel;
 
-            InputBindings.Add(
-                new KeyBinding(
-                    new SimpleCommand("F3",
-                    () =>
-                    {
-                        _gridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
-                        viewModel.Save();
-                    }),
-                    new KeyGesture(Key.F3)));
-            InputBindings.Add(
-                new KeyBinding(
-                    new SimpleCommand("F5",
-                    () =>
-                    {
-                        _gridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
-                        viewModel.Load();
-                    }),
-                    new KeyGesture(Key.F5)));
+            ViewModel.SaveCommand = new SimpleCommand("SaveCommand", () =>
+            {
+                Console.WriteLine(_debugName + "Save");
+                _gridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
+                viewModel.Save();
+                if (AfterSave != null)
+                {
+                    AfterSave(this, null);
+                }
+            });
+
+            ViewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
+            {
+                Console.WriteLine(_debugName + "Load");
+                _gridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
+                viewModel.Load();
+                if (AfterCancel != null)
+                {
+                    AfterCancel(this, null);
+                }
+            });
+
+            InputBindings.Add(new KeyBinding(ViewModel.SaveCommand, new KeyGesture(Key.F3)));
+            InputBindings.Add(new KeyBinding(ViewModel.LoadCommand, new KeyGesture(Key.F5)));
 
             DataContext = ViewModel;
 
             for (int i = 0; i < ViewModel.HeaderFilters.Count; i++)
             {
                 _gridView.Columns[i].Header = ViewModel.HeaderFilters[i];
-            }
-        }
-
-        public void ProcessMenuButtonClick(object sender, RoutedEventArgs e)
-        {
-            var button = e.OriginalSource as Button;
-            if (button == null)
-                return;
-
-            if (button.Tag == null)
-                return;
-
-            var buttonName = button.Tag.ToString();
-            switch (buttonName)
-            {
-                case "btnSave":
-                    Console.WriteLine(_debugName + "Save");
-                    ViewModel.Save();
-                    if (AfterSave != null)
-                    {
-                        AfterSave(this, null);
-                    }
-                    break;
-                case "btnCancel":
-                    Console.WriteLine(_debugName + "Cancel");
-                    ViewModel.Load();
-                    if (AfterCancel != null)
-                    {
-                        AfterCancel(this, null);
-                    }
-                    break;
             }
         }
 
