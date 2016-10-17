@@ -18,7 +18,21 @@ namespace Client.Abstraction
         public Action ActionMoveFocusToNextView { get; set; }
 
         public EditableGridView GridView { get; set; }
-        private object _viewModel;
+        private IEditableGridViewModel<T> _viewModel;
+
+        private IViewModelFactory _viewModelFactory;
+        public IViewModelFactory ViewModelFactory
+        {
+            get
+            {
+                if (_viewModelFactory == null)
+                {
+                    _viewModelFactory = ServiceLocator.Instance.GetInstance<IViewModelFactory>();
+                }
+                return _viewModelFactory;
+            }
+            private set { }
+        }
 
         public BaseView()
         {
@@ -33,28 +47,29 @@ namespace Client.Abstraction
             Unloaded += OnUnloaded;
         }
 
-        public void InitView(BaseViewModel<T> viewModel, EditableGridView gridView)
+        public void InitView()
         {
-            GridView = gridView;
-            _viewModel = viewModel;
-            ViewModel = viewModel;
+            GridView = Content as EditableGridView;
+            var viewModelObject = ViewModelFactory.CreateViewModel<T>();
+            _viewModel = viewModelObject as IEditableGridViewModel<T>;
+            ViewModel = viewModelObject as IBaseViewModel;
 
-            viewModel.SaveCommand = new SimpleCommand("SaveCommand", () =>
+            _viewModel.SaveCommand = new SimpleCommand("SaveCommand", () =>
             {
                 Console.WriteLine(_debugName + "Save");
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
-                viewModel.Save();
+                ViewModel.Save();
                 if (AfterSave != null)
                 {
                     AfterSave(this, null);
                 }
             });
 
-            viewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
+            _viewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
             {
                 Console.WriteLine(_debugName + "Load");
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
-                viewModel.Load();
+                ViewModel.Load();
                 if (AfterCancel != null)
                 {
                     AfterCancel(this, null);
@@ -74,22 +89,29 @@ namespace Client.Abstraction
             switch (e.Key)
             {
                 case Key.F3:
-                    (_viewModel as IEditableGridViewModel<T>).SaveCommand.Execute(null);
+                    _viewModel.SaveCommand.Execute(null);
                     break;
                 case Key.F4:
-                    (_viewModel as IEditableGridViewModel<T>).SaveCommand.Execute(null);
+                    _viewModel.SaveCommand.Execute(null);
                     if (ActionMoveFocusToNextView != null)
                     {
                         ActionMoveFocusToNextView();
                     }
                     break;
                 case Key.F5:
-                    (_viewModel as IEditableGridViewModel<T>).LoadCommand.Execute(null);
+                    _viewModel.LoadCommand.Execute(null);
                     break;
                 default:
                     base.OnPreviewKeyDown(e);
                     break;
             }
+        }
+
+        protected override void OnInitialized(EventArgs e)
+        {
+            Console.WriteLine(_debugName + " OnInitialized");
+            InitView();
+            base.OnInitialized(e);
         }
 
         public virtual void OnUnloaded(object sender, RoutedEventArgs e)
@@ -103,6 +125,5 @@ namespace Client.Abstraction
 
             ViewModel.Load();
         }
-
     }
 }

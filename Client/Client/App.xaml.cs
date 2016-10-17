@@ -33,7 +33,8 @@ namespace Client
 
             ServiceLocator.Instance.Initialize(new Dictionary<Type, Type>()
             {
-                { typeof(IDataService<>), typeof(ProtoBufDataService<>) }
+                { typeof(IDataService<>), typeof(ProtoBufDataService<>) },
+                { typeof(IViewModelFactory), typeof(ViewModelFactory) }
             });
 
             //apply Window Style in App.xaml to all Window type

@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ProtoBufDataService.cs" />
+    <Compile Include="ViewModelFactory.cs" />
     <Compile Include="ViewModel\TChiTietDonHangViewModel.cs" />
     <Compile Include="ViewModel\TMatHangViewModel.cs" />
     <Compile Include="ViewModel\RKhachHangChanhViewModel.cs" />

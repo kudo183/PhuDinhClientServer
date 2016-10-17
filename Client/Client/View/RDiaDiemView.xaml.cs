@@ -1,5 +1,4 @@
 ﻿using Client.Abstraction;
-using Client.ViewModel;
 
 namespace Client.View
 {
@@ -11,10 +10,6 @@ namespace Client.View
         public RDiaDiemView() : base()
         {
             InitializeComponent();
-
-            var vm = new RDiaDiemViewModel();
-
-            InitView(vm, gridView);
         }
     }
 }

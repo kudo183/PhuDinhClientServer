@@ -1,5 +1,4 @@
 ﻿using Client.Abstraction;
-using Client.ViewModel;
 
 namespace Client.View
 {
@@ -11,10 +10,6 @@ namespace Client.View
         public RKhachHangChanhView() : base()
         {
             InitializeComponent();
-
-            var vm = new RKhachHangChanhViewModel();
-
-            InitView(vm, gridView);
         }
     }
 }

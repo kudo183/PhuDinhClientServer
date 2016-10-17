@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -31,15 +32,16 @@ namespace Client.Abstraction
             {
                 return;
             }
-
-            Loaded += BaseComplexView_Loaded;
+        }
+        protected override void OnInitialized(EventArgs e)
+        {
+            Console.WriteLine("BaseComplexView OnInitialized");
+            InitView();
+            base.OnInitialized(e);
         }
 
-        private void BaseComplexView_Loaded(object sender, RoutedEventArgs e)
+        private void InitView()
         {
-            if (_isFirstLoaded == false)
-                return;
-
             var panel = Content as Panel;
             foreach (UIElement item in panel.Children)
             {
@@ -58,8 +60,6 @@ namespace Client.Abstraction
             }
 
             InitMoveFocusAction(_views[_views.Count - 1], _views[0]);
-
-            _isFirstLoaded = false;
         }
 
         private void InitSelectedIndexChangedAction(IBaseView parent, IBaseView child)

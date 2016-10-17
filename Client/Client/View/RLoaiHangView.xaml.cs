@@ -1,5 +1,4 @@
 ﻿using Client.Abstraction;
-using Client.ViewModel;
 
 namespace Client.View
 {
@@ -11,10 +10,6 @@ namespace Client.View
         public RLoaiHangView() : base()
         {
             InitializeComponent();
-
-            var vm = new RLoaiHangViewModel();
-
-            InitView(vm, gridView);
         }
     }
 }
