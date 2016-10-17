@@ -1,14 +1,15 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using SimpleDataGrid;
+using System;
 
 namespace Client.Abstraction
 {
     public interface IBaseView
     {
+        IBaseViewModel ViewModel { get; set; }
+        EditableGridView GridView { get; set; }
         event EventHandler AfterSave;
         event EventHandler AfterCancel;
 
-        event EventHandler MoveFocusToNextView;
-        event SelectionChangedEventHandler SelectionChanged;
+        Action ActionMoveFocusToNextView { get; set; }
     }
 }

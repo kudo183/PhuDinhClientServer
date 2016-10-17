@@ -1,4 +1,5 @@
 ﻿using SimpleDataGrid;
+using SimpleDataGrid.ViewModel;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -10,13 +11,14 @@ namespace Client.Abstraction
     {
         protected string _debugName;
 
-        public BaseViewModel<T> ViewModel { get; set; }
-        protected EditableGridView _gridView;
+        public IBaseViewModel ViewModel { get; set; }
 
         public event EventHandler AfterSave;
         public event EventHandler AfterCancel;
-        public event EventHandler MoveFocusToNextView;
-        public event SelectionChangedEventHandler SelectionChanged;
+        public Action ActionMoveFocusToNextView { get; set; }
+
+        public EditableGridView GridView { get; set; }
+        private object _viewModel;
 
         public BaseView()
         {
@@ -33,14 +35,14 @@ namespace Client.Abstraction
 
         public void InitView(BaseViewModel<T> viewModel, EditableGridView gridView)
         {
-            _gridView = gridView;
-
+            GridView = gridView;
+            _viewModel = viewModel;
             ViewModel = viewModel;
 
-            ViewModel.SaveCommand = new SimpleCommand("SaveCommand", () =>
+            viewModel.SaveCommand = new SimpleCommand("SaveCommand", () =>
             {
                 Console.WriteLine(_debugName + "Save");
-                _gridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
+                GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
                 viewModel.Save();
                 if (AfterSave != null)
                 {
@@ -48,10 +50,10 @@ namespace Client.Abstraction
                 }
             });
 
-            ViewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
+            viewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
             {
                 Console.WriteLine(_debugName + "Load");
-                _gridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
+                GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
                 viewModel.Load();
                 if (AfterCancel != null)
                 {
@@ -59,14 +61,34 @@ namespace Client.Abstraction
                 }
             });
 
-            InputBindings.Add(new KeyBinding(ViewModel.SaveCommand, new KeyGesture(Key.F3)));
-            InputBindings.Add(new KeyBinding(ViewModel.LoadCommand, new KeyGesture(Key.F5)));
-
             DataContext = ViewModel;
 
             for (int i = 0; i < ViewModel.HeaderFilters.Count; i++)
             {
-                _gridView.Columns[i].Header = ViewModel.HeaderFilters[i];
+                GridView.Columns[i].Header = ViewModel.HeaderFilters[i];
+            }
+        }
+
+        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        {
+            switch (e.Key)
+            {
+                case Key.F3:
+                    (_viewModel as IEditableGridViewModel<T>).SaveCommand.Execute(null);
+                    break;
+                case Key.F4:
+                    (_viewModel as IEditableGridViewModel<T>).SaveCommand.Execute(null);
+                    if (ActionMoveFocusToNextView != null)
+                    {
+                        ActionMoveFocusToNextView();
+                    }
+                    break;
+                case Key.F5:
+                    (_viewModel as IEditableGridViewModel<T>).LoadCommand.Execute(null);
+                    break;
+                default:
+                    base.OnPreviewKeyDown(e);
+                    break;
             }
         }
 

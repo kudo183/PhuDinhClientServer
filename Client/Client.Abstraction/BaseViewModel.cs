@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Client.Abstraction
 {
-    public abstract class BaseViewModel<T> : IBaseViewModel<T>, INotifyPropertyChanged where T : class, DTO.IDto
+    public abstract class BaseViewModel<T> : IBaseViewModel, IEditableGridViewModel<T>, INotifyPropertyChanged where T : class, DTO.IDto
     {
         protected string _debugName;
 
@@ -170,20 +170,6 @@ namespace Client.Abstraction
             PagerViewModel.PageCount = result.PageCount;
         }
 
-        private void Entities_CollectionChanged(
-            object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
-        {
-            if (Entities.IsResetting == true)
-            {
-                return;
-            }
-
-            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
-            {
-                ProcessNewAddedDto(e.NewItems[0] as T);
-            }
-        }
-
         public void Save()
         {
             var changedItems = new List<DTO.ChangedItem<T>>();
@@ -220,9 +206,33 @@ namespace Client.Abstraction
                 }
             }
 
+            if (changedItems.Count == 0)
+            {
+                return;
+            }
+
             var response = DataService.Save(changedItems);
 
             Load();
+        }
+
+        public IReadOnlyList<T1> GetEntities<T1>()
+        {
+            return Entities as IReadOnlyList<T1>;
+        }
+
+        private void Entities_CollectionChanged(
+            object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (Entities.IsResetting == true)
+            {
+                return;
+            }
+
+            if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
+            {
+                ProcessNewAddedDto(e.NewItems[0] as T);
+            }
         }
         #endregion
 

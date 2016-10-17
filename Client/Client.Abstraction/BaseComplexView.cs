@@ -1,141 +1,95 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using System.Collections.Generic;
+using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Input;
 
 namespace Client.Abstraction
 {
     public abstract class BaseComplexView : UserControl
     {
-        private readonly List<IBaseView> _views = new List<IBaseView>();
-
-        protected BaseComplexView()
+        public static int GetViewLevel(DependencyObject obj)
         {
-            Loaded += BaseComplexView_Loaded;
-            Unloaded += BaseComplexView_Unloaded;
+            return (int)obj.GetValue(ViewLevelProperty);
         }
 
-        protected override void OnPreviewKeyDown(KeyEventArgs e)
+        public static void SetViewLevel(DependencyObject obj, int value)
         {
-            var index = GetFocusedViewIndexFromKey(e);
-            if (index >= 0 && index < _views.Count)
-                FocusView(_views[index]);
-            else
-            {
-                base.OnPreviewKeyDown(e);
-            }
+            obj.SetValue(ViewLevelProperty, value);
         }
 
-        private int GetFocusedViewIndexFromKey(KeyEventArgs e)
+        // Using a DependencyProperty as the backing store for ViewLevel.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ViewLevelProperty =
+            DependencyProperty.RegisterAttached("ViewLevel", typeof(int), typeof(BaseComplexView), new PropertyMetadata(0));
+
+        private readonly Dictionary<int, IBaseView> _views = new Dictionary<int, IBaseView>();
+
+        private bool _isFirstLoaded = true;
+
+        public BaseComplexView()
         {
-            var result = -1;
-
-            if ((Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D1)
-                || e.Key == Key.F6)
-            {
-                result = 0;
-            }
-            else if ((Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D2)
-                || e.Key == Key.F7)
-            {
-                result = 1;
-            }
-            else if ((Keyboard.Modifiers == ModifierKeys.Control && e.Key == Key.D3)
-                || e.Key == Key.F8)
-            {
-                result = 2;
-            }
-
-            return result;
-        }
-
-        public void AddView(IBaseView view)
-        {
-            _views.Add(view);
-        }
-
-        void BaseComplexView_Loaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            for (int i = _views.Count - 1; i >= 0; i--)
-            {
-                _views[i].SelectionChanged += SelectionChanged;
-            }
-
-            foreach (var view in _views)
-            {
-                view.MoveFocusToNextView += view_MoveFocusToNextView;
-                view.AfterSave += view_AfterSave;
-                view.AfterCancel += view_AfterCancel;
-            }
-
-            OnLoaded();
-        }
-
-        void BaseComplexView_Unloaded(object sender, System.Windows.RoutedEventArgs e)
-        {
-            for (int i = _views.Count - 1; i >= 0; i--)
-            {
-                _views[i].SelectionChanged -= SelectionChanged;
-            }
-
-            foreach (var view in _views)
-            {
-                view.MoveFocusToNextView -= view_MoveFocusToNextView;
-                view.AfterSave -= view_AfterSave;
-                view.AfterCancel -= view_AfterCancel;
-            }
-        }
-
-        void SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            if (sender != e.OriginalSource)
+            var designTime = System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject());
+            if (designTime == true)
             {
                 return;
             }
 
-            OnSelectionChanged(sender);
+            Loaded += BaseComplexView_Loaded;
         }
 
-        void view_AfterCancel(object sender, EventArgs e)
+        private void BaseComplexView_Loaded(object sender, RoutedEventArgs e)
         {
-            OnAfterCancel(sender as IBaseView);
+            if (_isFirstLoaded == false)
+                return;
+
+            var panel = Content as Panel;
+            foreach (UIElement item in panel.Children)
+            {
+                var level = BaseComplexView.GetViewLevel(item);
+                var view = item as IBaseView;
+                if (view != null && _views.ContainsKey(level) == false)
+                {
+                    _views.Add(level, view);
+                }
+            }
+
+            for (int i = 0; i < _views.Count - 1; i++)
+            {
+                InitSelectedIndexChangedAction(_views[i], _views[i + 1]);
+                InitMoveFocusAction(_views[i], _views[i + 1]);
+            }
+
+            InitMoveFocusAction(_views[_views.Count - 1], _views[0]);
+
+            _isFirstLoaded = false;
         }
 
-        void view_AfterSave(object sender, EventArgs e)
+        private void InitSelectedIndexChangedAction(IBaseView parent, IBaseView child)
         {
-            OnAfterSave(sender as IBaseView);
+            var viewModel = parent.ViewModel;
+            var childViewModel = child.ViewModel;
+            viewModel.ActionSelectedIndexChanged = (index) =>
+            {
+                var entities = viewModel.GetEntities<DTO.IDto>();
+                if (index < 0 || index >= entities.Count)
+                {
+                    childViewModel.HeaderFilters[1].FilterValue = 0;
+                }
+                else
+                {
+                    childViewModel.HeaderFilters[1].FilterValue = entities[index].Ma;
+                }
+            };
+            childViewModel.HeaderFilters[1].DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = 0; });
         }
 
-        void view_MoveFocusToNextView(object sender, EventArgs e)
+        private void InitMoveFocusAction(IBaseView current, IBaseView next)
         {
-            var index = _views.IndexOf(sender as IBaseView);
-            FocusView(_views[(index + 1) % _views.Count]);
-        }
-
-        protected virtual void OnLoaded()
-        {
-
-        }
-
-        protected virtual void OnSelectionChanged(object view)
-        {
-
-        }
-
-        protected virtual void OnAfterSave(IBaseView view)
-        {
-
-        }
-
-        protected virtual void OnAfterCancel(IBaseView view)
-        {
-
-        }
-
-        protected virtual void FocusView(IBaseView view)
-        {
-            //view.dg.FocusCell(view.dg.Items.Count - 1, view.dg.FindFirstEditableColumnIndex(0, view.dg));
+            var nextDataGrid = next.GridView.dataGrid;
+            current.ActionMoveFocusToNextView = () =>
+            {
+                nextDataGrid.FocusCell(
+                    nextDataGrid.Items.Count - 1,
+                    nextDataGrid.FindFirstEditableColumnIndex(0, nextDataGrid));
+            };
         }
     }
 }
