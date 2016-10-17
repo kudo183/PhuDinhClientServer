@@ -34,11 +34,12 @@ namespace Client.Abstraction
             private set { }
         }
 
+        private bool _isDesignTime;
         public BaseView()
         {
             _debugName = NameManager.Instance.GetViewName<T>();
-            var designTime = System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject());
-            if (designTime == true)
+            _isDesignTime = System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject());
+            if (_isDesignTime == true)
             {
                 return;
             }
@@ -49,6 +50,11 @@ namespace Client.Abstraction
 
         public void InitView()
         {
+            if (_isDesignTime == true)
+            {
+                return;
+            }
+
             GridView = Content as EditableGridView;
             var viewModelObject = ViewModelFactory.CreateViewModel<T>();
             _viewModel = viewModelObject as IEditableGridViewModel<T>;

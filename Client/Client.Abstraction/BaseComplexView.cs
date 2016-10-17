@@ -23,15 +23,11 @@ namespace Client.Abstraction
 
         private readonly Dictionary<int, IBaseView> _views = new Dictionary<int, IBaseView>();
 
-        private bool _isFirstLoaded = true;
+        private bool _isDesignTime = true;
 
         public BaseComplexView()
         {
-            var designTime = System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject());
-            if (designTime == true)
-            {
-                return;
-            }
+            _isDesignTime = System.ComponentModel.DesignerProperties.GetIsInDesignMode(new DependencyObject());
         }
         protected override void OnInitialized(EventArgs e)
         {
@@ -42,6 +38,11 @@ namespace Client.Abstraction
 
         private void InitView()
         {
+            if (_isDesignTime == true)
+            {
+                return;
+            }
+
             var panel = Content as Panel;
             foreach (UIElement item in panel.Children)
             {
