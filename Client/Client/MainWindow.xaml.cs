@@ -22,6 +22,10 @@ namespace Client
             }
 
             var viewType = System.Type.GetType("Client.View." + button.Tag);
+            if (viewType == null)
+            {
+                viewType = System.Type.GetType("Client." + button.Tag);
+            }
             var w = new Window()
             {
                 Title = button.Content.ToString(),

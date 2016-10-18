@@ -26,12 +26,12 @@
         <StackPanel Width="150" Orientation="Vertical">
             <Button Height="80" Content="Nhan Vien"/>
             <Button Height="80" Content="Nhap Hang"/>
-            <Button Height="80" Content="Don Hang"/>
+            <Button Height="80" Content="Don Hang" Tag="complexDonHangView"/>
             <Button Height="80" Content="Chuyen Hang"/>
         </StackPanel>
         <StackPanel Width="150" Orientation="Vertical">
-            <Button Height="80" Content="Mat Hang"/>
-            <Button Height="80" Content="Khach Hang"/>
+            <Button Height="80" Content="Mat Hang" Tag="TMatHangView"/>
+            <Button Height="80" Content="Khach Hang" Tag="RKhachHangView"/>
             <Button Height="80" Content="Ton Kho"/>
             <Button Height="80" Content="Chuyen Kho"/>
         </StackPanel>
