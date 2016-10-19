@@ -7,7 +7,11 @@ namespace Client
 {
     public class ProtoBufDataService<T> : IDataService<T> where T : DTO.IDto
     {
+        private static int VersionNumber = -1;
+        private static byte[] Data;
+
         private string _controller;
+
         public ProtoBufDataService()
         {
             _controller = NameManager.Instance.GetControllerName<T>();
@@ -15,14 +19,38 @@ namespace Client
 
         public PagingResultDto<T> Get(QueryExpression qe)
         {
-            System.Console.WriteLine(_controller + " " + "get");
-            return ProtobufWebClient.Instance.Post<T>(_controller, "get", qe);
+            var sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+            string isChanged = "";
+            qe.VersionNumber = VersionNumber;
+            var bytesResult = ProtobufWebClient.Instance.Post<T>(_controller, "get", qe);
+            var result = ProtobufWebClient.Instance.FromBytes<PagingResultDto<T>>(bytesResult);
+
+            if (VersionNumber != result.VersionNumber)
+            {
+                VersionNumber = result.VersionNumber;
+                Data = bytesResult;
+                isChanged = "changed ";
+            }
+
+            var pagingResult = ProtobufWebClient.Instance.FromBytes<PagingResultDto<T>>(Data);
+            foreach (var item in pagingResult.Items)
+            {
+                item.SetCurrentValueAsOriginalValue();
+            }
+            sw.Stop();
+            var msg = string.Format("{0} get {1} ms {2}{3}", _controller, sw.ElapsedMilliseconds, isChanged, VersionNumber);
+            System.Console.WriteLine(msg);
+            return pagingResult;
         }
 
         public string Save(List<ChangedItem<T>> changedItems)
         {
-            System.Console.WriteLine(_controller + " " + "save");
-            return ProtobufWebClient.Instance.Save(_controller, "save", changedItems);
+            var sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+            var result = ProtobufWebClient.Instance.Save(_controller, "save", changedItems);
+            System.Console.WriteLine(_controller + " " + "save " + sw.ElapsedMilliseconds + "ms");
+            return result;
         }
     }
 }

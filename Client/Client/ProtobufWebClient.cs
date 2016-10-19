@@ -42,19 +42,13 @@ namespace Client
 
         public string Token { get; set; }
 
-        public DTO.PagingResultDto<T> Post<T>(string controller, string action, QueryExpression qe)
+        public byte[] Post<T>(string controller, string action, QueryExpression qe)
             where T : DTO.IDto
         {
             var uri = GetUri(controller, action);
 
-            var pagingResult = FromBytes<DTO.PagingResultDto<T>>(Post(uri, ToBytes(qe)));
-            foreach (var item in pagingResult.Items)
-            {
-                item.SetCurrentValueAsOriginalValue();
-            }
-            return pagingResult;
+            return Post(uri, ToBytes(qe));
         }
-
         public string Save<T>(string controller, string action, List<DTO.ChangedItem<T>> changedItem)
         {
             var uri = GetUri(controller, action);
@@ -62,6 +56,16 @@ namespace Client
             var response = Post(uri, ToBytes(changedItem));
 
             return System.Text.Encoding.UTF8.GetString(response, 1, response.Length - 2);
+        }
+
+        public T FromBytes<T>(byte[] data)
+        {
+            using (var ms = new MemoryStream(data))
+            {
+                var r = ProtoBuf.Serializer.Deserialize<T>(ms);
+
+                return r;
+            }
         }
 
         private byte[] Get(string uri)
@@ -98,16 +102,6 @@ namespace Client
 
             //skip begin end double quote
             return System.Text.Encoding.UTF8.GetString(token, 1, token.Length - 2);
-        }
-
-        private T FromBytes<T>(byte[] data)
-        {
-            using (var ms = new MemoryStream(data))
-            {
-                var r = ProtoBuf.Serializer.Deserialize<T>(ms);
-
-                return r;
-            }
         }
 
         private byte[] ToBytes<T>(T data)
