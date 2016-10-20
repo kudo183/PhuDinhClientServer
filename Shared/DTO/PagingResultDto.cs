@@ -14,7 +14,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(4)]
         public List<T> Items { get; set; }
         [ProtoBuf.ProtoMember(5)]
-        public int VersionNumber { get; set; }
+        public long VersionNumber { get; set; }
 
         public PagingResultDto()
         {

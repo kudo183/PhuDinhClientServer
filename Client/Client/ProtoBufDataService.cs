@@ -7,7 +7,7 @@ namespace Client
 {
     public class ProtoBufDataService<T> : IDataService<T> where T : DTO.IDto
     {
-        private static int VersionNumber = -1;
+        private static long VersionNumber = -1;
         private static byte[] Data;
 
         private string _controller;
