@@ -236,10 +236,10 @@ namespace Client.Abstraction
         }
         #endregion
 
-        private List<QueryBuilder.WhereExpression.WhereOption> FromHeaderFilter(
+        private List<QueryBuilder.WhereExpression.IWhereOption> FromHeaderFilter(
             List<HeaderFilterBaseModel> headerFilters)
         {
-            var result = new List<QueryBuilder.WhereExpression.WhereOption>();
+            var result = new List<QueryBuilder.WhereExpression.IWhereOption>();
 
             foreach (var filter in headerFilters)
             {
