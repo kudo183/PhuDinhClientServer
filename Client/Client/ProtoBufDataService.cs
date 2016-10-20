@@ -7,8 +7,14 @@ namespace Client
 {
     public class ProtoBufDataService<T> : IDataService<T> where T : DTO.IDto
     {
-        private static long VersionNumber = -1;
-        private static byte[] Data;
+        class CacheData
+        {
+            //use this VersionNumber instead of QueryExpression.VersionNumber because QueryExpression.VersionNumver will change
+            public long VersionNumber = 0;
+            public byte[] Data;
+        }
+
+        private static Dictionary<QueryExpression, CacheData> _cache = new Dictionary<QueryExpression, CacheData>();
 
         private string _controller;
 
@@ -22,24 +28,35 @@ namespace Client
             var sw = new System.Diagnostics.Stopwatch();
             sw.Start();
             string isChanged = "";
-            qe.VersionNumber = VersionNumber;
-            var bytesResult = ProtobufWebClient.Instance.Post<T>(_controller, "get", qe);
-            var result = ProtobufWebClient.Instance.FromBytes<PagingResultDto<T>>(bytesResult);
 
-            if (VersionNumber != result.VersionNumber)
+            CacheData cache = null;
+            qe.VersionNumber = 0;//keep qe.VersionNumber always 0 for equality
+            if (_cache.TryGetValue(qe, out cache) == false)
             {
-                VersionNumber = result.VersionNumber;
-                Data = bytesResult;
-                isChanged = "changed ";
+                cache = new CacheData();
+                _cache.Add(qe, cache);
             }
 
-            var pagingResult = ProtobufWebClient.Instance.FromBytes<PagingResultDto<T>>(Data);
+            qe.VersionNumber = cache.VersionNumber;
+            var bytesResult = ProtobufWebClient.Instance.Post<T>(_controller, "get", qe);
+            qe.VersionNumber = 0;//keep qe.VersionNumber always 0
+
+            var result = ProtobufWebClient.Instance.FromBytes<PagingResultDto<T>>(bytesResult);
+
+            if (cache.VersionNumber != result.VersionNumber)
+            {
+                cache.VersionNumber = result.VersionNumber;
+                cache.Data = bytesResult;
+                isChanged = "*******changed";
+            }
+
+            var pagingResult = ProtobufWebClient.Instance.FromBytes<PagingResultDto<T>>(cache.Data);
             foreach (var item in pagingResult.Items)
             {
                 item.SetCurrentValueAsOriginalValue();
             }
             sw.Stop();
-            var msg = string.Format("{0} get {1} ms {2}{3}", _controller, sw.ElapsedMilliseconds, isChanged, VersionNumber);
+            var msg = string.Format("{0} get {1} ms {2} {3}", _controller, sw.ElapsedMilliseconds, cache.VersionNumber, isChanged);
             System.Console.WriteLine(msg);
             return pagingResult;
         }
