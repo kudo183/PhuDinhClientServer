@@ -56,7 +56,7 @@ namespace Client
                 item.SetCurrentValueAsOriginalValue();
             }
             sw.Stop();
-            var msg = string.Format("{0} get {1} ms {2} {3}", _controller, sw.ElapsedMilliseconds, cache.VersionNumber, isChanged);
+            var msg = string.Format("{0} get {1} ms {2} bytes {3} {4}", _controller, sw.ElapsedMilliseconds, cache.Data.Length, cache.VersionNumber, isChanged);
             System.Console.WriteLine(msg);
             return pagingResult;
         }
