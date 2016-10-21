@@ -7,14 +7,8 @@ namespace Client.ViewModel
     {
         public RNuocViewModel() : base()
         {
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RNuocDto.Ma), typeof(int)));
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten nuoc", nameof(RNuocDto.TenNuoc), typeof(string)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RNuocDto.Ma), typeof(int)));
+            AddHeaderFilter(new HeaderTextFilterModel("Ten nuoc", nameof(RNuocDto.TenNuoc), typeof(string)));
         }
     }
 }

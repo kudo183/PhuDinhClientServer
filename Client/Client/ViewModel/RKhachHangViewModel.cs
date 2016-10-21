@@ -21,16 +21,10 @@ namespace Client.ViewModel
             );
             _diaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RKhachHangDto.Ma), typeof(int)));
-            HeaderFilters.Add(_diaDiemFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten Khach Hang", nameof(RKhachHangDto.TenKhachHang), typeof(string)));
-            HeaderFilters.Add(new HeaderCheckFilterModel("Khach Rieng", nameof(RKhachHangDto.KhachRieng), typeof(bool)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RKhachHangDto.Ma), typeof(int)));
+            AddHeaderFilter(_diaDiemFilter);
+            AddHeaderFilter(new HeaderTextFilterModel("Ten Khach Hang", nameof(RKhachHangDto.TenKhachHang), typeof(string)));
+            AddHeaderFilter(new HeaderCheckFilterModel("Khach Rieng", nameof(RKhachHangDto.KhachRieng), typeof(bool)));
         }
 
         protected override void LoadedData(PagingResultDto<RKhachHangDto> data)

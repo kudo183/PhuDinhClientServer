@@ -49,6 +49,13 @@ namespace Client.Abstraction
             SelectedValuePath = nameof(DTO.IDto.Ma);
         }
 
+        protected void AddHeaderFilter(HeaderFilterBaseModel filter)
+        {
+            HeaderFilters.Add(filter);
+            filter.ActionFilterValueChanged = Load;
+            filter.ActionIsUsedChanged = Load;
+        }
+
         protected virtual void ProccessHeaderAddCommand(object view, string title, Action AfterCloseDialogAction)
         {
             var w = new Window()

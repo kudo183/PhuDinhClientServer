@@ -50,19 +50,13 @@ namespace Client.ViewModel
             );
             _chanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(TDonHangDto.Ma), typeof(int)));
-            HeaderFilters.Add(new HeaderDateFilterModel("Ngay", nameof(TDonHangDto.Ngay), typeof(System.DateTime)));
-            HeaderFilters.Add(_khachHangFilter);
-            HeaderFilters.Add(_khoHangFilter);
-            HeaderFilters.Add(_chanhFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("So Luong", nameof(TDonHangDto.TongSoLuong), typeof(int)));
-            HeaderFilters.Add(new HeaderCheckFilterModel("Xong", nameof(TDonHangDto.Xong), typeof(bool)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(TDonHangDto.Ma), typeof(int)));
+            AddHeaderFilter(new HeaderDateFilterModel("Ngay", nameof(TDonHangDto.Ngay), typeof(System.DateTime)));
+            AddHeaderFilter(_khachHangFilter);
+            AddHeaderFilter(_khoHangFilter);
+            AddHeaderFilter(_chanhFilter);
+            AddHeaderFilter(new HeaderTextFilterModel("So Luong", nameof(TDonHangDto.TongSoLuong), typeof(int)));
+            AddHeaderFilter(new HeaderCheckFilterModel("Xong", nameof(TDonHangDto.Xong), typeof(bool)));
         }
 
         protected override void LoadedData(PagingResultDto<TDonHangDto> data)

@@ -20,15 +20,9 @@ namespace Client.ViewModel
             );
             _baiXeFilter.ItemSource = ReferenceDataManager<RBaiXeDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RChanhDto.Ma), typeof(int)));
-            HeaderFilters.Add(_baiXeFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten Chanh", nameof(RChanhDto.TenChanh), typeof(string)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RChanhDto.Ma), typeof(int)));
+            AddHeaderFilter(_baiXeFilter);
+            AddHeaderFilter(new HeaderTextFilterModel("Ten Chanh", nameof(RChanhDto.TenChanh), typeof(string)));
         }
 
         protected override void LoadedData(PagingResultDto<RChanhDto> data)

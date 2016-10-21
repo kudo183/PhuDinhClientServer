@@ -20,15 +20,9 @@ namespace Client.ViewModel
             );
             _nuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RDiaDiemDto.Ma), typeof(int)));
-            HeaderFilters.Add(_nuocFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("Tinh", nameof(RDiaDiemDto.Tinh), typeof(string)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RDiaDiemDto.Ma), typeof(int)));
+            AddHeaderFilter(_nuocFilter);
+            AddHeaderFilter(new HeaderTextFilterModel("Tinh", nameof(RDiaDiemDto.Tinh), typeof(string)));
         }
 
         protected override void LoadedData(PagingResultDto<RDiaDiemDto> data)

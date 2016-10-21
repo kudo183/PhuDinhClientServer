@@ -40,16 +40,10 @@ namespace Client.ViewModel
             );
             _chanhFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RKhachHangChanhDto.Ma), typeof(int)));
-            HeaderFilters.Add(_khachHangFilter);
-            HeaderFilters.Add(_chanhFilter);
-            HeaderFilters.Add(new HeaderCheckFilterModel("La Mac Dinh", nameof(RKhachHangChanhDto.LaMacDinh), typeof(bool)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RKhachHangChanhDto.Ma), typeof(int)));
+            AddHeaderFilter(_khachHangFilter);
+            AddHeaderFilter(_chanhFilter);
+            AddHeaderFilter(new HeaderCheckFilterModel("La Mac Dinh", nameof(RKhachHangChanhDto.LaMacDinh), typeof(bool)));
         }
 
         protected override void LoadedData(PagingResultDto<RKhachHangChanhDto> data)

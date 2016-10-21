@@ -20,19 +20,13 @@ namespace Client.ViewModel
             );
             _loaiHangFilter.ItemSource = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(TMatHangDto.Ma), typeof(int)));
-            HeaderFilters.Add(_loaiHangFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten MH", nameof(TMatHangDto.TenMatHang), typeof(string)));
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten MH Day du", nameof(TMatHangDto.TenMatHangDayDu), typeof(string)));
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten MH In", nameof(TMatHangDto.TenMatHangIn), typeof(string)));
-            HeaderFilters.Add(new HeaderTextFilterModel("So Ky", nameof(TMatHangDto.SoKy), typeof(int)));
-            HeaderFilters.Add(new HeaderTextFilterModel("So Met", nameof(TMatHangDto.SoMet), typeof(int)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(TMatHangDto.Ma), typeof(int)));
+            AddHeaderFilter(_loaiHangFilter);
+            AddHeaderFilter(new HeaderTextFilterModel("Ten MH", nameof(TMatHangDto.TenMatHang), typeof(string)));
+            AddHeaderFilter(new HeaderTextFilterModel("Ten MH Day du", nameof(TMatHangDto.TenMatHangDayDu), typeof(string)));
+            AddHeaderFilter(new HeaderTextFilterModel("Ten MH In", nameof(TMatHangDto.TenMatHangIn), typeof(string)));
+            AddHeaderFilter(new HeaderTextFilterModel("So Ky", nameof(TMatHangDto.SoKy), typeof(int)));
+            AddHeaderFilter(new HeaderTextFilterModel("So Met", nameof(TMatHangDto.SoMet), typeof(int)));
         }
 
         protected override void LoadedData(PagingResultDto<TMatHangDto> data)

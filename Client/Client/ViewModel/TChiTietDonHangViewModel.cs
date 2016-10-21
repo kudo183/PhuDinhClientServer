@@ -21,18 +21,12 @@ namespace Client.ViewModel
             );
             _matHangFilter.ItemSource = ReferenceDataManager<TDonHangDto>.Instance.Get();
 
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(TChiTietDonHangDto.Ma), typeof(int)));
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(TChiTietDonHangDto.Ma), typeof(int)));
             _donHangFilter = new HeaderTextFilterModel("Ma Don Hang", nameof(TChiTietDonHangDto.MaDonHang), typeof(int));
-            HeaderFilters.Add(_donHangFilter);
-            HeaderFilters.Add(_matHangFilter);
-            HeaderFilters.Add(new HeaderTextFilterModel("So Luong", nameof(TChiTietDonHangDto.SoLuong), typeof(int)));
-            HeaderFilters.Add(new HeaderTextFilterModel("Xong", nameof(TChiTietDonHangDto.Xong), typeof(bool)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(_donHangFilter);
+            AddHeaderFilter(_matHangFilter);
+            AddHeaderFilter(new HeaderTextFilterModel("So Luong", nameof(TChiTietDonHangDto.SoLuong), typeof(int)));
+            AddHeaderFilter(new HeaderTextFilterModel("Xong", nameof(TChiTietDonHangDto.Xong), typeof(bool)));
         }
 
         protected override void LoadedData(PagingResultDto<TChiTietDonHangDto> data)

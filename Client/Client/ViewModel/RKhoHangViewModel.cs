@@ -7,15 +7,9 @@ namespace Client.ViewModel
     {
         public RKhoHangViewModel() : base()
         {
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RKhoHangDto.Ma), typeof(int)));
-            HeaderFilters.Add(new HeaderTextFilterModel("Ten kho", nameof(RKhoHangDto.TenKho), typeof(string)));
-            HeaderFilters.Add(new HeaderCheckFilterModel("Trang thai", nameof(RKhoHangDto.TrangThai), typeof(bool)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RKhoHangDto.Ma), typeof(int)));
+            AddHeaderFilter(new HeaderTextFilterModel("Ten kho", nameof(RKhoHangDto.TenKho), typeof(string)));
+            AddHeaderFilter(new HeaderCheckFilterModel("Trang thai", nameof(RKhoHangDto.TrangThai), typeof(bool)));
         }
     }
 }

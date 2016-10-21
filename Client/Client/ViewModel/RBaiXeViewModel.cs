@@ -8,14 +8,8 @@ namespace Client.ViewModel
     {
         public RBaiXeViewModel() : base()
         {
-            HeaderFilters.Add(new HeaderTextFilterModel("Ma", nameof(RBaiXeDto.Ma), typeof(int)));
-            HeaderFilters.Add(new HeaderTextFilterModel("Dia Diem", nameof(RBaiXeDto.DiaDiemBaiXe), typeof(string)));
-
-            foreach (var filter in HeaderFilters)
-            {
-                filter.ActionFilterValueChanged = Load;
-                filter.ActionIsUsedChanged = Load;
-            }
+            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RBaiXeDto.Ma), typeof(int)));
+            AddHeaderFilter(new HeaderTextFilterModel("Dia Diem", nameof(RBaiXeDto.DiaDiemBaiXe), typeof(string)));
         }
     }
 }
