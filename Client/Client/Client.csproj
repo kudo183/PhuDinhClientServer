@@ -66,6 +66,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="ProtoBufDataService.cs" />
+    <Compile Include="Text\TextManager.cs" />
     <Compile Include="ViewModelFactory.cs" />
     <Compile Include="ViewModel\TChiTietDonHangViewModel.cs" />
     <Compile Include="ViewModel\TMatHangViewModel.cs" />
@@ -109,16 +110,6 @@
     </Compile>
     <Compile Include="View\RKhoHangView.xaml.cs">
       <DependentUpon>RKhoHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="Properties\Resources.vi-vn.Designer.cs">
-      <DependentUpon>Resources.vi-vn.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-    </Compile>
-    <Compile Include="Properties\Resources.en.Designer.cs">
-      <DependentUpon>Resources.en.resx</DependentUpon>
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
@@ -206,28 +197,11 @@
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Properties\Resources.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Resources.resx</DependentUpon>
-    </Compile>
     <Compile Include="Properties\Settings.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Properties\Resources.vi-vn.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.vi-vn.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.en.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.en.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Properties\Resources.resx">
-      <Generator>PublicResXFileCodeGenerator</Generator>
-      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
-    </EmbeddedResource>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -255,6 +229,16 @@
       <Project>{f773e77b-c582-412f-a450-ae06547d8070}</Project>
       <Name>Client.Abstraction</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Text\en-us.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Text\vi-vn.txt">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

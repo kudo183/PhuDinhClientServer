@@ -88,10 +88,10 @@ namespace Client.ViewModel
                 {
                     case WebExceptionStatus.ConnectFailure:
                     case WebExceptionStatus.Timeout:
-                        Msg = Properties.Resources.LoginWindow_CannotConnect;
+                        Msg = TextManager.LoginWindow_CannotConnect;
                         break;
                     case WebExceptionStatus.ProtocolError:
-                        Msg = Properties.Resources.LoginWindow_LoginFailed;
+                        Msg = TextManager.LoginWindow_LoginFailed;
                         break;
                 }
             }
