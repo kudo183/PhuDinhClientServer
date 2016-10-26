@@ -1,24 +1,20 @@
 ﻿using SimpleDataGrid.ViewModel;
 using DTO;
-using SimpleDataGrid;
 using Client.Abstraction;
 
 namespace Client.ViewModel
 {
-    public class RDiaDiemViewModel : BaseViewModel<RDiaDiemDto>
+    public partial class RDiaDiemViewModel : BaseViewModel<RDiaDiemDto>
     {
         private HeaderComboBoxFilterModel _nuocFilter;
 
+        partial void InitFilterPartial();
+        partial void LoadReferenceDataPartial();
+        partial void ProcessDtoBeforeAddToEntitiesPartial(RDiaDiemDto dto);
+
         public RDiaDiemViewModel() : base()
         {
-            _nuocFilter = new HeaderComboBoxFilterModel(
-                "Nuoc", HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(RDiaDiemDto.MaNuoc), typeof(int), nameof(RNuocDto.TenNuoc), nameof(RNuocDto.Ma));
-            _nuocFilter.AddCommand = new SimpleCommand("NuocAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNuocView(), "Nuoc", ReferenceDataManager<RNuocDto>.Instance.Load)
-            );
-            _nuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
+            InitFilterPartial();
 
             AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RDiaDiemDto.Ma), typeof(int)));
             AddHeaderFilter(_nuocFilter);
@@ -28,11 +24,15 @@ namespace Client.ViewModel
         public override void LoadReferenceData()
         {
             ReferenceDataManager<RNuocDto>.Instance.Load();
+
+            LoadReferenceDataPartial();
         }
 
         protected override void ProcessDtoBeforeAddToEntities(RDiaDiemDto dto)
         {
             dto.Nuocs = ReferenceDataManager<RNuocDto>.Instance.Get();
+
+            ProcessDtoBeforeAddToEntitiesPartial(dto);
         }
 
         protected override void ProcessNewAddedDto(RDiaDiemDto dto)
@@ -41,7 +41,8 @@ namespace Client.ViewModel
             {
                 dto.MaNuoc = (int)_nuocFilter.FilterValue;
             }
-            dto.Nuocs = ReferenceDataManager<RNuocDto>.Instance.Get();
+
+            ProcessDtoBeforeAddToEntities(dto);
         }
     }
 }

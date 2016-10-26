@@ -4,7 +4,7 @@ using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
-    public class RBaiXeViewModel : BaseViewModel<RBaiXeDto>
+    public partial class RBaiXeViewModel : BaseViewModel<RBaiXeDto>
     {
         public RBaiXeViewModel() : base()
         {

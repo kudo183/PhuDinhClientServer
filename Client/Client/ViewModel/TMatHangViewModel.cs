@@ -5,20 +5,17 @@ using Client.Abstraction;
 
 namespace Client.ViewModel
 {
-    public class TMatHangViewModel : BaseViewModel<TMatHangDto>
+    public partial class TMatHangViewModel : BaseViewModel<TMatHangDto>
     {
         private HeaderComboBoxFilterModel _loaiHangFilter;
 
+        partial void InitFilterPartial();
+        partial void LoadReferenceDataPartial();
+        partial void ProcessDtoBeforeAddToEntitiesPartial(TMatHangDto dto);
+
         public TMatHangViewModel() : base()
         {
-            _loaiHangFilter = new HeaderComboBoxFilterModel(
-                "Loai Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(TMatHangDto.MaLoai), typeof(int), nameof(RLoaiHangDto.TenLoai), nameof(RLoaiHangDto.Ma));
-            _loaiHangFilter.AddCommand = new SimpleCommand("LoaiHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RLoaiHangView(), "Loai Hang", ReferenceDataManager<RLoaiHangDto>.Instance.Load)
-            );
-            _loaiHangFilter.ItemSource = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
+            InitFilterPartial();
 
             AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(TMatHangDto.Ma), typeof(int)));
             AddHeaderFilter(_loaiHangFilter);
@@ -32,11 +29,15 @@ namespace Client.ViewModel
         public override void LoadReferenceData()
         {
             ReferenceDataManager<RLoaiHangDto>.Instance.Load();
+
+            LoadReferenceDataPartial();
         }
 
         protected override void ProcessDtoBeforeAddToEntities(TMatHangDto dto)
         {
             dto.LoaiHangs = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
+
+            ProcessDtoBeforeAddToEntitiesPartial(dto);
         }
 
         protected override void ProcessNewAddedDto(TMatHangDto dto)
@@ -45,7 +46,8 @@ namespace Client.ViewModel
             {
                 dto.MaLoai = (int)_loaiHangFilter.FilterValue;
             }
-            dto.LoaiHangs = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
+
+            ProcessDtoBeforeAddToEntities(dto);
         }
     }
 }

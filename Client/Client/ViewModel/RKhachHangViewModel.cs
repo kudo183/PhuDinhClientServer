@@ -5,21 +5,17 @@ using Client.Abstraction;
 
 namespace Client.ViewModel
 {
-    public class RKhachHangViewModel : BaseViewModel<RKhachHangDto>
+    public partial class RKhachHangViewModel : BaseViewModel<RKhachHangDto>
     {
         private HeaderComboBoxFilterModel _diaDiemFilter;
 
+        partial void InitFilterPartial();
+        partial void LoadReferenceDataPartial();
+        partial void ProcessDtoBeforeAddToEntitiesPartial(RKhachHangDto dto);
+
         public RKhachHangViewModel() : base()
         {
-            _diaDiemFilter = new HeaderComboBoxFilterModel(
-                "Dia Diem", HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(RKhachHangDto.MaDiaDiem),
-                typeof(int), nameof(RDiaDiemDto.Tinh), nameof(RDiaDiemDto.Ma));
-            _diaDiemFilter.AddCommand = new SimpleCommand("DiaDiemAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RDiaDiemView(), "Dia Diem", ReferenceDataManager<RDiaDiemDto>.Instance.Load)
-            );
-            _diaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
+            InitFilterPartial();
 
             AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RKhachHangDto.Ma), typeof(int)));
             AddHeaderFilter(_diaDiemFilter);
@@ -30,11 +26,15 @@ namespace Client.ViewModel
         public override void LoadReferenceData()
         {
             ReferenceDataManager<RDiaDiemDto>.Instance.Load();
+
+            LoadReferenceDataPartial();
         }
 
         protected override void ProcessDtoBeforeAddToEntities(RKhachHangDto dto)
         {
             dto.DiaDiems = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
+
+            ProcessDtoBeforeAddToEntitiesPartial(dto);
         }
 
         protected override void ProcessNewAddedDto(RKhachHangDto dto)
@@ -43,7 +43,8 @@ namespace Client.ViewModel
             {
                 dto.MaDiaDiem = (int)_diaDiemFilter.FilterValue;
             }
-            dto.DiaDiems = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
+
+            ProcessDtoBeforeAddToEntities(dto);
         }
     }
 }

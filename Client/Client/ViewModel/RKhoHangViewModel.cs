@@ -3,7 +3,7 @@ using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
-    public class RKhoHangViewModel : Abstraction.BaseViewModel<RKhoHangDto>
+    public partial class RKhoHangViewModel : Abstraction.BaseViewModel<RKhoHangDto>
     {
         public RKhoHangViewModel() : base()
         {

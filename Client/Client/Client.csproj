@@ -68,7 +68,14 @@
     <Compile Include="ProtoBufDataService.cs" />
     <Compile Include="Text\TextManager.cs" />
     <Compile Include="ViewModelFactory.cs" />
+    <Compile Include="ViewModel\RChanhViewModel.part.cs" />
+    <Compile Include="ViewModel\RDiaDiemViewModel.part.cs" />
+    <Compile Include="ViewModel\RKhachHangChanhViewModel.part.cs" />
+    <Compile Include="ViewModel\RKhachHangViewModel.part.cs" />
+    <Compile Include="ViewModel\TChiTietDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietDonHangViewModel.cs" />
+    <Compile Include="ViewModel\TDonHangViewModel.part.cs" />
+    <Compile Include="ViewModel\TMatHangViewModel.part.cs" />
     <Compile Include="ViewModel\TMatHangViewModel.cs" />
     <Compile Include="ViewModel\RKhachHangChanhViewModel.cs" />
     <Compile Include="ViewModel\RLoaiHangViewModel.cs" />

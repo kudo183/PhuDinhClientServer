@@ -3,7 +3,7 @@ using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
-    public class RLoaiHangViewModel : Abstraction.BaseViewModel<RLoaiHangDto>
+    public partial class RLoaiHangViewModel : Abstraction.BaseViewModel<RLoaiHangDto>
     {
         public RLoaiHangViewModel() : base()
         {

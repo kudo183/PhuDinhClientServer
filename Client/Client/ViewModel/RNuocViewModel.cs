@@ -3,7 +3,7 @@ using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
-    public class RNuocViewModel : Abstraction.BaseViewModel<RNuocDto>
+    public partial class RNuocViewModel : Abstraction.BaseViewModel<RNuocDto>
     {
         public RNuocViewModel() : base()
         {

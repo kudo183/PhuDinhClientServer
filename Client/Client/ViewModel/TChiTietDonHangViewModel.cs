@@ -1,28 +1,25 @@
 ﻿using SimpleDataGrid.ViewModel;
 using DTO;
-using SimpleDataGrid;
 using Client.Abstraction;
 
 namespace Client.ViewModel
 {
-    public class TChiTietDonHangViewModel : BaseViewModel<TChiTietDonHangDto>
+    public partial class TChiTietDonHangViewModel : BaseViewModel<TChiTietDonHangDto>
     {
         private HeaderTextFilterModel _donHangFilter;
         private HeaderComboBoxFilterModel _matHangFilter;
-        
+
+        partial void InitFilterPartial();
+        partial void LoadReferenceDataPartial();
+        partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietDonHangDto dto);
+
         public TChiTietDonHangViewModel() : base()
         {
-            _matHangFilter = new HeaderComboBoxFilterModel(
-                "Mat Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(TChiTietDonHangDto.MaDonHang), typeof(int), nameof(TMatHangDto.TenMatHang), nameof(TMatHangDto.Ma));
-            _matHangFilter.AddCommand = new SimpleCommand("MatHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TMatHangView(), "Mat Hang", ReferenceDataManager<TMatHangDto>.Instance.Load)
-            );
-            _matHangFilter.ItemSource = ReferenceDataManager<TDonHangDto>.Instance.Get();
+            InitFilterPartial();
+
+            _donHangFilter = new HeaderTextFilterModel("Ma Don Hang", nameof(TChiTietDonHangDto.MaDonHang), typeof(int));
 
             AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(TChiTietDonHangDto.Ma), typeof(int)));
-            _donHangFilter = new HeaderTextFilterModel("Ma Don Hang", nameof(TChiTietDonHangDto.MaDonHang), typeof(int));
             AddHeaderFilter(_donHangFilter);
             AddHeaderFilter(_matHangFilter);
             AddHeaderFilter(new HeaderTextFilterModel("So Luong", nameof(TChiTietDonHangDto.SoLuong), typeof(int)));
@@ -32,11 +29,15 @@ namespace Client.ViewModel
         public override void LoadReferenceData()
         {
             ReferenceDataManager<TMatHangDto>.Instance.Load();
+
+            LoadReferenceDataPartial();
         }
 
         protected override void ProcessDtoBeforeAddToEntities(TChiTietDonHangDto dto)
         {
             dto.MatHangs = ReferenceDataManager<TMatHangDto>.Instance.Get();
+
+            ProcessDtoBeforeAddToEntitiesPartial(dto);
         }
 
         protected override void ProcessNewAddedDto(TChiTietDonHangDto dto)
@@ -51,7 +52,7 @@ namespace Client.ViewModel
                 dto.MaMatHang = (int)_matHangFilter.FilterValue;
             }
 
-            dto.MatHangs = ReferenceDataManager<TMatHangDto>.Instance.Get();
+            ProcessDtoBeforeAddToEntities(dto);
         }
     }
 }
