@@ -68,23 +68,25 @@
     <Compile Include="ProtoBufDataService.cs" />
     <Compile Include="Text\TextManager.cs" />
     <Compile Include="ViewModelFactory.cs" />
+    <Compile Include="ViewModel\Gen\LoginViewModel.cs" />
+    <Compile Include="ViewModel\Gen\RBaiXeViewModel.cs" />
+    <Compile Include="ViewModel\Gen\RChanhViewModel.cs" />
+    <Compile Include="ViewModel\Gen\RDiaDiemViewModel.cs" />
+    <Compile Include="ViewModel\Gen\RKhachHangChanhViewModel.cs" />
+    <Compile Include="ViewModel\Gen\RKhachHangViewModel.cs" />
+    <Compile Include="ViewModel\Gen\RKhoHangViewModel.cs" />
+    <Compile Include="ViewModel\Gen\RLoaiHangViewModel.cs" />
+    <Compile Include="ViewModel\Gen\RNuocViewModel.cs" />
+    <Compile Include="ViewModel\Gen\TChiTietDonHangViewModel.cs" />
+    <Compile Include="ViewModel\Gen\TDonHangViewModel.cs" />
+    <Compile Include="ViewModel\Gen\TMatHangViewModel.cs" />
     <Compile Include="ViewModel\RChanhViewModel.part.cs" />
     <Compile Include="ViewModel\RDiaDiemViewModel.part.cs" />
     <Compile Include="ViewModel\RKhachHangChanhViewModel.part.cs" />
     <Compile Include="ViewModel\RKhachHangViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietDonHangViewModel.part.cs" />
-    <Compile Include="ViewModel\TChiTietDonHangViewModel.cs" />
     <Compile Include="ViewModel\TDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\TMatHangViewModel.part.cs" />
-    <Compile Include="ViewModel\TMatHangViewModel.cs" />
-    <Compile Include="ViewModel\RKhachHangChanhViewModel.cs" />
-    <Compile Include="ViewModel\RLoaiHangViewModel.cs" />
-    <Compile Include="ViewModel\TDonHangViewModel.cs" />
-    <Compile Include="ViewModel\RKhachHangViewModel.cs" />
-    <Compile Include="ViewModel\RDiaDiemViewModel.cs" />
-    <Compile Include="ViewModel\RChanhViewModel.cs" />
-    <Compile Include="ViewModel\RBaiXeViewModel.cs" />
-    <Compile Include="ViewModel\RNuocViewModel.cs" />
     <Compile Include="AllView.xaml.cs">
       <DependentUpon>AllView.xaml</DependentUpon>
     </Compile>
@@ -120,8 +122,6 @@
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="ViewModel\RKhoHangViewModel.cs" />
-    <Compile Include="ViewModel\LoginViewModel.cs" />
     <Compile Include="View\RBaiXeView.xaml.cs">
       <DependentUpon>RBaiXeView.xaml</DependentUpon>
     </Compile>
@@ -247,6 +247,7 @@
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
