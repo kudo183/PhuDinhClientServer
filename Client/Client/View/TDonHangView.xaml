@@ -23,10 +23,10 @@
                                                       SelectedValueBinding="{Binding MaKhoHang, UpdateSourceTrigger=PropertyChanged}"
                                                       ItemsSource="{Binding KhoHangs}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="Combobox"
-                                                      SelectedValuePath="MaChanh"
-                                                      DisplayMemberPath="MaChanh"
+                                                      SelectedValuePath="Ma"
+                                                      DisplayMemberPath="TenChanh"
                                                       SelectedValueBinding="{Binding MaChanh, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding KhachHangChanhs}"/>
+                                                      ItemsSource="{Binding Chanhs}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" IsReadOnly="True" Header="So Luong" Binding="{Binding TongSoLuong, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridCheckBoxColumnExt Width="200" IsReadOnly="True" Header="Xong" Binding="{Binding Xong, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>

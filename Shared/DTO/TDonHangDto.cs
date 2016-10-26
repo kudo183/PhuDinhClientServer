@@ -1,7 +1,9 @@
-﻿namespace DTO
+﻿using System.ComponentModel;
+
+namespace DTO
 {
     [ProtoBuf.ProtoContract]
-    public class TDonHangDto : IDto
+    public class TDonHangDto : IDto, INotifyPropertyChanged
     {
         int _ma { get; set; }
         int? _maChanh { get; set; }
@@ -11,39 +13,28 @@
         int _tongSoLuong { get; set; }
         bool _xong { get; set; }
 
+        int ma { get; set; }
+        int? maChanh { get; set; }
+        int maKhachHang { get; set; }
+        int maKhoHang { get; set; }
+        System.DateTime ngay { get; set; }
+        int tongSoLuong { get; set; }
+        bool xong { get; set; }
+
         [ProtoBuf.ProtoMember(1)]
         public int Ma { get; set; }
         [ProtoBuf.ProtoMember(2)]
-        public int? MaChanh { get; set; }
-
-        private int maKhachHang;
+        public int? MaChanh { get { return maChanh; } set { maChanh = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int MaKhachHang
-        {
-            get
-            {
-                return maKhachHang;
-            }
-            set
-            {
-                if (maKhachHang == value)
-                    return;
-                maKhachHang = value;
-                if (MaKhachHangChangedAction != null)
-                {
-                    MaKhachHangChangedAction(this);
-                }
-            }
-        }
-
+        public int MaKhachHang { get { return maKhachHang; } set { maKhachHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
-        public int MaKhoHang { get; set; }
+        public int MaKhoHang { get { return maKhoHang; } set { maKhoHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(5)]
-        public System.DateTime Ngay { get; set; }
+        public System.DateTime Ngay { get { return ngay; } set { ngay = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(6)]
-        public int TongSoLuong { get; set; }
+        public int TongSoLuong { get { return tongSoLuong; } set { tongSoLuong = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(7)]
-        public bool Xong { get; set; }
+        public bool Xong { get { return xong; } set { xong = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
@@ -67,16 +58,23 @@
                 || (_xong != Xong);
         }
 
-        [Newtonsoft.Json.JsonIgnore]
-        public object KhachHangChanhs { get; set; }
+        object chanhs;
+        object khachHangs;
+        object khoHangs;
 
         [Newtonsoft.Json.JsonIgnore]
-        public object KhachHangs { get; set; }
+        public object Chanhs { get { return chanhs; } set { chanhs = value; OnPropertyChanged(); } }
 
         [Newtonsoft.Json.JsonIgnore]
-        public object KhoHangs { get; set; }
+        public object KhachHangs { get { return khachHangs; } set { khachHangs = value; OnPropertyChanged(); } }
 
         [Newtonsoft.Json.JsonIgnore]
-        public System.Action<TDonHangDto> MaKhachHangChangedAction { get; set; }
+        public object KhoHangs { get { return khoHangs; } set { khoHangs = value; OnPropertyChanged(); } }
+        
+        public event PropertyChangedEventHandler PropertyChanged;
+        public virtual void OnPropertyChanged([System.Runtime.CompilerServices.CallerMemberName] string name = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+        }
     }
 }

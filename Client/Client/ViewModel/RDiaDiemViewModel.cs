@@ -25,7 +25,7 @@ namespace Client.ViewModel
             AddHeaderFilter(new HeaderTextFilterModel("Tinh", nameof(RDiaDiemDto.Tinh), typeof(string)));
         }
 
-        protected override void LoadedData(PagingResultDto<RDiaDiemDto> data)
+        public override void LoadReferenceData()
         {
             ReferenceDataManager<RNuocDto>.Instance.Load();
         }

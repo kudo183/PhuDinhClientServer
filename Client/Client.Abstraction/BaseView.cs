@@ -76,6 +76,7 @@ namespace Client.Abstraction
                 Console.WriteLine(_debugName + "Load");
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
                 ViewModel.Load();
+                ViewModel.LoadReferenceData();
                 if (AfterCancel != null)
                 {
                     AfterCancel(this, null);

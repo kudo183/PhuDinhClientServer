@@ -29,7 +29,7 @@ namespace Client.ViewModel
             AddHeaderFilter(new HeaderTextFilterModel("Xong", nameof(TChiTietDonHangDto.Xong), typeof(bool)));
         }
 
-        protected override void LoadedData(PagingResultDto<TChiTietDonHangDto> data)
+        public override void LoadReferenceData()
         {
             ReferenceDataManager<TMatHangDto>.Instance.Load();
         }

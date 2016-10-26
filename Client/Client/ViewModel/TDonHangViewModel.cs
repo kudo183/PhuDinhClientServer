@@ -41,7 +41,7 @@ namespace Client.ViewModel
             _chanhFilter = new HeaderComboBoxFilterModel(
                 "Chanh", HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaChanh),
-                typeof(int),
+                typeof(int?),
                 nameof(RChanhDto.TenChanh),
                 nameof(RChanhDto.Ma));
             _chanhFilter.AddCommand = new SimpleCommand("ChanhAddCommand",
@@ -59,7 +59,7 @@ namespace Client.ViewModel
             AddHeaderFilter(new HeaderCheckFilterModel("Xong", nameof(TDonHangDto.Xong), typeof(bool)));
         }
 
-        protected override void LoadedData(PagingResultDto<TDonHangDto> data)
+        public override void LoadReferenceData()
         {
             ReferenceDataManager<RKhachHangDto>.Instance.Load();
             ReferenceDataManager<RKhachHangChanhDto>.Instance.Load();
@@ -71,10 +71,20 @@ namespace Client.ViewModel
         {
             dto.KhachHangs = ReferenceDataManager<RKhachHangDto>.Instance.Get();
             dto.KhoHangs = ReferenceDataManager<RKhoHangDto>.Instance.Get();
-            dto.KhachHangChanhs = ReferenceDataManager<RKhachHangChanhDto>.Instance.GetList()
-                 .Where(p => p.MaKhachHang == dto.MaKhachHang);
+            UpdateChanhs(dto);
 
-            dto.MaKhachHangChangedAction = ProcessMaKhachHangChanged;
+            dto.PropertyChanged += Dto_PropertyChanged;
+        }
+
+        private void Dto_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var dto = sender as TDonHangDto;
+            switch(e.PropertyName)
+            {
+                case nameof(TDonHangDto.MaKhachHang):
+                    UpdateChanhs(dto);
+                    break;
+            }
         }
 
         protected override void ProcessNewAddedDto(TDonHangDto dto)
@@ -95,13 +105,12 @@ namespace Client.ViewModel
             dto.KhachHangs = ReferenceDataManager<RKhachHangDto>.Instance.Get();
             dto.KhoHangs = ReferenceDataManager<RKhoHangDto>.Instance.Get();
 
-            dto.MaKhachHangChangedAction = ProcessMaKhachHangChanged;
+            dto.PropertyChanged += Dto_PropertyChanged;
         }
 
         void ProcessMaKhachHangChanged(TDonHangDto dto)
         {
-            dto.KhachHangChanhs = ReferenceDataManager<RKhachHangChanhDto>.Instance.GetList()
-                 .Where(p => p.MaKhachHang == dto.MaKhachHang);
+            UpdateChanhs(dto);
         }
 
         void AfterKhachHangChanhDialog()
@@ -110,8 +119,36 @@ namespace Client.ViewModel
             ReferenceDataManager<RKhachHangChanhDto>.Instance.Load();
             foreach (var dto in Entities)
             {
-                dto.KhachHangChanhs = ReferenceDataManager<RKhachHangChanhDto>.Instance.GetList()
+                UpdateChanhs(dto);
+            }
+        }
+
+        void UpdateChanhs(TDonHangDto dto)
+        {
+            var khachHangChanhs = ReferenceDataManager<RKhachHangChanhDto>.Instance.GetList()
                  .Where(p => p.MaKhachHang == dto.MaKhachHang);
+
+            var chanhs = new System.Collections.Generic.List<DTO.RChanhDto>();
+            foreach (var item in khachHangChanhs)
+            {
+                var chanh = ReferenceDataManager<RChanhDto>.Instance.GetList().First(p => p.Ma == item.MaChanh);
+                if (item.LaMacDinh == true)
+                {
+                    chanhs.Insert(0, chanh);
+                }
+                else
+                {
+                    chanhs.Add(chanh);
+                }
+            }
+            dto.Chanhs = chanhs;
+            if (chanhs.Count > 0)
+            {
+                dto.MaChanh = chanhs[0].Ma;
+            }
+            else
+            {
+                dto.MaChanh = null;
             }
         }
     }

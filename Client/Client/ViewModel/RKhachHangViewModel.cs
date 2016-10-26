@@ -27,7 +27,7 @@ namespace Client.ViewModel
             AddHeaderFilter(new HeaderCheckFilterModel("Khach Rieng", nameof(RKhachHangDto.KhachRieng), typeof(bool)));
         }
 
-        protected override void LoadedData(PagingResultDto<RKhachHangDto> data)
+        public override void LoadReferenceData()
         {
             ReferenceDataManager<RDiaDiemDto>.Instance.Load();
         }

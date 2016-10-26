@@ -29,7 +29,7 @@ namespace Client.ViewModel
             AddHeaderFilter(new HeaderTextFilterModel("So Met", nameof(TMatHangDto.SoMet), typeof(int)));
         }
 
-        protected override void LoadedData(PagingResultDto<TMatHangDto> data)
+        public override void LoadReferenceData()
         {
             ReferenceDataManager<RLoaiHangDto>.Instance.Load();
         }

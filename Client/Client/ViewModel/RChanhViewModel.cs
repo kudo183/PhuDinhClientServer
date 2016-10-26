@@ -25,7 +25,7 @@ namespace Client.ViewModel
             AddHeaderFilter(new HeaderTextFilterModel("Ten Chanh", nameof(RChanhDto.TenChanh), typeof(string)));
         }
 
-        protected override void LoadedData(PagingResultDto<RChanhDto> data)
+        public override void LoadReferenceData()
         {
             ReferenceDataManager<RBaiXeDto>.Instance.Load();
         }

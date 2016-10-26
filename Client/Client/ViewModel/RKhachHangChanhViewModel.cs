@@ -46,7 +46,7 @@ namespace Client.ViewModel
             AddHeaderFilter(new HeaderCheckFilterModel("La Mac Dinh", nameof(RKhachHangChanhDto.LaMacDinh), typeof(bool)));
         }
 
-        protected override void LoadedData(PagingResultDto<RKhachHangChanhDto> data)
+        public override void LoadReferenceData()
         {
             ReferenceDataManager<RKhachHangDto>.Instance.Load();
             ReferenceDataManager<RChanhDto>.Instance.Load();

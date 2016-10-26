@@ -32,6 +32,8 @@ namespace Client.Abstraction
         {
             _debugName = NameManager.Instance.GetViewModelName<T>();
 
+            LoadReferenceData();
+
             Entities = new ObservableCollectionEx<T>();
             Entities.CollectionChanged += Entities_CollectionChanged;
             HeaderFilters = new List<HeaderFilterBaseModel>();
@@ -81,12 +83,6 @@ namespace Client.Abstraction
         {
 
         }
-
-        protected virtual void LoadedData(DTO.PagingResultDto<T> data)
-        {
-
-        }
-
         #region INotifyPropertyChanged
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -159,7 +155,6 @@ namespace Client.Abstraction
             });
 
             result = DataService.Get(qe);
-            LoadedData(result);
 
             _originalEntities.Clear();
 
@@ -222,6 +217,10 @@ namespace Client.Abstraction
 
             Load();
         }
+        
+        public virtual void LoadReferenceData()
+        {
+        }
 
         public IReadOnlyList<T1> GetEntities<T1>()
         {
@@ -270,6 +269,15 @@ namespace Client.Abstraction
                             Value = int.Parse(filter.FilterValue.ToString())
                         });
                     }
+                    else if (filter.PropertyType == typeof(int?))
+                    {
+                        result.Add(new QueryBuilder.WhereExpression.WhereOptionNullableInt()
+                        {
+                            Predicate = "=",
+                            PropertyPath = filter.PropertyName,
+                            Value = int.Parse(filter.FilterValue.ToString())
+                        });
+                    }
                     else if (filter.PropertyType == typeof(bool))
                     {
                         result.Add(new QueryBuilder.WhereExpression.WhereOptionBool()
@@ -279,6 +287,15 @@ namespace Client.Abstraction
                             Value = (bool)filter.FilterValue
                         });
                     }
+                    else if (filter.PropertyType == typeof(bool?))
+                    {
+                        result.Add(new QueryBuilder.WhereExpression.WhereOptionNullableBool()
+                        {
+                            Predicate = "=",
+                            PropertyPath = filter.PropertyName,
+                            Value = (bool?)filter.FilterValue
+                        });
+                    }
                     else if (filter.PropertyType == typeof(DateTime))
                     {
                         result.Add(new QueryBuilder.WhereExpression.WhereOptionDate()
@@ -286,6 +303,33 @@ namespace Client.Abstraction
                             Predicate = "=",
                             PropertyPath = filter.PropertyName,
                             Value = (DateTime)filter.FilterValue
+                        });
+                    }
+                    else if (filter.PropertyType == typeof(DateTime?))
+                    {
+                        result.Add(new QueryBuilder.WhereExpression.WhereOptionNullableDate()
+                        {
+                            Predicate = "=",
+                            PropertyPath = filter.PropertyName,
+                            Value = (DateTime?)filter.FilterValue
+                        });
+                    }
+                    else if (filter.PropertyType == typeof(TimeSpan))
+                    {
+                        result.Add(new QueryBuilder.WhereExpression.WhereOptionTime()
+                        {
+                            Predicate = "=",
+                            PropertyPath = filter.PropertyName,
+                            Value = (TimeSpan)filter.FilterValue
+                        });
+                    }
+                    else if (filter.PropertyType == typeof(TimeSpan?))
+                    {
+                        result.Add(new QueryBuilder.WhereExpression.WhereOptionNullableTime()
+                        {
+                            Predicate = "=",
+                            PropertyPath = filter.PropertyName,
+                            Value = (TimeSpan?)filter.FilterValue
                         });
                     }
                 }
