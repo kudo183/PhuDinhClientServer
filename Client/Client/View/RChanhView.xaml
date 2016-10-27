@@ -15,7 +15,7 @@
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="DiaDiemBaiXe"
                                                       SelectedValueBinding="{Binding MaBaiXe, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding BaiXes}"/>
+                                                      ItemsSource="{Binding MaBaiXeSources}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten Chanh" Binding="{Binding TenChanh, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>
     </SimpleDataGrid:EditableGridView>

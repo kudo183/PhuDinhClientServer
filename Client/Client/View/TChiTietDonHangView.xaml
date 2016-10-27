@@ -16,7 +16,7 @@
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="TenMatHang"
                                                       SelectedValueBinding="{Binding MaMatHang, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding MatHangs}"/>
+                                                      ItemsSource="{Binding MaMatHangSources}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="So Luong" Binding="{Binding SoLuong, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridCheckBoxColumnExt Width="100" Header="Xong" Binding="{Binding Xong, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>

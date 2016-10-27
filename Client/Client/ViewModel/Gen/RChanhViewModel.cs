@@ -30,7 +30,7 @@ namespace Client.ViewModel
 
         protected override void ProcessDtoBeforeAddToEntities(RChanhDto dto)
         {
-            dto.BaiXes = ReferenceDataManager<RBaiXeDto>.Instance.Get();
+            dto.MaBaiXeSources = ReferenceDataManager<RBaiXeDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }

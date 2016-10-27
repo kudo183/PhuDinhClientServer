@@ -17,10 +17,6 @@ namespace Client.ViewModel
                 new View.RNuocView(), "Nuoc", ReferenceDataManager<RNuocDto>.Instance.Load)
             );
             _nuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
-
-            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RDiaDiemDto.Ma), typeof(int)));
-            AddHeaderFilter(_nuocFilter);
-            AddHeaderFilter(new HeaderTextFilterModel("Tinh", nameof(RDiaDiemDto.Tinh), typeof(string)));
         }
     }
 }

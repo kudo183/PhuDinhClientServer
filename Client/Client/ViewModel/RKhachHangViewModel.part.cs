@@ -18,11 +18,6 @@ namespace Client.ViewModel
                 new View.RDiaDiemView(), "Dia Diem", ReferenceDataManager<RDiaDiemDto>.Instance.Load)
             );
             _diaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
-
-            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RKhachHangDto.Ma), typeof(int)));
-            AddHeaderFilter(_diaDiemFilter);
-            AddHeaderFilter(new HeaderTextFilterModel("Ten Khach Hang", nameof(RKhachHangDto.TenKhachHang), typeof(string)));
-            AddHeaderFilter(new HeaderCheckFilterModel("Khach Rieng", nameof(RKhachHangDto.KhachRieng), typeof(bool)));
         }
     }
 }

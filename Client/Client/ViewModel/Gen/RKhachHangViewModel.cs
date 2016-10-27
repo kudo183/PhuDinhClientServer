@@ -1,6 +1,5 @@
 ﻿using SimpleDataGrid.ViewModel;
 using DTO;
-using SimpleDataGrid;
 using Client.Abstraction;
 
 namespace Client.ViewModel
@@ -32,7 +31,7 @@ namespace Client.ViewModel
 
         protected override void ProcessDtoBeforeAddToEntities(RKhachHangDto dto)
         {
-            dto.DiaDiems = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
+            dto.MaDiaDiemSources = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }

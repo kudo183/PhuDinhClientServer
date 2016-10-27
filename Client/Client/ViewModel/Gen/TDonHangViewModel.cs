@@ -38,8 +38,8 @@ namespace Client.ViewModel
 
         protected override void ProcessDtoBeforeAddToEntities(TDonHangDto dto)
         {
-            dto.KhachHangs = ReferenceDataManager<RKhachHangDto>.Instance.Get();
-            dto.KhoHangs = ReferenceDataManager<RKhoHangDto>.Instance.Get();
+            dto.MaKhachHangSources = ReferenceDataManager<RKhachHangDto>.Instance.Get();
+            dto.MaKhoHangSources = ReferenceDataManager<RKhoHangDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }

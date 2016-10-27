@@ -15,7 +15,7 @@
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="TenLoai"
                                                       SelectedValueBinding="{Binding MaLoai, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding LoaiHangs}"/>
+                                                      ItemsSource="{Binding MaLoaiSources}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten MH" Binding="{Binding TenMatHang, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten MH Day Du" Binding="{Binding TenMatHangDayDu, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten MH In" Binding="{Binding TenMatHangIn, UpdateSourceTrigger=PropertyChanged}"/>

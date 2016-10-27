@@ -15,7 +15,7 @@
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="TenNuoc"
                                                       SelectedValueBinding="{Binding MaNuoc, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding Nuocs}"/>
+                                                      ItemsSource="{Binding MaNuocSources}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Tinh" Binding="{Binding Tinh, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>
     </SimpleDataGrid:EditableGridView>

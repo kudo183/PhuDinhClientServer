@@ -30,7 +30,7 @@ namespace Client.ViewModel
 
         protected override void ProcessDtoBeforeAddToEntities(RDiaDiemDto dto)
         {
-            dto.Nuocs = ReferenceDataManager<RNuocDto>.Instance.Get();
+            dto.MaNuocSources = ReferenceDataManager<RNuocDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }

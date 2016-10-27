@@ -16,17 +16,17 @@
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="TenKhachHang"
                                                       SelectedValueBinding="{Binding MaKhachHang, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding KhachHangs}"/>
+                                                      ItemsSource="{Binding MaKhachHangSources}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="Combobox"
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="TenKho"
                                                       SelectedValueBinding="{Binding MaKhoHang, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding KhoHangs}"/>
+                                                      ItemsSource="{Binding MaKhoHangSources}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="Combobox"
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="TenChanh"
                                                       SelectedValueBinding="{Binding MaChanh, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding Chanhs}"/>
+                                                      ItemsSource="{Binding MaChanhSources}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" IsReadOnly="True" Header="So Luong" Binding="{Binding TongSoLuong, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridCheckBoxColumnExt Width="200" IsReadOnly="True" Header="Xong" Binding="{Binding Xong, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>

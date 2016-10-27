@@ -35,7 +35,7 @@ namespace Client.ViewModel
 
         protected override void ProcessDtoBeforeAddToEntities(TChiTietDonHangDto dto)
         {
-            dto.MatHangs = ReferenceDataManager<TMatHangDto>.Instance.Get();
+            dto.MaMatHangSources = ReferenceDataManager<TMatHangDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }

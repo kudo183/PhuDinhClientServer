@@ -51,47 +51,128 @@
     <Compile Include="..\..\DTO\ChangedItemDto.cs">
       <Link>ChangedItemDto.cs</Link>
     </Compile>
-    <Compile Include="..\..\DTO\GroupDto.cs">
-      <Link>GroupDto.cs</Link>
+    <Compile Include="..\..\DTO\Gen\GroupDto.cs">
+      <Link>Gen\GroupDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RBaiXeDto.cs">
+      <Link>Gen\RBaiXeDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RCanhBaoTonKhoDto.cs">
+      <Link>Gen\RCanhBaoTonKhoDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RChanhDto.cs">
+      <Link>Gen\RChanhDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RDiaDiemDto.cs">
+      <Link>Gen\RDiaDiemDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RKhachHangChanhDto.cs">
+      <Link>Gen\RKhachHangChanhDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RKhachHangDto.cs">
+      <Link>Gen\RKhachHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RKhoHangDto.cs">
+      <Link>Gen\RKhoHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RLoaiChiPhiDto.cs">
+      <Link>Gen\RLoaiChiPhiDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RLoaiHangDto.cs">
+      <Link>Gen\RLoaiHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RLoaiNguyenLieuDto.cs">
+      <Link>Gen\RLoaiNguyenLieuDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RMatHangNguyenLieuDto.cs">
+      <Link>Gen\RMatHangNguyenLieuDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RNguyenLieuDto.cs">
+      <Link>Gen\RNguyenLieuDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RNhaCungCapDto.cs">
+      <Link>Gen\RNhaCungCapDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RNhanVienDto.cs">
+      <Link>Gen\RNhanVienDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RNuocDto.cs">
+      <Link>Gen\RNuocDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\RPhuongTienDto.cs">
+      <Link>Gen\RPhuongTienDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChiPhiDto.cs">
+      <Link>Gen\TChiPhiDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChiTietChuyenHangDonHangDto.cs">
+      <Link>Gen\TChiTietChuyenHangDonHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChiTietChuyenKhoDto.cs">
+      <Link>Gen\TChiTietChuyenKhoDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChiTietDonHangDto.cs">
+      <Link>Gen\TChiTietDonHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChiTietNhapHangDto.cs">
+      <Link>Gen\TChiTietNhapHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChiTietToaHangDto.cs">
+      <Link>Gen\TChiTietToaHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChuyenHangDonHangDto.cs">
+      <Link>Gen\TChuyenHangDonHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChuyenHangDto.cs">
+      <Link>Gen\TChuyenHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TChuyenKhoDto.cs">
+      <Link>Gen\TChuyenKhoDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TCongNoKhachHangDto.cs">
+      <Link>Gen\TCongNoKhachHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TDonHangDto.cs">
+      <Link>Gen\TDonHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TGiamTruKhachHangDto.cs">
+      <Link>Gen\TGiamTruKhachHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\ThamSoNgayDto.cs">
+      <Link>Gen\ThamSoNgayDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TMatHangDto.cs">
+      <Link>Gen\TMatHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TNhanTienKhachHangDto.cs">
+      <Link>Gen\TNhanTienKhachHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TNhapHangDto.cs">
+      <Link>Gen\TNhapHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TNhapNguyenLieuDto.cs">
+      <Link>Gen\TNhapNguyenLieuDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TPhuThuKhachHangDto.cs">
+      <Link>Gen\TPhuThuKhachHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TToaHangDto.cs">
+      <Link>Gen\TToaHangDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\TTonKhoDto.cs">
+      <Link>Gen\TTonKhoDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\UserDto.cs">
+      <Link>Gen\UserDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\Gen\UserGroupDto.cs">
+      <Link>Gen\UserGroupDto.cs</Link>
     </Compile>
     <Compile Include="..\..\DTO\IDto.cs">
       <Link>IDto.cs</Link>
     </Compile>
     <Compile Include="..\..\DTO\PagingResultDto.cs">
       <Link>PagingResultDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\RBaiXeDto.cs">
-      <Link>RBaiXeDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\RChanhDto.cs">
-      <Link>RChanhDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\RDiaDiemDto.cs">
-      <Link>RDiaDiemDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\RKhachHangChanhDto.cs">
-      <Link>RKhachHangChanhDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\RKhachHangDto.cs">
-      <Link>RKhachHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\RKhoHangDto.cs">
-      <Link>RKhoHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\RLoaiHangDto.cs">
-      <Link>RLoaiHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\RNuocDto.cs">
-      <Link>RNuocDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\TChiTietDonHangDto.cs">
-      <Link>TChiTietDonHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\TDonHangDto.cs">
-      <Link>TDonHangDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\TMatHangDto.cs">
-      <Link>TMatHangDto.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

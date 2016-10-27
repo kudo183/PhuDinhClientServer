@@ -87,7 +87,7 @@ namespace Client.ViewModel
                     chanhs.Add(chanh);
                 }
             }
-            dto.Chanhs = chanhs;
+            dto.MaChanhSources = chanhs;
             if (chanhs.Count > 0)
             {
                 dto.MaChanh = chanhs[0].Ma;

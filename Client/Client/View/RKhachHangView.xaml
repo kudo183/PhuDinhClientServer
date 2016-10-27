@@ -15,7 +15,7 @@
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="Tinh"
                                                       SelectedValueBinding="{Binding MaDiaDiem, UpdateSourceTrigger=PropertyChanged}"
-                                                      ItemsSource="{Binding DiaDiems}"/>
+                                                      ItemsSource="{Binding MaDiaDiemSources}"/>
             <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten Khach Hang" Binding="{Binding TenKhachHang, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridCheckBoxColumnExt Header="Khach Rieng" Binding="{Binding KhachRieng, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>

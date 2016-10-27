@@ -35,7 +35,7 @@ namespace Client.ViewModel
 
         protected override void ProcessDtoBeforeAddToEntities(TMatHangDto dto)
         {
-            dto.LoaiHangs = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
+            dto.MaLoaiSources = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }
