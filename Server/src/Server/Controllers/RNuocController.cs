@@ -5,7 +5,7 @@ using DTO;
 namespace Server.Controllers
 {
     public class RNuocController : SwaEntityBaseController<PhuDinhServerContext, RNuoc, RNuocDto>
-    {        
+    {
         public override RNuocDto ConvertToDto(RNuoc entity)
         {
             var dto = new RNuocDto();

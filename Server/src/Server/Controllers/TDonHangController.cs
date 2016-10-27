@@ -5,7 +5,7 @@ using DTO;
 namespace Server.Controllers
 {
     public class TDonHangController : SwaEntityBaseController<PhuDinhServerContext, TDonHang, TDonHangDto>
-    {        
+    {
         public override TDonHangDto ConvertToDto(TDonHang entity)
         {
             var dto = new TDonHangDto();

@@ -1,6 +1,6 @@
 ﻿using huypq.SwaMiddleware;
-using DTO;
 using Server.Entities;
+using DTO;
 
 namespace Server.Controllers
 {
@@ -10,8 +10,8 @@ namespace Server.Controllers
         {
             var dto = new GroupDto();
             dto.Ma = entity.Ma;
-            dto.TenGroup = entity.TenGroup;
             dto.NgayTao = entity.NgayTao;
+            dto.TenGroup = entity.TenGroup;
             return dto;
         }
 
@@ -19,8 +19,8 @@ namespace Server.Controllers
         {
             var entity = new Group();
             entity.Ma = dto.Ma;
-            entity.TenGroup = dto.TenGroup;
             entity.NgayTao = dto.NgayTao;
+            entity.TenGroup = dto.TenGroup;
             return entity;
         }
     }

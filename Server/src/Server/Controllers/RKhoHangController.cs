@@ -5,7 +5,7 @@ using DTO;
 namespace Server.Controllers
 {
     public class RKhoHangController : SwaEntityBaseController<PhuDinhServerContext, RKhoHang, RKhoHangDto>
-    {        
+    {
         public override RKhoHangDto ConvertToDto(RKhoHang entity)
         {
             var dto = new RKhoHangDto();

@@ -11,8 +11,8 @@ namespace Server.Controllers
             var dto = new TMatHangDto();
             dto.Ma = entity.Ma;
             dto.MaLoai = entity.MaLoai;
-            dto.SoMet = entity.SoMet;
             dto.SoKy = entity.SoKy;
+            dto.SoMet = entity.SoMet;
             dto.TenMatHang = entity.TenMatHang;
             dto.TenMatHangDayDu = entity.TenMatHangDayDu;
             dto.TenMatHangIn = entity.TenMatHangIn;
@@ -24,8 +24,8 @@ namespace Server.Controllers
             var entity = new TMatHang();
             entity.Ma = dto.Ma;
             entity.MaLoai = dto.MaLoai;
-            entity.SoMet = dto.SoMet;
             entity.SoKy = dto.SoKy;
+            entity.SoMet = dto.SoMet;
             entity.TenMatHang = dto.TenMatHang;
             entity.TenMatHangDayDu = dto.TenMatHangDayDu;
             entity.TenMatHangIn = dto.TenMatHangIn;

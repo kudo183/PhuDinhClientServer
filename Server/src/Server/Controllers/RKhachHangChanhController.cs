@@ -4,8 +4,7 @@ using DTO;
 
 namespace Server.Controllers
 {
-    public class RKhachHangChanhController 
-        : SwaEntityBaseController<PhuDinhServerContext, RKhachHangChanh, RKhachHangChanhDto>
+    public class RKhachHangChanhController : SwaEntityBaseController<PhuDinhServerContext, RKhachHangChanh, RKhachHangChanhDto>
     {
         public override RKhachHangChanhDto ConvertToDto(RKhachHangChanh entity)
         {
