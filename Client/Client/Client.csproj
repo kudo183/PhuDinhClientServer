@@ -65,10 +65,10 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="LoginViewModel.cs" />
     <Compile Include="ProtoBufDataService.cs" />
     <Compile Include="Text\TextManager.cs" />
     <Compile Include="ViewModelFactory.cs" />
-    <Compile Include="ViewModel\Gen\LoginViewModel.cs" />
     <Compile Include="ViewModel\Gen\RBaiXeViewModel.cs" />
     <Compile Include="ViewModel\Gen\RChanhViewModel.cs" />
     <Compile Include="ViewModel\Gen\RDiaDiemViewModel.cs" />
