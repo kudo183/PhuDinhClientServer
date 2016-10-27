@@ -14,7 +14,7 @@ namespace Client
         {
             Startup += App_Startup;
             Exit += App_Exit;
-            
+
             //System.Threading.Thread.CurrentThread.CurrentUICulture =
             //new System.Globalization.CultureInfo("vi-vn");
         }
@@ -24,6 +24,8 @@ namespace Client
             Settings.Instance.LoadSettings();
 
 #if DEBUG
+            System.Threading.Thread.CurrentThread.CurrentUICulture =
+                new System.Globalization.CultureInfo("vi-vn");
             Settings.Instance.UriRoot = "http://localhost:5000";
             ProtobufWebClient.Instance.Token = "CfDJ8P0zsQbbuUlBkhS-elYKeAcGLsOHUE2aXXYcY_ZYlRxDBvuqSenusoyRMKKXunn6953jTk4KeeiSkvgNJ5xRtaJ23J3fMSlP6rqvUo-aAwvBeSIjGyNbkNE1bv4RqMV9dm_Y3eec5SQZ-j-9ckRz-dI";
             //Settings.Instance.UriRoot = "http://luoithepvinhphat.com:5000";
