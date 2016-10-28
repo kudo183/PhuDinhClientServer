@@ -1,24 +1,31 @@
-﻿using SimpleDataGrid.ViewModel;
-using DTO;
+﻿using Client;
 using Client.Abstraction;
+using DTO;
+using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
     public partial class RDiaDiemViewModel : BaseViewModel<RDiaDiemDto>
     {
-        private HeaderComboBoxFilterModel _nuocFilter;
-
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
         partial void ProcessDtoBeforeAddToEntitiesPartial(RDiaDiemDto dto);
+        partial void ProcessNewAddedDtoPartial(RDiaDiemDto dto);
+
+        HeaderTextFilterModel _MaFilter;
+        HeaderComboBoxFilterModel _MaNuocFilter;
+        HeaderTextFilterModel _TinhFilter;
 
         public RDiaDiemViewModel() : base()
         {
+            _MaFilter = new HeaderTextFilterModel(TextManager.RDiaDiem_Ma, nameof(RDiaDiemDto.Ma), typeof(int));
+            _TinhFilter = new HeaderTextFilterModel(TextManager.RDiaDiem_Tinh, nameof(RDiaDiemDto.Tinh), typeof(string));
+
             InitFilterPartial();
 
-            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RDiaDiemDto.Ma), typeof(int)));
-            AddHeaderFilter(_nuocFilter);
-            AddHeaderFilter(new HeaderTextFilterModel("Tinh", nameof(RDiaDiemDto.Tinh), typeof(string)));
+            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_MaNuocFilter);
+            AddHeaderFilter(_TinhFilter);
         }
 
         public override void LoadReferenceData()
@@ -37,11 +44,20 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RDiaDiemDto dto)
         {
-            if (_nuocFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.MaNuoc = (int)_nuocFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
+            }
+            if (_MaNuocFilter.FilterValue != null)
+            {
+                dto.MaNuoc = (int)_MaNuocFilter.FilterValue;
+            }
+            if (_TinhFilter.FilterValue != null)
+            {
+                dto.Tinh = (string)_TinhFilter.FilterValue;
             }
 
+            ProcessNewAddedDtoPartial(dto);
             ProcessDtoBeforeAddToEntities(dto);
         }
     }

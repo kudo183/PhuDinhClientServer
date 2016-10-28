@@ -11,16 +11,16 @@
     <SimpleDataGrid:EditableGridView x:Name="gridView">
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridComboBoxColumnExt Header="Combobox"
+            <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaLoai"
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="TenLoai"
                                                       SelectedValueBinding="{Binding MaLoai, UpdateSourceTrigger=PropertyChanged}"
                                                       ItemsSource="{Binding MaLoaiSources}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten MH" Binding="{Binding TenMatHang, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten MH Day Du" Binding="{Binding TenMatHangDayDu, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten MH In" Binding="{Binding TenMatHangIn, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="So Ky" Binding="{Binding SoKy, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="So Met" Binding="{Binding SoMet, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="TenMatHang" Binding="{Binding TenMatHang, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="TenMatHangDayDu" Binding="{Binding TenMatHangDayDu, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="TenMatHangIn" Binding="{Binding TenMatHangIn, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="SoKy" Binding="{Binding SoKy, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="SoMet" Binding="{Binding SoMet, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>
     </SimpleDataGrid:EditableGridView>
 </Abstraction:BaseView>

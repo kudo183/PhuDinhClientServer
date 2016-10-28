@@ -10,41 +10,41 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _khachHangFilter = new HeaderComboBoxFilterModel(
+            _MaKhachHangFilter = new HeaderComboBoxFilterModel(
                 "Khach Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaKhachHang),
                 typeof(int),
                 nameof(RKhachHangDto.TenKhachHang),
                 nameof(RKhachHangDto.Ma));
-            _khachHangFilter.AddCommand = new SimpleCommand("KhachHangAddCommand",
+            _MaKhachHangFilter.AddCommand = new SimpleCommand("KhachHangAddCommand",
                 () => base.ProccessHeaderAddCommand(
                   new View.RKhachHangView(), "Khach Hang Chanh", ReferenceDataManager<RKhachHangDto>.Instance.Load)
             );
-            _khachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
+            _MaKhachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
 
-            _khoHangFilter = new HeaderComboBoxFilterModel(
+            _MaKhoHangFilter = new HeaderComboBoxFilterModel(
                 "Kho Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaKhoHang),
                 typeof(int),
                 nameof(RKhoHangDto.TenKho),
                 nameof(RKhoHangDto.Ma));
-            _khoHangFilter.AddCommand = new SimpleCommand("KhoHangAddCommand",
+            _MaKhoHangFilter.AddCommand = new SimpleCommand("KhoHangAddCommand",
                 () => base.ProccessHeaderAddCommand(
                   new View.RKhoHangView(), "Kho Hang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
             );
-            _khoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
+            _MaKhoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
 
-            _chanhFilter = new HeaderComboBoxFilterModel(
+            _MaChanhFilter = new HeaderComboBoxFilterModel(
                 "Chanh", HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaChanh),
                 typeof(int?),
                 nameof(RChanhDto.TenChanh),
                 nameof(RChanhDto.Ma));
-            _chanhFilter.AddCommand = new SimpleCommand("ChanhAddCommand",
+            _MaChanhFilter.AddCommand = new SimpleCommand("ChanhAddCommand",
                 () => base.ProccessHeaderAddCommand(
                 new View.RKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog)
             );
-            _chanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
+            _MaChanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
         }
 
         partial void LoadReferenceDataPartial()

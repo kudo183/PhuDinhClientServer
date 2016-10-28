@@ -5,59 +5,56 @@ using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
-    public partial class TChiTietDonHangViewModel : BaseViewModel<TChiTietDonHangDto>
+    public partial class TChiTietChuyenKhoViewModel : BaseViewModel<TChiTietChuyenKhoDto>
     {
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
-        partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietDonHangDto dto);
-        partial void ProcessNewAddedDtoPartial(TChiTietDonHangDto dto);
+        partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietChuyenKhoDto dto);
+        partial void ProcessNewAddedDtoPartial(TChiTietChuyenKhoDto dto);
 
         HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaDonHangFilter;
+        HeaderComboBoxFilterModel _MaChuyenKhoFilter;
         HeaderComboBoxFilterModel _MaMatHangFilter;
         HeaderTextFilterModel _SoLuongFilter;
-        HeaderCheckFilterModel _XongFilter;
 
-        public TChiTietDonHangViewModel() : base()
+        public TChiTietChuyenKhoViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietDonHang_Ma, nameof(TChiTietDonHangDto.Ma), typeof(int));
-            _SoLuongFilter = new HeaderTextFilterModel(TextManager.TChiTietDonHang_SoLuong, nameof(TChiTietDonHangDto.SoLuong), typeof(int));
-            _XongFilter = new HeaderCheckFilterModel(TextManager.TChiTietDonHang_Xong, nameof(TChiTietDonHangDto.Xong), typeof(bool));
+            _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenKho_Ma, nameof(TChiTietChuyenKhoDto.Ma), typeof(int));
+            _SoLuongFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenKho_SoLuong, nameof(TChiTietChuyenKhoDto.SoLuong), typeof(int));
 
             InitFilterPartial();
 
             AddHeaderFilter(_MaFilter);
-            AddHeaderFilter(_MaDonHangFilter);
+            AddHeaderFilter(_MaChuyenKhoFilter);
             AddHeaderFilter(_MaMatHangFilter);
             AddHeaderFilter(_SoLuongFilter);
-            AddHeaderFilter(_XongFilter);
         }
 
         public override void LoadReferenceData()
         {
-            ReferenceDataManager<TDonHangDto>.Instance.Load();
+            ReferenceDataManager<TChuyenKhoDto>.Instance.Load();
             ReferenceDataManager<TMatHangDto>.Instance.Load();
 
             LoadReferenceDataPartial();
         }
 
-        protected override void ProcessDtoBeforeAddToEntities(TChiTietDonHangDto dto)
+        protected override void ProcessDtoBeforeAddToEntities(TChiTietChuyenKhoDto dto)
         {
-            dto.MaDonHangSources = ReferenceDataManager<TDonHangDto>.Instance.Get();
+            dto.MaChuyenKhoSources = ReferenceDataManager<TChuyenKhoDto>.Instance.Get();
             dto.MaMatHangSources = ReferenceDataManager<TMatHangDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }
 
-        protected override void ProcessNewAddedDto(TChiTietDonHangDto dto)
+        protected override void ProcessNewAddedDto(TChiTietChuyenKhoDto dto)
         {
             if (_MaFilter.FilterValue != null)
             {
                 dto.Ma = (int)_MaFilter.FilterValue;
             }
-            if (_MaDonHangFilter.FilterValue != null)
+            if (_MaChuyenKhoFilter.FilterValue != null)
             {
-                dto.MaDonHang = (int)_MaDonHangFilter.FilterValue;
+                dto.MaChuyenKho = (int)_MaChuyenKhoFilter.FilterValue;
             }
             if (_MaMatHangFilter.FilterValue != null)
             {
@@ -66,10 +63,6 @@ namespace Client.ViewModel
             if (_SoLuongFilter.FilterValue != null)
             {
                 dto.SoLuong = (int)_SoLuongFilter.FilterValue;
-            }
-            if (_XongFilter.FilterValue != null)
-            {
-                dto.Xong = (bool)_XongFilter.FilterValue;
             }
 
             ProcessNewAddedDtoPartial(dto);

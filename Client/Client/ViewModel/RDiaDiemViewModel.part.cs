@@ -9,14 +9,14 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _nuocFilter = new HeaderComboBoxFilterModel(
+            _MaNuocFilter = new HeaderComboBoxFilterModel(
                 "Nuoc", HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(RDiaDiemDto.MaNuoc), typeof(int), nameof(RNuocDto.TenNuoc), nameof(RNuocDto.Ma));
-            _nuocFilter.AddCommand = new SimpleCommand("NuocAddCommand",
+            _MaNuocFilter.AddCommand = new SimpleCommand("NuocAddCommand",
                 () => base.ProccessHeaderAddCommand(
                 new View.RNuocView(), "Nuoc", ReferenceDataManager<RNuocDto>.Instance.Load)
             );
-            _nuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
+            _MaNuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
         }
     }
 }

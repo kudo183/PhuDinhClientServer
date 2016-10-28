@@ -11,8 +11,8 @@
     <SimpleDataGrid:EditableGridView x:Name="gridView">
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten Loai" Binding="{Binding TenLoai, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridCheckBoxColumnExt Width="100" Header="Hang nha" Binding="{Binding HangNhaLam, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="TenLoai" Binding="{Binding TenLoai, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridCheckBoxColumnExt Width="100" Header="HangNhaLam" Binding="{Binding HangNhaLam, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>
     </SimpleDataGrid:EditableGridView>
 </Abstraction:BaseView>

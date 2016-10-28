@@ -1,56 +1,71 @@
-﻿using SimpleDataGrid.ViewModel;
-using DTO;
+﻿using Client;
 using Client.Abstraction;
+using DTO;
+using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
     public partial class RKhachHangChanhViewModel : BaseViewModel<RKhachHangChanhDto>
     {
-        private HeaderComboBoxFilterModel _khachHangFilter;
-        private HeaderComboBoxFilterModel _chanhFilter;
-
         partial void InitFilterPartial();
         partial void LoadReferenceDataPartial();
         partial void ProcessDtoBeforeAddToEntitiesPartial(RKhachHangChanhDto dto);
+        partial void ProcessNewAddedDtoPartial(RKhachHangChanhDto dto);
+
+        HeaderTextFilterModel _MaFilter;
+        HeaderCheckFilterModel _LaMacDinhFilter;
+        HeaderComboBoxFilterModel _MaChanhFilter;
+        HeaderComboBoxFilterModel _MaKhachHangFilter;
 
         public RKhachHangChanhViewModel() : base()
         {
+            _MaFilter = new HeaderTextFilterModel(TextManager.RKhachHangChanh_Ma, nameof(RKhachHangChanhDto.Ma), typeof(int));
+            _LaMacDinhFilter = new HeaderCheckFilterModel(TextManager.RKhachHangChanh_LaMacDinh, nameof(RKhachHangChanhDto.LaMacDinh), typeof(bool));
+
             InitFilterPartial();
 
-            AddHeaderFilter(new HeaderTextFilterModel("Ma", nameof(RKhachHangChanhDto.Ma), typeof(int)));
-            AddHeaderFilter(_khachHangFilter);
-            AddHeaderFilter(_chanhFilter);
-            AddHeaderFilter(new HeaderCheckFilterModel("La Mac Dinh", nameof(RKhachHangChanhDto.LaMacDinh), typeof(bool)));
+            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_LaMacDinhFilter);
+            AddHeaderFilter(_MaChanhFilter);
+            AddHeaderFilter(_MaKhachHangFilter);
         }
 
         public override void LoadReferenceData()
         {
-            ReferenceDataManager<RKhachHangDto>.Instance.Load();
             ReferenceDataManager<RChanhDto>.Instance.Load();
+            ReferenceDataManager<RKhachHangDto>.Instance.Load();
 
             LoadReferenceDataPartial();
         }
 
         protected override void ProcessDtoBeforeAddToEntities(RKhachHangChanhDto dto)
         {
-            dto.MaKhachHangSources = ReferenceDataManager<RKhachHangDto>.Instance.Get();
             dto.MaChanhSources = ReferenceDataManager<RChanhDto>.Instance.Get();
+            dto.MaKhachHangSources = ReferenceDataManager<RKhachHangDto>.Instance.Get();
 
             ProcessDtoBeforeAddToEntitiesPartial(dto);
         }
 
         protected override void ProcessNewAddedDto(RKhachHangChanhDto dto)
         {
-            if (_khachHangFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.MaKhachHang = (int)_khachHangFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
+            }
+            if (_LaMacDinhFilter.FilterValue != null)
+            {
+                dto.LaMacDinh = (bool)_LaMacDinhFilter.FilterValue;
+            }
+            if (_MaChanhFilter.FilterValue != null)
+            {
+                dto.MaChanh = (int)_MaChanhFilter.FilterValue;
+            }
+            if (_MaKhachHangFilter.FilterValue != null)
+            {
+                dto.MaKhachHang = (int)_MaKhachHangFilter.FilterValue;
             }
 
-            if (_chanhFilter.FilterValue != null)
-            {
-                dto.MaChanh = (int)_chanhFilter.FilterValue;
-            }
-
+            ProcessNewAddedDtoPartial(dto);
             ProcessDtoBeforeAddToEntities(dto);
         }
     }

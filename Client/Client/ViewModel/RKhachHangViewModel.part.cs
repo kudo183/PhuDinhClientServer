@@ -9,15 +9,15 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _diaDiemFilter = new HeaderComboBoxFilterModel(
+            _MaDiaDiemFilter = new HeaderComboBoxFilterModel(
                 "Dia Diem", HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(RKhachHangDto.MaDiaDiem),
                 typeof(int), nameof(RDiaDiemDto.Tinh), nameof(RDiaDiemDto.Ma));
-            _diaDiemFilter.AddCommand = new SimpleCommand("DiaDiemAddCommand",
+            _MaDiaDiemFilter.AddCommand = new SimpleCommand("DiaDiemAddCommand",
                 () => base.ProccessHeaderAddCommand(
                 new View.RDiaDiemView(), "Dia Diem", ReferenceDataManager<RDiaDiemDto>.Instance.Load)
             );
-            _diaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
+            _MaDiaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
         }
     }
 }

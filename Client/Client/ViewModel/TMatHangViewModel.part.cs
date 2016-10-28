@@ -9,14 +9,14 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _loaiHangFilter = new HeaderComboBoxFilterModel(
+            _MaLoaiFilter = new HeaderComboBoxFilterModel(
                 "Loai Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TMatHangDto.MaLoai), typeof(int), nameof(RLoaiHangDto.TenLoai), nameof(RLoaiHangDto.Ma));
-            _loaiHangFilter.AddCommand = new SimpleCommand("LoaiHangAddCommand",
+            _MaLoaiFilter.AddCommand = new SimpleCommand("LoaiHangAddCommand",
                 () => base.ProccessHeaderAddCommand(
                 new View.RLoaiHangView(), "Loai Hang", ReferenceDataManager<RLoaiHangDto>.Instance.Load)
             );
-            _loaiHangFilter.ItemSource = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
+            _MaLoaiFilter.ItemSource = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
         }
     }
 }

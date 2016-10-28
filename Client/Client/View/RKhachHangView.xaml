@@ -11,13 +11,13 @@
     <SimpleDataGrid:EditableGridView x:Name="gridView">
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridComboBoxColumnExt Header="Combobox"
+            <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaDiaDiem"
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="Tinh"
                                                       SelectedValueBinding="{Binding MaDiaDiem, UpdateSourceTrigger=PropertyChanged}"
                                                       ItemsSource="{Binding MaDiaDiemSources}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="Ten Khach Hang" Binding="{Binding TenKhachHang, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridCheckBoxColumnExt Header="Khach Rieng" Binding="{Binding KhachRieng, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="TenKhachHang" Binding="{Binding TenKhachHang, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridCheckBoxColumnExt Header="KhachRieng" Binding="{Binding KhachRieng, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>
     </SimpleDataGrid:EditableGridView>
 </Abstraction:BaseView>

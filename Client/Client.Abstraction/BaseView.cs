@@ -87,7 +87,14 @@ namespace Client.Abstraction
 
             for (int i = 0; i < ViewModel.HeaderFilters.Count; i++)
             {
-                GridView.Columns[i].Header = ViewModel.HeaderFilters[i];
+                foreach (var column in GridView.Columns)
+                {
+                    if(column.Header.ToString() == ViewModel.HeaderFilters[i].PropertyName)
+                    {
+                        column.Header = ViewModel.HeaderFilters[i];
+                        break;
+                    }
+                }
             }
         }
 

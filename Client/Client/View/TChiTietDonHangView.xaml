@@ -11,13 +11,17 @@
     <SimpleDataGrid:EditableGridView x:Name="gridView">
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma DH" IsReadOnly="True" Binding="{Binding MaDonHang, Mode=OneWay}"/>
-            <SimpleDataGrid:DataGridComboBoxColumnExt Header="Combobox"
+            <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaDonHang" IsReadOnly="True"
+                                                      SelectedValuePath="Ma"
+                                                      DisplayMemberPath="Ma"
+                                                      SelectedValueBinding="{Binding MaDonHang, UpdateSourceTrigger=PropertyChanged}"
+                                                      ItemsSource="{Binding MaDonHangSources}"/>
+            <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaMatHang"
                                                       SelectedValuePath="Ma"
                                                       DisplayMemberPath="TenMatHang"
                                                       SelectedValueBinding="{Binding MaMatHang, UpdateSourceTrigger=PropertyChanged}"
                                                       ItemsSource="{Binding MaMatHangSources}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="So Luong" Binding="{Binding SoLuong, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="200" Header="SoLuong" Binding="{Binding SoLuong, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridCheckBoxColumnExt Width="100" Header="Xong" Binding="{Binding Xong, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>
     </SimpleDataGrid:EditableGridView>
