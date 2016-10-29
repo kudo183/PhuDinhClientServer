@@ -34,7 +34,7 @@ namespace Client
                 var line = sr.ReadLine();
                 while (string.IsNullOrEmpty(line) == false)
                 {
-                    var texts = line.Split(new[] { "\t\t" }, System.StringSplitOptions.RemoveEmptyEntries);
+                    var texts = line.Split(new[] { "\t\t" }, System.StringSplitOptions.None);
                     _dic.Add(texts[0], texts[1]);
                     line = sr.ReadLine();
                 }
