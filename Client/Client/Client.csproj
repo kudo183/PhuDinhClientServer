@@ -115,246 +115,130 @@
     <Compile Include="View\complexDonHangView.xaml.cs">
       <DependentUpon>complexDonHangView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\GroupView.xaml.cs">
+    <Compile Include="View\Gen\GroupView.xaml.cs">
       <DependentUpon>GroupView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RCanhBaoTonKhoView.xaml.cs">
+    <Compile Include="View\Gen\RBaiXeView.xaml.cs">
+      <DependentUpon>RBaiXeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RCanhBaoTonKhoView.xaml.cs">
       <DependentUpon>RCanhBaoTonKhoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RLoaiChiPhiView.xaml.cs">
-      <DependentUpon>RLoaiChiPhiView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RLoaiNguyenLieuView.xaml.cs">
-      <DependentUpon>RLoaiNguyenLieuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RMatHangNguyenLieuView.xaml.cs">
-      <DependentUpon>RMatHangNguyenLieuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RNguyenLieuView.xaml.cs">
-      <DependentUpon>RNguyenLieuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RNhaCungCapView.xaml.cs">
-      <DependentUpon>RNhaCungCapView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RNhanVienView.xaml.cs">
-      <DependentUpon>RNhanVienView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RPhuongTienView.xaml.cs">
-      <DependentUpon>RPhuongTienView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChiPhiView.xaml.cs">
-      <DependentUpon>TChiPhiView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChiTietChuyenHangDonHangView.xaml.cs">
-      <DependentUpon>TChiTietChuyenHangDonHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChiTietChuyenKhoView.xaml.cs">
-      <DependentUpon>TChiTietChuyenKhoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChiTietDonHangView.xaml.cs">
-      <DependentUpon>TChiTietDonHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChiTietNhapHangView.xaml.cs">
-      <DependentUpon>TChiTietNhapHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChiTietToaHangView.xaml.cs">
-      <DependentUpon>TChiTietToaHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChuyenHangDonHangView.xaml.cs">
-      <DependentUpon>TChuyenHangDonHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChuyenHangView.xaml.cs">
-      <DependentUpon>TChuyenHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TChuyenKhoView.xaml.cs">
-      <DependentUpon>TChuyenKhoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TCongNoKhachHangView.xaml.cs">
-      <DependentUpon>TCongNoKhachHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TGiamTruKhachHangView.xaml.cs">
-      <DependentUpon>TGiamTruKhachHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\ThamSoNgayView.xaml.cs">
-      <DependentUpon>ThamSoNgayView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TMatHangView.xaml.cs">
-      <DependentUpon>TMatHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RKhachHangChanhView.xaml.cs">
-      <DependentUpon>RKhachHangChanhView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RLoaiHangView.xaml.cs">
-      <DependentUpon>RLoaiHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TDonHangView.xaml.cs">
-      <DependentUpon>TDonHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RKhachHangView.xaml.cs">
-      <DependentUpon>RKhachHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RDiaDiemView.xaml.cs">
-      <DependentUpon>RDiaDiemView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RChanhView.xaml.cs">
+    <Compile Include="View\Gen\RChanhView.xaml.cs">
       <DependentUpon>RChanhView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\RKhoHangView.xaml.cs">
+    <Compile Include="View\Gen\RDiaDiemView.xaml.cs">
+      <DependentUpon>RDiaDiemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RKhachHangChanhView.xaml.cs">
+      <DependentUpon>RKhachHangChanhView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RKhachHangView.xaml.cs">
+      <DependentUpon>RKhachHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RKhoHangView.xaml.cs">
       <DependentUpon>RKhoHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RLoaiChiPhiView.xaml.cs">
+      <DependentUpon>RLoaiChiPhiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RLoaiHangView.xaml.cs">
+      <DependentUpon>RLoaiHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RLoaiNguyenLieuView.xaml.cs">
+      <DependentUpon>RLoaiNguyenLieuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RMatHangNguyenLieuView.xaml.cs">
+      <DependentUpon>RMatHangNguyenLieuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RNguyenLieuView.xaml.cs">
+      <DependentUpon>RNguyenLieuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RNhaCungCapView.xaml.cs">
+      <DependentUpon>RNhaCungCapView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RNhanVienView.xaml.cs">
+      <DependentUpon>RNhanVienView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RNuocView.xaml.cs">
+      <DependentUpon>RNuocView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\RPhuongTienView.xaml.cs">
+      <DependentUpon>RPhuongTienView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChiPhiView.xaml.cs">
+      <DependentUpon>TChiPhiView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChiTietChuyenHangDonHangView.xaml.cs">
+      <DependentUpon>TChiTietChuyenHangDonHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChiTietChuyenKhoView.xaml.cs">
+      <DependentUpon>TChiTietChuyenKhoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChiTietDonHangView.xaml.cs">
+      <DependentUpon>TChiTietDonHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChiTietNhapHangView.xaml.cs">
+      <DependentUpon>TChiTietNhapHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChiTietToaHangView.xaml.cs">
+      <DependentUpon>TChiTietToaHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChuyenHangDonHangView.xaml.cs">
+      <DependentUpon>TChuyenHangDonHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChuyenHangView.xaml.cs">
+      <DependentUpon>TChuyenHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TChuyenKhoView.xaml.cs">
+      <DependentUpon>TChuyenKhoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TCongNoKhachHangView.xaml.cs">
+      <DependentUpon>TCongNoKhachHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TDonHangView.xaml.cs">
+      <DependentUpon>TDonHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TGiamTruKhachHangView.xaml.cs">
+      <DependentUpon>TGiamTruKhachHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\ThamSoNgayView.xaml.cs">
+      <DependentUpon>ThamSoNgayView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TMatHangView.xaml.cs">
+      <DependentUpon>TMatHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TNhanTienKhachHangView.xaml.cs">
+      <DependentUpon>TNhanTienKhachHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TNhapHangView.xaml.cs">
+      <DependentUpon>TNhapHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TNhapNguyenLieuView.xaml.cs">
+      <DependentUpon>TNhapNguyenLieuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TPhuThuKhachHangView.xaml.cs">
+      <DependentUpon>TPhuThuKhachHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TToaHangView.xaml.cs">
+      <DependentUpon>TToaHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\TTonKhoView.xaml.cs">
+      <DependentUpon>TTonKhoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\UserGroupView.xaml.cs">
+      <DependentUpon>UserGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\Gen\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
-    <Compile Include="View\RBaiXeView.xaml.cs">
-      <DependentUpon>RBaiXeView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\RNuocView.xaml.cs">
-      <DependentUpon>RNuocView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TNhanTienKhachHangView.xaml.cs">
-      <DependentUpon>TNhanTienKhachHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TNhapHangView.xaml.cs">
-      <DependentUpon>TNhapHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TNhapNguyenLieuView.xaml.cs">
-      <DependentUpon>TNhapNguyenLieuView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TPhuThuKhachHangView.xaml.cs">
-      <DependentUpon>TPhuThuKhachHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TToaHangView.xaml.cs">
-      <DependentUpon>TToaHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\TTonKhoView.xaml.cs">
-      <DependentUpon>TTonKhoView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserGroupView.xaml.cs">
-      <DependentUpon>UserGroupView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\UserView.xaml.cs">
-      <DependentUpon>UserView.xaml</DependentUpon>
-    </Compile>
     <Page Include="AllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\complexDonHangView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\GroupView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RCanhBaoTonKhoView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RLoaiChiPhiView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RLoaiNguyenLieuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RMatHangNguyenLieuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RNguyenLieuView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RNhaCungCapView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RNhanVienView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RPhuongTienView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChiPhiView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChiTietChuyenHangDonHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChiTietChuyenKhoView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChiTietDonHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChiTietNhapHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChiTietToaHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChuyenHangDonHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChuyenHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TChuyenKhoView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TCongNoKhachHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TGiamTruKhachHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\ThamSoNgayView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TMatHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RKhachHangChanhView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RLoaiHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\TDonHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RKhachHangView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RDiaDiemView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RChanhView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\RKhoHangView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -377,43 +261,159 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\RBaiXeView.xaml">
+    <Page Include="View\Gen\GroupView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\RNuocView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\TNhanTienKhachHangView.xaml">
+    <Page Include="View\Gen\RBaiXeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\TNhapHangView.xaml">
+    <Page Include="View\Gen\RCanhBaoTonKhoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\TNhapNguyenLieuView.xaml">
+    <Page Include="View\Gen\RChanhView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\TPhuThuKhachHangView.xaml">
+    <Page Include="View\Gen\RDiaDiemView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\TToaHangView.xaml">
+    <Page Include="View\Gen\RKhachHangChanhView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\TTonKhoView.xaml">
+    <Page Include="View\Gen\RKhachHangView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\UserGroupView.xaml">
+    <Page Include="View\Gen\RKhoHangView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\UserView.xaml">
+    <Page Include="View\Gen\RLoaiChiPhiView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\RLoaiHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\RLoaiNguyenLieuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\RMatHangNguyenLieuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\RNguyenLieuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\RNhaCungCapView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\RNhanVienView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\RNuocView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\RPhuongTienView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChiPhiView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChiTietChuyenHangDonHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChiTietChuyenKhoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChiTietDonHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChiTietNhapHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChiTietToaHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChuyenHangDonHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChuyenHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TChuyenKhoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TCongNoKhachHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TDonHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TGiamTruKhachHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\ThamSoNgayView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TMatHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TNhanTienKhachHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TNhapHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TNhapNguyenLieuView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TPhuThuKhachHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TToaHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\TTonKhoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\UserGroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Gen\UserView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

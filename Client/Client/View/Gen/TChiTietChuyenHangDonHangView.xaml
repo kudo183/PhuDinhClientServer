@@ -1,0 +1,27 @@
+﻿<Abstraction:BaseView x:TypeArguments="Dto:TChiTietChuyenHangDonHangDto"
+    x:Class="Client.View.TChiTietChuyenHangDonHangView"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:SimpleDataGrid="clr-namespace:SimpleDataGrid;assembly=SimpleDataGrid"
+    xmlns:Dto="clr-namespace:DTO;assembly=DTO"
+    xmlns:Abstraction="clr-namespace:Client.Abstraction;assembly=Client.Abstraction">
+    <SimpleDataGrid:EditableGridView>
+        <SimpleDataGrid:EditableGridView.Columns>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaChiTietDonHang"
+                SelectedValuePath="Ma"
+                DisplayMemberPath="TenHienThi"
+                SelectedValueBinding="{Binding MaChiTietDonHang, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding MaChiTietDonHangSources}"/>
+            <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaChuyenHangDonHang"
+                SelectedValuePath="Ma"
+                DisplayMemberPath="TenHienThi"
+                SelectedValueBinding="{Binding MaChuyenHangDonHang, UpdateSourceTrigger=PropertyChanged}"
+                ItemsSource="{Binding MaChuyenHangDonHangSources}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Header="SoLuong" Binding="{Binding SoLuong, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Header="SoLuongTheoDonHang" Binding="{Binding SoLuongTheoDonHang, UpdateSourceTrigger=PropertyChanged}"/>
+        </SimpleDataGrid:EditableGridView.Columns>
+    </SimpleDataGrid:EditableGridView>
+</Abstraction:BaseView>
