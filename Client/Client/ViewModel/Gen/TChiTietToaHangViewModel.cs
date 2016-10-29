@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -20,7 +20,32 @@ namespace Client.ViewModel
         public TChiTietToaHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietToaHang_Ma, nameof(TChiTietToaHangDto.Ma), typeof(int));
+
             _GiaTienFilter = new HeaderTextFilterModel(TextManager.TChiTietToaHang_GiaTien, nameof(TChiTietToaHangDto.GiaTien), typeof(int));
+
+            _MaChiTietDonHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietToaHang_MaChiTietDonHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietToaHangDto.MaChiTietDonHang),
+                typeof(int),
+                nameof(TChiTietDonHangDto.TenHienThi),
+                nameof(TChiTietDonHangDto.Ma));
+            _MaChiTietDonHangFilter.AddCommand = new SimpleCommand("MaChiTietDonHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TChiTietDonHangView(), "TChiTietDonHang", ReferenceDataManager<TChiTietDonHangDto>.Instance.Load)
+            );
+            _MaChiTietDonHangFilter.ItemSource = ReferenceDataManager<TChiTietDonHangDto>.Instance.Get();
+
+            _MaToaHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietToaHang_MaToaHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietToaHangDto.MaToaHang),
+                typeof(int),
+                nameof(TToaHangDto.TenHienThi),
+                nameof(TToaHangDto.Ma));
+            _MaToaHangFilter.AddCommand = new SimpleCommand("MaToaHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TToaHangView(), "TToaHang", ReferenceDataManager<TToaHangDto>.Instance.Load)
+            );
+            _MaToaHangFilter.ItemSource = ReferenceDataManager<TToaHangDto>.Instance.Get();
 
             InitFilterPartial();
 

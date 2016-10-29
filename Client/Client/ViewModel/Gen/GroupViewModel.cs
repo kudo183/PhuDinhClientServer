@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -18,7 +18,9 @@ namespace Client.ViewModel
         public GroupViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.Group_Ma, nameof(GroupDto.Ma), typeof(int));
+
             _NgayTaoFilter = new HeaderDateFilterModel(TextManager.Group_NgayTao, nameof(GroupDto.NgayTao), typeof(System.DateTime));
+
             _TenGroupFilter = new HeaderTextFilterModel(TextManager.Group_TenGroup, nameof(GroupDto.TenGroup), typeof(string));
 
             InitFilterPartial();

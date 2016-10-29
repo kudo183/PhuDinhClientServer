@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -22,8 +22,35 @@ namespace Client.ViewModel
         public TChiPhiViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TChiPhi_Ma, nameof(TChiPhiDto.Ma), typeof(int));
+
             _GhiChuFilter = new HeaderTextFilterModel(TextManager.TChiPhi_GhiChu, nameof(TChiPhiDto.GhiChu), typeof(string));
+
+            _MaLoaiChiPhiFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiPhi_MaLoaiChiPhi, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiPhiDto.MaLoaiChiPhi),
+                typeof(int),
+                nameof(RLoaiChiPhiDto.TenHienThi),
+                nameof(RLoaiChiPhiDto.Ma));
+            _MaLoaiChiPhiFilter.AddCommand = new SimpleCommand("MaLoaiChiPhiAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RLoaiChiPhiView(), "RLoaiChiPhi", ReferenceDataManager<RLoaiChiPhiDto>.Instance.Load)
+            );
+            _MaLoaiChiPhiFilter.ItemSource = ReferenceDataManager<RLoaiChiPhiDto>.Instance.Get();
+
+            _MaNhanVienGiaoHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiPhi_MaNhanVienGiaoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiPhiDto.MaNhanVienGiaoHang),
+                typeof(int),
+                nameof(RNhanVienDto.TenHienThi),
+                nameof(RNhanVienDto.Ma));
+            _MaNhanVienGiaoHangFilter.AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RNhanVienView(), "RNhanVien", ReferenceDataManager<RNhanVienDto>.Instance.Load)
+            );
+            _MaNhanVienGiaoHangFilter.ItemSource = ReferenceDataManager<RNhanVienDto>.Instance.Get();
+
             _NgayFilter = new HeaderDateFilterModel(TextManager.TChiPhi_Ngay, nameof(TChiPhiDto.Ngay), typeof(System.DateTime));
+
             _SoTienFilter = new HeaderTextFilterModel(TextManager.TChiPhi_SoTien, nameof(TChiPhiDto.SoTien), typeof(int));
 
             InitFilterPartial();

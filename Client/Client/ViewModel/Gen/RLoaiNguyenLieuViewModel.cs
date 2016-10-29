@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -17,6 +17,7 @@ namespace Client.ViewModel
         public RLoaiNguyenLieuViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RLoaiNguyenLieu_Ma, nameof(RLoaiNguyenLieuDto.Ma), typeof(int));
+
             _TenLoaiFilter = new HeaderTextFilterModel(TextManager.RLoaiNguyenLieu_TenLoai, nameof(RLoaiNguyenLieuDto.TenLoai), typeof(string));
 
             InitFilterPartial();

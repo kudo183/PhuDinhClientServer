@@ -12,7 +12,7 @@
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaBaiXe"
                 SelectedValuePath="Ma"
-                DisplayMemberPath=""
+                DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaBaiXe, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaBaiXeSources}"/>
                 <SimpleDataGrid:DataGridTextColumnExt Header="TenChanh" Binding="{Binding TenChanh, UpdateSourceTrigger=PropertyChanged}"/>

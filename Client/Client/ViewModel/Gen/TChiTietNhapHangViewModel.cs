@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -20,6 +20,31 @@ namespace Client.ViewModel
         public TChiTietNhapHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietNhapHang_Ma, nameof(TChiTietNhapHangDto.Ma), typeof(int));
+
+            _MaMatHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietNhapHang_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietNhapHangDto.MaMatHang),
+                typeof(int),
+                nameof(TMatHangDto.TenHienThi),
+                nameof(TMatHangDto.Ma));
+            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
+            );
+            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+
+            _MaNhapHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietNhapHang_MaNhapHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietNhapHangDto.MaNhapHang),
+                typeof(int),
+                nameof(TNhapHangDto.TenHienThi),
+                nameof(TNhapHangDto.Ma));
+            _MaNhapHangFilter.AddCommand = new SimpleCommand("MaNhapHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TNhapHangView(), "TNhapHang", ReferenceDataManager<TNhapHangDto>.Instance.Load)
+            );
+            _MaNhapHangFilter.ItemSource = ReferenceDataManager<TNhapHangDto>.Instance.Get();
+
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.TChiTietNhapHang_SoLuong, nameof(TChiTietNhapHangDto.SoLuong), typeof(int));
 
             InitFilterPartial();

@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -21,7 +21,33 @@ namespace Client.ViewModel
         public RCanhBaoTonKhoViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RCanhBaoTonKho_Ma, nameof(RCanhBaoTonKhoDto.Ma), typeof(int));
+
+            _MaKhoHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.RCanhBaoTonKho_MaKhoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RCanhBaoTonKhoDto.MaKhoHang),
+                typeof(int),
+                nameof(RKhoHangDto.TenHienThi),
+                nameof(RKhoHangDto.Ma));
+            _MaKhoHangFilter.AddCommand = new SimpleCommand("MaKhoHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
+            );
+            _MaKhoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
+
+            _MaMatHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.RCanhBaoTonKho_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RCanhBaoTonKhoDto.MaMatHang),
+                typeof(int),
+                nameof(TMatHangDto.TenHienThi),
+                nameof(TMatHangDto.Ma));
+            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
+            );
+            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+
             _TonCaoNhatFilter = new HeaderTextFilterModel(TextManager.RCanhBaoTonKho_TonCaoNhat, nameof(RCanhBaoTonKhoDto.TonCaoNhat), typeof(int));
+
             _TonThapNhatFilter = new HeaderTextFilterModel(TextManager.RCanhBaoTonKho_TonThapNhat, nameof(RCanhBaoTonKhoDto.TonThapNhat), typeof(int));
 
             InitFilterPartial();

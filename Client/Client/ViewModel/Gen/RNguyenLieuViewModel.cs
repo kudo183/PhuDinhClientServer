@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -19,7 +19,20 @@ namespace Client.ViewModel
         public RNguyenLieuViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RNguyenLieu_Ma, nameof(RNguyenLieuDto.Ma), typeof(int));
+
             _DuongKinhFilter = new HeaderTextFilterModel(TextManager.RNguyenLieu_DuongKinh, nameof(RNguyenLieuDto.DuongKinh), typeof(int));
+
+            _MaLoaiNguyenLieuFilter = new HeaderComboBoxFilterModel(
+                TextManager.RNguyenLieu_MaLoaiNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RNguyenLieuDto.MaLoaiNguyenLieu),
+                typeof(int),
+                nameof(RLoaiNguyenLieuDto.TenHienThi),
+                nameof(RLoaiNguyenLieuDto.Ma));
+            _MaLoaiNguyenLieuFilter.AddCommand = new SimpleCommand("MaLoaiNguyenLieuAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RLoaiNguyenLieuView(), "RLoaiNguyenLieu", ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.Load)
+            );
+            _MaLoaiNguyenLieuFilter.ItemSource = ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.Get();
 
             InitFilterPartial();
 

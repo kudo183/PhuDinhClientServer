@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -18,7 +18,9 @@ namespace Client.ViewModel
         public RKhoHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RKhoHang_Ma, nameof(RKhoHangDto.Ma), typeof(int));
+
             _TenKhoFilter = new HeaderTextFilterModel(TextManager.RKhoHang_TenKho, nameof(RKhoHangDto.TenKho), typeof(string));
+
             _TrangThaiFilter = new HeaderCheckFilterModel(TextManager.RKhoHang_TrangThai, nameof(RKhoHangDto.TrangThai), typeof(bool));
 
             InitFilterPartial();

@@ -168,11 +168,80 @@
     <Compile Include="..\..\DTO\Gen\UserGroupDto.cs">
       <Link>Gen\UserGroupDto.cs</Link>
     </Compile>
+    <Compile Include="..\..\DTO\GroupDto.part.cs">
+      <Link>GroupDto.part.cs</Link>
+    </Compile>
     <Compile Include="..\..\DTO\IDto.cs">
       <Link>IDto.cs</Link>
     </Compile>
     <Compile Include="..\..\DTO\PagingResultDto.cs">
       <Link>PagingResultDto.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RBaiXeDto.part.cs">
+      <Link>RBaiXeDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RChanhDto.part.cs">
+      <Link>RChanhDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RDiaDiemDto.part.cs">
+      <Link>RDiaDiemDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RKhachHangDto.part.cs">
+      <Link>RKhachHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RKhoHangDto.part.cs">
+      <Link>RKhoHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RLoaiChiPhiDto.part.cs">
+      <Link>RLoaiChiPhiDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RLoaiHangDto.part.cs">
+      <Link>RLoaiHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RLoaiNguyenLieuDto.part.cs">
+      <Link>RLoaiNguyenLieuDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RNguyenLieuDto.part.cs">
+      <Link>RNguyenLieuDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RNhaCungCapDto.part.cs">
+      <Link>RNhaCungCapDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RNhanVienDto.part.cs">
+      <Link>RNhanVienDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RNuocDto.part.cs">
+      <Link>RNuocDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\RPhuongTienDto.part.cs">
+      <Link>RPhuongTienDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TChiTietDonHangDto.part.cs">
+      <Link>TChiTietDonHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TChuyenHangDonHangDto.part.cs">
+      <Link>TChuyenHangDonHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TChuyenHangDto.part.cs">
+      <Link>TChuyenHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TChuyenKhoDto.part.cs">
+      <Link>TChuyenKhoDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TDonHangDto.part.cs">
+      <Link>TDonHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TMatHangDto.part.cs">
+      <Link>TMatHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TNhapHangDto.part.cs">
+      <Link>TNhapHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TToaHangDto.part.cs">
+      <Link>TToaHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\UserDto.part.cs">
+      <Link>UserDto.part.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

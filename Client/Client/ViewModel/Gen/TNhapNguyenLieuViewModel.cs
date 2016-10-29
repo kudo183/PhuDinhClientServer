@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -21,7 +21,33 @@ namespace Client.ViewModel
         public TNhapNguyenLieuViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TNhapNguyenLieu_Ma, nameof(TNhapNguyenLieuDto.Ma), typeof(int));
+
+            _MaNguyenLieuFilter = new HeaderComboBoxFilterModel(
+                TextManager.TNhapNguyenLieu_MaNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TNhapNguyenLieuDto.MaNguyenLieu),
+                typeof(int),
+                nameof(RNguyenLieuDto.TenHienThi),
+                nameof(RNguyenLieuDto.Ma));
+            _MaNguyenLieuFilter.AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RNguyenLieuView(), "RNguyenLieu", ReferenceDataManager<RNguyenLieuDto>.Instance.Load)
+            );
+            _MaNguyenLieuFilter.ItemSource = ReferenceDataManager<RNguyenLieuDto>.Instance.Get();
+
+            _MaNhaCungCapFilter = new HeaderComboBoxFilterModel(
+                TextManager.TNhapNguyenLieu_MaNhaCungCap, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TNhapNguyenLieuDto.MaNhaCungCap),
+                typeof(int),
+                nameof(RNhaCungCapDto.TenHienThi),
+                nameof(RNhaCungCapDto.Ma));
+            _MaNhaCungCapFilter.AddCommand = new SimpleCommand("MaNhaCungCapAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RNhaCungCapView(), "RNhaCungCap", ReferenceDataManager<RNhaCungCapDto>.Instance.Load)
+            );
+            _MaNhaCungCapFilter.ItemSource = ReferenceDataManager<RNhaCungCapDto>.Instance.Get();
+
             _NgayFilter = new HeaderDateFilterModel(TextManager.TNhapNguyenLieu_Ngay, nameof(TNhapNguyenLieuDto.Ngay), typeof(System.DateTime));
+
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.TNhapNguyenLieu_SoLuong, nameof(TNhapNguyenLieuDto.SoLuong), typeof(int));
 
             InitFilterPartial();

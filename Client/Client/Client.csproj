@@ -107,14 +107,8 @@
     <Compile Include="ViewModel\Gen\TToaHangViewModel.cs" />
     <Compile Include="ViewModel\Gen\TTonKhoViewModel.cs" />
     <Compile Include="ViewModel\Gen\UserGroupViewModel.cs" />
-    <Compile Include="ViewModel\RCanhBaoTonKhoViewModel.part.cs" />
-    <Compile Include="ViewModel\RChanhViewModel.part.cs" />
-    <Compile Include="ViewModel\RDiaDiemViewModel.part.cs" />
-    <Compile Include="ViewModel\RKhachHangChanhViewModel.part.cs" />
-    <Compile Include="ViewModel\RKhachHangViewModel.part.cs" />
-    <Compile Include="ViewModel\TChiTietDonHangViewModel.part.cs" />
+    <Compile Include="ViewModel\Gen\UserViewModel.cs" />
     <Compile Include="ViewModel\TDonHangViewModel.part.cs" />
-    <Compile Include="ViewModel\TMatHangViewModel.part.cs" />
     <Compile Include="AllView.xaml.cs">
       <DependentUpon>AllView.xaml</DependentUpon>
     </Compile>
@@ -236,6 +230,9 @@
     </Compile>
     <Compile Include="View\UserGroupView.xaml.cs">
       <DependentUpon>UserGroupView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Page Include="AllView.xaml">
       <SubType>Designer</SubType>
@@ -413,6 +410,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\UserGroupView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\UserView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

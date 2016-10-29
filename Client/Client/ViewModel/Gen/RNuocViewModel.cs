@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -17,6 +17,7 @@ namespace Client.ViewModel
         public RNuocViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RNuoc_Ma, nameof(RNuocDto.Ma), typeof(int));
+
             _TenNuocFilter = new HeaderTextFilterModel(TextManager.RNuoc_TenNuoc, nameof(RNuocDto.TenNuoc), typeof(string));
 
             InitFilterPartial();

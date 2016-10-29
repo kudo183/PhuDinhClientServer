@@ -13,7 +13,7 @@
                 <SimpleDataGrid:DataGridTextColumnExt Header="DuongKinh" Binding="{Binding DuongKinh, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaLoaiNguyenLieu"
                 SelectedValuePath="Ma"
-                DisplayMemberPath=""
+                DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaLoaiNguyenLieu, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaLoaiNguyenLieuSources}"/>
         </SimpleDataGrid:EditableGridView.Columns>

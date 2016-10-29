@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -17,6 +17,7 @@ namespace Client.ViewModel
         public RNhaCungCapViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RNhaCungCap_Ma, nameof(RNhaCungCapDto.Ma), typeof(int));
+
             _TenNhaCungCapFilter = new HeaderTextFilterModel(TextManager.RNhaCungCap_TenNhaCungCap, nameof(RNhaCungCapDto.TenNhaCungCap), typeof(string));
 
             InitFilterPartial();

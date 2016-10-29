@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -22,8 +22,35 @@ namespace Client.ViewModel
         public TTonKhoViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TTonKho_Ma, nameof(TTonKhoDto.Ma), typeof(int));
+
+            _MaKhoHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TTonKho_MaKhoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TTonKhoDto.MaKhoHang),
+                typeof(int),
+                nameof(RKhoHangDto.TenHienThi),
+                nameof(RKhoHangDto.Ma));
+            _MaKhoHangFilter.AddCommand = new SimpleCommand("MaKhoHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
+            );
+            _MaKhoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
+
+            _MaMatHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TTonKho_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TTonKhoDto.MaMatHang),
+                typeof(int),
+                nameof(TMatHangDto.TenHienThi),
+                nameof(TMatHangDto.Ma));
+            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
+            );
+            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+
             _NgayFilter = new HeaderDateFilterModel(TextManager.TTonKho_Ngay, nameof(TTonKhoDto.Ngay), typeof(System.DateTime));
+
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.TTonKho_SoLuong, nameof(TTonKhoDto.SoLuong), typeof(int));
+
             _SoLuongCuFilter = new HeaderTextFilterModel(TextManager.TTonKho_SoLuongCu, nameof(TTonKhoDto.SoLuongCu), typeof(int));
 
             InitFilterPartial();

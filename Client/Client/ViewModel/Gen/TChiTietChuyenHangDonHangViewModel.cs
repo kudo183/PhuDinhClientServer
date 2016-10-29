@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -21,7 +21,33 @@ namespace Client.ViewModel
         public TChiTietChuyenHangDonHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenHangDonHang_Ma, nameof(TChiTietChuyenHangDonHangDto.Ma), typeof(int));
+
+            _MaChiTietDonHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietChuyenHangDonHang_MaChiTietDonHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietChuyenHangDonHangDto.MaChiTietDonHang),
+                typeof(int),
+                nameof(TChiTietDonHangDto.TenHienThi),
+                nameof(TChiTietDonHangDto.Ma));
+            _MaChiTietDonHangFilter.AddCommand = new SimpleCommand("MaChiTietDonHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TChiTietDonHangView(), "TChiTietDonHang", ReferenceDataManager<TChiTietDonHangDto>.Instance.Load)
+            );
+            _MaChiTietDonHangFilter.ItemSource = ReferenceDataManager<TChiTietDonHangDto>.Instance.Get();
+
+            _MaChuyenHangDonHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietChuyenHangDonHang_MaChuyenHangDonHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietChuyenHangDonHangDto.MaChuyenHangDonHang),
+                typeof(int),
+                nameof(TChuyenHangDonHangDto.TenHienThi),
+                nameof(TChuyenHangDonHangDto.Ma));
+            _MaChuyenHangDonHangFilter.AddCommand = new SimpleCommand("MaChuyenHangDonHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TChuyenHangDonHangView(), "TChuyenHangDonHang", ReferenceDataManager<TChuyenHangDonHangDto>.Instance.Load)
+            );
+            _MaChuyenHangDonHangFilter.ItemSource = ReferenceDataManager<TChuyenHangDonHangDto>.Instance.Get();
+
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenHangDonHang_SoLuong, nameof(TChiTietChuyenHangDonHangDto.SoLuong), typeof(int));
+
             _SoLuongTheoDonHangFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenHangDonHang_SoLuongTheoDonHang, nameof(TChiTietChuyenHangDonHangDto.SoLuongTheoDonHang), typeof(int));
 
             InitFilterPartial();

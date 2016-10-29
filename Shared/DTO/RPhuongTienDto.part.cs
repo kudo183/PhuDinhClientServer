@@ -1,0 +1,16 @@
+﻿using System.ComponentModel;
+
+namespace DTO
+{
+    public partial class RPhuongTienDto : IDto, INotifyPropertyChanged
+    {
+        [Newtonsoft.Json.JsonIgnore]
+        public string TenHienThi
+        {
+            get
+            {
+                return TenPhuongTien;
+            }
+        }
+    }
+}

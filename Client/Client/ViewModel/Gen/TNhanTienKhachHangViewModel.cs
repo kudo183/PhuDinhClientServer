@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -20,7 +20,21 @@ namespace Client.ViewModel
         public TNhanTienKhachHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TNhanTienKhachHang_Ma, nameof(TNhanTienKhachHangDto.Ma), typeof(int));
+
+            _MaKhachHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TNhanTienKhachHang_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TNhanTienKhachHangDto.MaKhachHang),
+                typeof(int),
+                nameof(RKhachHangDto.TenHienThi),
+                nameof(RKhachHangDto.Ma));
+            _MaKhachHangFilter.AddCommand = new SimpleCommand("MaKhachHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)
+            );
+            _MaKhachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
+
             _NgayFilter = new HeaderDateFilterModel(TextManager.TNhanTienKhachHang_Ngay, nameof(TNhanTienKhachHangDto.Ngay), typeof(System.DateTime));
+
             _SoTienFilter = new HeaderTextFilterModel(TextManager.TNhanTienKhachHang_SoTien, nameof(TNhanTienKhachHangDto.SoTien), typeof(int));
 
             InitFilterPartial();

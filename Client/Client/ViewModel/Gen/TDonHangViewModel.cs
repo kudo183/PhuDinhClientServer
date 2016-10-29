@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -23,8 +23,47 @@ namespace Client.ViewModel
         public TDonHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TDonHang_Ma, nameof(TDonHangDto.Ma), typeof(int));
+
+            _MaChanhFilter = new HeaderComboBoxFilterModel(
+                TextManager.TDonHang_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TDonHangDto.MaChanh),
+                typeof(int?),
+                nameof(RChanhDto.TenHienThi),
+                nameof(RChanhDto.Ma));
+            _MaChanhFilter.AddCommand = new SimpleCommand("MaChanhAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RChanhView(), "RChanh", ReferenceDataManager<RChanhDto>.Instance.Load)
+            );
+            _MaChanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
+
+            _MaKhachHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TDonHang_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TDonHangDto.MaKhachHang),
+                typeof(int),
+                nameof(RKhachHangDto.TenHienThi),
+                nameof(RKhachHangDto.Ma));
+            _MaKhachHangFilter.AddCommand = new SimpleCommand("MaKhachHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)
+            );
+            _MaKhachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
+
+            _MaKhoHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TDonHang_MaKhoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TDonHangDto.MaKhoHang),
+                typeof(int),
+                nameof(RKhoHangDto.TenHienThi),
+                nameof(RKhoHangDto.Ma));
+            _MaKhoHangFilter.AddCommand = new SimpleCommand("MaKhoHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
+            );
+            _MaKhoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
+
             _NgayFilter = new HeaderDateFilterModel(TextManager.TDonHang_Ngay, nameof(TDonHangDto.Ngay), typeof(System.DateTime));
+
             _TongSoLuongFilter = new HeaderTextFilterModel(TextManager.TDonHang_TongSoLuong, nameof(TDonHangDto.TongSoLuong), typeof(int));
+
             _XongFilter = new HeaderCheckFilterModel(TextManager.TDonHang_Xong, nameof(TDonHangDto.Xong), typeof(bool));
 
             InitFilterPartial();

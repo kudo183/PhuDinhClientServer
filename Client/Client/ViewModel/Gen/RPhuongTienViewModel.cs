@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -17,6 +17,7 @@ namespace Client.ViewModel
         public RPhuongTienViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RPhuongTien_Ma, nameof(RPhuongTienDto.Ma), typeof(int));
+
             _TenPhuongTienFilter = new HeaderTextFilterModel(TextManager.RPhuongTien_TenPhuongTien, nameof(RPhuongTienDto.TenPhuongTien), typeof(string));
 
             InitFilterPartial();

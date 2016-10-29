@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -20,7 +20,32 @@ namespace Client.ViewModel
         public UserGroupViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.UserGroup_Ma, nameof(UserGroupDto.Ma), typeof(int));
+
             _LaChuGroupFilter = new HeaderCheckFilterModel(TextManager.UserGroup_LaChuGroup, nameof(UserGroupDto.LaChuGroup), typeof(bool));
+
+            _MaGroupFilter = new HeaderComboBoxFilterModel(
+                TextManager.UserGroup_MaGroup, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(UserGroupDto.MaGroup),
+                typeof(int),
+                nameof(GroupDto.TenHienThi),
+                nameof(GroupDto.Ma));
+            _MaGroupFilter.AddCommand = new SimpleCommand("MaGroupAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.GroupView(), "Group", ReferenceDataManager<GroupDto>.Instance.Load)
+            );
+            _MaGroupFilter.ItemSource = ReferenceDataManager<GroupDto>.Instance.Get();
+
+            _MaUserFilter = new HeaderComboBoxFilterModel(
+                TextManager.UserGroup_MaUser, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(UserGroupDto.MaUser),
+                typeof(int),
+                nameof(UserDto.TenHienThi),
+                nameof(UserDto.Ma));
+            _MaUserFilter.AddCommand = new SimpleCommand("MaUserAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.UserView(), "User", ReferenceDataManager<UserDto>.Instance.Load)
+            );
+            _MaUserFilter.ItemSource = ReferenceDataManager<UserDto>.Instance.Get();
 
             InitFilterPartial();
 

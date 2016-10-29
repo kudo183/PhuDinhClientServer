@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -21,7 +21,33 @@ namespace Client.ViewModel
         public TChiTietDonHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietDonHang_Ma, nameof(TChiTietDonHangDto.Ma), typeof(int));
+
+            _MaDonHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietDonHang_MaDonHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietDonHangDto.MaDonHang),
+                typeof(int),
+                nameof(TDonHangDto.TenHienThi),
+                nameof(TDonHangDto.Ma));
+            _MaDonHangFilter.AddCommand = new SimpleCommand("MaDonHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TDonHangView(), "TDonHang", ReferenceDataManager<TDonHangDto>.Instance.Load)
+            );
+            _MaDonHangFilter.ItemSource = ReferenceDataManager<TDonHangDto>.Instance.Get();
+
+            _MaMatHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietDonHang_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietDonHangDto.MaMatHang),
+                typeof(int),
+                nameof(TMatHangDto.TenHienThi),
+                nameof(TMatHangDto.Ma));
+            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
+            );
+            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.TChiTietDonHang_SoLuong, nameof(TChiTietDonHangDto.SoLuong), typeof(int));
+
             _XongFilter = new HeaderCheckFilterModel(TextManager.TChiTietDonHang_Xong, nameof(TChiTietDonHangDto.Xong), typeof(bool));
 
             InitFilterPartial();

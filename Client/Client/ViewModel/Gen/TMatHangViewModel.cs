@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -23,10 +23,27 @@ namespace Client.ViewModel
         public TMatHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TMatHang_Ma, nameof(TMatHangDto.Ma), typeof(int));
+
+            _MaLoaiFilter = new HeaderComboBoxFilterModel(
+                TextManager.TMatHang_MaLoai, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TMatHangDto.MaLoai),
+                typeof(int),
+                nameof(RLoaiHangDto.TenHienThi),
+                nameof(RLoaiHangDto.Ma));
+            _MaLoaiFilter.AddCommand = new SimpleCommand("MaLoaiAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RLoaiHangView(), "RLoaiHang", ReferenceDataManager<RLoaiHangDto>.Instance.Load)
+            );
+            _MaLoaiFilter.ItemSource = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
+
             _SoKyFilter = new HeaderTextFilterModel(TextManager.TMatHang_SoKy, nameof(TMatHangDto.SoKy), typeof(int));
+
             _SoMetFilter = new HeaderTextFilterModel(TextManager.TMatHang_SoMet, nameof(TMatHangDto.SoMet), typeof(int));
+
             _TenMatHangFilter = new HeaderTextFilterModel(TextManager.TMatHang_TenMatHang, nameof(TMatHangDto.TenMatHang), typeof(string));
+
             _TenMatHangDayDuFilter = new HeaderTextFilterModel(TextManager.TMatHang_TenMatHangDayDu, nameof(TMatHangDto.TenMatHangDayDu), typeof(string));
+
             _TenMatHangInFilter = new HeaderTextFilterModel(TextManager.TMatHang_TenMatHangIn, nameof(TMatHangDto.TenMatHangIn), typeof(string));
 
             InitFilterPartial();

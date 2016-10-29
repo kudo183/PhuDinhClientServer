@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -20,7 +20,32 @@ namespace Client.ViewModel
         public RKhachHangChanhViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RKhachHangChanh_Ma, nameof(RKhachHangChanhDto.Ma), typeof(int));
+
             _LaMacDinhFilter = new HeaderCheckFilterModel(TextManager.RKhachHangChanh_LaMacDinh, nameof(RKhachHangChanhDto.LaMacDinh), typeof(bool));
+
+            _MaChanhFilter = new HeaderComboBoxFilterModel(
+                TextManager.RKhachHangChanh_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RKhachHangChanhDto.MaChanh),
+                typeof(int),
+                nameof(RChanhDto.TenHienThi),
+                nameof(RChanhDto.Ma));
+            _MaChanhFilter.AddCommand = new SimpleCommand("MaChanhAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RChanhView(), "RChanh", ReferenceDataManager<RChanhDto>.Instance.Load)
+            );
+            _MaChanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
+
+            _MaKhachHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.RKhachHangChanh_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RKhachHangChanhDto.MaKhachHang),
+                typeof(int),
+                nameof(RKhachHangDto.TenHienThi),
+                nameof(RKhachHangDto.Ma));
+            _MaKhachHangFilter.AddCommand = new SimpleCommand("MaKhachHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)
+            );
+            _MaKhachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
 
             InitFilterPartial();
 

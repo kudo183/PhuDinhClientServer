@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -23,10 +23,27 @@ namespace Client.ViewModel
         public TChuyenHangViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_Ma, nameof(TChuyenHangDto.Ma), typeof(int));
+
             _GioFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_Gio, nameof(TChuyenHangDto.Gio), typeof(System.TimeSpan?));
+
+            _MaNhanVienGiaoHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChuyenHang_MaNhanVienGiaoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChuyenHangDto.MaNhanVienGiaoHang),
+                typeof(int),
+                nameof(RNhanVienDto.TenHienThi),
+                nameof(RNhanVienDto.Ma));
+            _MaNhanVienGiaoHangFilter.AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RNhanVienView(), "RNhanVien", ReferenceDataManager<RNhanVienDto>.Instance.Load)
+            );
+            _MaNhanVienGiaoHangFilter.ItemSource = ReferenceDataManager<RNhanVienDto>.Instance.Get();
+
             _NgayFilter = new HeaderDateFilterModel(TextManager.TChuyenHang_Ngay, nameof(TChuyenHangDto.Ngay), typeof(System.DateTime));
+
             _TongDonHangFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_TongDonHang, nameof(TChuyenHangDto.TongDonHang), typeof(int));
+
             _TongSoLuongTheoDonHangFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_TongSoLuongTheoDonHang, nameof(TChuyenHangDto.TongSoLuongTheoDonHang), typeof(int));
+
             _TongSoLuongThucTeFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_TongSoLuongThucTe, nameof(TChuyenHangDto.TongSoLuongThucTe), typeof(int));
 
             InitFilterPartial();

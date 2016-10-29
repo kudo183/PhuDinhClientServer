@@ -12,12 +12,12 @@
             <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaMatHang"
                 SelectedValuePath="Ma"
-                DisplayMemberPath=""
+                DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaMatHang, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaMatHangSources}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaNguyenLieu"
                 SelectedValuePath="Ma"
-                DisplayMemberPath=""
+                DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaNguyenLieu, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaNguyenLieuSources}"/>
         </SimpleDataGrid:EditableGridView.Columns>

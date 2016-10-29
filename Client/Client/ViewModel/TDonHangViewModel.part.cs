@@ -10,30 +10,6 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _MaKhachHangFilter = new HeaderComboBoxFilterModel(
-                "Khach Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(TDonHangDto.MaKhachHang),
-                typeof(int),
-                nameof(RKhachHangDto.TenKhachHang),
-                nameof(RKhachHangDto.Ma));
-            _MaKhachHangFilter.AddCommand = new SimpleCommand("KhachHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                  new View.RKhachHangView(), "Khach Hang Chanh", ReferenceDataManager<RKhachHangDto>.Instance.Load)
-            );
-            _MaKhachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
-
-            _MaKhoHangFilter = new HeaderComboBoxFilterModel(
-                "Kho Hang", HeaderComboBoxFilterModel.ComboBoxFilter,
-                nameof(TDonHangDto.MaKhoHang),
-                typeof(int),
-                nameof(RKhoHangDto.TenKho),
-                nameof(RKhoHangDto.Ma));
-            _MaKhoHangFilter.AddCommand = new SimpleCommand("KhoHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                  new View.RKhoHangView(), "Kho Hang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
-            );
-            _MaKhoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
-
             _MaChanhFilter = new HeaderComboBoxFilterModel(
                 "Chanh", HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaChanh),

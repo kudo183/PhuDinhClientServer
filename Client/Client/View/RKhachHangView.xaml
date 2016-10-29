@@ -13,7 +13,7 @@
                 <SimpleDataGrid:DataGridCheckBoxColumnExt Header="KhachRieng" Binding="{Binding KhachRieng, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaDiaDiem"
                 SelectedValuePath="Ma"
-                DisplayMemberPath=""
+                DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaDiaDiem, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaDiaDiemSources}"/>
                 <SimpleDataGrid:DataGridTextColumnExt Header="TenKhachHang" Binding="{Binding TenKhachHang, UpdateSourceTrigger=PropertyChanged}"/>

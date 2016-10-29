@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -19,6 +19,30 @@ namespace Client.ViewModel
         public RMatHangNguyenLieuViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RMatHangNguyenLieu_Ma, nameof(RMatHangNguyenLieuDto.Ma), typeof(int));
+
+            _MaMatHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.RMatHangNguyenLieu_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RMatHangNguyenLieuDto.MaMatHang),
+                typeof(int),
+                nameof(TMatHangDto.TenHienThi),
+                nameof(TMatHangDto.Ma));
+            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
+            );
+            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+
+            _MaNguyenLieuFilter = new HeaderComboBoxFilterModel(
+                TextManager.RMatHangNguyenLieu_MaNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RMatHangNguyenLieuDto.MaNguyenLieu),
+                typeof(int),
+                nameof(RNguyenLieuDto.TenHienThi),
+                nameof(RNguyenLieuDto.Ma));
+            _MaNguyenLieuFilter.AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RNguyenLieuView(), "RNguyenLieu", ReferenceDataManager<RNguyenLieuDto>.Instance.Load)
+            );
+            _MaNguyenLieuFilter.ItemSource = ReferenceDataManager<RNguyenLieuDto>.Instance.Get();
 
             InitFilterPartial();
 

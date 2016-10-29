@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -19,6 +19,19 @@ namespace Client.ViewModel
         public RChanhViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RChanh_Ma, nameof(RChanhDto.Ma), typeof(int));
+
+            _MaBaiXeFilter = new HeaderComboBoxFilterModel(
+                TextManager.RChanh_MaBaiXe, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RChanhDto.MaBaiXe),
+                typeof(int),
+                nameof(RBaiXeDto.TenHienThi),
+                nameof(RBaiXeDto.Ma));
+            _MaBaiXeFilter.AddCommand = new SimpleCommand("MaBaiXeAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RBaiXeView(), "RBaiXe", ReferenceDataManager<RBaiXeDto>.Instance.Load)
+            );
+            _MaBaiXeFilter.ItemSource = ReferenceDataManager<RBaiXeDto>.Instance.Get();
+
             _TenChanhFilter = new HeaderTextFilterModel(TextManager.RChanh_TenChanh, nameof(RChanhDto.TenChanh), typeof(string));
 
             InitFilterPartial();

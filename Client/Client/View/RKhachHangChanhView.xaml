@@ -13,12 +13,12 @@
                 <SimpleDataGrid:DataGridCheckBoxColumnExt Header="LaMacDinh" Binding="{Binding LaMacDinh, UpdateSourceTrigger=PropertyChanged}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaChanh"
                 SelectedValuePath="Ma"
-                DisplayMemberPath=""
+                DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaChanh, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaChanhSources}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaKhachHang"
                 SelectedValuePath="Ma"
-                DisplayMemberPath=""
+                DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaKhachHang, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaKhachHangSources}"/>
         </SimpleDataGrid:EditableGridView.Columns>

@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -19,6 +19,19 @@ namespace Client.ViewModel
         public RDiaDiemViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.RDiaDiem_Ma, nameof(RDiaDiemDto.Ma), typeof(int));
+
+            _MaNuocFilter = new HeaderComboBoxFilterModel(
+                TextManager.RDiaDiem_MaNuoc, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(RDiaDiemDto.MaNuoc),
+                typeof(int),
+                nameof(RNuocDto.TenHienThi),
+                nameof(RNuocDto.Ma));
+            _MaNuocFilter.AddCommand = new SimpleCommand("MaNuocAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.RNuocView(), "RNuoc", ReferenceDataManager<RNuocDto>.Instance.Load)
+            );
+            _MaNuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
+
             _TinhFilter = new HeaderTextFilterModel(TextManager.RDiaDiem_Tinh, nameof(RDiaDiemDto.Tinh), typeof(string));
 
             InitFilterPartial();

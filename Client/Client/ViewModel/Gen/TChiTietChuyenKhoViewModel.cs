@@ -1,6 +1,6 @@
-﻿using Client;
-using Client.Abstraction;
+﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid;
 using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
@@ -20,6 +20,31 @@ namespace Client.ViewModel
         public TChiTietChuyenKhoViewModel() : base()
         {
             _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenKho_Ma, nameof(TChiTietChuyenKhoDto.Ma), typeof(int));
+
+            _MaChuyenKhoFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietChuyenKho_MaChuyenKho, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietChuyenKhoDto.MaChuyenKho),
+                typeof(int),
+                nameof(TChuyenKhoDto.TenHienThi),
+                nameof(TChuyenKhoDto.Ma));
+            _MaChuyenKhoFilter.AddCommand = new SimpleCommand("MaChuyenKhoAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TChuyenKhoView(), "TChuyenKho", ReferenceDataManager<TChuyenKhoDto>.Instance.Load)
+            );
+            _MaChuyenKhoFilter.ItemSource = ReferenceDataManager<TChuyenKhoDto>.Instance.Get();
+
+            _MaMatHangFilter = new HeaderComboBoxFilterModel(
+                TextManager.TChiTietChuyenKho_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
+                nameof(TChiTietChuyenKhoDto.MaMatHang),
+                typeof(int),
+                nameof(TMatHangDto.TenHienThi),
+                nameof(TMatHangDto.Ma));
+            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                () => base.ProccessHeaderAddCommand(
+                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
+            );
+            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenKho_SoLuong, nameof(TChiTietChuyenKhoDto.SoLuong), typeof(int));
 
             InitFilterPartial();
