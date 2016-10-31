@@ -234,6 +234,27 @@
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="View\UserGroupView.part.cs" />
+    <Compile Include="View\TTonKhoView.part.cs" />
+    <Compile Include="View\TToaHangView.part.cs" />
+    <Compile Include="View\TPhuThuKhachHangView.part.cs" />
+    <Compile Include="View\TNhapNguyenLieuView.part.cs" />
+    <Compile Include="View\TNhapHangView.part.cs" />
+    <Compile Include="View\TNhanTienKhachHangView.part.cs" />
+    <Compile Include="View\TMatHangView.part.cs" />
+    <Compile Include="View\TGiamTruKhachHangView.part.cs" />
+    <Compile Include="View\TDonHangView.part.cs" />
+    <Compile Include="View\TChuyenKhoView.part.cs" />
+    <Compile Include="View\TChuyenHangView.part.cs" />
+    <Compile Include="View\TChiTietToaHangView.part.cs" />
+    <Compile Include="View\TChiTietNhapHangView.part.cs" />
+    <Compile Include="View\TChiTietChuyenHangDonHangView.part.cs" />
+    <Compile Include="View\TChiPhiView.part.cs" />
+    <Compile Include="View\TCongNoKhachHangView.part.cs" />
+    <Compile Include="View\RNguyenLieuView.part.cs" />
+    <Compile Include="View\RLoaiHangView.part.cs" />
+    <Compile Include="View\RKhachHangView.part.cs" />
+    <Compile Include="View\RKhachHangChanhView.part.cs" />
     <Page Include="AllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
