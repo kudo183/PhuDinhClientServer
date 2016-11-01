@@ -13,8 +13,8 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <local:TChuyenHangView abstraction:BaseComplexView.ViewLevel="0"/>
-        <local:TChuyenHangDonHangView Grid.Row="1" abstraction:BaseComplexView.ViewLevel="1"/>
-        <local:TChiTietChuyenHangDonHangView Grid.Row="2" abstraction:BaseComplexView.ViewLevel="2"/>
+        <local:TChuyenHangDonHangView Grid.Row="1" abstraction:BaseComplexView.ViewLevel="1" abstraction:BaseComplexView.FilterProperty="MaChuyenHang"/>
+        <local:TChiTietChuyenHangDonHangView Grid.Row="2" abstraction:BaseComplexView.ViewLevel="2" abstraction:BaseComplexView.FilterProperty="MaChuyenHangDonHang"/>
         <GridSplitter Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="5"/>
         <GridSplitter Grid.Row="1" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="5"/>
     </Grid>

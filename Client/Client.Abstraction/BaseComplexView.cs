@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -20,6 +21,20 @@ namespace Client.Abstraction
         // Using a DependencyProperty as the backing store for ViewLevel.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ViewLevelProperty =
             DependencyProperty.RegisterAttached("ViewLevel", typeof(int), typeof(BaseComplexView), new PropertyMetadata(0));
+
+        public static string GetFilterProperty(DependencyObject obj)
+        {
+            return (string)obj.GetValue(FilterPropertyProperty);
+        }
+
+        public static void SetFilterProperty(DependencyObject obj, string value)
+        {
+            obj.SetValue(FilterPropertyProperty, value);
+        }
+
+        // Using a DependencyProperty as the backing store for FilterProperty.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty FilterPropertyProperty =
+            DependencyProperty.RegisterAttached("FilterProperty", typeof(string), typeof(BaseComplexView), new PropertyMetadata(string.Empty));
 
         private readonly Dictionary<int, IBaseView> _views = new Dictionary<int, IBaseView>();
 
@@ -67,18 +82,22 @@ namespace Client.Abstraction
         {
             var viewModel = parent.ViewModel;
             var childViewModel = child.ViewModel;
+
+            var filterProperty = BaseComplexView.GetFilterProperty(child as UIElement);
+            var headerFilter = childViewModel.HeaderFilters.First(p => p.PropertyName == filterProperty);
+            headerFilter.DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = 0; });
+
             viewModel.ActionSelectedValueChanged = (selectedValue) =>
             {
                 if (selectedValue == null)
                 {
-                    childViewModel.HeaderFilters[1].FilterValue = 0;
+                    headerFilter.FilterValue = 0;
                 }
                 else
                 {
-                    childViewModel.HeaderFilters[1].FilterValue = selectedValue;
+                    headerFilter.FilterValue = selectedValue;
                 }
             };
-            childViewModel.HeaderFilters[1].DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = 0; });
         }
 
         private void InitMoveFocusAction(IBaseView current, IBaseView next)

@@ -12,7 +12,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <local:TDonHangView abstraction:BaseComplexView.ViewLevel="0"/>
-        <local:TChiTietDonHangView Grid.Row="1" abstraction:BaseComplexView.ViewLevel="1"/>
+        <local:TChiTietDonHangView Grid.Row="1" abstraction:BaseComplexView.ViewLevel="1" abstraction:BaseComplexView.FilterProperty="MaDonHang"/>
         <GridSplitter Grid.Row="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Height="5"/>
     </Grid>
 </abstraction:BaseComplexView>
