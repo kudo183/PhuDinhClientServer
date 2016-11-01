@@ -10,7 +10,6 @@ namespace Client.Abstraction
         void Save();
         void LoadReferenceData();
         List<HeaderFilterBaseModel> HeaderFilters { get; set; }
-        System.Action<int> ActionSelectedIndexChanged { get; set; }
-        IReadOnlyList<T> GetEntities<T>();
+        System.Action<object> ActionSelectedValueChanged { get; set; }
     }
 }

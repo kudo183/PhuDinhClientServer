@@ -8,7 +8,7 @@ using System.ComponentModel;
 
 namespace Client.Abstraction
 {
-    public abstract class BaseViewModel<T> : IBaseViewModel, IEditableGridViewModel<T>, INotifyPropertyChanged where T : class, DTO.IDto
+    public abstract class BaseViewModel<T> : IBaseViewModel, IEditableGridViewModel<T> where T : class, DTO.IDto
     {
         protected string _debugName;
 
@@ -83,55 +83,37 @@ namespace Client.Abstraction
         {
 
         }
-        #region INotifyPropertyChanged
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void OnPropertyChanged(string name)
-        {
-            var handler = PropertyChanged;
-            if (handler != null)
-            {
-                handler(this, new PropertyChangedEventArgs(name));
-            }
-        }
-        #endregion
 
         #region IBaseViewModel interface
         public bool IsValid { get; set; }
 
         public ObservableCollectionEx<T> Entities { get; set; }
 
-        private int _selectedIndex = -1;
+        public string SelectedValuePath { get; set; }
 
-        public int SelectedIndex
+        private object _selectedValue;
+
+        public object SelectedValue
         {
-            get { return _selectedIndex; }
+            get { return _selectedValue; }
             set
             {
-                if (_selectedIndex == value)
+                if (_selectedValue == value)
                 {
                     return;
                 }
 
-                _selectedIndex = value;
+                _selectedValue = value;
 
-                if (ActionSelectedIndexChanged != null && Entities.IsResetting == false)
-                {
-                    ActionSelectedIndexChanged(_selectedIndex);
-                }
-
-                OnPropertyChanged(nameof(SelectedIndex));
+                ActionSelectedValueChanged?.Invoke(_selectedValue);
             }
         }
 
-        public Action<int> ActionSelectedIndexChanged { get; set; }
+        public Action<object> ActionSelectedValueChanged { get; set; }
 
         public List<HeaderFilterBaseModel> HeaderFilters { get; set; }
 
         public PagerViewModel PagerViewModel { get; set; }
-
-        public string SelectedValuePath { get; set; }
 
         public SimpleCommand LoadCommand { get; set; }
 
@@ -164,9 +146,7 @@ namespace Client.Abstraction
                 _originalEntities.Add(dto);
             }
 
-            var selectedIndex = SelectedIndex;
             Entities.Reset(result.Items);
-            SelectedIndex = selectedIndex;
 
             PagerViewModel.ItemCount = Entities.Count;
             PagerViewModel.PageCount = result.PageCount;
@@ -217,24 +197,14 @@ namespace Client.Abstraction
 
             Load();
         }
-        
+
         public virtual void LoadReferenceData()
         {
-        }
-
-        public IReadOnlyList<T1> GetEntities<T1>()
-        {
-            return Entities as IReadOnlyList<T1>;
         }
 
         private void Entities_CollectionChanged(
             object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
         {
-            if (Entities.IsResetting == true)
-            {
-                return;
-            }
-
             if (e.Action == System.Collections.Specialized.NotifyCollectionChangedAction.Add)
             {
                 ProcessNewAddedDto(e.NewItems[0] as T);

@@ -67,16 +67,15 @@ namespace Client.Abstraction
         {
             var viewModel = parent.ViewModel;
             var childViewModel = child.ViewModel;
-            viewModel.ActionSelectedIndexChanged = (index) =>
+            viewModel.ActionSelectedValueChanged = (selectedValue) =>
             {
-                var entities = viewModel.GetEntities<DTO.IDto>();
-                if (index < 0 || index >= entities.Count)
+                if (selectedValue == null)
                 {
                     childViewModel.HeaderFilters[1].FilterValue = 0;
                 }
                 else
                 {
-                    childViewModel.HeaderFilters[1].FilterValue = entities[index].Ma;
+                    childViewModel.HeaderFilters[1].FilterValue = selectedValue;
                 }
             };
             childViewModel.HeaderFilters[1].DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = 0; });
