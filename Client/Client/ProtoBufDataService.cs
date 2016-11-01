@@ -49,16 +49,24 @@ namespace Client
                 cache.Data = bytesResult;
                 isChanged = "*******changed";
             }
+            else
+            {
+                result = ProtobufWebClient.Instance.FromBytes<PagingResultDto<T>>(cache.Data);
+            }
 
-            var pagingResult = ProtobufWebClient.Instance.FromBytes<PagingResultDto<T>>(cache.Data);
-            foreach (var item in pagingResult.Items)
+            if (string.IsNullOrEmpty(result.ErrorMsg) == false)
+            {
+                System.Console.WriteLine(string.Format("Error get: ({0}) {1} ", _controller, result.ErrorMsg));
+            }
+
+            foreach (var item in result.Items)
             {
                 item.SetCurrentValueAsOriginalValue();
             }
             sw.Stop();
             var msg = string.Format("{0} get {1} ms {2} bytes {3} {4}", _controller, sw.ElapsedMilliseconds, cache.Data.Length, cache.VersionNumber, isChanged);
             System.Console.WriteLine(msg);
-            return pagingResult;
+            return result;
         }
 
         public string Save(List<ChangedItem<T>> changedItems)
