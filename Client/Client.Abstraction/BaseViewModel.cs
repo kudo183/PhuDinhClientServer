@@ -40,7 +40,7 @@ namespace Client.Abstraction
             PagerViewModel = new PagerViewModel()
             {
                 IsEnablePaging = true,
-                CurrentPageIndex = 0,
+                CurrentPageIndex = 1,
                 ItemCount = 0,
                 PageCount = 0
             };

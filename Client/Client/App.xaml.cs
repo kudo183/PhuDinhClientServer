@@ -35,7 +35,7 @@ namespace Client
             ProtobufWebClient.Instance.Token = "CfDJ8P0zsQbbuUlBkhS-elYKeAcGLsOHUE2aXXYcY_ZYlRxDBvuqSenusoyRMKKXunn6953jTk4KeeiSkvgNJ5xRtaJ23J3fMSlP6rqvUo-aAwvBeSIjGyNbkNE1bv4RqMV9dm_Y3eec5SQZ-j-9ckRz-dI";
             //Settings.Instance.UriRoot = "http://luoithepvinhphat.com:5000";
             //ProtobufWebClient.Instance.Token = "CfDJ8H_g2vT3aWpLtytO4ZkizGgngqxMZZ2L4Kt_WsOUSUad1IB-r_h2C5BXqz3v7DpgaGi7REme7WIj5TJkNokTmEMKCMEXq823fkZTQXkWFvxJ2ZZoDiiCX4-XFhrqWpYpPb3Z6nYHPulWoEqxlcUsg-I";
-            StartupUri = new System.Uri("AllView.xaml", System.UriKind.Relative);
+            //StartupUri = new System.Uri("AllView.xaml", System.UriKind.Relative);
 #endif
 
             ServiceLocator.Instance.Initialize(new Dictionary<Type, Type>()

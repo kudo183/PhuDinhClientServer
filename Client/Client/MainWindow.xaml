@@ -19,15 +19,14 @@
     <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="50" Button.Click="StackPanel_Click">
         <StackPanel Width="200" Orientation="Vertical">
             <Button Height="80" Content="Tat ca" Tag="AllView"/>
-            <Button Height="80" Content="Canh Bao Ton Kho"/>
-            <Button Height="80" Content="Chi Phi"/>
-            <Button Height="80" Content="Kho Hang" Tag="RKhoHangView"/>
+            <Button Height="80" Content="Canh Bao Ton Kho" Tag="RCanhBaoTonKhoView"/>
+            <Button Height="80" Content="Chi Phi" Tag="TChiPhiView"/>
         </StackPanel>
         <StackPanel Width="150" Orientation="Vertical">
             <Button Height="80" Content="Nhan Vien"/>
             <Button Height="80" Content="Nhap Hang"/>
             <Button Height="80" Content="Don Hang" Tag="complexDonHangView"/>
-            <Button Height="80" Content="Chuyen Hang"/>
+            <Button Height="80" Content="Chuyen Hang" Tag="complexChuyenHangView"/>
         </StackPanel>
         <StackPanel Width="150" Orientation="Vertical">
             <Button Height="80" Content="Mat Hang" Tag="TMatHangView"/>

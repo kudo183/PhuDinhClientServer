@@ -112,6 +112,9 @@
     <Compile Include="AllView.xaml.cs">
       <DependentUpon>AllView.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\complexChuyenHangView.xaml.cs">
+      <DependentUpon>complexChuyenHangView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\complexDonHangView.xaml.cs">
       <DependentUpon>complexDonHangView.xaml</DependentUpon>
     </Compile>
@@ -258,6 +261,10 @@
     <Page Include="AllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\complexChuyenHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\complexDonHangView.xaml">
       <SubType>Designer</SubType>
