@@ -12,9 +12,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RNguyenLieuDto dto);
         partial void ProcessNewAddedDtoPartial(RNguyenLieuDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _DuongKinhFilter;
-        HeaderComboBoxFilterModel _MaLoaiNguyenLieuFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _DuongKinhFilter;
+        HeaderFilterBaseModel _MaLoaiNguyenLieuFilter;
 
         public RNguyenLieuViewModel() : base()
         {
@@ -27,12 +27,13 @@ namespace Client.ViewModel
                 nameof(RNguyenLieuDto.MaLoaiNguyenLieu),
                 typeof(int),
                 nameof(RLoaiNguyenLieuDto.TenHienThi),
-                nameof(RLoaiNguyenLieuDto.Ma));
-            _MaLoaiNguyenLieuFilter.AddCommand = new SimpleCommand("MaLoaiNguyenLieuAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RLoaiNguyenLieuView(), "RLoaiNguyenLieu", ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.Load)
-            );
-            _MaLoaiNguyenLieuFilter.ItemSource = ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.Get();
+                nameof(RLoaiNguyenLieuDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaLoaiNguyenLieuAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RLoaiNguyenLieuView(), "RLoaiNguyenLieu", ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.Get()
+            };
 
             InitFilterPartial();
 

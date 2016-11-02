@@ -12,13 +12,13 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TMatHangDto dto);
         partial void ProcessNewAddedDtoPartial(TMatHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaLoaiFilter;
-        HeaderTextFilterModel _SoKyFilter;
-        HeaderTextFilterModel _SoMetFilter;
-        HeaderTextFilterModel _TenMatHangFilter;
-        HeaderTextFilterModel _TenMatHangDayDuFilter;
-        HeaderTextFilterModel _TenMatHangInFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaLoaiFilter;
+        HeaderFilterBaseModel _SoKyFilter;
+        HeaderFilterBaseModel _SoMetFilter;
+        HeaderFilterBaseModel _TenMatHangFilter;
+        HeaderFilterBaseModel _TenMatHangDayDuFilter;
+        HeaderFilterBaseModel _TenMatHangInFilter;
 
         public TMatHangViewModel() : base()
         {
@@ -29,12 +29,13 @@ namespace Client.ViewModel
                 nameof(TMatHangDto.MaLoai),
                 typeof(int),
                 nameof(RLoaiHangDto.TenHienThi),
-                nameof(RLoaiHangDto.Ma));
-            _MaLoaiFilter.AddCommand = new SimpleCommand("MaLoaiAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RLoaiHangView(), "RLoaiHang", ReferenceDataManager<RLoaiHangDto>.Instance.Load)
-            );
-            _MaLoaiFilter.ItemSource = ReferenceDataManager<RLoaiHangDto>.Instance.Get();
+                nameof(RLoaiHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaLoaiAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RLoaiHangView(), "RLoaiHang", ReferenceDataManager<RLoaiHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RLoaiHangDto>.Instance.Get()
+            };
 
             _SoKyFilter = new HeaderTextFilterModel(TextManager.TMatHang_SoKy, nameof(TMatHangDto.SoKy), typeof(int));
 

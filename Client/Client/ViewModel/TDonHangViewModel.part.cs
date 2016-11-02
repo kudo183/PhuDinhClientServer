@@ -11,16 +11,17 @@ namespace Client.ViewModel
         partial void InitFilterPartial()
         {
             _MaChanhFilter = new HeaderComboBoxFilterModel(
-                "Chanh", HeaderComboBoxFilterModel.ComboBoxFilter,
+                TextManager.TDonHang_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaChanh),
                 typeof(int?),
                 nameof(RChanhDto.TenChanh),
-                nameof(RChanhDto.Ma));
-            _MaChanhFilter.AddCommand = new SimpleCommand("ChanhAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog)
-            );
-            _MaChanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
+                nameof(RChanhDto.Ma))
+            {
+                AddCommand = new SimpleCommand("ChanhAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog)),
+                ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get()
+            };
         }
 
         partial void LoadReferenceDataPartial()

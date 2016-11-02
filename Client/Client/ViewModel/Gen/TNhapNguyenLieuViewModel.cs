@@ -12,11 +12,11 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TNhapNguyenLieuDto dto);
         partial void ProcessNewAddedDtoPartial(TNhapNguyenLieuDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaNguyenLieuFilter;
-        HeaderComboBoxFilterModel _MaNhaCungCapFilter;
-        HeaderDateFilterModel _NgayFilter;
-        HeaderTextFilterModel _SoLuongFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaNguyenLieuFilter;
+        HeaderFilterBaseModel _MaNhaCungCapFilter;
+        HeaderFilterBaseModel _NgayFilter;
+        HeaderFilterBaseModel _SoLuongFilter;
 
         public TNhapNguyenLieuViewModel() : base()
         {
@@ -27,24 +27,26 @@ namespace Client.ViewModel
                 nameof(TNhapNguyenLieuDto.MaNguyenLieu),
                 typeof(int),
                 nameof(RNguyenLieuDto.TenHienThi),
-                nameof(RNguyenLieuDto.Ma));
-            _MaNguyenLieuFilter.AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNguyenLieuView(), "RNguyenLieu", ReferenceDataManager<RNguyenLieuDto>.Instance.Load)
-            );
-            _MaNguyenLieuFilter.ItemSource = ReferenceDataManager<RNguyenLieuDto>.Instance.Get();
+                nameof(RNguyenLieuDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RNguyenLieuView(), "RNguyenLieu", ReferenceDataManager<RNguyenLieuDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RNguyenLieuDto>.Instance.Get()
+            };
 
             _MaNhaCungCapFilter = new HeaderComboBoxFilterModel(
                 TextManager.TNhapNguyenLieu_MaNhaCungCap, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TNhapNguyenLieuDto.MaNhaCungCap),
                 typeof(int),
                 nameof(RNhaCungCapDto.TenHienThi),
-                nameof(RNhaCungCapDto.Ma));
-            _MaNhaCungCapFilter.AddCommand = new SimpleCommand("MaNhaCungCapAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNhaCungCapView(), "RNhaCungCap", ReferenceDataManager<RNhaCungCapDto>.Instance.Load)
-            );
-            _MaNhaCungCapFilter.ItemSource = ReferenceDataManager<RNhaCungCapDto>.Instance.Get();
+                nameof(RNhaCungCapDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaNhaCungCapAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RNhaCungCapView(), "RNhaCungCap", ReferenceDataManager<RNhaCungCapDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RNhaCungCapDto>.Instance.Get()
+            };
 
             _NgayFilter = new HeaderDateFilterModel(TextManager.TNhapNguyenLieu_Ngay, nameof(TNhapNguyenLieuDto.Ngay), typeof(System.DateTime));
 

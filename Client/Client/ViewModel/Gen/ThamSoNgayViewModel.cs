@@ -11,9 +11,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(ThamSoNgayDto dto);
         partial void ProcessNewAddedDtoPartial(ThamSoNgayDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderDateFilterModel _GiaTriFilter;
-        HeaderTextFilterModel _TenFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _GiaTriFilter;
+        HeaderFilterBaseModel _TenFilter;
 
         public ThamSoNgayViewModel() : base()
         {

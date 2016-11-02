@@ -11,9 +11,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RLoaiHangDto dto);
         partial void ProcessNewAddedDtoPartial(RLoaiHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderCheckFilterModel _HangNhaLamFilter;
-        HeaderTextFilterModel _TenLoaiFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _HangNhaLamFilter;
+        HeaderFilterBaseModel _TenLoaiFilter;
 
         public RLoaiHangViewModel() : base()
         {

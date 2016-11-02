@@ -11,8 +11,8 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RBaiXeDto dto);
         partial void ProcessNewAddedDtoPartial(RBaiXeDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _DiaDiemBaiXeFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _DiaDiemBaiXeFilter;
 
         public RBaiXeViewModel() : base()
         {

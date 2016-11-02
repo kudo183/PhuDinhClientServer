@@ -11,8 +11,8 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RLoaiChiPhiDto dto);
         partial void ProcessNewAddedDtoPartial(RLoaiChiPhiDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _TenLoaiChiPhiFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _TenLoaiChiPhiFilter;
 
         public RLoaiChiPhiViewModel() : base()
         {

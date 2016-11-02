@@ -12,12 +12,12 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChiPhiDto dto);
         partial void ProcessNewAddedDtoPartial(TChiPhiDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _GhiChuFilter;
-        HeaderComboBoxFilterModel _MaLoaiChiPhiFilter;
-        HeaderComboBoxFilterModel _MaNhanVienGiaoHangFilter;
-        HeaderDateFilterModel _NgayFilter;
-        HeaderTextFilterModel _SoTienFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _GhiChuFilter;
+        HeaderFilterBaseModel _MaLoaiChiPhiFilter;
+        HeaderFilterBaseModel _MaNhanVienGiaoHangFilter;
+        HeaderFilterBaseModel _NgayFilter;
+        HeaderFilterBaseModel _SoTienFilter;
 
         public TChiPhiViewModel() : base()
         {
@@ -30,24 +30,26 @@ namespace Client.ViewModel
                 nameof(TChiPhiDto.MaLoaiChiPhi),
                 typeof(int),
                 nameof(RLoaiChiPhiDto.TenHienThi),
-                nameof(RLoaiChiPhiDto.Ma));
-            _MaLoaiChiPhiFilter.AddCommand = new SimpleCommand("MaLoaiChiPhiAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RLoaiChiPhiView(), "RLoaiChiPhi", ReferenceDataManager<RLoaiChiPhiDto>.Instance.Load)
-            );
-            _MaLoaiChiPhiFilter.ItemSource = ReferenceDataManager<RLoaiChiPhiDto>.Instance.Get();
+                nameof(RLoaiChiPhiDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaLoaiChiPhiAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RLoaiChiPhiView(), "RLoaiChiPhi", ReferenceDataManager<RLoaiChiPhiDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RLoaiChiPhiDto>.Instance.Get()
+            };
 
             _MaNhanVienGiaoHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChiPhi_MaNhanVienGiaoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChiPhiDto.MaNhanVienGiaoHang),
                 typeof(int),
                 nameof(RNhanVienDto.TenHienThi),
-                nameof(RNhanVienDto.Ma));
-            _MaNhanVienGiaoHangFilter.AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNhanVienView(), "RNhanVien", ReferenceDataManager<RNhanVienDto>.Instance.Load)
-            );
-            _MaNhanVienGiaoHangFilter.ItemSource = ReferenceDataManager<RNhanVienDto>.Instance.Get();
+                nameof(RNhanVienDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RNhanVienView(), "RNhanVien", ReferenceDataManager<RNhanVienDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RNhanVienDto>.Instance.Get()
+            };
 
             _NgayFilter = new HeaderDateFilterModel(TextManager.TChiPhi_Ngay, nameof(TChiPhiDto.Ngay), typeof(System.DateTime));
 

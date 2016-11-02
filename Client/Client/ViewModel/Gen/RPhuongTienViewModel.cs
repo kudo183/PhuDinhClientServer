@@ -11,8 +11,8 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RPhuongTienDto dto);
         partial void ProcessNewAddedDtoPartial(RPhuongTienDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _TenPhuongTienFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _TenPhuongTienFilter;
 
         public RPhuongTienViewModel() : base()
         {

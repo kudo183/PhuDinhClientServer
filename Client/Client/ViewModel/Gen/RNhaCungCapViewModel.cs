@@ -11,8 +11,8 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RNhaCungCapDto dto);
         partial void ProcessNewAddedDtoPartial(RNhaCungCapDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _TenNhaCungCapFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _TenNhaCungCapFilter;
 
         public RNhaCungCapViewModel() : base()
         {

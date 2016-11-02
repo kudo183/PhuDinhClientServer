@@ -12,10 +12,10 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(UserGroupDto dto);
         partial void ProcessNewAddedDtoPartial(UserGroupDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderCheckFilterModel _LaChuGroupFilter;
-        HeaderComboBoxFilterModel _MaGroupFilter;
-        HeaderComboBoxFilterModel _MaUserFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _LaChuGroupFilter;
+        HeaderFilterBaseModel _MaGroupFilter;
+        HeaderFilterBaseModel _MaUserFilter;
 
         public UserGroupViewModel() : base()
         {
@@ -28,24 +28,26 @@ namespace Client.ViewModel
                 nameof(UserGroupDto.MaGroup),
                 typeof(int),
                 nameof(GroupDto.TenHienThi),
-                nameof(GroupDto.Ma));
-            _MaGroupFilter.AddCommand = new SimpleCommand("MaGroupAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.GroupView(), "Group", ReferenceDataManager<GroupDto>.Instance.Load)
-            );
-            _MaGroupFilter.ItemSource = ReferenceDataManager<GroupDto>.Instance.Get();
+                nameof(GroupDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaGroupAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.GroupView(), "Group", ReferenceDataManager<GroupDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<GroupDto>.Instance.Get()
+            };
 
             _MaUserFilter = new HeaderComboBoxFilterModel(
                 TextManager.UserGroup_MaUser, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(UserGroupDto.MaUser),
                 typeof(int),
                 nameof(UserDto.TenHienThi),
-                nameof(UserDto.Ma));
-            _MaUserFilter.AddCommand = new SimpleCommand("MaUserAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.UserView(), "User", ReferenceDataManager<UserDto>.Instance.Load)
-            );
-            _MaUserFilter.ItemSource = ReferenceDataManager<UserDto>.Instance.Get();
+                nameof(UserDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaUserAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.UserView(), "User", ReferenceDataManager<UserDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<UserDto>.Instance.Get()
+            };
 
             InitFilterPartial();
 

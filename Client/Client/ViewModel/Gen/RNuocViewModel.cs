@@ -11,8 +11,8 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RNuocDto dto);
         partial void ProcessNewAddedDtoPartial(RNuocDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _TenNuocFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _TenNuocFilter;
 
         public RNuocViewModel() : base()
         {

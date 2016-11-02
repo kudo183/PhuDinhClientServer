@@ -12,13 +12,13 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TDonHangDto dto);
         partial void ProcessNewAddedDtoPartial(TDonHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaChanhFilter;
-        HeaderComboBoxFilterModel _MaKhachHangFilter;
-        HeaderComboBoxFilterModel _MaKhoHangFilter;
-        HeaderDateFilterModel _NgayFilter;
-        HeaderTextFilterModel _TongSoLuongFilter;
-        HeaderCheckFilterModel _XongFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaChanhFilter;
+        HeaderFilterBaseModel _MaKhachHangFilter;
+        HeaderFilterBaseModel _MaKhoHangFilter;
+        HeaderFilterBaseModel _NgayFilter;
+        HeaderFilterBaseModel _TongSoLuongFilter;
+        HeaderFilterBaseModel _XongFilter;
 
         public TDonHangViewModel() : base()
         {
@@ -29,36 +29,39 @@ namespace Client.ViewModel
                 nameof(TDonHangDto.MaChanh),
                 typeof(int?),
                 nameof(RChanhDto.TenHienThi),
-                nameof(RChanhDto.Ma));
-            _MaChanhFilter.AddCommand = new SimpleCommand("MaChanhAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RChanhView(), "RChanh", ReferenceDataManager<RChanhDto>.Instance.Load)
-            );
-            _MaChanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
+                nameof(RChanhDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaChanhAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RChanhView(), "RChanh", ReferenceDataManager<RChanhDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get()
+            };
 
             _MaKhachHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TDonHang_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaKhachHang),
                 typeof(int),
                 nameof(RKhachHangDto.TenHienThi),
-                nameof(RKhachHangDto.Ma));
-            _MaKhachHangFilter.AddCommand = new SimpleCommand("MaKhachHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)
-            );
-            _MaKhachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
+                nameof(RKhachHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaKhachHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get()
+            };
 
             _MaKhoHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TDonHang_MaKhoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaKhoHang),
                 typeof(int),
                 nameof(RKhoHangDto.TenHienThi),
-                nameof(RKhoHangDto.Ma));
-            _MaKhoHangFilter.AddCommand = new SimpleCommand("MaKhoHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
-            );
-            _MaKhoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
+                nameof(RKhoHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaKhoHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get()
+            };
 
             _NgayFilter = new HeaderDateFilterModel(TextManager.TDonHang_Ngay, nameof(TDonHangDto.Ngay), typeof(System.DateTime));
 

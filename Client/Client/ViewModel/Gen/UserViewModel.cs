@@ -11,10 +11,10 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(UserDto dto);
         partial void ProcessNewAddedDtoPartial(UserDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _EmailFilter;
-        HeaderDateFilterModel _NgayTaoFilter;
-        HeaderTextFilterModel _PasswordHashFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _EmailFilter;
+        HeaderFilterBaseModel _NgayTaoFilter;
+        HeaderFilterBaseModel _PasswordHashFilter;
 
         public UserViewModel() : base()
         {

@@ -12,9 +12,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RNhanVienDto dto);
         partial void ProcessNewAddedDtoPartial(RNhanVienDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaPhuongTienFilter;
-        HeaderTextFilterModel _TenNhanVienFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaPhuongTienFilter;
+        HeaderFilterBaseModel _TenNhanVienFilter;
 
         public RNhanVienViewModel() : base()
         {
@@ -25,12 +25,13 @@ namespace Client.ViewModel
                 nameof(RNhanVienDto.MaPhuongTien),
                 typeof(int),
                 nameof(RPhuongTienDto.TenHienThi),
-                nameof(RPhuongTienDto.Ma));
-            _MaPhuongTienFilter.AddCommand = new SimpleCommand("MaPhuongTienAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RPhuongTienView(), "RPhuongTien", ReferenceDataManager<RPhuongTienDto>.Instance.Load)
-            );
-            _MaPhuongTienFilter.ItemSource = ReferenceDataManager<RPhuongTienDto>.Instance.Get();
+                nameof(RPhuongTienDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaPhuongTienAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RPhuongTienView(), "RPhuongTien", ReferenceDataManager<RPhuongTienDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RPhuongTienDto>.Instance.Get()
+            };
 
             _TenNhanVienFilter = new HeaderTextFilterModel(TextManager.RNhanVien_TenNhanVien, nameof(RNhanVienDto.TenNhanVien), typeof(string));
 

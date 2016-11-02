@@ -12,9 +12,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RDiaDiemDto dto);
         partial void ProcessNewAddedDtoPartial(RDiaDiemDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaNuocFilter;
-        HeaderTextFilterModel _TinhFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaNuocFilter;
+        HeaderFilterBaseModel _TinhFilter;
 
         public RDiaDiemViewModel() : base()
         {
@@ -25,12 +25,13 @@ namespace Client.ViewModel
                 nameof(RDiaDiemDto.MaNuoc),
                 typeof(int),
                 nameof(RNuocDto.TenHienThi),
-                nameof(RNuocDto.Ma));
-            _MaNuocFilter.AddCommand = new SimpleCommand("MaNuocAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNuocView(), "RNuoc", ReferenceDataManager<RNuocDto>.Instance.Load)
-            );
-            _MaNuocFilter.ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get();
+                nameof(RNuocDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaNuocAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RNuocView(), "RNuoc", ReferenceDataManager<RNuocDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RNuocDto>.Instance.Get()
+            };
 
             _TinhFilter = new HeaderTextFilterModel(TextManager.RDiaDiem_Tinh, nameof(RDiaDiemDto.Tinh), typeof(string));
 

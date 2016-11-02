@@ -12,10 +12,10 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RKhachHangChanhDto dto);
         partial void ProcessNewAddedDtoPartial(RKhachHangChanhDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderCheckFilterModel _LaMacDinhFilter;
-        HeaderComboBoxFilterModel _MaChanhFilter;
-        HeaderComboBoxFilterModel _MaKhachHangFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _LaMacDinhFilter;
+        HeaderFilterBaseModel _MaChanhFilter;
+        HeaderFilterBaseModel _MaKhachHangFilter;
 
         public RKhachHangChanhViewModel() : base()
         {
@@ -28,24 +28,26 @@ namespace Client.ViewModel
                 nameof(RKhachHangChanhDto.MaChanh),
                 typeof(int),
                 nameof(RChanhDto.TenHienThi),
-                nameof(RChanhDto.Ma));
-            _MaChanhFilter.AddCommand = new SimpleCommand("MaChanhAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RChanhView(), "RChanh", ReferenceDataManager<RChanhDto>.Instance.Load)
-            );
-            _MaChanhFilter.ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get();
+                nameof(RChanhDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaChanhAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RChanhView(), "RChanh", ReferenceDataManager<RChanhDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get()
+            };
 
             _MaKhachHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.RKhachHangChanh_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(RKhachHangChanhDto.MaKhachHang),
                 typeof(int),
                 nameof(RKhachHangDto.TenHienThi),
-                nameof(RKhachHangDto.Ma));
-            _MaKhachHangFilter.AddCommand = new SimpleCommand("MaKhachHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)
-            );
-            _MaKhachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
+                nameof(RKhachHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaKhachHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get()
+            };
 
             InitFilterPartial();
 

@@ -12,12 +12,12 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TTonKhoDto dto);
         partial void ProcessNewAddedDtoPartial(TTonKhoDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaKhoHangFilter;
-        HeaderComboBoxFilterModel _MaMatHangFilter;
-        HeaderDateFilterModel _NgayFilter;
-        HeaderTextFilterModel _SoLuongFilter;
-        HeaderTextFilterModel _SoLuongCuFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaKhoHangFilter;
+        HeaderFilterBaseModel _MaMatHangFilter;
+        HeaderFilterBaseModel _NgayFilter;
+        HeaderFilterBaseModel _SoLuongFilter;
+        HeaderFilterBaseModel _SoLuongCuFilter;
 
         public TTonKhoViewModel() : base()
         {
@@ -28,24 +28,26 @@ namespace Client.ViewModel
                 nameof(TTonKhoDto.MaKhoHang),
                 typeof(int),
                 nameof(RKhoHangDto.TenHienThi),
-                nameof(RKhoHangDto.Ma));
-            _MaKhoHangFilter.AddCommand = new SimpleCommand("MaKhoHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
-            );
-            _MaKhoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
+                nameof(RKhoHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaKhoHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get()
+            };
 
             _MaMatHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TTonKho_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TTonKhoDto.MaMatHang),
                 typeof(int),
                 nameof(TMatHangDto.TenHienThi),
-                nameof(TMatHangDto.Ma));
-            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
-            );
-            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+                nameof(TMatHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get()
+            };
 
             _NgayFilter = new HeaderDateFilterModel(TextManager.TTonKho_Ngay, nameof(TTonKhoDto.Ngay), typeof(System.DateTime));
 

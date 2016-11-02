@@ -12,11 +12,11 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TNhapHangDto dto);
         partial void ProcessNewAddedDtoPartial(TNhapHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaKhoHangFilter;
-        HeaderComboBoxFilterModel _MaNhaCungCapFilter;
-        HeaderComboBoxFilterModel _MaNhanVienFilter;
-        HeaderDateFilterModel _NgayFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaKhoHangFilter;
+        HeaderFilterBaseModel _MaNhaCungCapFilter;
+        HeaderFilterBaseModel _MaNhanVienFilter;
+        HeaderFilterBaseModel _NgayFilter;
 
         public TNhapHangViewModel() : base()
         {
@@ -27,36 +27,39 @@ namespace Client.ViewModel
                 nameof(TNhapHangDto.MaKhoHang),
                 typeof(int),
                 nameof(RKhoHangDto.TenHienThi),
-                nameof(RKhoHangDto.Ma));
-            _MaKhoHangFilter.AddCommand = new SimpleCommand("MaKhoHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)
-            );
-            _MaKhoHangFilter.ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get();
+                nameof(RKhoHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaKhoHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RKhoHangView(), "RKhoHang", ReferenceDataManager<RKhoHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RKhoHangDto>.Instance.Get()
+            };
 
             _MaNhaCungCapFilter = new HeaderComboBoxFilterModel(
                 TextManager.TNhapHang_MaNhaCungCap, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TNhapHangDto.MaNhaCungCap),
                 typeof(int),
                 nameof(RNhaCungCapDto.TenHienThi),
-                nameof(RNhaCungCapDto.Ma));
-            _MaNhaCungCapFilter.AddCommand = new SimpleCommand("MaNhaCungCapAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNhaCungCapView(), "RNhaCungCap", ReferenceDataManager<RNhaCungCapDto>.Instance.Load)
-            );
-            _MaNhaCungCapFilter.ItemSource = ReferenceDataManager<RNhaCungCapDto>.Instance.Get();
+                nameof(RNhaCungCapDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaNhaCungCapAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RNhaCungCapView(), "RNhaCungCap", ReferenceDataManager<RNhaCungCapDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RNhaCungCapDto>.Instance.Get()
+            };
 
             _MaNhanVienFilter = new HeaderComboBoxFilterModel(
                 TextManager.TNhapHang_MaNhanVien, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TNhapHangDto.MaNhanVien),
                 typeof(int),
                 nameof(RNhanVienDto.TenHienThi),
-                nameof(RNhanVienDto.Ma));
-            _MaNhanVienFilter.AddCommand = new SimpleCommand("MaNhanVienAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNhanVienView(), "RNhanVien", ReferenceDataManager<RNhanVienDto>.Instance.Load)
-            );
-            _MaNhanVienFilter.ItemSource = ReferenceDataManager<RNhanVienDto>.Instance.Get();
+                nameof(RNhanVienDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaNhanVienAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RNhanVienView(), "RNhanVien", ReferenceDataManager<RNhanVienDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RNhanVienDto>.Instance.Get()
+            };
 
             _NgayFilter = new HeaderDateFilterModel(TextManager.TNhapHang_Ngay, nameof(TNhapHangDto.Ngay), typeof(System.DateTime));
 

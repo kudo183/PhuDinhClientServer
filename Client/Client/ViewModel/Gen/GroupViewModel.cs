@@ -11,9 +11,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(GroupDto dto);
         partial void ProcessNewAddedDtoPartial(GroupDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderDateFilterModel _NgayTaoFilter;
-        HeaderTextFilterModel _TenGroupFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _NgayTaoFilter;
+        HeaderFilterBaseModel _TenGroupFilter;
 
         public GroupViewModel() : base()
         {

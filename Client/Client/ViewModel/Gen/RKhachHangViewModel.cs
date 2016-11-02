@@ -12,10 +12,10 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RKhachHangDto dto);
         partial void ProcessNewAddedDtoPartial(RKhachHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderCheckFilterModel _KhachRiengFilter;
-        HeaderComboBoxFilterModel _MaDiaDiemFilter;
-        HeaderTextFilterModel _TenKhachHangFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _KhachRiengFilter;
+        HeaderFilterBaseModel _MaDiaDiemFilter;
+        HeaderFilterBaseModel _TenKhachHangFilter;
 
         public RKhachHangViewModel() : base()
         {
@@ -28,12 +28,13 @@ namespace Client.ViewModel
                 nameof(RKhachHangDto.MaDiaDiem),
                 typeof(int),
                 nameof(RDiaDiemDto.TenHienThi),
-                nameof(RDiaDiemDto.Ma));
-            _MaDiaDiemFilter.AddCommand = new SimpleCommand("MaDiaDiemAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RDiaDiemView(), "RDiaDiem", ReferenceDataManager<RDiaDiemDto>.Instance.Load)
-            );
-            _MaDiaDiemFilter.ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get();
+                nameof(RDiaDiemDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaDiaDiemAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RDiaDiemView(), "RDiaDiem", ReferenceDataManager<RDiaDiemDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RDiaDiemDto>.Instance.Get()
+            };
 
             _TenKhachHangFilter = new HeaderTextFilterModel(TextManager.RKhachHang_TenKhachHang, nameof(RKhachHangDto.TenKhachHang), typeof(string));
 

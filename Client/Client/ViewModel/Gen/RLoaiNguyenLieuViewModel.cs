@@ -11,8 +11,8 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RLoaiNguyenLieuDto dto);
         partial void ProcessNewAddedDtoPartial(RLoaiNguyenLieuDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _TenLoaiFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _TenLoaiFilter;
 
         public RLoaiNguyenLieuViewModel() : base()
         {

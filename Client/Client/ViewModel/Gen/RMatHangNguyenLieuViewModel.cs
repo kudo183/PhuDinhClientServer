@@ -12,9 +12,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RMatHangNguyenLieuDto dto);
         partial void ProcessNewAddedDtoPartial(RMatHangNguyenLieuDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaMatHangFilter;
-        HeaderComboBoxFilterModel _MaNguyenLieuFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaMatHangFilter;
+        HeaderFilterBaseModel _MaNguyenLieuFilter;
 
         public RMatHangNguyenLieuViewModel() : base()
         {
@@ -25,24 +25,26 @@ namespace Client.ViewModel
                 nameof(RMatHangNguyenLieuDto.MaMatHang),
                 typeof(int),
                 nameof(TMatHangDto.TenHienThi),
-                nameof(TMatHangDto.Ma));
-            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
-            );
-            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+                nameof(TMatHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get()
+            };
 
             _MaNguyenLieuFilter = new HeaderComboBoxFilterModel(
                 TextManager.RMatHangNguyenLieu_MaNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(RMatHangNguyenLieuDto.MaNguyenLieu),
                 typeof(int),
                 nameof(RNguyenLieuDto.TenHienThi),
-                nameof(RNguyenLieuDto.Ma));
-            _MaNguyenLieuFilter.AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNguyenLieuView(), "RNguyenLieu", ReferenceDataManager<RNguyenLieuDto>.Instance.Load)
-            );
-            _MaNguyenLieuFilter.ItemSource = ReferenceDataManager<RNguyenLieuDto>.Instance.Get();
+                nameof(RNguyenLieuDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RNguyenLieuView(), "RNguyenLieu", ReferenceDataManager<RNguyenLieuDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RNguyenLieuDto>.Instance.Get()
+            };
 
             InitFilterPartial();
 

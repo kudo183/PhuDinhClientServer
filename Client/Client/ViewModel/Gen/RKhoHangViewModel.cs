@@ -11,9 +11,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RKhoHangDto dto);
         partial void ProcessNewAddedDtoPartial(RKhoHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _TenKhoFilter;
-        HeaderCheckFilterModel _TrangThaiFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _TenKhoFilter;
+        HeaderFilterBaseModel _TrangThaiFilter;
 
         public RKhoHangViewModel() : base()
         {

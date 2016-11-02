@@ -12,10 +12,10 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietToaHangDto dto);
         partial void ProcessNewAddedDtoPartial(TChiTietToaHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _GiaTienFilter;
-        HeaderComboBoxFilterModel _MaChiTietDonHangFilter;
-        HeaderComboBoxFilterModel _MaToaHangFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _GiaTienFilter;
+        HeaderFilterBaseModel _MaChiTietDonHangFilter;
+        HeaderFilterBaseModel _MaToaHangFilter;
 
         public TChiTietToaHangViewModel() : base()
         {
@@ -28,24 +28,26 @@ namespace Client.ViewModel
                 nameof(TChiTietToaHangDto.MaChiTietDonHang),
                 typeof(int),
                 nameof(TChiTietDonHangDto.TenHienThi),
-                nameof(TChiTietDonHangDto.Ma));
-            _MaChiTietDonHangFilter.AddCommand = new SimpleCommand("MaChiTietDonHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TChiTietDonHangView(), "TChiTietDonHang", ReferenceDataManager<TChiTietDonHangDto>.Instance.Load)
-            );
-            _MaChiTietDonHangFilter.ItemSource = ReferenceDataManager<TChiTietDonHangDto>.Instance.Get();
+                nameof(TChiTietDonHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaChiTietDonHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.TChiTietDonHangView(), "TChiTietDonHang", ReferenceDataManager<TChiTietDonHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<TChiTietDonHangDto>.Instance.Get()
+            };
 
             _MaToaHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChiTietToaHang_MaToaHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChiTietToaHangDto.MaToaHang),
                 typeof(int),
                 nameof(TToaHangDto.TenHienThi),
-                nameof(TToaHangDto.Ma));
-            _MaToaHangFilter.AddCommand = new SimpleCommand("MaToaHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TToaHangView(), "TToaHang", ReferenceDataManager<TToaHangDto>.Instance.Load)
-            );
-            _MaToaHangFilter.ItemSource = ReferenceDataManager<TToaHangDto>.Instance.Get();
+                nameof(TToaHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaToaHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.TToaHangView(), "TToaHang", ReferenceDataManager<TToaHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<TToaHangDto>.Instance.Get()
+            };
 
             InitFilterPartial();
 

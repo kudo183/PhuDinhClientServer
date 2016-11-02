@@ -12,11 +12,11 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChuyenHangDonHangDto dto);
         partial void ProcessNewAddedDtoPartial(TChuyenHangDonHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaChuyenHangFilter;
-        HeaderComboBoxFilterModel _MaDonHangFilter;
-        HeaderTextFilterModel _TongSoLuongTheoDonHangFilter;
-        HeaderTextFilterModel _TongSoLuongThucTeFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaChuyenHangFilter;
+        HeaderFilterBaseModel _MaDonHangFilter;
+        HeaderFilterBaseModel _TongSoLuongTheoDonHangFilter;
+        HeaderFilterBaseModel _TongSoLuongThucTeFilter;
 
         public TChuyenHangDonHangViewModel() : base()
         {
@@ -27,24 +27,26 @@ namespace Client.ViewModel
                 nameof(TChuyenHangDonHangDto.MaChuyenHang),
                 typeof(int),
                 nameof(TChuyenHangDto.TenHienThi),
-                nameof(TChuyenHangDto.Ma));
-            _MaChuyenHangFilter.AddCommand = new SimpleCommand("MaChuyenHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TChuyenHangView(), "TChuyenHang", ReferenceDataManager<TChuyenHangDto>.Instance.Load)
-            );
-            _MaChuyenHangFilter.ItemSource = ReferenceDataManager<TChuyenHangDto>.Instance.Get();
+                nameof(TChuyenHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaChuyenHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.TChuyenHangView(), "TChuyenHang", ReferenceDataManager<TChuyenHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<TChuyenHangDto>.Instance.Get()
+            };
 
             _MaDonHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChuyenHangDonHang_MaDonHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChuyenHangDonHangDto.MaDonHang),
                 typeof(int),
                 nameof(TDonHangDto.TenHienThi),
-                nameof(TDonHangDto.Ma));
-            _MaDonHangFilter.AddCommand = new SimpleCommand("MaDonHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TDonHangView(), "TDonHang", ReferenceDataManager<TDonHangDto>.Instance.Load)
-            );
-            _MaDonHangFilter.ItemSource = ReferenceDataManager<TDonHangDto>.Instance.Get();
+                nameof(TDonHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaDonHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.TDonHangView(), "TDonHang", ReferenceDataManager<TDonHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<TDonHangDto>.Instance.Get()
+            };
 
             _TongSoLuongTheoDonHangFilter = new HeaderTextFilterModel(TextManager.TChuyenHangDonHang_TongSoLuongTheoDonHang, nameof(TChuyenHangDonHangDto.TongSoLuongTheoDonHang), typeof(int));
 

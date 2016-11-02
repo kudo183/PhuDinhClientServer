@@ -12,10 +12,10 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietChuyenKhoDto dto);
         partial void ProcessNewAddedDtoPartial(TChiTietChuyenKhoDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaChuyenKhoFilter;
-        HeaderComboBoxFilterModel _MaMatHangFilter;
-        HeaderTextFilterModel _SoLuongFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaChuyenKhoFilter;
+        HeaderFilterBaseModel _MaMatHangFilter;
+        HeaderFilterBaseModel _SoLuongFilter;
 
         public TChiTietChuyenKhoViewModel() : base()
         {
@@ -26,24 +26,26 @@ namespace Client.ViewModel
                 nameof(TChiTietChuyenKhoDto.MaChuyenKho),
                 typeof(int),
                 nameof(TChuyenKhoDto.TenHienThi),
-                nameof(TChuyenKhoDto.Ma));
-            _MaChuyenKhoFilter.AddCommand = new SimpleCommand("MaChuyenKhoAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TChuyenKhoView(), "TChuyenKho", ReferenceDataManager<TChuyenKhoDto>.Instance.Load)
-            );
-            _MaChuyenKhoFilter.ItemSource = ReferenceDataManager<TChuyenKhoDto>.Instance.Get();
+                nameof(TChuyenKhoDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaChuyenKhoAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.TChuyenKhoView(), "TChuyenKho", ReferenceDataManager<TChuyenKhoDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<TChuyenKhoDto>.Instance.Get()
+            };
 
             _MaMatHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChiTietChuyenKho_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChiTietChuyenKhoDto.MaMatHang),
                 typeof(int),
                 nameof(TMatHangDto.TenHienThi),
-                nameof(TMatHangDto.Ma));
-            _MaMatHangFilter.AddCommand = new SimpleCommand("MaMatHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)
-            );
-            _MaMatHangFilter.ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get();
+                nameof(TMatHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaMatHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.TMatHangView(), "TMatHang", ReferenceDataManager<TMatHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<TMatHangDto>.Instance.Get()
+            };
 
             _SoLuongFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenKho_SoLuong, nameof(TChiTietChuyenKhoDto.SoLuong), typeof(int));
 

@@ -12,9 +12,9 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RChanhDto dto);
         partial void ProcessNewAddedDtoPartial(RChanhDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaBaiXeFilter;
-        HeaderTextFilterModel _TenChanhFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaBaiXeFilter;
+        HeaderFilterBaseModel _TenChanhFilter;
 
         public RChanhViewModel() : base()
         {
@@ -25,12 +25,13 @@ namespace Client.ViewModel
                 nameof(RChanhDto.MaBaiXe),
                 typeof(int),
                 nameof(RBaiXeDto.TenHienThi),
-                nameof(RBaiXeDto.Ma));
-            _MaBaiXeFilter.AddCommand = new SimpleCommand("MaBaiXeAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RBaiXeView(), "RBaiXe", ReferenceDataManager<RBaiXeDto>.Instance.Load)
-            );
-            _MaBaiXeFilter.ItemSource = ReferenceDataManager<RBaiXeDto>.Instance.Get();
+                nameof(RBaiXeDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaBaiXeAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RBaiXeView(), "RBaiXe", ReferenceDataManager<RBaiXeDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RBaiXeDto>.Instance.Get()
+            };
 
             _TenChanhFilter = new HeaderTextFilterModel(TextManager.RChanh_TenChanh, nameof(RChanhDto.TenChanh), typeof(string));
 

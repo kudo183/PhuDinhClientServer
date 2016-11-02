@@ -12,10 +12,10 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TNhanTienKhachHangDto dto);
         partial void ProcessNewAddedDtoPartial(TNhanTienKhachHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderComboBoxFilterModel _MaKhachHangFilter;
-        HeaderDateFilterModel _NgayFilter;
-        HeaderTextFilterModel _SoTienFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _MaKhachHangFilter;
+        HeaderFilterBaseModel _NgayFilter;
+        HeaderFilterBaseModel _SoTienFilter;
 
         public TNhanTienKhachHangViewModel() : base()
         {
@@ -26,12 +26,13 @@ namespace Client.ViewModel
                 nameof(TNhanTienKhachHangDto.MaKhachHang),
                 typeof(int),
                 nameof(RKhachHangDto.TenHienThi),
-                nameof(RKhachHangDto.Ma));
-            _MaKhachHangFilter.AddCommand = new SimpleCommand("MaKhachHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)
-            );
-            _MaKhachHangFilter.ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get();
+                nameof(RKhachHangDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaKhachHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RKhachHangView(), "RKhachHang", ReferenceDataManager<RKhachHangDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RKhachHangDto>.Instance.Get()
+            };
 
             _NgayFilter = new HeaderDateFilterModel(TextManager.TNhanTienKhachHang_Ngay, nameof(TNhanTienKhachHangDto.Ngay), typeof(System.DateTime));
 

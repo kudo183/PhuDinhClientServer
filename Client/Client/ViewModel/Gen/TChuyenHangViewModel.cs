@@ -12,13 +12,13 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChuyenHangDto dto);
         partial void ProcessNewAddedDtoPartial(TChuyenHangDto dto);
 
-        HeaderTextFilterModel _MaFilter;
-        HeaderTextFilterModel _GioFilter;
-        HeaderComboBoxFilterModel _MaNhanVienGiaoHangFilter;
-        HeaderDateFilterModel _NgayFilter;
-        HeaderTextFilterModel _TongDonHangFilter;
-        HeaderTextFilterModel _TongSoLuongTheoDonHangFilter;
-        HeaderTextFilterModel _TongSoLuongThucTeFilter;
+        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _GioFilter;
+        HeaderFilterBaseModel _MaNhanVienGiaoHangFilter;
+        HeaderFilterBaseModel _NgayFilter;
+        HeaderFilterBaseModel _TongDonHangFilter;
+        HeaderFilterBaseModel _TongSoLuongTheoDonHangFilter;
+        HeaderFilterBaseModel _TongSoLuongThucTeFilter;
 
         public TChuyenHangViewModel() : base()
         {
@@ -31,12 +31,13 @@ namespace Client.ViewModel
                 nameof(TChuyenHangDto.MaNhanVienGiaoHang),
                 typeof(int),
                 nameof(RNhanVienDto.TenHienThi),
-                nameof(RNhanVienDto.Ma));
-            _MaNhanVienGiaoHangFilter.AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
-                () => base.ProccessHeaderAddCommand(
-                new View.RNhanVienView(), "RNhanVien", ReferenceDataManager<RNhanVienDto>.Instance.Load)
-            );
-            _MaNhanVienGiaoHangFilter.ItemSource = ReferenceDataManager<RNhanVienDto>.Instance.Get();
+                nameof(RNhanVienDto.Ma))
+            {
+                AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
+                    () => base.ProccessHeaderAddCommand(
+                    new View.RNhanVienView(), "RNhanVien", ReferenceDataManager<RNhanVienDto>.Instance.Load)),
+                ItemSource = ReferenceDataManager<RNhanVienDto>.Instance.Get()
+            };
 
             _NgayFilter = new HeaderDateFilterModel(TextManager.TChuyenHang_Ngay, nameof(TChuyenHangDto.Ngay), typeof(System.DateTime));
 
