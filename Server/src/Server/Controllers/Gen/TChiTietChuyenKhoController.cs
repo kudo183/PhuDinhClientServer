@@ -6,6 +6,9 @@ namespace Server.Controllers
 {
     public partial class TChiTietChuyenKhoController : SwaEntityBaseController<PhuDinhServerContext, TChiTietChuyenKho, TChiTietChuyenKhoDto>
     {
+        partial void ConvertToDtoPartial(ref TChiTietChuyenKhoDto dto, TChiTietChuyenKho entity);
+        partial void ConvertToEntityPartial(ref TChiTietChuyenKho entity, TChiTietChuyenKhoDto dto);
+
         public override TChiTietChuyenKhoDto ConvertToDto(TChiTietChuyenKho entity)
         {
             var dto = new TChiTietChuyenKhoDto();
@@ -13,6 +16,9 @@ namespace Server.Controllers
             dto.MaChuyenKho = entity.MaChuyenKho;
             dto.MaMatHang = entity.MaMatHang;
             dto.SoLuong = entity.SoLuong;
+
+            ConvertToDtoPartial(ref dto, entity);
+
             return dto;
         }
 
@@ -23,6 +29,9 @@ namespace Server.Controllers
             entity.MaChuyenKho = dto.MaChuyenKho;
             entity.MaMatHang = dto.MaMatHang;
             entity.SoLuong = dto.SoLuong;
+
+            ConvertToEntityPartial(ref entity, dto);
+
             return entity;
         }
     }

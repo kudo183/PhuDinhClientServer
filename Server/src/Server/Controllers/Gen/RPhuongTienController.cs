@@ -6,11 +6,17 @@ namespace Server.Controllers
 {
     public partial class RPhuongTienController : SwaEntityBaseController<PhuDinhServerContext, RPhuongTien, RPhuongTienDto>
     {
+        partial void ConvertToDtoPartial(ref RPhuongTienDto dto, RPhuongTien entity);
+        partial void ConvertToEntityPartial(ref RPhuongTien entity, RPhuongTienDto dto);
+
         public override RPhuongTienDto ConvertToDto(RPhuongTien entity)
         {
             var dto = new RPhuongTienDto();
             dto.Ma = entity.Ma;
             dto.TenPhuongTien = entity.TenPhuongTien;
+
+            ConvertToDtoPartial(ref dto, entity);
+
             return dto;
         }
 
@@ -19,6 +25,9 @@ namespace Server.Controllers
             var entity = new RPhuongTien();
             entity.Ma = dto.Ma;
             entity.TenPhuongTien = dto.TenPhuongTien;
+
+            ConvertToEntityPartial(ref entity, dto);
+
             return entity;
         }
     }

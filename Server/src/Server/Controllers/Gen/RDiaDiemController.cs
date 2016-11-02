@@ -6,12 +6,18 @@ namespace Server.Controllers
 {
     public partial class RDiaDiemController : SwaEntityBaseController<PhuDinhServerContext, RDiaDiem, RDiaDiemDto>
     {
+        partial void ConvertToDtoPartial(ref RDiaDiemDto dto, RDiaDiem entity);
+        partial void ConvertToEntityPartial(ref RDiaDiem entity, RDiaDiemDto dto);
+
         public override RDiaDiemDto ConvertToDto(RDiaDiem entity)
         {
             var dto = new RDiaDiemDto();
             dto.Ma = entity.Ma;
             dto.MaNuoc = entity.MaNuoc;
             dto.Tinh = entity.Tinh;
+
+            ConvertToDtoPartial(ref dto, entity);
+
             return dto;
         }
 
@@ -21,6 +27,9 @@ namespace Server.Controllers
             entity.Ma = dto.Ma;
             entity.MaNuoc = dto.MaNuoc;
             entity.Tinh = dto.Tinh;
+
+            ConvertToEntityPartial(ref entity, dto);
+
             return entity;
         }
     }

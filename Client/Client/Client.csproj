@@ -108,6 +108,7 @@
     <Compile Include="ViewModel\Gen\TTonKhoViewModel.cs" />
     <Compile Include="ViewModel\Gen\UserGroupViewModel.cs" />
     <Compile Include="ViewModel\Gen\UserViewModel.cs" />
+    <Compile Include="ViewModel\TChiTietDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\TDonHangViewModel.part.cs" />
     <Compile Include="AllView.xaml.cs">
       <DependentUpon>AllView.xaml</DependentUpon>
@@ -237,6 +238,7 @@
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="View\TChiTietDonHangView.part.cs" />
     <Compile Include="View\UserGroupView.part.cs" />
     <Compile Include="View\TTonKhoView.part.cs" />
     <Compile Include="View\TToaHangView.part.cs" />

@@ -6,11 +6,17 @@ namespace Server.Controllers
 {
     public partial class RNuocController : SwaEntityBaseController<PhuDinhServerContext, RNuoc, RNuocDto>
     {
+        partial void ConvertToDtoPartial(ref RNuocDto dto, RNuoc entity);
+        partial void ConvertToEntityPartial(ref RNuoc entity, RNuocDto dto);
+
         public override RNuocDto ConvertToDto(RNuoc entity)
         {
             var dto = new RNuocDto();
             dto.Ma = entity.Ma;
             dto.TenNuoc = entity.TenNuoc;
+
+            ConvertToDtoPartial(ref dto, entity);
+
             return dto;
         }
 
@@ -19,6 +25,9 @@ namespace Server.Controllers
             var entity = new RNuoc();
             entity.Ma = dto.Ma;
             entity.TenNuoc = dto.TenNuoc;
+
+            ConvertToEntityPartial(ref entity, dto);
+
             return entity;
         }
     }
