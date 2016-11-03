@@ -219,8 +219,17 @@
     <Compile Include="..\..\DTO\TChiTietChuyenHangDonHangDto.part.cs">
       <Link>TChiTietChuyenHangDonHangDto.part.cs</Link>
     </Compile>
+    <Compile Include="..\..\DTO\TChiTietChuyenKhoDto.part.cs">
+      <Link>TChiTietChuyenKhoDto.part.cs</Link>
+    </Compile>
     <Compile Include="..\..\DTO\TChiTietDonHangDto.part.cs">
       <Link>TChiTietDonHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TChiTietNhapHangDto.part.cs">
+      <Link>TChiTietNhapHangDto.part.cs</Link>
+    </Compile>
+    <Compile Include="..\..\DTO\TChiTietToaHangDto.part.cs">
+      <Link>TChiTietToaHangDto.part.cs</Link>
     </Compile>
     <Compile Include="..\..\DTO\TChuyenHangDonHangDto.part.cs">
       <Link>TChuyenHangDonHangDto.part.cs</Link>

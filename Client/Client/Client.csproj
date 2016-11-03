@@ -109,14 +109,27 @@
     <Compile Include="ViewModel\Gen\UserGroupViewModel.cs" />
     <Compile Include="ViewModel\Gen\UserViewModel.cs" />
     <Compile Include="ViewModel\TChiTietChuyenHangDonHangViewModel.part.cs" />
+    <Compile Include="ViewModel\TChiTietToaHangViewModel.part.cs" />
+    <Compile Include="ViewModel\TChiTietChuyenKhoViewModel.part.cs" />
+    <Compile Include="ViewModel\TChiTietNhapHangViewModel.part.cs" />
     <Compile Include="ViewModel\TChuyenHangDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietDonHangViewModel.part.cs" />
+    <Compile Include="ViewModel\RMatHangNguyenLieuViewModel.part.cs" />
     <Compile Include="ViewModel\TDonHangViewModel.part.cs" />
     <Compile Include="AllView.xaml.cs">
       <DependentUpon>AllView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\complexChuyenHangView.xaml.cs">
       <DependentUpon>complexChuyenHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\complexChuyenKhoView.xaml.cs">
+      <DependentUpon>complexChuyenKhoView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\complexToaHangView.xaml.cs">
+      <DependentUpon>complexToaHangView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\complexNhapHangView.xaml.cs">
+      <DependentUpon>complexNhapHangView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\complexDonHangView.xaml.cs">
       <DependentUpon>complexDonHangView.xaml</DependentUpon>
@@ -240,6 +253,7 @@
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="View\TChiTietChuyenKhoView.part.cs" />
     <Compile Include="View\TChiTietDonHangView.part.cs" />
     <Compile Include="View\TChuyenHangDonHangView.part.cs" />
     <Compile Include="View\UserGroupView.part.cs" />
@@ -268,6 +282,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\complexChuyenHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\complexChuyenKhoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\complexToaHangView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\complexNhapHangView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

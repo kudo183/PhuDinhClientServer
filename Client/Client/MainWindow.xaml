@@ -23,23 +23,23 @@
             <Button Height="80" Content="Chi Phi" Tag="TChiPhiView"/>
         </StackPanel>
         <StackPanel Width="150" Orientation="Vertical">
-            <Button Height="80" Content="Nhan Vien"/>
-            <Button Height="80" Content="Nhap Hang"/>
+            <Button Height="80" Content="Nhan Vien" Tag="RNhanVienView"/>
+            <Button Height="80" Content="Nhap Hang" Tag="complexNhapHangView"/>
             <Button Height="80" Content="Don Hang" Tag="complexDonHangView"/>
             <Button Height="80" Content="Chuyen Hang" Tag="complexChuyenHangView"/>
         </StackPanel>
         <StackPanel Width="150" Orientation="Vertical">
             <Button Height="80" Content="Mat Hang" Tag="TMatHangView"/>
             <Button Height="80" Content="Khach Hang" Tag="RKhachHangView"/>
-            <Button Height="80" Content="Ton Kho"/>
-            <Button Height="80" Content="Chuyen Kho"/>
+            <Button Height="80" Content="Ton Kho" Tag="TTonKhoView"/>
+            <Button Height="80" Content="Chuyen Kho" Tag="complexChuyenKhoView"/>
         </StackPanel>
         <StackPanel Width="150" Orientation="Vertical" Background="BlanchedAlmond">
-            <Button Height="80" Content="Toa Hang"/>
-            <Button Height="80" Content="Nhan Tien"/>
-            <Button Height="80" Content="Cong No"/>
-            <Button Height="80" Content="Phu Thu"/>
-            <Button Height="80" Content="Giam Tru"/>
+            <Button Height="80" Content="Toa Hang" Tag="complexToaHangView"/>
+            <Button Height="80" Content="Nhan Tien" Tag="TNhanTienKhachHangView"/>
+            <Button Height="80" Content="Cong No" Tag="TCongNoKhachHangView"/>
+            <Button Height="80" Content="Phu Thu" Tag="TPhuThuKhachHangView"/>
+            <Button Height="80" Content="Giam Tru" Tag="TGiamTruKhachHangView"/>
         </StackPanel>
         <StackPanel Width="280" Orientation="Vertical" Background="Red">
             <Button Height="80" Content="Thong Ke Theo Mat Hang"/>

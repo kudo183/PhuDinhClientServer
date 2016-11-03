@@ -2,25 +2,23 @@
 
 namespace Client.View
 {
-    public partial class TChiTietNhapHangView : BaseView<DTO.TChiTietNhapHangDto>
+    public partial class TChiTietChuyenKhoView : BaseView<DTO.TChiTietChuyenKhoDto>
     {
         partial void InitUIPartial()
         {
             var datagrid = Content as SimpleDataGrid.EditableGridView;
 
-            datagrid.dataGrid.Columns[2] = new SimpleDataGrid.DataGridTextColumnExt()
+            datagrid.dataGrid.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 250,
                 IsReadOnly = true,
-                Header = datagrid.dataGrid.Columns[2].Header,
+                Header = datagrid.dataGrid.Columns[1].Header,
                 Binding = new System.Windows.Data.Binding()
                 {
-                    Path = new System.Windows.PropertyPath(nameof(DTO.TChiTietNhapHangDto.TNhapHang) + "." + nameof(DTO.TNhapHangDto.TenHienThi)),
+                    Path = new System.Windows.PropertyPath(nameof(DTO.TChiTietChuyenKhoDto.TChuyenKho) + "." + nameof(DTO.TChuyenKhoDto.TenHienThi)),
                     Mode = System.Windows.Data.BindingMode.OneWay
                 }
             };
-
-            datagrid.Columns[1].DisplayIndex = 2;
         }
     }
 }
