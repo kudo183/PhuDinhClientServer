@@ -3,7 +3,7 @@ using Client.Abstraction;
 
 namespace Client.ViewModel
 {
-    public partial class RMatHangNguyenLieuViewModel : BaseViewModel<RMatHangNguyenLieuDto>
+    public partial class TNhapNguyenLieuViewModel : BaseViewModel<TNhapNguyenLieuDto>
     {
         partial void LoadReferenceDataPartial()
         {

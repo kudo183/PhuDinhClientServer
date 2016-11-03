@@ -108,6 +108,7 @@
     <Compile Include="ViewModel\Gen\TTonKhoViewModel.cs" />
     <Compile Include="ViewModel\Gen\UserGroupViewModel.cs" />
     <Compile Include="ViewModel\Gen\UserViewModel.cs" />
+    <Compile Include="ViewModel\TNhapNguyenLieuViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietChuyenHangDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietToaHangViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietChuyenKhoViewModel.part.cs" />
