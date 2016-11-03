@@ -216,6 +216,9 @@
     <Compile Include="..\..\DTO\RPhuongTienDto.part.cs">
       <Link>RPhuongTienDto.part.cs</Link>
     </Compile>
+    <Compile Include="..\..\DTO\TChiTietChuyenHangDonHangDto.part.cs">
+      <Link>TChiTietChuyenHangDonHangDto.part.cs</Link>
+    </Compile>
     <Compile Include="..\..\DTO\TChiTietDonHangDto.part.cs">
       <Link>TChiTietDonHangDto.part.cs</Link>
     </Compile>

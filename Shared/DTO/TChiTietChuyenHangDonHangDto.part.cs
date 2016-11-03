@@ -2,19 +2,19 @@
 
 namespace DTO
 {
-    public partial class TChiTietDonHangDto : IDto, INotifyPropertyChanged
+    public partial class TChiTietChuyenHangDonHangDto : IDto, INotifyPropertyChanged
     {
         [ProtoBuf.ProtoMember(10)]
-        public TDonHangDto TDonHang { get; set; }
+        public TChuyenHangDonHangDto TChuyenHangDonHang { get; set; }
         [ProtoBuf.ProtoMember(11)]
-        public TMatHangDto TMatHang { get; set; }
+        public TChiTietDonHangDto TChiTietDonHang { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public string TenHienThi
         {
             get
             {
-                return string.Format("{0} {1}", TDonHang.TenHienThi, TMatHang.TenHienThi);
+                return "TenHienThi";
             }
         }
     }

@@ -19,8 +19,11 @@ namespace Client.ViewModel
 
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietDonHangDto dto)
         {
-            dto.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.Ma == dto.TDonHang.MaKhoHang);
-            dto.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.Ma == dto.TDonHang.MaKhachHang);
+            if (dto.TDonHang != null)
+            {
+                dto.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.Ma == dto.TDonHang.MaKhoHang);
+                dto.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.Ma == dto.TDonHang.MaKhachHang);
+            }
         }
     }
 }
