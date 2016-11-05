@@ -12,8 +12,8 @@ namespace Server.Controllers
         public override ThamSoNgayDto ConvertToDto(ThamSoNgay entity)
         {
             var dto = new ThamSoNgayDto();
-            dto.Ma = entity.Ma;
             dto.GiaTri = entity.GiaTri;
+            dto.Ma = entity.Ma;
             dto.Ten = entity.Ten;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -24,8 +24,8 @@ namespace Server.Controllers
         public override ThamSoNgay ConvertToEntity(ThamSoNgayDto dto)
         {
             var entity = new ThamSoNgay();
-            entity.Ma = dto.Ma;
             entity.GiaTri = dto.GiaTri;
+            entity.Ma = dto.Ma;
             entity.Ten = dto.Ten;
 
             ConvertToEntityPartial(ref entity, dto);

@@ -11,16 +11,16 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(UserDto dto);
         partial void ProcessNewAddedDtoPartial(UserDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _EmailFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _NgayTaoFilter;
         HeaderFilterBaseModel _PasswordHashFilter;
 
         public UserViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.User_Ma, nameof(UserDto.Ma), typeof(int));
-
             _EmailFilter = new HeaderTextFilterModel(TextManager.User_Email, nameof(UserDto.Email), typeof(string));
+
+            _MaFilter = new HeaderTextFilterModel(TextManager.User_Ma, nameof(UserDto.Ma), typeof(int));
 
             _NgayTaoFilter = new HeaderDateFilterModel(TextManager.User_NgayTao, nameof(UserDto.NgayTao), typeof(System.DateTime));
 
@@ -28,8 +28,8 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_EmailFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_NgayTaoFilter);
             AddHeaderFilter(_PasswordHashFilter);
         }
@@ -42,13 +42,13 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(UserDto dto)
         {
-            if (_MaFilter.FilterValue != null)
-            {
-                dto.Ma = (int)_MaFilter.FilterValue;
-            }
             if (_EmailFilter.FilterValue != null)
             {
                 dto.Email = (string)_EmailFilter.FilterValue;
+            }
+            if (_MaFilter.FilterValue != null)
+            {
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_NgayTaoFilter.FilterValue != null)
             {

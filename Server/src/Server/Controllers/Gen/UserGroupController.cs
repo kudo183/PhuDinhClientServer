@@ -12,8 +12,8 @@ namespace Server.Controllers
         public override UserGroupDto ConvertToDto(UserGroup entity)
         {
             var dto = new UserGroupDto();
-            dto.Ma = entity.Ma;
             dto.LaChuGroup = entity.LaChuGroup;
+            dto.Ma = entity.Ma;
             dto.MaGroup = entity.MaGroup;
             dto.MaUser = entity.MaUser;
 
@@ -25,8 +25,8 @@ namespace Server.Controllers
         public override UserGroup ConvertToEntity(UserGroupDto dto)
         {
             var entity = new UserGroup();
-            entity.Ma = dto.Ma;
             entity.LaChuGroup = dto.LaChuGroup;
+            entity.Ma = dto.Ma;
             entity.MaGroup = dto.MaGroup;
             entity.MaUser = dto.MaUser;
 

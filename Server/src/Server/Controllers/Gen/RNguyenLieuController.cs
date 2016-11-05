@@ -12,8 +12,8 @@ namespace Server.Controllers
         public override RNguyenLieuDto ConvertToDto(RNguyenLieu entity)
         {
             var dto = new RNguyenLieuDto();
-            dto.Ma = entity.Ma;
             dto.DuongKinh = entity.DuongKinh;
+            dto.Ma = entity.Ma;
             dto.MaLoaiNguyenLieu = entity.MaLoaiNguyenLieu;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -24,8 +24,8 @@ namespace Server.Controllers
         public override RNguyenLieu ConvertToEntity(RNguyenLieuDto dto)
         {
             var entity = new RNguyenLieu();
-            entity.Ma = dto.Ma;
             entity.DuongKinh = dto.DuongKinh;
+            entity.Ma = dto.Ma;
             entity.MaLoaiNguyenLieu = dto.MaLoaiNguyenLieu;
 
             ConvertToEntityPartial(ref entity, dto);

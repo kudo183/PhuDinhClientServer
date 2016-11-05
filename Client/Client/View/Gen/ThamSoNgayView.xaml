@@ -9,8 +9,8 @@
     xmlns:Abstraction="clr-namespace:Client.Abstraction;assembly=Client.Abstraction">
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridDateColumn Header="GiaTri" Binding="{Binding GiaTri, UpdateSourceTrigger=PropertyChanged}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridTextColumnExt Header="Ten" Binding="{Binding Ten, UpdateSourceTrigger=PropertyChanged}"/>
         </SimpleDataGrid:EditableGridView.Columns>
     </SimpleDataGrid:EditableGridView>

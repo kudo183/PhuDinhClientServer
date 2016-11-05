@@ -5,16 +5,16 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class TChuyenHangDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
         System.TimeSpan? oGio;
+        int oMa;
         int oMaNhanVienGiaoHang;
         System.DateTime oNgay;
         int oTongDonHang;
         int oTongSoLuongTheoDonHang;
         int oTongSoLuongThucTe;
 
-        int _Ma;
         System.TimeSpan? _Gio;
+        int _Ma;
         int _MaNhanVienGiaoHang;
         System.DateTime _Ngay;
         int _TongDonHang;
@@ -22,9 +22,9 @@ namespace DTO
         int _TongSoLuongThucTe;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
-        [ProtoBuf.ProtoMember(2)]
         public System.TimeSpan? Gio { get { return _Gio; } set { _Gio = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(2)]
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public int MaNhanVienGiaoHang { get { return _MaNhanVienGiaoHang; } set { _MaNhanVienGiaoHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -38,8 +38,8 @@ namespace DTO
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
             oGio = Gio;
+            oMa = Ma;
             oMaNhanVienGiaoHang = MaNhanVienGiaoHang;
             oNgay = Ngay;
             oTongDonHang = TongDonHang;
@@ -49,8 +49,8 @@ namespace DTO
 
         public bool HasChange()
         {
-            return (oMa != Ma)
-            || (oGio != Gio)
+            return (oGio != Gio)
+            || (oMa != Ma)
             || (oMaNhanVienGiaoHang != MaNhanVienGiaoHang)
             || (oNgay != Ngay)
             || (oTongDonHang != TongDonHang)

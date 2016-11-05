@@ -5,20 +5,20 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class UserGroupDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
         bool oLaChuGroup;
+        int oMa;
         int oMaGroup;
         int oMaUser;
 
-        int _Ma;
         bool _LaChuGroup;
+        int _Ma;
         int _MaGroup;
         int _MaUser;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
-        [ProtoBuf.ProtoMember(2)]
         public bool LaChuGroup { get { return _LaChuGroup; } set { _LaChuGroup = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(2)]
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public int MaGroup { get { return _MaGroup; } set { _MaGroup = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -26,16 +26,16 @@ namespace DTO
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
             oLaChuGroup = LaChuGroup;
+            oMa = Ma;
             oMaGroup = MaGroup;
             oMaUser = MaUser;
         }
 
         public bool HasChange()
         {
-            return (oMa != Ma)
-            || (oLaChuGroup != LaChuGroup)
+            return (oLaChuGroup != LaChuGroup)
+            || (oMa != Ma)
             || (oMaGroup != MaGroup)
             || (oMaUser != MaUser)
 ;

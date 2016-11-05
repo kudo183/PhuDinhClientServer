@@ -12,8 +12,8 @@ namespace Server.Controllers
         public override TChuyenHangDto ConvertToDto(TChuyenHang entity)
         {
             var dto = new TChuyenHangDto();
-            dto.Ma = entity.Ma;
             dto.Gio = entity.Gio;
+            dto.Ma = entity.Ma;
             dto.MaNhanVienGiaoHang = entity.MaNhanVienGiaoHang;
             dto.Ngay = entity.Ngay;
             dto.TongDonHang = entity.TongDonHang;
@@ -28,8 +28,8 @@ namespace Server.Controllers
         public override TChuyenHang ConvertToEntity(TChuyenHangDto dto)
         {
             var entity = new TChuyenHang();
-            entity.Ma = dto.Ma;
             entity.Gio = dto.Gio;
+            entity.Ma = dto.Ma;
             entity.MaNhanVienGiaoHang = dto.MaNhanVienGiaoHang;
             entity.Ngay = dto.Ngay;
             entity.TongDonHang = dto.TongDonHang;

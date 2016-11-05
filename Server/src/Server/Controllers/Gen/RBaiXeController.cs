@@ -12,8 +12,8 @@ namespace Server.Controllers
         public override RBaiXeDto ConvertToDto(RBaiXe entity)
         {
             var dto = new RBaiXeDto();
-            dto.Ma = entity.Ma;
             dto.DiaDiemBaiXe = entity.DiaDiemBaiXe;
+            dto.Ma = entity.Ma;
 
             ConvertToDtoPartial(ref dto, entity);
 
@@ -23,8 +23,8 @@ namespace Server.Controllers
         public override RBaiXe ConvertToEntity(RBaiXeDto dto)
         {
             var entity = new RBaiXe();
-            entity.Ma = dto.Ma;
             entity.DiaDiemBaiXe = dto.DiaDiemBaiXe;
+            entity.Ma = dto.Ma;
 
             ConvertToEntityPartial(ref entity, dto);
 

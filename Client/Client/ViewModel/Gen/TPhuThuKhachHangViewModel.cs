@@ -12,17 +12,17 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TPhuThuKhachHangDto dto);
         partial void ProcessNewAddedDtoPartial(TPhuThuKhachHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _GhiChuFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _MaKhachHangFilter;
         HeaderFilterBaseModel _NgayFilter;
         HeaderFilterBaseModel _SoTienFilter;
 
         public TPhuThuKhachHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TPhuThuKhachHang_Ma, nameof(TPhuThuKhachHangDto.Ma), typeof(int));
-
             _GhiChuFilter = new HeaderTextFilterModel(TextManager.TPhuThuKhachHang_GhiChu, nameof(TPhuThuKhachHangDto.GhiChu), typeof(string));
+
+            _MaFilter = new HeaderTextFilterModel(TextManager.TPhuThuKhachHang_Ma, nameof(TPhuThuKhachHangDto.Ma), typeof(int));
 
             _MaKhachHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TPhuThuKhachHang_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -43,8 +43,8 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_GhiChuFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_MaKhachHangFilter);
             AddHeaderFilter(_NgayFilter);
             AddHeaderFilter(_SoTienFilter);
@@ -66,13 +66,13 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TPhuThuKhachHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
-            {
-                dto.Ma = (int)_MaFilter.FilterValue;
-            }
             if (_GhiChuFilter.FilterValue != null)
             {
                 dto.GhiChu = (string)_GhiChuFilter.FilterValue;
+            }
+            if (_MaFilter.FilterValue != null)
+            {
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_MaKhachHangFilter.FilterValue != null)
             {

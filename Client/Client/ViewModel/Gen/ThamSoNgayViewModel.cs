@@ -11,22 +11,22 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(ThamSoNgayDto dto);
         partial void ProcessNewAddedDtoPartial(ThamSoNgayDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _GiaTriFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _TenFilter;
 
         public ThamSoNgayViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_Ma, nameof(ThamSoNgayDto.Ma), typeof(int));
-
             _GiaTriFilter = new HeaderDateFilterModel(TextManager.ThamSoNgay_GiaTri, nameof(ThamSoNgayDto.GiaTri), typeof(System.DateTime));
+
+            _MaFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_Ma, nameof(ThamSoNgayDto.Ma), typeof(int));
 
             _TenFilter = new HeaderTextFilterModel(TextManager.ThamSoNgay_Ten, nameof(ThamSoNgayDto.Ten), typeof(string));
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_GiaTriFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_TenFilter);
         }
 
@@ -38,13 +38,13 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(ThamSoNgayDto dto)
         {
-            if (_MaFilter.FilterValue != null)
-            {
-                dto.Ma = (int)_MaFilter.FilterValue;
-            }
             if (_GiaTriFilter.FilterValue != null)
             {
                 dto.GiaTri = (System.DateTime)_GiaTriFilter.FilterValue;
+            }
+            if (_MaFilter.FilterValue != null)
+            {
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_TenFilter.FilterValue != null)
             {

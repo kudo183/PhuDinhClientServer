@@ -12,8 +12,8 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChuyenHangDto dto);
         partial void ProcessNewAddedDtoPartial(TChuyenHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _GioFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _MaNhanVienGiaoHangFilter;
         HeaderFilterBaseModel _NgayFilter;
         HeaderFilterBaseModel _TongDonHangFilter;
@@ -22,9 +22,9 @@ namespace Client.ViewModel
 
         public TChuyenHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_Ma, nameof(TChuyenHangDto.Ma), typeof(int));
-
             _GioFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_Gio, nameof(TChuyenHangDto.Gio), typeof(System.TimeSpan?));
+
+            _MaFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_Ma, nameof(TChuyenHangDto.Ma), typeof(int));
 
             _MaNhanVienGiaoHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChuyenHang_MaNhanVienGiaoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -49,8 +49,8 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_GioFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_MaNhanVienGiaoHangFilter);
             AddHeaderFilter(_NgayFilter);
             AddHeaderFilter(_TongDonHangFilter);
@@ -74,13 +74,13 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TChuyenHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
-            {
-                dto.Ma = (int)_MaFilter.FilterValue;
-            }
             if (_GioFilter.FilterValue != null)
             {
                 dto.Gio = (System.TimeSpan?)_GioFilter.FilterValue;
+            }
+            if (_MaFilter.FilterValue != null)
+            {
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_MaNhanVienGiaoHangFilter.FilterValue != null)
             {

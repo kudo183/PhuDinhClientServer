@@ -12,17 +12,17 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TGiamTruKhachHangDto dto);
         partial void ProcessNewAddedDtoPartial(TGiamTruKhachHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _GhiChuFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _MaKhachHangFilter;
         HeaderFilterBaseModel _NgayFilter;
         HeaderFilterBaseModel _SoTienFilter;
 
         public TGiamTruKhachHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TGiamTruKhachHang_Ma, nameof(TGiamTruKhachHangDto.Ma), typeof(int));
-
             _GhiChuFilter = new HeaderTextFilterModel(TextManager.TGiamTruKhachHang_GhiChu, nameof(TGiamTruKhachHangDto.GhiChu), typeof(string));
+
+            _MaFilter = new HeaderTextFilterModel(TextManager.TGiamTruKhachHang_Ma, nameof(TGiamTruKhachHangDto.Ma), typeof(int));
 
             _MaKhachHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TGiamTruKhachHang_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -43,8 +43,8 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_GhiChuFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_MaKhachHangFilter);
             AddHeaderFilter(_NgayFilter);
             AddHeaderFilter(_SoTienFilter);
@@ -66,13 +66,13 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TGiamTruKhachHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
-            {
-                dto.Ma = (int)_MaFilter.FilterValue;
-            }
             if (_GhiChuFilter.FilterValue != null)
             {
                 dto.GhiChu = (string)_GhiChuFilter.FilterValue;
+            }
+            if (_MaFilter.FilterValue != null)
+            {
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_MaKhachHangFilter.FilterValue != null)
             {

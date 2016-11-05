@@ -12,8 +12,8 @@ namespace Server.Controllers
         public override RLoaiHangDto ConvertToDto(RLoaiHang entity)
         {
             var dto = new RLoaiHangDto();
-            dto.Ma = entity.Ma;
             dto.HangNhaLam = entity.HangNhaLam;
+            dto.Ma = entity.Ma;
             dto.TenLoai = entity.TenLoai;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -24,8 +24,8 @@ namespace Server.Controllers
         public override RLoaiHang ConvertToEntity(RLoaiHangDto dto)
         {
             var entity = new RLoaiHang();
-            entity.Ma = dto.Ma;
             entity.HangNhaLam = dto.HangNhaLam;
+            entity.Ma = dto.Ma;
             entity.TenLoai = dto.TenLoai;
 
             ConvertToEntityPartial(ref entity, dto);

@@ -11,19 +11,19 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RBaiXeDto dto);
         partial void ProcessNewAddedDtoPartial(RBaiXeDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _DiaDiemBaiXeFilter;
+        HeaderFilterBaseModel _MaFilter;
 
         public RBaiXeViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.RBaiXe_Ma, nameof(RBaiXeDto.Ma), typeof(int));
-
             _DiaDiemBaiXeFilter = new HeaderTextFilterModel(TextManager.RBaiXe_DiaDiemBaiXe, nameof(RBaiXeDto.DiaDiemBaiXe), typeof(string));
+
+            _MaFilter = new HeaderTextFilterModel(TextManager.RBaiXe_Ma, nameof(RBaiXeDto.Ma), typeof(int));
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_DiaDiemBaiXeFilter);
+            AddHeaderFilter(_MaFilter);
         }
 
         protected override void ProcessDtoBeforeAddToEntities(RBaiXeDto dto)
@@ -34,13 +34,13 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RBaiXeDto dto)
         {
-            if (_MaFilter.FilterValue != null)
-            {
-                dto.Ma = (int)_MaFilter.FilterValue;
-            }
             if (_DiaDiemBaiXeFilter.FilterValue != null)
             {
                 dto.DiaDiemBaiXe = (string)_DiaDiemBaiXeFilter.FilterValue;
+            }
+            if (_MaFilter.FilterValue != null)
+            {
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
 
             ProcessNewAddedDtoPartial(dto);

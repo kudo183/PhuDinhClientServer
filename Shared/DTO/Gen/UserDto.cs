@@ -5,20 +5,20 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class UserDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
         string oEmail;
+        int oMa;
         System.DateTime oNgayTao;
         string oPasswordHash;
 
-        int _Ma;
         string _Email;
+        int _Ma;
         System.DateTime _NgayTao;
         string _PasswordHash;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
-        [ProtoBuf.ProtoMember(2)]
         public string Email { get { return _Email; } set { _Email = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(2)]
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public System.DateTime NgayTao { get { return _NgayTao; } set { _NgayTao = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -26,16 +26,16 @@ namespace DTO
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
             oEmail = Email;
+            oMa = Ma;
             oNgayTao = NgayTao;
             oPasswordHash = PasswordHash;
         }
 
         public bool HasChange()
         {
-            return (oMa != Ma)
-            || (oEmail != Email)
+            return (oEmail != Email)
+            || (oMa != Ma)
             || (oNgayTao != NgayTao)
             || (oPasswordHash != PasswordHash)
 ;

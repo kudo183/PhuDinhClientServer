@@ -12,8 +12,8 @@ namespace Server.Controllers
         public override TGiamTruKhachHangDto ConvertToDto(TGiamTruKhachHang entity)
         {
             var dto = new TGiamTruKhachHangDto();
-            dto.Ma = entity.Ma;
             dto.GhiChu = entity.GhiChu;
+            dto.Ma = entity.Ma;
             dto.MaKhachHang = entity.MaKhachHang;
             dto.Ngay = entity.Ngay;
             dto.SoTien = entity.SoTien;
@@ -26,8 +26,8 @@ namespace Server.Controllers
         public override TGiamTruKhachHang ConvertToEntity(TGiamTruKhachHangDto dto)
         {
             var entity = new TGiamTruKhachHang();
-            entity.Ma = dto.Ma;
             entity.GhiChu = dto.GhiChu;
+            entity.Ma = dto.Ma;
             entity.MaKhachHang = dto.MaKhachHang;
             entity.Ngay = dto.Ngay;
             entity.SoTien = dto.SoTien;

@@ -5,24 +5,24 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class TChiPhiDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
         string oGhiChu;
+        int oMa;
         int oMaLoaiChiPhi;
         int oMaNhanVienGiaoHang;
         System.DateTime oNgay;
         int oSoTien;
 
-        int _Ma;
         string _GhiChu;
+        int _Ma;
         int _MaLoaiChiPhi;
         int _MaNhanVienGiaoHang;
         System.DateTime _Ngay;
         int _SoTien;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
-        [ProtoBuf.ProtoMember(2)]
         public string GhiChu { get { return _GhiChu; } set { _GhiChu = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(2)]
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public int MaLoaiChiPhi { get { return _MaLoaiChiPhi; } set { _MaLoaiChiPhi = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -34,8 +34,8 @@ namespace DTO
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
             oGhiChu = GhiChu;
+            oMa = Ma;
             oMaLoaiChiPhi = MaLoaiChiPhi;
             oMaNhanVienGiaoHang = MaNhanVienGiaoHang;
             oNgay = Ngay;
@@ -44,8 +44,8 @@ namespace DTO
 
         public bool HasChange()
         {
-            return (oMa != Ma)
-            || (oGhiChu != GhiChu)
+            return (oGhiChu != GhiChu)
+            || (oMa != Ma)
             || (oMaLoaiChiPhi != MaLoaiChiPhi)
             || (oMaNhanVienGiaoHang != MaNhanVienGiaoHang)
             || (oNgay != Ngay)

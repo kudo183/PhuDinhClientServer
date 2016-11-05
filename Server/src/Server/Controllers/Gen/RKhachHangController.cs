@@ -12,8 +12,8 @@ namespace Server.Controllers
         public override RKhachHangDto ConvertToDto(RKhachHang entity)
         {
             var dto = new RKhachHangDto();
-            dto.Ma = entity.Ma;
             dto.KhachRieng = entity.KhachRieng;
+            dto.Ma = entity.Ma;
             dto.MaDiaDiem = entity.MaDiaDiem;
             dto.TenKhachHang = entity.TenKhachHang;
 
@@ -25,8 +25,8 @@ namespace Server.Controllers
         public override RKhachHang ConvertToEntity(RKhachHangDto dto)
         {
             var entity = new RKhachHang();
-            entity.Ma = dto.Ma;
             entity.KhachRieng = dto.KhachRieng;
+            entity.Ma = dto.Ma;
             entity.MaDiaDiem = dto.MaDiaDiem;
             entity.TenKhachHang = dto.TenKhachHang;
 

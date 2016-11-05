@@ -5,20 +5,20 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class RKhachHangChanhDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
         bool oLaMacDinh;
+        int oMa;
         int oMaChanh;
         int oMaKhachHang;
 
-        int _Ma;
         bool _LaMacDinh;
+        int _Ma;
         int _MaChanh;
         int _MaKhachHang;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
-        [ProtoBuf.ProtoMember(2)]
         public bool LaMacDinh { get { return _LaMacDinh; } set { _LaMacDinh = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(2)]
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public int MaChanh { get { return _MaChanh; } set { _MaChanh = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -26,16 +26,16 @@ namespace DTO
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
             oLaMacDinh = LaMacDinh;
+            oMa = Ma;
             oMaChanh = MaChanh;
             oMaKhachHang = MaKhachHang;
         }
 
         public bool HasChange()
         {
-            return (oMa != Ma)
-            || (oLaMacDinh != LaMacDinh)
+            return (oLaMacDinh != LaMacDinh)
+            || (oMa != Ma)
             || (oMaChanh != MaChanh)
             || (oMaKhachHang != MaKhachHang)
 ;
