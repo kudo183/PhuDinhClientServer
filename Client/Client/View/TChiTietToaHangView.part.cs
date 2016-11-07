@@ -19,9 +19,26 @@ namespace Client.View
                     Mode = System.Windows.Data.BindingMode.OneWay
                 }
             };
-
-            datagrid.Columns[1].DisplayIndex = 3;
-            datagrid.Columns[3].DisplayIndex = 1;
+            
+            foreach (var column in datagrid.Columns)
+            {
+                var header = column.Header as SimpleDataGrid.ViewModel.HeaderFilterBaseModel;
+                switch (header.PropertyName)
+                {
+                    case nameof(DTO.TChiTietToaHangDto.Ma):
+                        column.DisplayIndex = 0;
+                        break;
+                    case nameof(DTO.TChiTietToaHangDto.MaToaHang):
+                        column.DisplayIndex = 1;
+                        break;
+                    case nameof(DTO.TChiTietToaHangDto.MaChiTietDonHang):
+                        column.DisplayIndex = 2;
+                        break;
+                    case nameof(DTO.TChiTietToaHangDto.GiaTien):
+                        column.DisplayIndex = 3;
+                        break;
+                }
+            }
         }
     }
 }

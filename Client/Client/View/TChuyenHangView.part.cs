@@ -7,7 +7,35 @@ namespace Client.View
         partial void InitUIPartial()
         {
             var datagrid = Content as SimpleDataGrid.EditableGridView;
-            datagrid.Columns[3].DisplayIndex = 1;
+
+            foreach (var column in datagrid.Columns)
+            {
+                var header = column.Header as SimpleDataGrid.ViewModel.HeaderFilterBaseModel;
+                switch (header.PropertyName)
+                {
+                    case nameof(DTO.TChuyenHangDto.Ma):
+                        column.DisplayIndex = 0;
+                        break;
+                    case nameof(DTO.TChuyenHangDto.Ngay):
+                        column.DisplayIndex = 1;
+                        break;
+                    case nameof(DTO.TChuyenHangDto.Gio):
+                        column.DisplayIndex = 2;
+                        break;
+                    case nameof(DTO.TChuyenHangDto.MaNhanVienGiaoHang):
+                        column.DisplayIndex = 3;
+                        break;
+                    case nameof(DTO.TChuyenHangDto.TongDonHang):
+                        column.DisplayIndex = 4;
+                        break;
+                    case nameof(DTO.TChuyenHangDto.TongSoLuongTheoDonHang):
+                        column.DisplayIndex = 5;
+                        break;
+                    case nameof(DTO.TChuyenHangDto.TongSoLuongThucTe):
+                        column.DisplayIndex = 6;
+                        break;
+                }
+            }
         }
     }
 }

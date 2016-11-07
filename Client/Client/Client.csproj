@@ -254,6 +254,7 @@
     </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
+    <Compile Include="View\RBaiXeView.part.cs" />
     <Compile Include="View\TChiTietChuyenKhoView.part.cs" />
     <Compile Include="View\TChiTietDonHangView.part.cs" />
     <Compile Include="View\TChuyenHangDonHangView.part.cs" />

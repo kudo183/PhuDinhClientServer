@@ -2,7 +2,7 @@
 
 namespace Client.View
 {
-    public partial class RKhachHangView : BaseView<DTO.RKhachHangDto>
+    public partial class RBaiXeView : BaseView<DTO.RBaiXeDto>
     {
         partial void InitUIPartial()
         {
@@ -13,17 +13,11 @@ namespace Client.View
                 var header = column.Header as SimpleDataGrid.ViewModel.HeaderFilterBaseModel;
                 switch (header.PropertyName)
                 {
-                    case nameof(DTO.RKhachHangDto.Ma):
+                    case nameof(DTO.RBaiXeDto.Ma):
                         column.DisplayIndex = 0;
                         break;
-                    case nameof(DTO.RKhachHangDto.MaDiaDiem):
+                    case nameof(DTO.RBaiXeDto.DiaDiemBaiXe):
                         column.DisplayIndex = 1;
-                        break;
-                    case nameof(DTO.RKhachHangDto.TenKhachHang):
-                        column.DisplayIndex = 2;
-                        break;
-                    case nameof(DTO.RKhachHangDto.KhachRieng):
-                        column.DisplayIndex = 3;
                         break;
                 }
             }
