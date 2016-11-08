@@ -3,33 +3,34 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class TMatHang
+    public partial class TMatHang : huypq.SwaMiddleware.SwaIEntity
     {
         public TMatHang()
         {
-            RCanhBaoTonKho = new HashSet<RCanhBaoTonKho>();
-            RMatHangNguyenLieu = new HashSet<RMatHangNguyenLieu>();
-            TChiTietChuyenKho = new HashSet<TChiTietChuyenKho>();
-            TChiTietDonHang = new HashSet<TChiTietDonHang>();
-            TChiTietNhapHang = new HashSet<TChiTietNhapHang>();
-            TTonKho = new HashSet<TTonKho>();
+            RCanhBaoTonKhoMaMatHangNavigation = new HashSet<RCanhBaoTonKho>();
+            RMatHangNguyenLieuMaMatHangNavigation = new HashSet<RMatHangNguyenLieu>();
+            TChiTietChuyenKhoMaMatHangNavigation = new HashSet<TChiTietChuyenKho>();
+            TChiTietDonHangMaMatHangNavigation = new HashSet<TChiTietDonHang>();
+            TChiTietNhapHangMaMatHangNavigation = new HashSet<TChiTietNhapHang>();
+            TTonKhoMaMatHangNavigation = new HashSet<TTonKho>();
         }
 
         public int Ma { get; set; }
+        public int MaGroup { get; set; }
         public int MaLoai { get; set; }
-        public string TenMatHang { get; set; }
         public int SoKy { get; set; }
         public int SoMet { get; set; }
+        public string TenMatHang { get; set; }
         public string TenMatHangDayDu { get; set; }
         public string TenMatHangIn { get; set; }
-        public int MaGroup { get; set; }
 
-        public virtual ICollection<RCanhBaoTonKho> RCanhBaoTonKho { get; set; }
-        public virtual ICollection<RMatHangNguyenLieu> RMatHangNguyenLieu { get; set; }
-        public virtual ICollection<TChiTietChuyenKho> TChiTietChuyenKho { get; set; }
-        public virtual ICollection<TChiTietDonHang> TChiTietDonHang { get; set; }
-        public virtual ICollection<TChiTietNhapHang> TChiTietNhapHang { get; set; }
-        public virtual ICollection<TTonKho> TTonKho { get; set; }
-        public virtual RLoaiHang MaLoaiNavigation { get; set; }
+        public ICollection<RCanhBaoTonKho> RCanhBaoTonKhoMaMatHangNavigation { get; set; }
+        public ICollection<RMatHangNguyenLieu> RMatHangNguyenLieuMaMatHangNavigation { get; set; }
+        public ICollection<TChiTietChuyenKho> TChiTietChuyenKhoMaMatHangNavigation { get; set; }
+        public ICollection<TChiTietDonHang> TChiTietDonHangMaMatHangNavigation { get; set; }
+        public ICollection<TChiTietNhapHang> TChiTietNhapHangMaMatHangNavigation { get; set; }
+        public ICollection<TTonKho> TTonKhoMaMatHangNavigation { get; set; }
+
+        public RLoaiHang MaLoaiNavigation { get; set; }
     }
 }

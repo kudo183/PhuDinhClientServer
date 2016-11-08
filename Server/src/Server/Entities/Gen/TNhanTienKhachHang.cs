@@ -3,14 +3,19 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class TNhanTienKhachHang
+    public partial class TNhanTienKhachHang : huypq.SwaMiddleware.SwaIEntity
     {
-        public int Ma { get; set; }
-        public int MaKhachHang { get; set; }
-        public DateTime Ngay { get; set; }
-        public int SoTien { get; set; }
-        public int MaGroup { get; set; }
+        public TNhanTienKhachHang()
+        {
+        }
 
-        public virtual RKhachHang MaKhachHangNavigation { get; set; }
+        public int Ma { get; set; }
+        public int MaGroup { get; set; }
+        public int MaKhachHang { get; set; }
+        public System.DateTime Ngay { get; set; }
+        public int SoTien { get; set; }
+
+
+        public RKhachHang MaKhachHangNavigation { get; set; }
     }
 }

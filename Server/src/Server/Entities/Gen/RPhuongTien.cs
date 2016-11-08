@@ -3,17 +3,18 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class RPhuongTien
+    public partial class RPhuongTien : huypq.SwaMiddleware.SwaIEntity
     {
         public RPhuongTien()
         {
-            RNhanVien = new HashSet<RNhanVien>();
+            RNhanVienMaPhuongTienNavigation = new HashSet<RNhanVien>();
         }
 
         public int Ma { get; set; }
-        public string TenPhuongTien { get; set; }
         public int MaGroup { get; set; }
+        public string TenPhuongTien { get; set; }
 
-        public virtual ICollection<RNhanVien> RNhanVien { get; set; }
+        public ICollection<RNhanVien> RNhanVienMaPhuongTienNavigation { get; set; }
+
     }
 }

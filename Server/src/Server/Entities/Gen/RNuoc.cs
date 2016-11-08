@@ -3,17 +3,18 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class RNuoc
+    public partial class RNuoc : huypq.SwaMiddleware.SwaIEntity
     {
         public RNuoc()
         {
-            RDiaDiem = new HashSet<RDiaDiem>();
+            RDiaDiemMaNuocNavigation = new HashSet<RDiaDiem>();
         }
 
         public int Ma { get; set; }
-        public string TenNuoc { get; set; }
         public int MaGroup { get; set; }
+        public string TenNuoc { get; set; }
 
-        public virtual ICollection<RDiaDiem> RDiaDiem { get; set; }
+        public ICollection<RDiaDiem> RDiaDiemMaNuocNavigation { get; set; }
+
     }
 }

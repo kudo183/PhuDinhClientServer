@@ -3,25 +3,26 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class RNhanVien
+    public partial class RNhanVien : huypq.SwaMiddleware.SwaIEntity
     {
         public RNhanVien()
         {
-            TChiPhi = new HashSet<TChiPhi>();
-            TChuyenHang = new HashSet<TChuyenHang>();
-            TChuyenKho = new HashSet<TChuyenKho>();
-            TNhapHang = new HashSet<TNhapHang>();
+            TChiPhiMaNhanVienGiaoHangNavigation = new HashSet<TChiPhi>();
+            TChuyenHangMaNhanVienGiaoHangNavigation = new HashSet<TChuyenHang>();
+            TChuyenKhoMaNhanVienNavigation = new HashSet<TChuyenKho>();
+            TNhapHangMaNhanVienNavigation = new HashSet<TNhapHang>();
         }
 
         public int Ma { get; set; }
+        public int MaGroup { get; set; }
         public int MaPhuongTien { get; set; }
         public string TenNhanVien { get; set; }
-        public int MaGroup { get; set; }
 
-        public virtual ICollection<TChiPhi> TChiPhi { get; set; }
-        public virtual ICollection<TChuyenHang> TChuyenHang { get; set; }
-        public virtual ICollection<TChuyenKho> TChuyenKho { get; set; }
-        public virtual ICollection<TNhapHang> TNhapHang { get; set; }
-        public virtual RPhuongTien MaPhuongTienNavigation { get; set; }
+        public ICollection<TChiPhi> TChiPhiMaNhanVienGiaoHangNavigation { get; set; }
+        public ICollection<TChuyenHang> TChuyenHangMaNhanVienGiaoHangNavigation { get; set; }
+        public ICollection<TChuyenKho> TChuyenKhoMaNhanVienNavigation { get; set; }
+        public ICollection<TNhapHang> TNhapHangMaNhanVienNavigation { get; set; }
+
+        public RPhuongTien MaPhuongTienNavigation { get; set; }
     }
 }

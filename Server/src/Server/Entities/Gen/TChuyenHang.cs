@@ -3,23 +3,24 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class TChuyenHang
+    public partial class TChuyenHang : huypq.SwaMiddleware.SwaIEntity
     {
         public TChuyenHang()
         {
-            TChuyenHangDonHang = new HashSet<TChuyenHangDonHang>();
+            TChuyenHangDonHangMaChuyenHangNavigation = new HashSet<TChuyenHangDonHang>();
         }
 
+        public System.TimeSpan? Gio { get; set; }
         public int Ma { get; set; }
+        public int MaGroup { get; set; }
         public int MaNhanVienGiaoHang { get; set; }
-        public DateTime Ngay { get; set; }
-        public TimeSpan? Gio { get; set; }
+        public System.DateTime Ngay { get; set; }
         public int TongDonHang { get; set; }
         public int TongSoLuongTheoDonHang { get; set; }
         public int TongSoLuongThucTe { get; set; }
-        public int MaGroup { get; set; }
 
-        public virtual ICollection<TChuyenHangDonHang> TChuyenHangDonHang { get; set; }
-        public virtual RNhanVien MaNhanVienGiaoHangNavigation { get; set; }
+        public ICollection<TChuyenHangDonHang> TChuyenHangDonHangMaChuyenHangNavigation { get; set; }
+
+        public RNhanVien MaNhanVienGiaoHangNavigation { get; set; }
     }
 }

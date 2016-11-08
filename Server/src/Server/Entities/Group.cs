@@ -7,13 +7,14 @@ namespace Server.Entities
     {
         public Group()
         {
-            UserGroup = new HashSet<UserGroup>();
+            UserGroupMaGroupNavigation = new HashSet<UserGroup>();
         }
 
         public int Ma { get; set; }
-        public DateTime NgayTao { get; set; }
+        public System.DateTime NgayTao { get; set; }
         public string TenGroup { get; set; }
 
-        public virtual ICollection<UserGroup> UserGroup { get; set; }
+        public ICollection<UserGroup> UserGroupMaGroupNavigation { get; set; }
+
     }
 }

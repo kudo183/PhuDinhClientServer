@@ -3,24 +3,25 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class TChiTietDonHang
+    public partial class TChiTietDonHang : huypq.SwaMiddleware.SwaIEntity
     {
         public TChiTietDonHang()
         {
-            TChiTietChuyenHangDonHang = new HashSet<TChiTietChuyenHangDonHang>();
-            TChiTietToaHang = new HashSet<TChiTietToaHang>();
+            TChiTietChuyenHangDonHangMaChiTietDonHangNavigation = new HashSet<TChiTietChuyenHangDonHang>();
+            TChiTietToaHangMaChiTietDonHangNavigation = new HashSet<TChiTietToaHang>();
         }
 
         public int Ma { get; set; }
         public int MaDonHang { get; set; }
+        public int MaGroup { get; set; }
         public int MaMatHang { get; set; }
         public int SoLuong { get; set; }
         public bool Xong { get; set; }
-        public int MaGroup { get; set; }
 
-        public virtual ICollection<TChiTietChuyenHangDonHang> TChiTietChuyenHangDonHang { get; set; }
-        public virtual ICollection<TChiTietToaHang> TChiTietToaHang { get; set; }
-        public virtual TDonHang MaDonHangNavigation { get; set; }
-        public virtual TMatHang MaMatHangNavigation { get; set; }
+        public ICollection<TChiTietChuyenHangDonHang> TChiTietChuyenHangDonHangMaChiTietDonHangNavigation { get; set; }
+        public ICollection<TChiTietToaHang> TChiTietToaHangMaChiTietDonHangNavigation { get; set; }
+
+        public TDonHang MaDonHangNavigation { get; set; }
+        public TMatHang MaMatHangNavigation { get; set; }
     }
 }

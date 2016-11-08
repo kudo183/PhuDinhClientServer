@@ -3,19 +3,20 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class RNhaCungCap
+    public partial class RNhaCungCap : huypq.SwaMiddleware.SwaIEntity
     {
         public RNhaCungCap()
         {
-            TNhapHang = new HashSet<TNhapHang>();
-            TNhapNguyenLieu = new HashSet<TNhapNguyenLieu>();
+            TNhapHangMaNhaCungCapNavigation = new HashSet<TNhapHang>();
+            TNhapNguyenLieuMaNhaCungCapNavigation = new HashSet<TNhapNguyenLieu>();
         }
 
         public int Ma { get; set; }
-        public string TenNhaCungCap { get; set; }
         public int MaGroup { get; set; }
+        public string TenNhaCungCap { get; set; }
 
-        public virtual ICollection<TNhapHang> TNhapHang { get; set; }
-        public virtual ICollection<TNhapNguyenLieu> TNhapNguyenLieu { get; set; }
+        public ICollection<TNhapHang> TNhapHangMaNhaCungCapNavigation { get; set; }
+        public ICollection<TNhapNguyenLieu> TNhapNguyenLieuMaNhaCungCapNavigation { get; set; }
+
     }
 }
