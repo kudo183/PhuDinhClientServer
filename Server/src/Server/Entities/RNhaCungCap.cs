@@ -13,6 +13,7 @@ namespace Server.Entities
 
         public int Ma { get; set; }
         public string TenNhaCungCap { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<TNhapHang> TNhapHang { get; set; }
         public virtual ICollection<TNhapNguyenLieu> TNhapNguyenLieu { get; set; }

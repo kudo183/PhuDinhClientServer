@@ -17,9 +17,10 @@ namespace Server.Entities
         }
 
         public int Ma { get; set; }
-        public bool KhachRieng { get; set; }
         public int MaDiaDiem { get; set; }
         public string TenKhachHang { get; set; }
+        public bool KhachRieng { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<RKhachHangChanh> RKhachHangChanh { get; set; }
         public virtual ICollection<TCongNoKhachHang> TCongNoKhachHang { get; set; }

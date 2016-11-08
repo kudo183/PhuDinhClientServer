@@ -12,6 +12,7 @@ namespace Server.Entities
 
         public int Ma { get; set; }
         public string TenLoaiChiPhi { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<TChiPhi> TChiPhi { get; set; }
     }

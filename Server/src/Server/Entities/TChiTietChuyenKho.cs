@@ -9,6 +9,7 @@ namespace Server.Entities
         public int MaChuyenKho { get; set; }
         public int MaMatHang { get; set; }
         public int SoLuong { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual TChuyenKho MaChuyenKhoNavigation { get; set; }
         public virtual TMatHang MaMatHangNavigation { get; set; }

@@ -11,6 +11,7 @@ namespace Server.Entities
         public DateTime Ngay { get; set; }
         public int SoLuong { get; set; }
         public int SoLuongCu { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual RKhoHang MaKhoHangNavigation { get; set; }
         public virtual TMatHang MaMatHangNavigation { get; set; }

@@ -11,8 +11,9 @@ namespace Server.Entities
         }
 
         public int Ma { get; set; }
-        public bool HangNhaLam { get; set; }
         public string TenLoai { get; set; }
+        public bool HangNhaLam { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<TMatHang> TMatHang { get; set; }
     }

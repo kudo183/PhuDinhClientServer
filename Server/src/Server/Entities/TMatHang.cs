@@ -17,11 +17,12 @@ namespace Server.Entities
 
         public int Ma { get; set; }
         public int MaLoai { get; set; }
+        public string TenMatHang { get; set; }
         public int SoKy { get; set; }
         public int SoMet { get; set; }
-        public string TenMatHang { get; set; }
         public string TenMatHangDayDu { get; set; }
         public string TenMatHangIn { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<RCanhBaoTonKho> RCanhBaoTonKho { get; set; }
         public virtual ICollection<RMatHangNguyenLieu> RMatHangNguyenLieu { get; set; }

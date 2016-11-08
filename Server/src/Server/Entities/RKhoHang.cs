@@ -18,6 +18,7 @@ namespace Server.Entities
         public int Ma { get; set; }
         public string TenKho { get; set; }
         public bool TrangThai { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<RCanhBaoTonKho> RCanhBaoTonKho { get; set; }
         public virtual ICollection<TChuyenKho> TChuyenKhoMaKhoHangNhapNavigation { get; set; }

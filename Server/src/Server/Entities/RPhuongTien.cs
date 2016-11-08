@@ -12,6 +12,7 @@ namespace Server.Entities
 
         public int Ma { get; set; }
         public string TenPhuongTien { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<RNhanVien> RNhanVien { get; set; }
     }

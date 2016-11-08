@@ -14,6 +14,7 @@ namespace Server.Entities
         public int Ma { get; set; }
         public int MaBaiXe { get; set; }
         public string TenChanh { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<RKhachHangChanh> RKhachHangChanh { get; set; }
         public virtual ICollection<TDonHang> TDonHang { get; set; }

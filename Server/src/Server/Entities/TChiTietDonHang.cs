@@ -16,6 +16,7 @@ namespace Server.Entities
         public int MaMatHang { get; set; }
         public int SoLuong { get; set; }
         public bool Xong { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<TChiTietChuyenHangDonHang> TChiTietChuyenHangDonHang { get; set; }
         public virtual ICollection<TChiTietToaHang> TChiTietToaHang { get; set; }

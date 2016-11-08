@@ -12,6 +12,7 @@ namespace Server.Entities
 
         public int Ma { get; set; }
         public string TenLoai { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<RNguyenLieu> RNguyenLieu { get; set; }
     }

@@ -11,10 +11,11 @@ namespace Server.Entities
         }
 
         public int Ma { get; set; }
+        public int MaNhanVien { get; set; }
         public int MaKhoHang { get; set; }
         public int MaNhaCungCap { get; set; }
-        public int MaNhanVien { get; set; }
         public DateTime Ngay { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual ICollection<TChiTietNhapHang> TChiTietNhapHang { get; set; }
         public virtual RKhoHang MaKhoHangNavigation { get; set; }

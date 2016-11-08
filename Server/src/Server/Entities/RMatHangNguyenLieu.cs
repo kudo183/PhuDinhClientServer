@@ -8,6 +8,7 @@ namespace Server.Entities
         public int Ma { get; set; }
         public int MaMatHang { get; set; }
         public int MaNguyenLieu { get; set; }
+        public int MaGroup { get; set; }
 
         public virtual TMatHang MaMatHangNavigation { get; set; }
         public virtual RNguyenLieu MaNguyenLieuNavigation { get; set; }
