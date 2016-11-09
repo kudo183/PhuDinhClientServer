@@ -7,11 +7,19 @@ namespace Client
     /// </summary>
     public partial class Login : Window
     {
+        ViewModel.LoginViewModel vm;
         public Login()
         {
             InitializeComponent();
-            var vm = new ViewModel.LoginViewModel(this);
+            vm = new ViewModel.LoginViewModel(this);
+            vm.User = "huy";
+            passbox.Password = "nobita";
             DataContext = vm;
+        }
+
+        private void passbox_PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            vm.Pass = passbox.Password;
         }
     }
 }

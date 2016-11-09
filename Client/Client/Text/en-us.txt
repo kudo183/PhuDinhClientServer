@@ -160,3 +160,5 @@ LoginWindow_LoginFailed		Wrong Username or Password.
 LoginWindow_Title		Login
 LoginWindow_TxtPassword		Password:
 LoginWindow_TxtUser		Username:
+LoginWindow_TxtGroupList		Groups:
+LoginWindow_BtnGetGroupList		Get

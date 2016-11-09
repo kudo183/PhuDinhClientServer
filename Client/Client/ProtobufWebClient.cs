@@ -29,15 +29,44 @@ namespace Client
             return pagingResult;
         }
 
-        public void Login(string user, string pass)
+        public string[] GetGroups(string user)
+        {
+            var uri = GetUri("user", "getgroups");
+
+            var data = new NameValueCollection();
+            data["user"] = user;
+
+            var client = new MyWebClient();
+
+            //choose json response type because when respone is a string, json is better than protobuf
+            client.Headers["response"] = "json";
+
+            var response = client.UploadValues(uri, data);
+            var text = System.Text.Encoding.UTF8.GetString(response, 1, response.Length - 2);
+
+            var groups = text.Split(new string[] { "*&*" }, StringSplitOptions.RemoveEmptyEntries);
+
+            return groups;
+        }
+
+        public void Login(string user, string pass, string group)
         {
             var uri = GetUri("user", "token");
 
             var data = new NameValueCollection();
             data["user"] = user;
             data["pass"] = pass;
+            data["group"] = group;
 
-            Token = Post(uri, data);
+            var client = new MyWebClient();
+
+            //choose json response type because when respone is a string, json is better than protobuf
+            client.Headers["response"] = "json";
+
+            var token = client.UploadValues(uri, data);
+
+            //skip begin end double quote
+            Token = System.Text.Encoding.UTF8.GetString(token, 1, token.Length - 2);
         }
 
         public string Token { get; set; }
@@ -89,19 +118,6 @@ namespace Client
             var response = client.UploadData(uri, data);
 
             return response;
-        }
-
-        private string Post(string uri, NameValueCollection data)
-        {
-            var client = new MyWebClient();
-
-            //choose json response type because when respone is a string, json is better than protobuf
-            client.Headers["response"] = "json";
-
-            var token = client.UploadValues(uri, data);
-
-            //skip begin end double quote
-            return System.Text.Encoding.UTF8.GetString(token, 1, token.Length - 2);
         }
 
         private byte[] ToBytes<T>(T data)

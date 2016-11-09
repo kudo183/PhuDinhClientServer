@@ -69,7 +69,6 @@
     <Compile Include="ProtoBufDataService.cs" />
     <Compile Include="Text\TextManager.cs" />
     <Compile Include="ViewModelFactory.cs" />
-    <Compile Include="ViewModel\Gen\GroupViewModel.cs" />
     <Compile Include="ViewModel\Gen\RBaiXeViewModel.cs" />
     <Compile Include="ViewModel\Gen\RCanhBaoTonKhoViewModel.cs" />
     <Compile Include="ViewModel\Gen\RChanhViewModel.cs" />
@@ -106,8 +105,6 @@
     <Compile Include="ViewModel\Gen\TPhuThuKhachHangViewModel.cs" />
     <Compile Include="ViewModel\Gen\TToaHangViewModel.cs" />
     <Compile Include="ViewModel\Gen\TTonKhoViewModel.cs" />
-    <Compile Include="ViewModel\Gen\UserGroupViewModel.cs" />
-    <Compile Include="ViewModel\Gen\UserViewModel.cs" />
     <Compile Include="ViewModel\TNhapNguyenLieuViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietChuyenHangDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietToaHangViewModel.part.cs" />
@@ -134,9 +131,6 @@
     </Compile>
     <Compile Include="View\complexDonHangView.xaml.cs">
       <DependentUpon>complexDonHangView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Gen\GroupView.xaml.cs">
-      <DependentUpon>GroupView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\Gen\RBaiXeView.xaml.cs">
       <DependentUpon>RBaiXeView.xaml</DependentUpon>
@@ -246,19 +240,12 @@
     <Compile Include="View\Gen\TTonKhoView.xaml.cs">
       <DependentUpon>TTonKhoView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Gen\UserGroupView.xaml.cs">
-      <DependentUpon>UserGroupView.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\Gen\UserView.xaml.cs">
-      <DependentUpon>UserView.xaml</DependentUpon>
-    </Compile>
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="View\RBaiXeView.part.cs" />
     <Compile Include="View\TChiTietChuyenKhoView.part.cs" />
     <Compile Include="View\TChiTietDonHangView.part.cs" />
     <Compile Include="View\TChuyenHangDonHangView.part.cs" />
-    <Compile Include="View\UserGroupView.part.cs" />
     <Compile Include="View\TTonKhoView.part.cs" />
     <Compile Include="View\TToaHangView.part.cs" />
     <Compile Include="View\TPhuThuKhachHangView.part.cs" />
@@ -322,10 +309,6 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="View\Gen\GroupView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
     <Page Include="View\Gen\RBaiXeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -467,14 +450,6 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Gen\TTonKhoView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Gen\UserGroupView.xaml">
-      <Generator>MSBuild:Compile</Generator>
-      <SubType>Designer</SubType>
-    </Page>
-    <Page Include="View\Gen\UserView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

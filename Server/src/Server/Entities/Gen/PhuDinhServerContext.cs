@@ -5,7 +5,7 @@ using huypq.SwaMiddleware;
 
 namespace Server.Entities
 {
-    public partial class PhuDinhServerContext : DbContext, SwaIDbContext<User>
+    public partial class PhuDinhServerContext : DbContext, SwaIDbContext<User, Group, UserGroup>
     {
         public PhuDinhServerContext(DbContextOptions<PhuDinhServerContext> options) : base(options)
         {

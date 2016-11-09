@@ -204,6 +204,8 @@ namespace Client
         public static string LoginWindow_Title { get { return GetText(); } }
         public static string LoginWindow_TxtPassword { get { return GetText(); } }
         public static string LoginWindow_TxtUser { get { return GetText(); } }
+        public static string LoginWindow_TxtGroupList { get { return GetText(); } }
+        public static string LoginWindow_BtnGetGroupList { get { return GetText(); } }
 
         public static string GetText([CallerMemberName] string textKey = null)
         {
@@ -373,12 +375,14 @@ namespace Client
             _dic.Add("UserGroup_LaChuGroup", "LaChuGroup");
             _dic.Add("UserGroup_MaGroup", "MaGroup");
             _dic.Add("UserGroup_MaUser", "MaUser");
-            _dic.Add("Button_Ok", "Ok");
-            _dic.Add("LoginWindow_CannotConnect", "Unable to connect to the remote server.");
-            _dic.Add("LoginWindow_LoginFailed", "Wrong Username or Password.");
-            _dic.Add("LoginWindow_Title", "Login");
-            _dic.Add("LoginWindow_TxtPassword", "Password:");
-            _dic.Add("LoginWindow_TxtUser", "Username:");
+            _dic.Add("Button_Ok", "OK");
+            _dic.Add("LoginWindow_CannotConnect", "Không kết nối được máy chủ.");
+            _dic.Add("LoginWindow_LoginFailed", "Sai Tên đăng nhập hoặc Mã đăng nhập.");
+            _dic.Add("LoginWindow_Title", "Đăng Nhập");
+            _dic.Add("LoginWindow_TxtPassword", "Mã đăng nhập:");
+            _dic.Add("LoginWindow_TxtUser", "Tên đăng nhập:");
+            _dic.Add("LoginWindow_TxtGroupList", "Tên tổ chức:");
+            _dic.Add("LoginWindow_BtnGetGroupList", "Lấy");
         }
     }
 }

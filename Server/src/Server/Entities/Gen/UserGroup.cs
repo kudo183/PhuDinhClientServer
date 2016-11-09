@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace Server.Entities
 {
-    public partial class UserGroup : huypq.SwaMiddleware.SwaIEntity
+    public partial class UserGroup : huypq.SwaMiddleware.SwaIUserGroup, huypq.SwaMiddleware.SwaIEntity
     {
         public UserGroup()
         {

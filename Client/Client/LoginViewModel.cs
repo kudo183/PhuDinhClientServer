@@ -1,6 +1,7 @@
 ﻿using SimpleDataGrid;
 using System.ComponentModel;
 using System.Net;
+using System.Runtime.CompilerServices;
 using System.Windows;
 
 namespace Client.ViewModel
@@ -16,7 +17,7 @@ namespace Client.ViewModel
                 if (_user != value)
                 {
                     _user = value;
-                    OnPropertyChanged("User");
+                    OnPropertyChanged();
                     OkCommand.RaiseCanExecuteChanged();
                 }
             }
@@ -31,11 +32,59 @@ namespace Client.ViewModel
                 if (_pass != value)
                 {
                     _pass = value;
-                    OnPropertyChanged("Pass");
+                    OnPropertyChanged();
                     OkCommand.RaiseCanExecuteChanged();
                 }
             }
         }
+
+        private string selectedGroup;
+
+        public string SelectedGroup
+        {
+            get { return selectedGroup; }
+            set
+            {
+                selectedGroup = value;
+                OnPropertyChanged();
+                OkCommand.RaiseCanExecuteChanged();
+            }
+        }
+
+        private string[] groupList;
+
+        public string[] GroupList
+        {
+            get { return groupList; }
+            set
+            {
+                groupList = value;
+                OnPropertyChanged();
+
+                if (groupList.Length > 0)
+                {
+                    SelectedGroup = groupList[0];
+                    GroupListEnabled = true;
+                }
+                else
+                {
+                    GroupListEnabled = false;
+                }
+            }
+        }
+
+        private bool groupListEnabled;
+
+        public bool GroupListEnabled
+        {
+            get { return groupListEnabled; }
+            set
+            {
+                groupListEnabled = value;
+                OnPropertyChanged();
+            }
+        }
+
 
         private string _msg;
         public string Msg
@@ -46,8 +95,7 @@ namespace Client.ViewModel
                 if (_msg != value)
                 {
                     _msg = value;
-                    OnPropertyChanged("Msg");
-                    OkCommand.RaiseCanExecuteChanged();
+                    OnPropertyChanged();
                 }
             }
         }
@@ -57,17 +105,44 @@ namespace Client.ViewModel
         public LoginViewModel(Window window)
         {
             _window = window;
-            _user = "huy";
-            _pass = "nobita";
 
             OkCommand = new SimpleCommand("OkCommand",
                 () => { OkButtonClick(); },
                 () =>
                 {
                     return (string.IsNullOrEmpty(_user) == false
-                    && string.IsNullOrEmpty(_pass) == false);
+                    && string.IsNullOrEmpty(_pass) == false
+                    && string.IsNullOrEmpty(selectedGroup) == false);
                 }
             );
+
+            GetGroupsCommand = new SimpleCommand("GetGroupsCommand",
+                () => { GetGroupsClick(); },
+                () =>
+                {
+                    return (string.IsNullOrEmpty(_user) == false);
+                }
+            );
+        }
+
+        void GetGroupsClick()
+        {
+            try
+            {
+                Msg = "";
+
+                GroupList = ProtobufWebClient.Instance.GetGroups(User);
+            }
+            catch (WebException ex)
+            {
+                switch (ex.Status)
+                {
+                    case WebExceptionStatus.ConnectFailure:
+                    case WebExceptionStatus.Timeout:
+                        Msg = TextManager.LoginWindow_CannotConnect;
+                        break;
+                }
+            }
         }
 
         void OkButtonClick()
@@ -76,8 +151,10 @@ namespace Client.ViewModel
             {
                 Msg = "";
 
-                ProtobufWebClient.Instance.Login(User, Pass);
-                 
+                ProtobufWebClient.Instance.Login(User, Pass, SelectedGroup);
+
+                Pass = string.Empty;
+
                 var w = new MainWindow();
                 w.Show();
                 _window.Close();
@@ -99,9 +176,11 @@ namespace Client.ViewModel
 
         public SimpleCommand OkCommand { get; private set; }
 
+        public SimpleCommand GetGroupsCommand { get; private set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged(string propertyName)
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));

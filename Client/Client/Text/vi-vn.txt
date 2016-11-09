@@ -160,3 +160,5 @@ LoginWindow_LoginFailed		Sai Tên đăng nhập hoặc Mã đăng nhập.
 LoginWindow_Title		Đăng Nhập
 LoginWindow_TxtPassword		Mã đăng nhập:
 LoginWindow_TxtUser		Tên đăng nhập:
+LoginWindow_TxtGroupList		Tên tổ chức:
+LoginWindow_BtnGetGroupList		Lấy
