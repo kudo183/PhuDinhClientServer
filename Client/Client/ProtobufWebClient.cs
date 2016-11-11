@@ -16,6 +16,8 @@ namespace Client
             get { return _instance; }
         }
 
+        public string Token { get; set; }
+
         public DTO.PagingResultDto<T> Get<T>(string controller, string action)
             where T : DTO.IDto
         {
@@ -69,15 +71,13 @@ namespace Client
             Token = System.Text.Encoding.UTF8.GetString(token, 1, token.Length - 2);
         }
 
-        public string Token { get; set; }
-
-        public byte[] Post<T>(string controller, string action, QueryExpression qe)
-            where T : DTO.IDto
+        public byte[] Post<T>(string controller, string action, QueryExpression qe) where T : DTO.IDto
         {
             var uri = GetUri(controller, action);
 
             return Post(uri, ToBytes(qe));
         }
+
         public string Save<T>(string controller, string action, List<DTO.ChangedItem<T>> changedItem)
         {
             var uri = GetUri(controller, action);
@@ -85,6 +85,17 @@ namespace Client
             var response = Post(uri, ToBytes(changedItem));
 
             return System.Text.Encoding.UTF8.GetString(response, 1, response.Length - 2);
+        }
+
+        public byte[] Report(string action, NameValueCollection reportParameters)
+        {
+            var uri = GetUri("report", action);
+
+            var client = new MyWebClient();
+            client.Headers["response"] = "protobuf";
+            client.Headers["token"] = Token;
+
+            return client.UploadValues(uri, reportParameters);
         }
 
         public T FromBytes<T>(byte[] data)

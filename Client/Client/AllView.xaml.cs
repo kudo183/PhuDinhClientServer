@@ -15,11 +15,18 @@ namespace Client
         {
             InitializeComponent();
 
-            var nameSpace = "Client.View";
-            var viewTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes()
-                .Where(p => p.Namespace == nameSpace).OrderBy(p => p.Name);
+            var viewTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().ToList();
+            
+            foreach (var viewType in viewTypes.Where(p => p.Namespace == "Client.View.Report").OrderBy(p => p.Name))
+            {
+                sp.Children.Add(new Button()
+                {
+                    Content = "Report" + viewType.Name,
+                    Tag = viewType
+                });
+            }
 
-            foreach (var viewType in viewTypes)
+            foreach (var viewType in viewTypes.Where(p => p.Namespace == "Client.View").OrderBy(p => p.Name))
             {
                 sp.Children.Add(new Button()
                 {

@@ -21,8 +21,8 @@ namespace Server
         {
             loggerFactory.AddConsole();
 
-            app.UseSwaWithTokenAuthentication("Server");
-            //app.UseSwa("Server");
+            //app.UseSwaWithTokenAuthentication("Server");
+            app.UseSwa("Server");
         }
     }
 }

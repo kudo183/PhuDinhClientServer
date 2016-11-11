@@ -67,6 +67,7 @@
     </ApplicationDefinition>
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="ProtoBufDataService.cs" />
+    <Compile Include="ProtoBufReportService.cs" />
     <Compile Include="Text\TextManager.cs" />
     <Compile Include="ViewModelFactory.cs" />
     <Compile Include="ViewModel\Gen\RBaiXeViewModel.cs" />
@@ -105,6 +106,7 @@
     <Compile Include="ViewModel\Gen\TPhuThuKhachHangViewModel.cs" />
     <Compile Include="ViewModel\Gen\TToaHangViewModel.cs" />
     <Compile Include="ViewModel\Gen\TTonKhoViewModel.cs" />
+    <Compile Include="ViewModel\Report\HangNgayViewModel.cs" />
     <Compile Include="ViewModel\TNhapNguyenLieuViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietChuyenHangDonHangViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietToaHangViewModel.part.cs" />
@@ -243,6 +245,9 @@
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="View\RBaiXeView.part.cs" />
+    <Compile Include="View\Report\HangNgay.xaml.cs">
+      <DependentUpon>HangNgay.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\TChiTietChuyenKhoView.part.cs" />
     <Compile Include="View\TChiTietDonHangView.part.cs" />
     <Compile Include="View\TChuyenHangDonHangView.part.cs" />
@@ -452,6 +457,10 @@
     <Page Include="View\Gen\TTonKhoView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Report\HangNgay.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
