@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Threading.Tasks;
 using huypq.SwaMiddleware;
 using Server.Entities;
 using Microsoft.EntityFrameworkCore;
@@ -88,8 +87,7 @@ namespace Server.Controllers
 
         public IQueryable<T> GetQuery<T>() where T : class, SwaIEntity
         {
-            //return DBContext.Set<T>().Where(p => p.MaGroup == TokenModel.GroupId);
-            return DBContext.Set<T>();
+            return DBContext.Set<T>().Where(p => p.MaGroup == TokenModel.GroupId);
         }
 
         public void Dispose()
