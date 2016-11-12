@@ -18,12 +18,8 @@
                 <RowDefinition Height="10"/>
                 <RowDefinition Height="Auto"/>
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
-            </Grid.ColumnDefinitions>
 
-            <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0">
+            <StackPanel Orientation="Horizontal" Grid.Row="0">
                 <TextBlock Text="Ngay: " VerticalAlignment="Center" Margin="5"/>
                 <CustomControl:CustomDatePicker SelectedDateBinding="{Binding SelectedDate}" Margin="5" Width="200"/>
                 <Button Content="Ok" Margin="5" Width="50" Click="Button_OkClick"/>
@@ -31,7 +27,7 @@
                 <TextBlock Text="{Binding Msg}" Foreground="Blue" VerticalAlignment="Center" Margin="5"/>
             </StackPanel>
         </Grid>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Items}" AutoGenerateColumns="False" EnableRowVirtualization="False" SelectionMode="Single">
+        <DataGrid Grid.Row="1" ItemsSource="{Binding Items}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding TenKho}" Header="Kho Hang" Width="100"/>
                 <DataGridTextColumn Binding="{Binding TenKhachHang}" Header="Ten Khach Hang" Width="200"/>

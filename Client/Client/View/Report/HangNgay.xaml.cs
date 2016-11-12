@@ -41,7 +41,7 @@ namespace Client.View.Report
 
         private string DateToString(System.DateTime date)
         {
-            return string.Format("{0}{1}{2:00}", date.Year, date.Month, date.Day);
+            return string.Format("{0:0000}{1:00}{2:00}", date.Year, date.Month, date.Day);
         }
 
         private void Button_OkClick(object sender, RoutedEventArgs e)

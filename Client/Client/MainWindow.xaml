@@ -46,7 +46,7 @@
             <Button Height="80" Content="Thong Ke Theo Loai Hang"/>
             <Button Height="80" Content="Thong Ke Theo Khach Hang"/>
             <Button Height="80" Content="Thong Ke Hang Ngay" Tag="HangNgay"/>
-            <Button Height="80" Content="Thong Ke Chi Phi"/>
+            <Button Height="80" Content="Thong Ke Chi Phi" Tag="ChiPhi"/>
         </StackPanel>
         <StackPanel Width="280" Orientation="Vertical" Background="Blue">
             <Button Height="80" Content="Thong Ke Nhap Hang"/>

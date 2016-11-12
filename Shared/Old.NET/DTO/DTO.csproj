@@ -186,6 +186,9 @@
     <Compile Include="..\..\DTO\RDiaDiemDto.part.cs">
       <Link>RDiaDiemDto.part.cs</Link>
     </Compile>
+    <Compile Include="..\..\DTO\Report\ChiPhiReportDto.cs">
+      <Link>Report\ChiPhiReportDto.cs</Link>
+    </Compile>
     <Compile Include="..\..\DTO\Report\DailyReportDto.cs">
       <Link>Report\DailyReportDto.cs</Link>
     </Compile>

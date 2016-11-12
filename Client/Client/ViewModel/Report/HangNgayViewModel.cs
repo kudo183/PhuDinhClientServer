@@ -22,7 +22,6 @@ namespace Client.ViewModel.Report
             }
         }
 
-
         private DateTime selectedDate = DateTime.Now;
 
         public DateTime SelectedDate
@@ -49,7 +48,6 @@ namespace Client.ViewModel.Report
                 OnPropertyChanged();
             }
         }
-
 
         public event PropertyChangedEventHandler PropertyChanged;
         protected void OnPropertyChanged([CallerMemberName] string name = null)

@@ -25,7 +25,13 @@ namespace Server.Controllers
             switch (actionName)
             {
                 case "daily":
-                    result = Daily(parameter["date"].ToString());
+                    var date = ParseDateFromString(parameter["date"].ToString());
+                    result = Daily(date);
+                    break;
+                case "chiphi":
+                    var dateFrom = ParseDateFromString(parameter["dateFrom"].ToString());
+                    var dateTo = ParseDateFromString(parameter["dateTo"].ToString());
+                    result = ChiPhi(dateFrom, dateTo);
                     break;
                 default:
                     break;
@@ -34,9 +40,8 @@ namespace Server.Controllers
             return result;
         }
 
-        public SwaActionResult Daily(string dateString)
+        public SwaActionResult Daily(DateTime date)
         {
-            var date = ParseDateFromString(dateString);
             var q = GetQuery<TDonHang>().Where(p => p.Ngay == date)
                 .Include(p => p.MaKhoHangNavigation)
                 .Include(p => p.MaKhachHangNavigation)
@@ -58,7 +63,7 @@ namespace Server.Controllers
                             TenKhachHang = donHang.MaKhachHangNavigation.TenKhachHang,
                             TenMatHang = ctDonHang.MaMatHangNavigation.TenMatHangIn,
                             SoLuong = ctDonHang.SoLuong,
-                            SoKg=ctDonHang.MaMatHangNavigation.SoKy
+                            SoKg = ctDonHang.MaMatHangNavigation.SoKy
                         });
                         isFirst = false;
                         continue;
@@ -73,6 +78,31 @@ namespace Server.Controllers
                 }
                 result.Add(new DTO.Report.DailyReportDto());
             }
+            return CreateObjectResult(result);
+        }
+
+        public SwaActionResult ChiPhi(DateTime dateFrom, DateTime dateTo)
+        {
+            var q = GetQuery<TChiPhi>().Where(p => p.Ngay >= dateFrom && p.Ngay <= dateTo)
+                .Include(p => p.MaLoaiChiPhiNavigation)
+                .Include(p => p.MaNhanVienGiaoHangNavigation);
+
+            var result = new List<DTO.Report.ChiPhiReportDto>();
+
+            foreach (var chiPhi in q)
+            {
+                result.Add(new DTO.Report.ChiPhiReportDto()
+                {
+                    MaLoaiChiPhi = chiPhi.MaLoaiChiPhi,
+                    TenLoaiChiPhi = chiPhi.MaLoaiChiPhiNavigation.TenLoaiChiPhi,
+                    MaNhanVien = chiPhi.MaNhanVienGiaoHang,
+                    TenNhanVien = chiPhi.MaNhanVienGiaoHangNavigation.TenNhanVien,
+                    Ngay = chiPhi.Ngay,
+                    SoTien = chiPhi.SoTien,
+                    GhiChu = chiPhi.GhiChu
+                });
+            }
+
             return CreateObjectResult(result);
         }
 

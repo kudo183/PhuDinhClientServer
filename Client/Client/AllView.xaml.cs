@@ -16,8 +16,8 @@ namespace Client
             InitializeComponent();
 
             var viewTypes = System.Reflection.Assembly.GetExecutingAssembly().GetTypes().ToList();
-            
-            foreach (var viewType in viewTypes.Where(p => p.Namespace == "Client.View.Report").OrderBy(p => p.Name))
+
+            foreach (var viewType in viewTypes.Where(p => p.Namespace == "Client.View.Report" && p.DeclaringType == null).OrderBy(p => p.Name))
             {
                 sp.Children.Add(new Button()
                 {
@@ -26,7 +26,7 @@ namespace Client
                 });
             }
 
-            foreach (var viewType in viewTypes.Where(p => p.Namespace == "Client.View").OrderBy(p => p.Name))
+            foreach (var viewType in viewTypes.Where(p => p.Namespace == "Client.View" && p.DeclaringType == null).OrderBy(p => p.Name))
             {
                 sp.Children.Add(new Button()
                 {
