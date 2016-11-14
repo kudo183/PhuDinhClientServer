@@ -33,6 +33,11 @@ namespace Server.Controllers
                     var dateTo = ParseDateFromString(parameter["dateTo"].ToString());
                     result = ChiPhi(dateFrom, dateTo);
                     break;
+                case "xuat":
+                    dateFrom = ParseDateFromString(parameter["dateFrom"].ToString());
+                    dateTo = ParseDateFromString(parameter["dateTo"].ToString());
+                    result = Xuat(dateFrom, dateTo);
+                    break;
                 default:
                     break;
             }
@@ -101,6 +106,47 @@ namespace Server.Controllers
                     SoTien = chiPhi.SoTien,
                     GhiChu = chiPhi.GhiChu
                 });
+            }
+
+            return CreateObjectResult(result);
+        }
+
+        public SwaActionResult Xuat(DateTime dateFrom, DateTime dateTo)
+        {
+            var q = GetQuery<TDonHang>().Where(p => p.Ngay >= dateFrom && p.Ngay <= dateTo)
+                .Include(p => p.MaKhoHangNavigation)
+                .Include(p => p.MaKhachHangNavigation)
+                .Include(p => p.TChiTietDonHangMaDonHangNavigation)
+                .ThenInclude(p1 => p1.MaMatHangNavigation.MaLoaiNavigation);
+
+            var result = new List<DTO.Report.XuatDto>();
+
+            foreach (var donHang in q)
+            {
+                var xuat = new DTO.Report.XuatDto()
+                {
+                    MaKho = donHang.MaKhoHang,
+                    TenKho = donHang.MaKhoHangNavigation.TenKho,
+                    MaKhachHang = donHang.MaKhachHang,
+                    TenKhachHang = donHang.MaKhachHangNavigation.TenKhachHang,
+                    ChiTietXuat = new List<DTO.Report.ChiTietXuatDto>(),
+                    Ngay = donHang.Ngay
+                };
+
+                foreach (var ctDonHang in donHang.TChiTietDonHangMaDonHangNavigation)
+                {
+                    xuat.ChiTietXuat.Add(new DTO.Report.ChiTietXuatDto()
+                    {
+                        MaLoaiHang = ctDonHang.MaMatHangNavigation.MaLoai,
+                        TenLoaiHang = ctDonHang.MaMatHangNavigation.MaLoaiNavigation.TenLoai,
+                        MaMatHang = ctDonHang.MaMatHang,
+                        TenMatHang = ctDonHang.MaMatHangNavigation.TenMatHangDayDu,
+                        SoLuong = ctDonHang.SoLuong,
+                        SoKg = ctDonHang.MaMatHangNavigation.SoKy
+                    });
+                }
+
+                result.Add(xuat);
             }
 
             return CreateObjectResult(result);

@@ -192,6 +192,9 @@
     <Compile Include="..\..\DTO\Report\DailyReportDto.cs">
       <Link>Report\DailyReportDto.cs</Link>
     </Compile>
+    <Compile Include="..\..\DTO\Report\XuatDto.cs">
+      <Link>Report\XuatDto.cs</Link>
+    </Compile>
     <Compile Include="..\..\DTO\RKhachHangDto.part.cs">
       <Link>RKhachHangDto.part.cs</Link>
     </Compile>
