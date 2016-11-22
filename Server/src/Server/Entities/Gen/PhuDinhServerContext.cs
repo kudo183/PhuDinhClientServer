@@ -556,7 +556,7 @@ namespace Server.Entities
                 entity.HasIndex(e => e.MaNhanVienGiaoHang)
                     .HasName("IX_tChuyenHang_MaNhanVienGiaoHang");
 
-                entity.Property(e => e.Gio).HasDefaultValueSql("etdate(");
+                entity.Property(e => e.Gio).HasDefaultValueSql("getdate()");
 
                 entity.Property(e => e.TongDonHang).HasDefaultValueSql("0");
 
