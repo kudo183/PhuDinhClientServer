@@ -1,6 +1,6 @@
 {
-  "projects": [ "src", "test", "../../huypq.SwaMiddleware/src", "../Shared" ],
+  "projects": [ "src", "test", "../QueryBuilder/src", "../huypq.Crypto/src", "../../huypq.SwaMiddleware/src", "../Shared" ],
   "sdk": {
-    "version": "1.0.0-preview2-003121"
+    "version": "1.0.0-preview2-003131"
   }
 }
