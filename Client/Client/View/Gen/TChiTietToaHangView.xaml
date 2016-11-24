@@ -10,14 +10,14 @@
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Header="GiaTien" Binding="{Binding GiaTien, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="ID" IsReadOnly="True" Binding="{Binding ID, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaChiTietDonHang"
-                SelectedValuePath="Ma"
+                SelectedValuePath="ID"
                 DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaChiTietDonHang, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaChiTietDonHangSources}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaToaHang"
-                SelectedValuePath="Ma"
+                SelectedValuePath="ID"
                 DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaToaHang, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaToaHangSources}"/>

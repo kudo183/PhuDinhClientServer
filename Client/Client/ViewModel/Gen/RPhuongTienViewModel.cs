@@ -11,18 +11,18 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RPhuongTienDto dto);
         partial void ProcessNewAddedDtoPartial(RPhuongTienDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _TenPhuongTienFilter;
 
         public RPhuongTienViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.RPhuongTien_Ma, nameof(RPhuongTienDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.RPhuongTien_ID, nameof(RPhuongTienDto.ID), typeof(int));
 
             _TenPhuongTienFilter = new HeaderTextFilterModel(TextManager.RPhuongTien_TenPhuongTien, nameof(RPhuongTienDto.TenPhuongTien), typeof(string));
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_TenPhuongTienFilter);
         }
 
@@ -34,9 +34,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RPhuongTienDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_TenPhuongTienFilter.FilterValue != null)
             {

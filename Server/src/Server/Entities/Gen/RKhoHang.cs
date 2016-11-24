@@ -15,8 +15,8 @@ namespace Server.Entities
             TTonKhoMaKhoHangNavigation = new HashSet<TTonKho>();
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public string TenKho { get; set; }
         public bool TrangThai { get; set; }
 

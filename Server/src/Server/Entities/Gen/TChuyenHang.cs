@@ -11,8 +11,8 @@ namespace Server.Entities
         }
 
         public System.TimeSpan? Gio { get; set; }
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaNhanVienGiaoHang { get; set; }
         public System.DateTime Ngay { get; set; }
         public int TongDonHang { get; set; }

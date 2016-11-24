@@ -6,31 +6,37 @@ namespace DTO
     public partial class RNguyenLieuDto : IDto, INotifyPropertyChanged
     {
         int oDuongKinh;
-        int oMa;
+        int oGroupID;
+        int oID;
         int oMaLoaiNguyenLieu;
 
         int _DuongKinh;
-        int _Ma;
+        int _GroupID;
+        int _ID;
         int _MaLoaiNguyenLieu;
 
         [ProtoBuf.ProtoMember(1)]
         public int DuongKinh { get { return _DuongKinh; } set { _DuongKinh = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(4)]
         public int MaLoaiNguyenLieu { get { return _MaLoaiNguyenLieu; } set { _MaLoaiNguyenLieu = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
             oDuongKinh = DuongKinh;
-            oMa = Ma;
+            oGroupID = GroupID;
+            oID = ID;
             oMaLoaiNguyenLieu = MaLoaiNguyenLieu;
         }
 
         public bool HasChange()
         {
             return (oDuongKinh != DuongKinh)
-            || (oMa != Ma)
+            || (oGroupID != GroupID)
+            || (oID != ID)
             || (oMaLoaiNguyenLieu != MaLoaiNguyenLieu)
 ;
         }

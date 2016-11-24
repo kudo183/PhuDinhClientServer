@@ -13,7 +13,7 @@ namespace Client.View
                 var header = column.Header as SimpleDataGrid.ViewModel.HeaderFilterBaseModel;
                 switch (header.PropertyName)
                 {
-                    case nameof(DTO.TChiPhiDto.Ma):
+                    case nameof(DTO.TChiPhiDto.ID):
                         column.DisplayIndex = 0;
                         break;
                     case nameof(DTO.TChiPhiDto.Ngay):

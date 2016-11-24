@@ -10,8 +10,8 @@ namespace Server.Entities
             TChiTietToaHangMaToaHangNavigation = new HashSet<TChiTietToaHang>();
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaKhachHang { get; set; }
         public System.DateTime Ngay { get; set; }
 

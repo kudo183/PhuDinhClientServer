@@ -12,21 +12,21 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietChuyenKhoDto dto);
         partial void ProcessNewAddedDtoPartial(TChiTietChuyenKhoDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaChuyenKhoFilter;
         HeaderFilterBaseModel _MaMatHangFilter;
         HeaderFilterBaseModel _SoLuongFilter;
 
         public TChiTietChuyenKhoViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenKho_Ma, nameof(TChiTietChuyenKhoDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TChiTietChuyenKho_ID, nameof(TChiTietChuyenKhoDto.ID), typeof(int));
 
             _MaChuyenKhoFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChiTietChuyenKho_MaChuyenKho, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChiTietChuyenKhoDto.MaChuyenKho),
                 typeof(int),
                 nameof(TChuyenKhoDto.TenHienThi),
-                nameof(TChuyenKhoDto.Ma))
+                nameof(TChuyenKhoDto.ID))
             {
                 AddCommand = new SimpleCommand("MaChuyenKhoAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -39,7 +39,7 @@ namespace Client.ViewModel
                 nameof(TChiTietChuyenKhoDto.MaMatHang),
                 typeof(int),
                 nameof(TMatHangDto.TenHienThi),
-                nameof(TMatHangDto.Ma))
+                nameof(TMatHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaMatHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -51,7 +51,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaChuyenKhoFilter);
             AddHeaderFilter(_MaMatHangFilter);
             AddHeaderFilter(_SoLuongFilter);
@@ -75,9 +75,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TChiTietChuyenKhoDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaChuyenKhoFilter.FilterValue != null)
             {

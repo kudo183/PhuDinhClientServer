@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override RPhuongTienDto ConvertToDto(RPhuongTien entity)
         {
             var dto = new RPhuongTienDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.TenPhuongTien = entity.TenPhuongTien;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -23,7 +24,8 @@ namespace Server.Controllers
         public override RPhuongTien ConvertToEntity(RPhuongTienDto dto)
         {
             var entity = new RPhuongTien();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.TenPhuongTien = dto.TenPhuongTien;
 
             ConvertToEntityPartial(ref entity, dto);

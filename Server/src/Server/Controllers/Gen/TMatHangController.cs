@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override TMatHangDto ConvertToDto(TMatHang entity)
         {
             var dto = new TMatHangDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.MaLoai = entity.MaLoai;
             dto.SoKy = entity.SoKy;
             dto.SoMet = entity.SoMet;
@@ -28,7 +29,8 @@ namespace Server.Controllers
         public override TMatHang ConvertToEntity(TMatHangDto dto)
         {
             var entity = new TMatHang();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.MaLoai = dto.MaLoai;
             entity.SoKy = dto.SoKy;
             entity.SoMet = dto.SoMet;

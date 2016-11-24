@@ -12,7 +12,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TNhapNguyenLieuDto dto);
         partial void ProcessNewAddedDtoPartial(TNhapNguyenLieuDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaNguyenLieuFilter;
         HeaderFilterBaseModel _MaNhaCungCapFilter;
         HeaderFilterBaseModel _NgayFilter;
@@ -20,14 +20,14 @@ namespace Client.ViewModel
 
         public TNhapNguyenLieuViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TNhapNguyenLieu_Ma, nameof(TNhapNguyenLieuDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TNhapNguyenLieu_ID, nameof(TNhapNguyenLieuDto.ID), typeof(int));
 
             _MaNguyenLieuFilter = new HeaderComboBoxFilterModel(
                 TextManager.TNhapNguyenLieu_MaNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TNhapNguyenLieuDto.MaNguyenLieu),
                 typeof(int),
                 nameof(RNguyenLieuDto.TenHienThi),
-                nameof(RNguyenLieuDto.Ma))
+                nameof(RNguyenLieuDto.ID))
             {
                 AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -40,7 +40,7 @@ namespace Client.ViewModel
                 nameof(TNhapNguyenLieuDto.MaNhaCungCap),
                 typeof(int),
                 nameof(RNhaCungCapDto.TenHienThi),
-                nameof(RNhaCungCapDto.Ma))
+                nameof(RNhaCungCapDto.ID))
             {
                 AddCommand = new SimpleCommand("MaNhaCungCapAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -54,7 +54,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaNguyenLieuFilter);
             AddHeaderFilter(_MaNhaCungCapFilter);
             AddHeaderFilter(_NgayFilter);
@@ -79,9 +79,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TNhapNguyenLieuDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaNguyenLieuFilter.FilterValue != null)
             {

@@ -10,8 +10,8 @@ namespace Server.Entities
             RKhachHangMaDiaDiemNavigation = new HashSet<RKhachHang>();
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaNuoc { get; set; }
         public string Tinh { get; set; }
 

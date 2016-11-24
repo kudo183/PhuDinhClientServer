@@ -48,7 +48,7 @@ namespace Client.Abstraction
             PagerViewModel.ActionCurrentPageIndexChanged = Load;
             PagerViewModel.ActionIsEnablePagingChanged = Load;
 
-            SelectedValuePath = nameof(DTO.IDto.Ma);
+            SelectedValuePath = nameof(DTO.IDto.ID);
         }
 
         protected void AddHeaderFilter(HeaderFilterBaseModel filter)
@@ -133,7 +133,7 @@ namespace Client.Abstraction
             qe.OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
             {
                 IsAscending = true,
-                PropertyPath = "Ma"
+                PropertyPath = nameof(DTO.IDto.ID)
             });
 
             result = DataService.Get(qe);
@@ -158,7 +158,7 @@ namespace Client.Abstraction
 
             foreach (var entity in _originalEntities)
             {
-                if (Entities.Any(p => p.Ma == entity.Ma) == false)
+                if (Entities.Any(p => p.ID == entity.ID) == false)
                 {
                     changedItems.Add(new DTO.ChangedItem<T>()
                     {
@@ -170,7 +170,7 @@ namespace Client.Abstraction
 
             foreach (var entity in Entities)
             {
-                if (entity.Ma == 0)
+                if (entity.ID == 0)
                 {
                     changedItems.Add(new DTO.ChangedItem<T>()
                     {

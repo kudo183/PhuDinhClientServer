@@ -11,9 +11,9 @@ namespace Server.Entities
             TDonHangMaChanhNavigation = new HashSet<TDonHang>();
         }
 
-        public int Ma { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaBaiXe { get; set; }
-        public int MaGroup { get; set; }
         public string TenChanh { get; set; }
 
         public ICollection<RKhachHangChanh> RKhachHangChanhMaChanhNavigation { get; set; }

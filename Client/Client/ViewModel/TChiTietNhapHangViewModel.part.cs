@@ -21,8 +21,8 @@ namespace Client.ViewModel
         {
             if (dto.TNhapHang != null)
             {
-                dto.TNhapHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.Ma == dto.TNhapHang.MaKhoHang);
-                dto.TNhapHang.RNhaCungCap = ReferenceDataManager<RNhaCungCapDto>.Instance.GetList().Find(p => p.Ma == dto.TNhapHang.MaNhaCungCap);
+                dto.TNhapHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == dto.TNhapHang.MaKhoHang);
+                dto.TNhapHang.RNhaCungCap = ReferenceDataManager<RNhaCungCapDto>.Instance.GetList().Find(p => p.ID == dto.TNhapHang.MaNhaCungCap);
             }
         }
     }

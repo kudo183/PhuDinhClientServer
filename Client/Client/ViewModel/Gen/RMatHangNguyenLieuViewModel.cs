@@ -12,20 +12,20 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RMatHangNguyenLieuDto dto);
         partial void ProcessNewAddedDtoPartial(RMatHangNguyenLieuDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaMatHangFilter;
         HeaderFilterBaseModel _MaNguyenLieuFilter;
 
         public RMatHangNguyenLieuViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.RMatHangNguyenLieu_Ma, nameof(RMatHangNguyenLieuDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.RMatHangNguyenLieu_ID, nameof(RMatHangNguyenLieuDto.ID), typeof(int));
 
             _MaMatHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.RMatHangNguyenLieu_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(RMatHangNguyenLieuDto.MaMatHang),
                 typeof(int),
                 nameof(TMatHangDto.TenHienThi),
-                nameof(TMatHangDto.Ma))
+                nameof(TMatHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaMatHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -38,7 +38,7 @@ namespace Client.ViewModel
                 nameof(RMatHangNguyenLieuDto.MaNguyenLieu),
                 typeof(int),
                 nameof(RNguyenLieuDto.TenHienThi),
-                nameof(RNguyenLieuDto.Ma))
+                nameof(RNguyenLieuDto.ID))
             {
                 AddCommand = new SimpleCommand("MaNguyenLieuAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -48,7 +48,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaMatHangFilter);
             AddHeaderFilter(_MaNguyenLieuFilter);
         }
@@ -71,9 +71,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RMatHangNguyenLieuDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaMatHangFilter.FilterValue != null)
             {

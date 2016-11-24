@@ -3,40 +3,40 @@
 namespace DTO
 {
     [ProtoBuf.ProtoContract]
-    public partial class UserDto : IDto, INotifyPropertyChanged
+    public partial class SwaUserDto : IDto, INotifyPropertyChanged
     {
+        System.DateTime oCreateDate;
         string oEmail;
-        int oMa;
-        System.DateTime oNgayTao;
+        int oID;
         string oPasswordHash;
 
+        System.DateTime _CreateDate;
         string _Email;
-        int _Ma;
-        System.DateTime _NgayTao;
+        int _ID;
         string _PasswordHash;
 
         [ProtoBuf.ProtoMember(1)]
-        public string Email { get { return _Email; } set { _Email = value; OnPropertyChanged(); } }
+        public System.DateTime CreateDate { get { return _CreateDate; } set { _CreateDate = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public string Email { get { return _Email; } set { _Email = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public System.DateTime NgayTao { get { return _NgayTao; } set { _NgayTao = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
         public string PasswordHash { get { return _PasswordHash; } set { _PasswordHash = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
+            oCreateDate = CreateDate;
             oEmail = Email;
-            oMa = Ma;
-            oNgayTao = NgayTao;
+            oID = ID;
             oPasswordHash = PasswordHash;
         }
 
         public bool HasChange()
         {
-            return (oEmail != Email)
-            || (oMa != Ma)
-            || (oNgayTao != NgayTao)
+            return (oCreateDate != CreateDate)
+            || (oEmail != Email)
+            || (oID != ID)
             || (oPasswordHash != PasswordHash)
 ;
         }

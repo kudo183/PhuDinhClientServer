@@ -9,10 +9,10 @@ namespace Server.Entities
         {
         }
 
-        public int Ma { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaChiTietDonHang { get; set; }
         public int MaChuyenHangDonHang { get; set; }
-        public int MaGroup { get; set; }
         public int SoLuong { get; set; }
         public int SoLuongTheoDonHang { get; set; }
 

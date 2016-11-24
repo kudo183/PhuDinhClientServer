@@ -9,8 +9,8 @@ namespace Server.Entities
         {
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaMatHang { get; set; }
         public int MaNhapHang { get; set; }
         public int SoLuong { get; set; }

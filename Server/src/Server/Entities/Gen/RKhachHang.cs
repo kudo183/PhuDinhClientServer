@@ -16,10 +16,10 @@ namespace Server.Entities
             TToaHangMaKhachHangNavigation = new HashSet<TToaHang>();
         }
 
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public bool KhachRieng { get; set; }
-        public int Ma { get; set; }
         public int MaDiaDiem { get; set; }
-        public int MaGroup { get; set; }
         public string TenKhachHang { get; set; }
 
         public ICollection<RKhachHangChanh> RKhachHangChanhMaKhachHangNavigation { get; set; }

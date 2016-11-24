@@ -10,8 +10,8 @@ namespace Server.Entities
             RNguyenLieuMaLoaiNguyenLieuNavigation = new HashSet<RNguyenLieu>();
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public string TenLoai { get; set; }
 
         public ICollection<RNguyenLieu> RNguyenLieuMaLoaiNguyenLieuNavigation { get; set; }

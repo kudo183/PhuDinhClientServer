@@ -42,9 +42,9 @@ namespace Client.ViewModel
         {
             if (dto.TChuyenHangDonHang != null)
             {
-                dto.TChuyenHangDonHang.TChuyenHang.RNhanVien = ReferenceDataManager<RNhanVienDto>.Instance.GetList().Find(p => p.Ma == dto.TChuyenHangDonHang.TChuyenHang.MaNhanVienGiaoHang);
-                dto.TChuyenHangDonHang.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.Ma == dto.TChuyenHangDonHang.TDonHang.MaKhachHang);
-                dto.TChuyenHangDonHang.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.Ma == dto.TChuyenHangDonHang.TDonHang.MaKhoHang);
+                dto.TChuyenHangDonHang.TChuyenHang.RNhanVien = ReferenceDataManager<RNhanVienDto>.Instance.GetList().Find(p => p.ID == dto.TChuyenHangDonHang.TChuyenHang.MaNhanVienGiaoHang);
+                dto.TChuyenHangDonHang.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.ID == dto.TChuyenHangDonHang.TDonHang.MaKhachHang);
+                dto.TChuyenHangDonHang.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == dto.TChuyenHangDonHang.TDonHang.MaKhoHang);
             }
 
             var chiTietDonHangs = new List<TChiTietDonHangDto>();
@@ -58,10 +58,10 @@ namespace Client.ViewModel
             {
                 if (item.TDonHang != null)
                 {
-                    item.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.Ma == item.TDonHang.MaKhachHang);
-                    item.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.Ma == item.TDonHang.MaKhoHang);
+                    item.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.ID == item.TDonHang.MaKhachHang);
+                    item.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == item.TDonHang.MaKhoHang);
                 }
-                item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetList().Find(p => p.Ma == item.MaMatHang);
+                item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetList().Find(p => p.ID == item.MaMatHang);
             }
             dto.MaChiTietDonHangSources = chiTietDonHangs;
         }

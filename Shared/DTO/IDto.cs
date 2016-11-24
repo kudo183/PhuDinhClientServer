@@ -2,7 +2,7 @@
 {
     public interface IDto
     {
-        int Ma { get; set; }
+        int ID { get; set; }
         void SetCurrentValueAsOriginalValue();
         bool HasChange();
     }

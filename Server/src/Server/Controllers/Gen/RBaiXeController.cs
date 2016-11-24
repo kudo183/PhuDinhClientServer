@@ -13,7 +13,8 @@ namespace Server.Controllers
         {
             var dto = new RBaiXeDto();
             dto.DiaDiemBaiXe = entity.DiaDiemBaiXe;
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
 
             ConvertToDtoPartial(ref dto, entity);
 
@@ -24,7 +25,8 @@ namespace Server.Controllers
         {
             var entity = new RBaiXe();
             entity.DiaDiemBaiXe = dto.DiaDiemBaiXe;
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
 
             ConvertToEntityPartial(ref entity, dto);
 

@@ -5,32 +5,37 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class RCanhBaoTonKhoDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
+        int oGroupID;
+        int oID;
         int oMaKhoHang;
         int oMaMatHang;
         int oTonCaoNhat;
         int oTonThapNhat;
 
-        int _Ma;
+        int _GroupID;
+        int _ID;
         int _MaKhoHang;
         int _MaMatHang;
         int _TonCaoNhat;
         int _TonThapNhat;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int MaKhoHang { get { return _MaKhoHang; } set { _MaKhoHang = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
+        public int MaKhoHang { get { return _MaKhoHang; } set { _MaKhoHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
-        public int TonCaoNhat { get { return _TonCaoNhat; } set { _TonCaoNhat = value; OnPropertyChanged(); } }
+        public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(5)]
+        public int TonCaoNhat { get { return _TonCaoNhat; } set { _TonCaoNhat = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(6)]
         public int TonThapNhat { get { return _TonThapNhat; } set { _TonThapNhat = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oGroupID = GroupID;
+            oID = ID;
             oMaKhoHang = MaKhoHang;
             oMaMatHang = MaMatHang;
             oTonCaoNhat = TonCaoNhat;
@@ -39,7 +44,8 @@ namespace DTO
 
         public bool HasChange()
         {
-            return (oMa != Ma)
+            return (oGroupID != GroupID)
+            || (oID != ID)
             || (oMaKhoHang != MaKhoHang)
             || (oMaMatHang != MaMatHang)
             || (oTonCaoNhat != TonCaoNhat)

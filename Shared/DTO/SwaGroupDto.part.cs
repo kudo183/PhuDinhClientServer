@@ -2,14 +2,14 @@
 
 namespace DTO
 {
-    public partial class GroupDto : IDto, INotifyPropertyChanged
+    public partial class SwaGroupDto : IDto, INotifyPropertyChanged
     {
         [Newtonsoft.Json.JsonIgnore]
         public string TenHienThi
         {
             get
             {
-                return TenGroup;
+                return GroupName;
             }
         }
     }

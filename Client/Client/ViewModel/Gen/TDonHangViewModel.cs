@@ -12,7 +12,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TDonHangDto dto);
         partial void ProcessNewAddedDtoPartial(TDonHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaChanhFilter;
         HeaderFilterBaseModel _MaKhachHangFilter;
         HeaderFilterBaseModel _MaKhoHangFilter;
@@ -22,14 +22,14 @@ namespace Client.ViewModel
 
         public TDonHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TDonHang_Ma, nameof(TDonHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TDonHang_ID, nameof(TDonHangDto.ID), typeof(int));
 
             _MaChanhFilter = new HeaderComboBoxFilterModel(
                 TextManager.TDonHang_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaChanh),
                 typeof(int?),
                 nameof(RChanhDto.TenHienThi),
-                nameof(RChanhDto.Ma))
+                nameof(RChanhDto.ID))
             {
                 AddCommand = new SimpleCommand("MaChanhAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -42,7 +42,7 @@ namespace Client.ViewModel
                 nameof(TDonHangDto.MaKhachHang),
                 typeof(int),
                 nameof(RKhachHangDto.TenHienThi),
-                nameof(RKhachHangDto.Ma))
+                nameof(RKhachHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaKhachHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -55,7 +55,7 @@ namespace Client.ViewModel
                 nameof(TDonHangDto.MaKhoHang),
                 typeof(int),
                 nameof(RKhoHangDto.TenHienThi),
-                nameof(RKhoHangDto.Ma))
+                nameof(RKhoHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaKhoHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -71,7 +71,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaChanhFilter);
             AddHeaderFilter(_MaKhachHangFilter);
             AddHeaderFilter(_MaKhoHangFilter);
@@ -100,9 +100,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TDonHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaChanhFilter.FilterValue != null)
             {

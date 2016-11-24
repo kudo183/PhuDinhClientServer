@@ -51,9 +51,6 @@
     <Compile Include="..\..\DTO\ChangedItemDto.cs">
       <Link>ChangedItemDto.cs</Link>
     </Compile>
-    <Compile Include="..\..\DTO\Gen\GroupDto.cs">
-      <Link>Gen\GroupDto.cs</Link>
-    </Compile>
     <Compile Include="..\..\DTO\Gen\RBaiXeDto.cs">
       <Link>Gen\RBaiXeDto.cs</Link>
     </Compile>
@@ -162,15 +159,6 @@
     <Compile Include="..\..\DTO\Gen\TTonKhoDto.cs">
       <Link>Gen\TTonKhoDto.cs</Link>
     </Compile>
-    <Compile Include="..\..\DTO\Gen\UserDto.cs">
-      <Link>Gen\UserDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\Gen\UserGroupDto.cs">
-      <Link>Gen\UserGroupDto.cs</Link>
-    </Compile>
-    <Compile Include="..\..\DTO\GroupDto.part.cs">
-      <Link>GroupDto.part.cs</Link>
-    </Compile>
     <Compile Include="..\..\DTO\IDto.cs">
       <Link>IDto.cs</Link>
     </Compile>
@@ -264,7 +252,11 @@
     <Compile Include="..\..\DTO\UserDto.part.cs">
       <Link>UserDto.part.cs</Link>
     </Compile>
+    <Compile Include="Gen\SwaGroupDto.cs" />
+    <Compile Include="Gen\SwaUserDto.cs" />
+    <Compile Include="Gen\SwaUserGroupDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SwaGroupDto.part.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

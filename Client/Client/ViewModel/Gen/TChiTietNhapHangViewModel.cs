@@ -12,21 +12,21 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietNhapHangDto dto);
         partial void ProcessNewAddedDtoPartial(TChiTietNhapHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaMatHangFilter;
         HeaderFilterBaseModel _MaNhapHangFilter;
         HeaderFilterBaseModel _SoLuongFilter;
 
         public TChiTietNhapHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietNhapHang_Ma, nameof(TChiTietNhapHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TChiTietNhapHang_ID, nameof(TChiTietNhapHangDto.ID), typeof(int));
 
             _MaMatHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChiTietNhapHang_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChiTietNhapHangDto.MaMatHang),
                 typeof(int),
                 nameof(TMatHangDto.TenHienThi),
-                nameof(TMatHangDto.Ma))
+                nameof(TMatHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaMatHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -39,7 +39,7 @@ namespace Client.ViewModel
                 nameof(TChiTietNhapHangDto.MaNhapHang),
                 typeof(int),
                 nameof(TNhapHangDto.TenHienThi),
-                nameof(TNhapHangDto.Ma))
+                nameof(TNhapHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaNhapHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -51,7 +51,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaMatHangFilter);
             AddHeaderFilter(_MaNhapHangFilter);
             AddHeaderFilter(_SoLuongFilter);
@@ -75,9 +75,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TChiTietNhapHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaMatHangFilter.FilterValue != null)
             {

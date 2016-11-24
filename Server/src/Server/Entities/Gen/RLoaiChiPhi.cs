@@ -10,8 +10,8 @@ namespace Server.Entities
             TChiPhiMaLoaiChiPhiNavigation = new HashSet<TChiPhi>();
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public string TenLoaiChiPhi { get; set; }
 
         public ICollection<TChiPhi> TChiPhiMaLoaiChiPhiNavigation { get; set; }

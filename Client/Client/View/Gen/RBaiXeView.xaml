@@ -10,7 +10,7 @@
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
             <SimpleDataGrid:DataGridTextColumnExt Header="DiaDiemBaiXe" Binding="{Binding DiaDiemBaiXe, UpdateSourceTrigger=PropertyChanged}"/>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="ID" IsReadOnly="True" Binding="{Binding ID, Mode=OneWay}"/>
         </SimpleDataGrid:EditableGridView.Columns>
     </SimpleDataGrid:EditableGridView>
 </Abstraction:BaseView>

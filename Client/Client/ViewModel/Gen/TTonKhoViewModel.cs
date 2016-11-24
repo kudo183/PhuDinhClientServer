@@ -12,7 +12,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TTonKhoDto dto);
         partial void ProcessNewAddedDtoPartial(TTonKhoDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaKhoHangFilter;
         HeaderFilterBaseModel _MaMatHangFilter;
         HeaderFilterBaseModel _NgayFilter;
@@ -21,14 +21,14 @@ namespace Client.ViewModel
 
         public TTonKhoViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TTonKho_Ma, nameof(TTonKhoDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TTonKho_ID, nameof(TTonKhoDto.ID), typeof(int));
 
             _MaKhoHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TTonKho_MaKhoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TTonKhoDto.MaKhoHang),
                 typeof(int),
                 nameof(RKhoHangDto.TenHienThi),
-                nameof(RKhoHangDto.Ma))
+                nameof(RKhoHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaKhoHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -41,7 +41,7 @@ namespace Client.ViewModel
                 nameof(TTonKhoDto.MaMatHang),
                 typeof(int),
                 nameof(TMatHangDto.TenHienThi),
-                nameof(TMatHangDto.Ma))
+                nameof(TMatHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaMatHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -57,7 +57,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaKhoHangFilter);
             AddHeaderFilter(_MaMatHangFilter);
             AddHeaderFilter(_NgayFilter);
@@ -83,9 +83,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TTonKhoDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaKhoHangFilter.FilterValue != null)
             {

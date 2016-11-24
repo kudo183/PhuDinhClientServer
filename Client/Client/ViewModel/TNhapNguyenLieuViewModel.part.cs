@@ -10,7 +10,7 @@ namespace Client.ViewModel
             ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.Load();
             foreach (var item in ReferenceDataManager<RNguyenLieuDto>.Instance.Get())
             {
-                item.RLoaiNguyenLieu = ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.GetList().Find(p => p.Ma == item.MaLoaiNguyenLieu);
+                item.RLoaiNguyenLieu = ReferenceDataManager<RLoaiNguyenLieuDto>.Instance.GetList().Find(p => p.ID == item.MaLoaiNguyenLieu);
             }
         }
     }

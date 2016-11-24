@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override TDonHangDto ConvertToDto(TDonHang entity)
         {
             var dto = new TDonHangDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.MaChanh = entity.MaChanh;
             dto.MaKhachHang = entity.MaKhachHang;
             dto.MaKhoHang = entity.MaKhoHang;
@@ -28,7 +29,8 @@ namespace Server.Controllers
         public override TDonHang ConvertToEntity(TDonHangDto dto)
         {
             var entity = new TDonHang();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.MaChanh = dto.MaChanh;
             entity.MaKhachHang = dto.MaKhachHang;
             entity.MaKhoHang = dto.MaKhoHang;

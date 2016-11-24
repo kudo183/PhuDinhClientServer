@@ -13,7 +13,7 @@ namespace Client.ViewModel
         partial void ProcessNewAddedDtoPartial(TChiPhiDto dto);
 
         HeaderFilterBaseModel _GhiChuFilter;
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaLoaiChiPhiFilter;
         HeaderFilterBaseModel _MaNhanVienGiaoHangFilter;
         HeaderFilterBaseModel _NgayFilter;
@@ -23,14 +23,14 @@ namespace Client.ViewModel
         {
             _GhiChuFilter = new HeaderTextFilterModel(TextManager.TChiPhi_GhiChu, nameof(TChiPhiDto.GhiChu), typeof(string));
 
-            _MaFilter = new HeaderTextFilterModel(TextManager.TChiPhi_Ma, nameof(TChiPhiDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TChiPhi_ID, nameof(TChiPhiDto.ID), typeof(int));
 
             _MaLoaiChiPhiFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChiPhi_MaLoaiChiPhi, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChiPhiDto.MaLoaiChiPhi),
                 typeof(int),
                 nameof(RLoaiChiPhiDto.TenHienThi),
-                nameof(RLoaiChiPhiDto.Ma))
+                nameof(RLoaiChiPhiDto.ID))
             {
                 AddCommand = new SimpleCommand("MaLoaiChiPhiAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -43,7 +43,7 @@ namespace Client.ViewModel
                 nameof(TChiPhiDto.MaNhanVienGiaoHang),
                 typeof(int),
                 nameof(RNhanVienDto.TenHienThi),
-                nameof(RNhanVienDto.Ma))
+                nameof(RNhanVienDto.ID))
             {
                 AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -58,7 +58,7 @@ namespace Client.ViewModel
             InitFilterPartial();
 
             AddHeaderFilter(_GhiChuFilter);
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaLoaiChiPhiFilter);
             AddHeaderFilter(_MaNhanVienGiaoHangFilter);
             AddHeaderFilter(_NgayFilter);
@@ -87,9 +87,9 @@ namespace Client.ViewModel
             {
                 dto.GhiChu = (string)_GhiChuFilter.FilterValue;
             }
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaLoaiChiPhiFilter.FilterValue != null)
             {

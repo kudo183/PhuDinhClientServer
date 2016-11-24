@@ -5,31 +5,37 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class RMatHangNguyenLieuDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
+        int oGroupID;
+        int oID;
         int oMaMatHang;
         int oMaNguyenLieu;
 
-        int _Ma;
+        int _GroupID;
+        int _ID;
         int _MaMatHang;
         int _MaNguyenLieu;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
+        public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(4)]
         public int MaNguyenLieu { get { return _MaNguyenLieu; } set { _MaNguyenLieu = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oGroupID = GroupID;
+            oID = ID;
             oMaMatHang = MaMatHang;
             oMaNguyenLieu = MaNguyenLieu;
         }
 
         public bool HasChange()
         {
-            return (oMa != Ma)
+            return (oGroupID != GroupID)
+            || (oID != ID)
             || (oMaMatHang != MaMatHang)
             || (oMaNguyenLieu != MaNguyenLieu)
 ;

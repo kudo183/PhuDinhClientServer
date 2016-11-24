@@ -11,9 +11,9 @@ namespace Server.Entities
             TChiTietToaHangMaChiTietDonHangNavigation = new HashSet<TChiTietToaHang>();
         }
 
-        public int Ma { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaDonHang { get; set; }
-        public int MaGroup { get; set; }
         public int MaMatHang { get; set; }
         public int SoLuong { get; set; }
         public bool Xong { get; set; }

@@ -9,19 +9,19 @@
     xmlns:Abstraction="clr-namespace:Client.Abstraction;assembly=Client.Abstraction">
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="ID" IsReadOnly="True" Binding="{Binding ID, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaKhoHangNhap"
-                SelectedValuePath="Ma"
+                SelectedValuePath="ID"
                 DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaKhoHangNhap, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaKhoHangNhapSources}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaKhoHangXuat"
-                SelectedValuePath="Ma"
+                SelectedValuePath="ID"
                 DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaKhoHangXuat, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaKhoHangXuatSources}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaNhanVien"
-                SelectedValuePath="Ma"
+                SelectedValuePath="ID"
                 DisplayMemberPath="TenHienThi"
                 SelectedValueBinding="{Binding MaNhanVien, UpdateSourceTrigger=PropertyChanged}"
                 ItemsSource="{Binding MaNhanVienSources}"/>

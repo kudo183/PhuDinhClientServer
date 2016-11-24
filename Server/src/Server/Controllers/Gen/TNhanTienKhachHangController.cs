@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override TNhanTienKhachHangDto ConvertToDto(TNhanTienKhachHang entity)
         {
             var dto = new TNhanTienKhachHangDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.MaKhachHang = entity.MaKhachHang;
             dto.Ngay = entity.Ngay;
             dto.SoTien = entity.SoTien;
@@ -25,7 +26,8 @@ namespace Server.Controllers
         public override TNhanTienKhachHang ConvertToEntity(TNhanTienKhachHangDto dto)
         {
             var entity = new TNhanTienKhachHang();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.MaKhachHang = dto.MaKhachHang;
             entity.Ngay = dto.Ngay;
             entity.SoTien = dto.SoTien;

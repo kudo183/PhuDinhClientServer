@@ -5,32 +5,37 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class TChiTietChuyenHangDonHangDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
+        int oGroupID;
+        int oID;
         int oMaChiTietDonHang;
         int oMaChuyenHangDonHang;
         int oSoLuong;
         int oSoLuongTheoDonHang;
 
-        int _Ma;
+        int _GroupID;
+        int _ID;
         int _MaChiTietDonHang;
         int _MaChuyenHangDonHang;
         int _SoLuong;
         int _SoLuongTheoDonHang;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int MaChiTietDonHang { get { return _MaChiTietDonHang; } set { _MaChiTietDonHang = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int MaChuyenHangDonHang { get { return _MaChuyenHangDonHang; } set { _MaChuyenHangDonHang = value; OnPropertyChanged(); } }
+        public int MaChiTietDonHang { get { return _MaChiTietDonHang; } set { _MaChiTietDonHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
-        public int SoLuong { get { return _SoLuong; } set { _SoLuong = value; OnPropertyChanged(); } }
+        public int MaChuyenHangDonHang { get { return _MaChuyenHangDonHang; } set { _MaChuyenHangDonHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(5)]
+        public int SoLuong { get { return _SoLuong; } set { _SoLuong = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(6)]
         public int SoLuongTheoDonHang { get { return _SoLuongTheoDonHang; } set { _SoLuongTheoDonHang = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oGroupID = GroupID;
+            oID = ID;
             oMaChiTietDonHang = MaChiTietDonHang;
             oMaChuyenHangDonHang = MaChuyenHangDonHang;
             oSoLuong = SoLuong;
@@ -39,7 +44,8 @@ namespace DTO
 
         public bool HasChange()
         {
-            return (oMa != Ma)
+            return (oGroupID != GroupID)
+            || (oID != ID)
             || (oMaChiTietDonHang != MaChiTietDonHang)
             || (oMaChuyenHangDonHang != MaChuyenHangDonHang)
             || (oSoLuong != SoLuong)

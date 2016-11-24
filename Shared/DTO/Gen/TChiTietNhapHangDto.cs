@@ -5,28 +5,33 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class TChiTietNhapHangDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
+        int oGroupID;
+        int oID;
         int oMaMatHang;
         int oMaNhapHang;
         int oSoLuong;
 
-        int _Ma;
+        int _GroupID;
+        int _ID;
         int _MaMatHang;
         int _MaNhapHang;
         int _SoLuong;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int MaNhapHang { get { return _MaNhapHang; } set { _MaNhapHang = value; OnPropertyChanged(); } }
+        public int MaMatHang { get { return _MaMatHang; } set { _MaMatHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
+        public int MaNhapHang { get { return _MaNhapHang; } set { _MaNhapHang = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(5)]
         public int SoLuong { get { return _SoLuong; } set { _SoLuong = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oGroupID = GroupID;
+            oID = ID;
             oMaMatHang = MaMatHang;
             oMaNhapHang = MaNhapHang;
             oSoLuong = SoLuong;
@@ -34,7 +39,8 @@ namespace DTO
 
         public bool HasChange()
         {
-            return (oMa != Ma)
+            return (oGroupID != GroupID)
+            || (oID != ID)
             || (oMaMatHang != MaMatHang)
             || (oMaNhapHang != MaNhapHang)
             || (oSoLuong != SoLuong)

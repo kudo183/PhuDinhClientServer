@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override RDiaDiemDto ConvertToDto(RDiaDiem entity)
         {
             var dto = new RDiaDiemDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.MaNuoc = entity.MaNuoc;
             dto.Tinh = entity.Tinh;
 
@@ -24,7 +25,8 @@ namespace Server.Controllers
         public override RDiaDiem ConvertToEntity(RDiaDiemDto dto)
         {
             var entity = new RDiaDiem();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.MaNuoc = dto.MaNuoc;
             entity.Tinh = dto.Tinh;
 

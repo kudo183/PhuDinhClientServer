@@ -10,8 +10,8 @@ namespace Server.Entities
             TChiTietChuyenKhoMaChuyenKhoNavigation = new HashSet<TChiTietChuyenKho>();
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaKhoHangNhap { get; set; }
         public int MaKhoHangXuat { get; set; }
         public int MaNhanVien { get; set; }

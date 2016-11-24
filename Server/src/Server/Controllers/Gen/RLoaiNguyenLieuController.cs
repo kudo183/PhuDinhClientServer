@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override RLoaiNguyenLieuDto ConvertToDto(RLoaiNguyenLieu entity)
         {
             var dto = new RLoaiNguyenLieuDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.TenLoai = entity.TenLoai;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -23,7 +24,8 @@ namespace Server.Controllers
         public override RLoaiNguyenLieu ConvertToEntity(RLoaiNguyenLieuDto dto)
         {
             var entity = new RLoaiNguyenLieu();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.TenLoai = dto.TenLoai;
 
             ConvertToEntityPartial(ref entity, dto);

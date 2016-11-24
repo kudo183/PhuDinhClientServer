@@ -10,9 +10,9 @@ namespace Server.Entities
             TMatHangMaLoaiNavigation = new HashSet<TMatHang>();
         }
 
+        public int GroupID { get; set; }
         public bool HangNhaLam { get; set; }
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int ID { get; set; }
         public string TenLoai { get; set; }
 
         public ICollection<TMatHang> TMatHangMaLoaiNavigation { get; set; }

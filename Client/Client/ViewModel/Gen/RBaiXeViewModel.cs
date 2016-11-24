@@ -12,18 +12,18 @@ namespace Client.ViewModel
         partial void ProcessNewAddedDtoPartial(RBaiXeDto dto);
 
         HeaderFilterBaseModel _DiaDiemBaiXeFilter;
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
 
         public RBaiXeViewModel() : base()
         {
             _DiaDiemBaiXeFilter = new HeaderTextFilterModel(TextManager.RBaiXe_DiaDiemBaiXe, nameof(RBaiXeDto.DiaDiemBaiXe), typeof(string));
 
-            _MaFilter = new HeaderTextFilterModel(TextManager.RBaiXe_Ma, nameof(RBaiXeDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.RBaiXe_ID, nameof(RBaiXeDto.ID), typeof(int));
 
             InitFilterPartial();
 
             AddHeaderFilter(_DiaDiemBaiXeFilter);
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
         }
 
         protected override void ProcessDtoBeforeAddToEntities(RBaiXeDto dto)
@@ -38,9 +38,9 @@ namespace Client.ViewModel
             {
                 dto.DiaDiemBaiXe = (string)_DiaDiemBaiXeFilter.FilterValue;
             }
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
 
             ProcessNewAddedDtoPartial(dto);

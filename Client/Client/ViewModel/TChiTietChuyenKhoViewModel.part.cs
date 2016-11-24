@@ -20,8 +20,8 @@ namespace Client.ViewModel
         {
             if (dto.TChuyenKho != null)
             {
-                dto.TChuyenKho.RKhoHangXuat = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.Ma == dto.TChuyenKho.MaKhoHangXuat);
-                dto.TChuyenKho.RKhoHangNhap = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.Ma == dto.TChuyenKho.MaKhoHangNhap);
+                dto.TChuyenKho.RKhoHangXuat = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == dto.TChuyenKho.MaKhoHangXuat);
+                dto.TChuyenKho.RKhoHangNhap = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == dto.TChuyenKho.MaKhoHangNhap);
             }
         }
     }

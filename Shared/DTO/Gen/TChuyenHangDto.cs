@@ -6,7 +6,8 @@ namespace DTO
     public partial class TChuyenHangDto : IDto, INotifyPropertyChanged
     {
         System.TimeSpan? oGio;
-        int oMa;
+        int oGroupID;
+        int oID;
         int oMaNhanVienGiaoHang;
         System.DateTime oNgay;
         int oTongDonHang;
@@ -14,7 +15,8 @@ namespace DTO
         int oTongSoLuongThucTe;
 
         System.TimeSpan? _Gio;
-        int _Ma;
+        int _GroupID;
+        int _ID;
         int _MaNhanVienGiaoHang;
         System.DateTime _Ngay;
         int _TongDonHang;
@@ -24,22 +26,25 @@ namespace DTO
         [ProtoBuf.ProtoMember(1)]
         public System.TimeSpan? Gio { get { return _Gio; } set { _Gio = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int MaNhanVienGiaoHang { get { return _MaNhanVienGiaoHang; } set { _MaNhanVienGiaoHang = value; OnPropertyChanged(); } }
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
-        public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
+        public int MaNhanVienGiaoHang { get { return _MaNhanVienGiaoHang; } set { _MaNhanVienGiaoHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(5)]
-        public int TongDonHang { get { return _TongDonHang; } set { _TongDonHang = value; OnPropertyChanged(); } }
+        public System.DateTime Ngay { get { return _Ngay; } set { _Ngay = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(6)]
-        public int TongSoLuongTheoDonHang { get { return _TongSoLuongTheoDonHang; } set { _TongSoLuongTheoDonHang = value; OnPropertyChanged(); } }
+        public int TongDonHang { get { return _TongDonHang; } set { _TongDonHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(7)]
+        public int TongSoLuongTheoDonHang { get { return _TongSoLuongTheoDonHang; } set { _TongSoLuongTheoDonHang = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(8)]
         public int TongSoLuongThucTe { get { return _TongSoLuongThucTe; } set { _TongSoLuongThucTe = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
             oGio = Gio;
-            oMa = Ma;
+            oGroupID = GroupID;
+            oID = ID;
             oMaNhanVienGiaoHang = MaNhanVienGiaoHang;
             oNgay = Ngay;
             oTongDonHang = TongDonHang;
@@ -50,7 +55,8 @@ namespace DTO
         public bool HasChange()
         {
             return (oGio != Gio)
-            || (oMa != Ma)
+            || (oGroupID != GroupID)
+            || (oID != ID)
             || (oMaNhanVienGiaoHang != MaNhanVienGiaoHang)
             || (oNgay != Ngay)
             || (oTongDonHang != TongDonHang)

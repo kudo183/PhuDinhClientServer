@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override RNhaCungCapDto ConvertToDto(RNhaCungCap entity)
         {
             var dto = new RNhaCungCapDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.TenNhaCungCap = entity.TenNhaCungCap;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -23,7 +24,8 @@ namespace Server.Controllers
         public override RNhaCungCap ConvertToEntity(RNhaCungCapDto dto)
         {
             var entity = new RNhaCungCap();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.TenNhaCungCap = dto.TenNhaCungCap;
 
             ConvertToEntityPartial(ref entity, dto);

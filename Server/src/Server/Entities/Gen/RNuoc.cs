@@ -10,8 +10,8 @@ namespace Server.Entities
             RDiaDiemMaNuocNavigation = new HashSet<RDiaDiem>();
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public string TenNuoc { get; set; }
 
         public ICollection<RDiaDiem> RDiaDiemMaNuocNavigation { get; set; }

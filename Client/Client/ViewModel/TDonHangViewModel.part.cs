@@ -15,7 +15,7 @@ namespace Client.ViewModel
                 nameof(TDonHangDto.MaChanh),
                 typeof(int?),
                 nameof(RChanhDto.TenChanh),
-                nameof(RChanhDto.Ma))
+                nameof(RChanhDto.ID))
             {
                 AddCommand = new SimpleCommand("ChanhAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -54,7 +54,7 @@ namespace Client.ViewModel
             var chanhs = new System.Collections.Generic.List<DTO.RChanhDto>();
             foreach (var item in khachHangChanhs)
             {
-                var chanh = ReferenceDataManager<RChanhDto>.Instance.GetList().First(p => p.Ma == item.MaChanh);
+                var chanh = ReferenceDataManager<RChanhDto>.Instance.GetList().First(p => p.ID == item.MaChanh);
                 if (item.LaMacDinh == true)
                 {
                     chanhs.Insert(0, chanh);
@@ -67,7 +67,7 @@ namespace Client.ViewModel
             dto.MaChanhSources = chanhs;
             if (chanhs.Count > 0)
             {
-                dto.MaChanh = chanhs[0].Ma;
+                dto.MaChanh = chanhs[0].ID;
             }
             else
             {

@@ -12,21 +12,21 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(TNhanTienKhachHangDto dto);
         partial void ProcessNewAddedDtoPartial(TNhanTienKhachHangDto dto);
 
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaKhachHangFilter;
         HeaderFilterBaseModel _NgayFilter;
         HeaderFilterBaseModel _SoTienFilter;
 
         public TNhanTienKhachHangViewModel() : base()
         {
-            _MaFilter = new HeaderTextFilterModel(TextManager.TNhanTienKhachHang_Ma, nameof(TNhanTienKhachHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TNhanTienKhachHang_ID, nameof(TNhanTienKhachHangDto.ID), typeof(int));
 
             _MaKhachHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TNhanTienKhachHang_MaKhachHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TNhanTienKhachHangDto.MaKhachHang),
                 typeof(int),
                 nameof(RKhachHangDto.TenHienThi),
-                nameof(RKhachHangDto.Ma))
+                nameof(RKhachHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaKhachHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -40,7 +40,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaKhachHangFilter);
             AddHeaderFilter(_NgayFilter);
             AddHeaderFilter(_SoTienFilter);
@@ -62,9 +62,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(TNhanTienKhachHangDto dto)
         {
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaKhachHangFilter.FilterValue != null)
             {

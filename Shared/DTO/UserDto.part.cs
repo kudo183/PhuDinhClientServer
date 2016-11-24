@@ -2,7 +2,7 @@
 
 namespace DTO
 {
-    public partial class UserDto : IDto, INotifyPropertyChanged
+    public partial class SwaUserDto : IDto, INotifyPropertyChanged
     {
         [Newtonsoft.Json.JsonIgnore]
         public string TenHienThi

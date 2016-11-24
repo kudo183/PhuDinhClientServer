@@ -6,26 +6,32 @@ namespace DTO
     public partial class RBaiXeDto : IDto, INotifyPropertyChanged
     {
         string oDiaDiemBaiXe;
-        int oMa;
+        int oGroupID;
+        int oID;
 
         string _DiaDiemBaiXe;
-        int _Ma;
+        int _GroupID;
+        int _ID;
 
         [ProtoBuf.ProtoMember(1)]
         public string DiaDiemBaiXe { get { return _DiaDiemBaiXe; } set { _DiaDiemBaiXe = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(3)]
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
             oDiaDiemBaiXe = DiaDiemBaiXe;
-            oMa = Ma;
+            oGroupID = GroupID;
+            oID = ID;
         }
 
         public bool HasChange()
         {
             return (oDiaDiemBaiXe != DiaDiemBaiXe)
-            || (oMa != Ma)
+            || (oGroupID != GroupID)
+            || (oID != ID)
 ;
         }
 

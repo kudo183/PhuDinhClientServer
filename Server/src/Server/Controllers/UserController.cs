@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Server.Controllers
 {
-    public class UserController : SwaUserBaseController<PhuDinhServerContext, User, Group, UserGroup, DTO.UserDto>
+    public class UserController : SwaUserBaseController<PhuDinhServerContext, SwaUser, SwaGroup, SwaUserGroup, DTO.SwaUserDto>
     {
         //public override SwaActionResult ActionInvoker(string actionName, Dictionary<string, object> parameter)
         //{

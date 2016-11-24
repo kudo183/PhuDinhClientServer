@@ -5,26 +5,32 @@ namespace DTO
     [ProtoBuf.ProtoContract]
     public partial class RLoaiNguyenLieuDto : IDto, INotifyPropertyChanged
     {
-        int oMa;
+        int oGroupID;
+        int oID;
         string oTenLoai;
 
-        int _Ma;
+        int _GroupID;
+        int _ID;
         string _TenLoai;
 
         [ProtoBuf.ProtoMember(1)]
-        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
+        public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
+        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        [ProtoBuf.ProtoMember(3)]
         public string TenLoai { get { return _TenLoai; } set { _TenLoai = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
-            oMa = Ma;
+            oGroupID = GroupID;
+            oID = ID;
             oTenLoai = TenLoai;
         }
 
         public bool HasChange()
         {
-            return (oMa != Ma)
+            return (oGroupID != GroupID)
+            || (oID != ID)
             || (oTenLoai != TenLoai)
 ;
         }

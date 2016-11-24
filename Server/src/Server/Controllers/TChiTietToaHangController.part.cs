@@ -14,7 +14,7 @@ namespace Server.Controllers
             dto.TToaHang.MaKhachHang = entity.MaToaHangNavigation.MaKhachHang;
             dto.TToaHang.Ngay = entity.MaToaHangNavigation.Ngay;
             dto.TChiTietDonHang = new TChiTietDonHangDto();
-            dto.TChiTietDonHang.Ma = entity.MaChiTietDonHangNavigation.Ma;
+            dto.TChiTietDonHang.ID = entity.MaChiTietDonHangNavigation.ID;
             dto.TChiTietDonHang.MaMatHang = entity.MaChiTietDonHangNavigation.MaMatHang;
             dto.TChiTietDonHang.TDonHang = new TDonHangDto();
             dto.TChiTietDonHang.TDonHang.MaKhachHang = entity.MaChiTietDonHangNavigation.MaDonHangNavigation.MaKhachHang;

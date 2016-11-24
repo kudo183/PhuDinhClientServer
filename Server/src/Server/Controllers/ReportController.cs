@@ -163,7 +163,7 @@ namespace Server.Controllers
 
         public IQueryable<T> GetQuery<T>() where T : class, SwaIEntity
         {
-            return DBContext.Set<T>().Where(p => p.MaGroup == TokenModel.GroupId);
+            return DBContext.Set<T>().Where(p => p.GroupID == TokenModel.GroupId);
         }
 
         public void Dispose()

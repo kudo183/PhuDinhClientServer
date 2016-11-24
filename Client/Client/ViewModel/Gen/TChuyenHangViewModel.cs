@@ -13,7 +13,7 @@ namespace Client.ViewModel
         partial void ProcessNewAddedDtoPartial(TChuyenHangDto dto);
 
         HeaderFilterBaseModel _GioFilter;
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaNhanVienGiaoHangFilter;
         HeaderFilterBaseModel _NgayFilter;
         HeaderFilterBaseModel _TongDonHangFilter;
@@ -24,14 +24,14 @@ namespace Client.ViewModel
         {
             _GioFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_Gio, nameof(TChuyenHangDto.Gio), typeof(System.TimeSpan?));
 
-            _MaFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_Ma, nameof(TChuyenHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TChuyenHang_ID, nameof(TChuyenHangDto.ID), typeof(int));
 
             _MaNhanVienGiaoHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChuyenHang_MaNhanVienGiaoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChuyenHangDto.MaNhanVienGiaoHang),
                 typeof(int),
                 nameof(RNhanVienDto.TenHienThi),
-                nameof(RNhanVienDto.Ma))
+                nameof(RNhanVienDto.ID))
             {
                 AddCommand = new SimpleCommand("MaNhanVienGiaoHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -50,7 +50,7 @@ namespace Client.ViewModel
             InitFilterPartial();
 
             AddHeaderFilter(_GioFilter);
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaNhanVienGiaoHangFilter);
             AddHeaderFilter(_NgayFilter);
             AddHeaderFilter(_TongDonHangFilter);
@@ -78,9 +78,9 @@ namespace Client.ViewModel
             {
                 dto.Gio = (System.TimeSpan?)_GioFilter.FilterValue;
             }
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaNhanVienGiaoHangFilter.FilterValue != null)
             {

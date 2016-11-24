@@ -5,7 +5,7 @@ using huypq.SwaMiddleware;
 
 namespace Server.Entities
 {
-    public partial class PhuDinhServerContext : DbContext, SwaIDbContext<User, Group, UserGroup>
+    public partial class PhuDinhServerContext : DbContext, SwaIDbContext<SwaUser, SwaGroup, SwaUserGroup>
     {
         public PhuDinhServerContext(DbContextOptions<PhuDinhServerContext> options) : base(options)
         {
@@ -15,24 +15,14 @@ namespace Server.Entities
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Group>(entity =>
-            {
-                entity.HasKey(e => e.Ma)
-                    .HasName("PK_Group");
-
-                entity.Property(e => e.TenGroup)
-                    .IsRequired()
-                    .HasMaxLength(256);
-
-            });
             modelBuilder.Entity<RBaiXe>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rBaiXe");
 
                 entity.ToTable("rBaiXe");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.DiaDiemBaiXe)
                     .IsRequired()
@@ -41,18 +31,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RCanhBaoTonKho>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rCanhBaoTonKho");
 
                 entity.ToTable("rCanhBaoTonKho");
 
-                entity.HasIndex(e => e.MaKhoHang)
-                    .HasName("IX_rCanhBaoTonKho_MaKhoHang");
-
-                entity.HasIndex(e => e.MaMatHang)
-                    .HasName("IX_rCanhBaoTonKho_MaMatHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaKhoHangNavigation)
@@ -70,15 +54,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RChanh>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rChanh");
 
                 entity.ToTable("rChanh");
 
-                entity.HasIndex(e => e.MaBaiXe)
-                    .HasName("IX_rChanh_MaBaiXe");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenChanh)
                     .IsRequired()
@@ -93,15 +74,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RDiaDiem>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rDiaDiem");
 
                 entity.ToTable("rDiaDiem");
 
-                entity.HasIndex(e => e.MaNuoc)
-                    .HasName("IX_rDiaDiem_MaNuoc");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.Tinh)
                     .IsRequired()
@@ -116,7 +94,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RKhachHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rKhachHang");
 
                 entity.ToTable("rKhachHang");
@@ -125,12 +103,9 @@ namespace Server.Entities
                     .HasName("idx_KhachHang_TenKhachHang")
                     .IsUnique();
 
-                entity.HasIndex(e => e.MaDiaDiem)
-                    .HasName("IX_rKhachHang_MaDiaDiem");
+                entity.Property(e => e.KhachRieng).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.KhachRieng).HasDefaultValueSql("0");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenKhachHang)
                     .IsRequired()
@@ -145,20 +120,14 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RKhachHangChanh>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rKhachHangChanh");
 
                 entity.ToTable("rKhachHangChanh");
 
-                entity.HasIndex(e => e.MaChanh)
-                    .HasName("IX_rKhachHangChanh_MaChanh");
+                entity.Property(e => e.LaMacDinh).HasDefaultValueSql("(0)");
 
-                entity.HasIndex(e => e.MaKhachHang)
-                    .HasName("IX_rKhachHangChanh_MaKhachHang");
-
-                entity.Property(e => e.LaMacDinh).HasDefaultValueSql("0");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaChanhNavigation)
@@ -176,14 +145,14 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RKhoHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rKhoHang");
 
                 entity.ToTable("rKhoHang");
 
-                entity.Property(e => e.TrangThai).HasDefaultValueSql("1");
+                entity.Property(e => e.TrangThai).HasDefaultValueSql("(1)");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenKho)
                     .IsRequired()
@@ -192,12 +161,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RLoaiChiPhi>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rLoaiChiPhi");
 
                 entity.ToTable("rLoaiChiPhi");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenLoaiChiPhi)
                     .IsRequired()
@@ -206,14 +175,14 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RLoaiHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rProductType");
 
                 entity.ToTable("rLoaiHang");
 
-                entity.Property(e => e.HangNhaLam).HasDefaultValueSql("0");
+                entity.Property(e => e.HangNhaLam).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenLoai)
                     .IsRequired()
@@ -222,12 +191,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RLoaiNguyenLieu>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rLoaiNguyenLieu");
 
                 entity.ToTable("rLoaiNguyenLieu");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenLoai)
                     .IsRequired()
@@ -236,18 +205,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RMatHangNguyenLieu>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rMatHangNguyenLieu");
 
                 entity.ToTable("rMatHangNguyenLieu");
 
-                entity.HasIndex(e => e.MaMatHang)
-                    .HasName("IX_rMatHangNguyenLieu_MaMatHang");
-
-                entity.HasIndex(e => e.MaNguyenLieu)
-                    .HasName("IX_rMatHangNguyenLieu_MaNguyenLieu");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaNguyenLieuNavigation)
@@ -265,12 +228,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RNuoc>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rNuoc");
 
                 entity.ToTable("rNuoc");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenNuoc)
                     .IsRequired()
@@ -279,15 +242,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RNguyenLieu>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_rNguyenLieu");
 
                 entity.ToTable("rNguyenLieu");
 
-                entity.HasIndex(e => e.MaLoaiNguyenLieu)
-                    .HasName("IX_rNguyenLieu_MaLoaiNguyenLieu");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaLoaiNguyenLieuNavigation)
@@ -299,12 +259,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RNhaCungCap>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_NhaCungCap");
 
                 entity.ToTable("rNhaCungCap");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenNhaCungCap)
                     .IsRequired()
@@ -313,15 +273,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RNhanVien>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_NhanVienGiaoHang");
 
                 entity.ToTable("rNhanVien");
 
-                entity.HasIndex(e => e.MaPhuongTien)
-                    .HasName("IX_rNhanVien_MaPhuongTien");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenNhanVien)
                     .IsRequired()
@@ -336,29 +293,72 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RPhuongTien>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_LoaiPhuongTien");
 
                 entity.ToTable("rPhuongTien");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenPhuongTien)
                     .IsRequired()
                     .HasMaxLength(200);
 
             });
+            modelBuilder.Entity<SwaGroup>(entity =>
+            {
+                entity.HasKey(e => e.ID)
+                    .HasName("PK_Group");
+
+                entity.Property(e => e.CreateDate).HasDefaultValueSql("getdate()");
+
+                entity.Property(e => e.GroupName)
+                    .IsRequired()
+                    .HasMaxLength(256);
+
+            });
+            modelBuilder.Entity<SwaUser>(entity =>
+            {
+                entity.HasKey(e => e.ID)
+                    .HasName("PK_User");
+
+                entity.Property(e => e.CreateDate).HasDefaultValueSql("getdate()");
+
+                entity.Property(e => e.Email)
+                    .IsRequired()
+                    .HasMaxLength(256);
+                entity.Property(e => e.PasswordHash)
+                    .IsRequired()
+                    .HasMaxLength(128);
+
+            });
+            modelBuilder.Entity<SwaUserGroup>(entity =>
+            {
+                entity.HasKey(e => e.ID)
+                    .HasName("PK_UserGroup");
+
+
+                entity.HasOne(d => d.GroupIDNavigation)
+                    .WithMany(p => p.SwaUserGroupGroupIDNavigation)
+                    .HasForeignKey(d => d.GroupID)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_SwaUserGroup_SwaGroup");
+
+                entity.HasOne(d => d.UserIDNavigation)
+                    .WithMany(p => p.SwaUserGroupUserIDNavigation)
+                    .HasForeignKey(d => d.UserID)
+                    .OnDelete(DeleteBehavior.Restrict)
+                    .HasConstraintName("FK_SwaUserGroup_SwaUser");
+
+            });
             modelBuilder.Entity<TCongNoKhachHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tCongNoKhachHang");
 
                 entity.ToTable("tCongNoKhachHang");
 
-                entity.HasIndex(e => e.MaKhachHang)
-                    .HasName("IX_tCongNoKhachHang_MaKhachHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
@@ -370,18 +370,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiPhi>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_ChiPhiNhanVienGiaoHang");
 
                 entity.ToTable("tChiPhi");
 
-                entity.HasIndex(e => e.MaLoaiChiPhi)
-                    .HasName("IX_tChiPhi_MaLoaiChiPhi");
-
-                entity.HasIndex(e => e.MaNhanVienGiaoHang)
-                    .HasName("IX_tChiPhi_MaNhanVienGiaoHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaLoaiChiPhiNavigation)
@@ -399,20 +393,14 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietChuyenHangDonHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChiTietChuyenHangDonHang");
 
                 entity.ToTable("tChiTietChuyenHangDonHang");
 
-                entity.HasIndex(e => e.MaChiTietDonHang)
-                    .HasName("IX_tChiTietChuyenHangDonHang_MaChiTietDonHang");
+                entity.Property(e => e.SoLuongTheoDonHang).HasDefaultValueSql("(0)");
 
-                entity.HasIndex(e => e.MaChuyenHangDonHang)
-                    .HasName("IX_tChiTietChuyenHangDonHang_MaChuyenHangDonHang");
-
-                entity.Property(e => e.SoLuongTheoDonHang).HasDefaultValueSql("0");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaChiTietDonHangNavigation)
@@ -430,18 +418,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietChuyenKho>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChiTietChuyenKho");
 
                 entity.ToTable("tChiTietChuyenKho");
 
-                entity.HasIndex(e => e.MaChuyenKho)
-                    .HasName("IX_tChiTietChuyenKho_MaChuyenKho");
-
-                entity.HasIndex(e => e.MaMatHang)
-                    .HasName("IX_tChiTietChuyenKho_MaMatHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaChuyenKhoNavigation)
@@ -459,20 +441,14 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietDonHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChiTietDonHang");
 
                 entity.ToTable("tChiTietDonHang");
 
-                entity.HasIndex(e => e.MaDonHang)
-                    .HasName("IX_tChiTietDonHang_MaDonHang");
+                entity.Property(e => e.Xong).HasDefaultValueSql("(0)");
 
-                entity.HasIndex(e => e.MaMatHang)
-                    .HasName("IX_tChiTietDonHang_MaMatHang");
-
-                entity.Property(e => e.Xong).HasDefaultValueSql("0");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaDonHangNavigation)
@@ -490,18 +466,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietNhapHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_NhapMatHang");
 
                 entity.ToTable("tChiTietNhapHang");
 
-                entity.HasIndex(e => e.MaMatHang)
-                    .HasName("IX_tChiTietNhapHang_MaMatHang");
-
-                entity.HasIndex(e => e.MaNhapHang)
-                    .HasName("IX_tChiTietNhapHang_MaNhapHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaNhapHangNavigation)
@@ -519,18 +489,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietToaHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChiTietToaHang");
 
                 entity.ToTable("tChiTietToaHang");
 
-                entity.HasIndex(e => e.MaChiTietDonHang)
-                    .HasName("IX_tChiTietToaHang_MaChiTietDonHang");
-
-                entity.HasIndex(e => e.MaToaHang)
-                    .HasName("IX_tChiTietToaHang_MaToaHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaChiTietDonHangNavigation)
@@ -548,23 +512,20 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChuyenHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_ChuyenHang");
 
                 entity.ToTable("tChuyenHang");
 
-                entity.HasIndex(e => e.MaNhanVienGiaoHang)
-                    .HasName("IX_tChuyenHang_MaNhanVienGiaoHang");
-
                 entity.Property(e => e.Gio).HasDefaultValueSql("getdate()");
 
-                entity.Property(e => e.TongDonHang).HasDefaultValueSql("0");
+                entity.Property(e => e.TongDonHang).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TongSoLuongTheoDonHang).HasDefaultValueSql("0");
+                entity.Property(e => e.TongSoLuongTheoDonHang).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TongSoLuongThucTe).HasDefaultValueSql("0");
+                entity.Property(e => e.TongSoLuongThucTe).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaNhanVienGiaoHangNavigation)
@@ -576,22 +537,16 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChuyenHangDonHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChuyenHangDonHang");
 
                 entity.ToTable("tChuyenHangDonHang");
 
-                entity.HasIndex(e => e.MaChuyenHang)
-                    .HasName("IX_tChuyenHangDonHang_MaChuyenHang");
+                entity.Property(e => e.TongSoLuongTheoDonHang).HasDefaultValueSql("(0)");
 
-                entity.HasIndex(e => e.MaDonHang)
-                    .HasName("IX_tChuyenHangDonHang_MaDonHang");
+                entity.Property(e => e.TongSoLuongThucTe).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.TongSoLuongTheoDonHang).HasDefaultValueSql("0");
-
-                entity.Property(e => e.TongSoLuongThucTe).HasDefaultValueSql("0");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaChuyenHangNavigation)
@@ -609,21 +564,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChuyenKho>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tChuyenKho");
 
                 entity.ToTable("tChuyenKho");
 
-                entity.HasIndex(e => e.MaKhoHangNhap)
-                    .HasName("IX_tChuyenKho_MaKhoHangNhap");
-
-                entity.HasIndex(e => e.MaKhoHangXuat)
-                    .HasName("IX_tChuyenKho_MaKhoHangXuat");
-
-                entity.HasIndex(e => e.MaNhanVien)
-                    .HasName("IX_tChuyenKho_MaNhanVien");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaKhoHangNhapNavigation)
@@ -647,27 +593,18 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TDonHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_DonHang");
 
                 entity.ToTable("tDonHang");
 
-                entity.HasIndex(e => e.MaChanh)
-                    .HasName("IX_tDonHang_MaChanh");
+                entity.Property(e => e.Xong).HasDefaultValueSql("(0)");
 
-                entity.HasIndex(e => e.MaKhachHang)
-                    .HasName("IX_tDonHang_MaKhachHang");
+                entity.Property(e => e.MaKhoHang).HasDefaultValueSql("(1)");
 
-                entity.HasIndex(e => e.MaKhoHang)
-                    .HasName("IX_tDonHang_MaKhoHang");
+                entity.Property(e => e.TongSoLuong).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.Xong).HasDefaultValueSql("0");
-
-                entity.Property(e => e.MaKhoHang).HasDefaultValueSql("1");
-
-                entity.Property(e => e.TongSoLuong).HasDefaultValueSql("0");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaChanhNavigation)
@@ -691,15 +628,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TGiamTruKhachHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tGiamTruKhachHang");
 
                 entity.ToTable("tGiamTruKhachHang");
 
-                entity.HasIndex(e => e.MaKhachHang)
-                    .HasName("IX_tGiamTruKhachHang_MaKhachHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.GhiChu)
                     .IsRequired()
@@ -714,23 +648,20 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TMatHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_Product");
 
                 entity.ToTable("tMatHang");
 
-                entity.HasIndex(e => e.MaLoai)
-                    .HasName("IX_tMatHang_MaLoai");
+                entity.Property(e => e.SoKy).HasDefaultValueSql("(0)");
 
-                entity.Property(e => e.SoKy).HasDefaultValueSql("0");
-
-                entity.Property(e => e.SoMet).HasDefaultValueSql("0");
+                entity.Property(e => e.SoMet).HasDefaultValueSql("(0)");
 
                 entity.Property(e => e.TenMatHangDayDu).HasDefaultValueSql("''");
 
                 entity.Property(e => e.TenMatHangIn).HasDefaultValueSql("''");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.TenMatHang)
                     .IsRequired()
@@ -751,15 +682,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TNhanTienKhachHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tNhanTienKhachHang");
 
                 entity.ToTable("tNhanTienKhachHang");
 
-                entity.HasIndex(e => e.MaKhachHang)
-                    .HasName("IX_tNhanTienKhachHang_MaKhachHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
@@ -771,21 +699,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TNhapHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tNhapHang");
 
                 entity.ToTable("tNhapHang");
 
-                entity.HasIndex(e => e.MaKhoHang)
-                    .HasName("IX_tNhapHang_MaKhoHang");
-
-                entity.HasIndex(e => e.MaNhaCungCap)
-                    .HasName("IX_tNhapHang_MaNhaCungCap");
-
-                entity.HasIndex(e => e.MaNhanVien)
-                    .HasName("IX_tNhapHang_MaNhanVien");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaKhoHangNavigation)
@@ -809,18 +728,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TNhapNguyenLieu>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_NhapNguyenLieu");
 
                 entity.ToTable("tNhapNguyenLieu");
 
-                entity.HasIndex(e => e.MaNguyenLieu)
-                    .HasName("IX_tNhapNguyenLieu_MaNguyenLieu");
-
-                entity.HasIndex(e => e.MaNhaCungCap)
-                    .HasName("IX_tNhapNguyenLieu_MaNhaCungCap");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaNguyenLieuNavigation)
@@ -838,15 +751,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TPhuThuKhachHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tPhuThuKhachHang");
 
                 entity.ToTable("tPhuThuKhachHang");
 
-                entity.HasIndex(e => e.MaKhachHang)
-                    .HasName("IX_tPhuThuKhachHang_MaKhachHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.GhiChu)
                     .IsRequired()
@@ -861,15 +771,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TToaHang>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tToaHang");
 
                 entity.ToTable("tToaHang");
 
-                entity.HasIndex(e => e.MaKhachHang)
-                    .HasName("IX_tToaHang_MaKhachHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaKhachHangNavigation)
@@ -881,18 +788,12 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TTonKho>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_tTonKho");
 
                 entity.ToTable("tTonKho");
 
-                entity.HasIndex(e => e.MaKhoHang)
-                    .HasName("IX_tTonKho_MaKhoHang");
-
-                entity.HasIndex(e => e.MaMatHang)
-                    .HasName("IX_tTonKho_MaMatHang");
-
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
 
                 entity.HasOne(d => d.MaKhoHangNavigation)
@@ -910,56 +811,17 @@ namespace Server.Entities
             });
             modelBuilder.Entity<ThamSoNgay>(entity =>
             {
-                entity.HasKey(e => e.Ma)
+                entity.HasKey(e => e.ID)
                     .HasName("PK_ThamSoNgay");
 
-                entity.Property(e => e.MaGroup).HasDefaultValueSql("1");
+                entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");
 
                 entity.Property(e => e.Ten)
                     .IsRequired()
                     .HasMaxLength(50);
 
             });
-            modelBuilder.Entity<User>(entity =>
-            {
-                entity.HasKey(e => e.Ma)
-                    .HasName("PK_User");
-
-                entity.Property(e => e.Email)
-                    .IsRequired()
-                    .HasMaxLength(256);
-                entity.Property(e => e.PasswordHash)
-                    .IsRequired()
-                    .HasMaxLength(128);
-
-            });
-            modelBuilder.Entity<UserGroup>(entity =>
-            {
-                entity.HasKey(e => e.Ma)
-                    .HasName("PK_UserGroup");
-
-                entity.HasIndex(e => e.MaGroup)
-                    .HasName("IX_UserGroup_MaGroup");
-
-                entity.HasIndex(e => e.MaUser)
-                    .HasName("IX_UserGroup_MaUser");
-
-
-                entity.HasOne(d => d.MaGroupNavigation)
-                    .WithMany(p => p.UserGroupMaGroupNavigation)
-                    .HasForeignKey(d => d.MaGroup)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_UserGroup_Group_MaGroup");
-
-                entity.HasOne(d => d.MaUserNavigation)
-                    .WithMany(p => p.UserGroupMaUserNavigation)
-                    .HasForeignKey(d => d.MaUser)
-                    .OnDelete(DeleteBehavior.Cascade)
-                    .HasConstraintName("FK_UserGroup_User_MaUser");
-
-            });
         }
-        public DbSet<Group> Group { get; set; }
         public DbSet<RBaiXe> RBaiXe { get; set; }
         public DbSet<RCanhBaoTonKho> RCanhBaoTonKho { get; set; }
         public DbSet<RChanh> RChanh { get; set; }
@@ -976,6 +838,9 @@ namespace Server.Entities
         public DbSet<RNhaCungCap> RNhaCungCap { get; set; }
         public DbSet<RNhanVien> RNhanVien { get; set; }
         public DbSet<RPhuongTien> RPhuongTien { get; set; }
+        public DbSet<SwaGroup> SwaGroup { get; set; }
+        public DbSet<SwaUser> SwaUser { get; set; }
+        public DbSet<SwaUserGroup> SwaUserGroup { get; set; }
         public DbSet<TCongNoKhachHang> TCongNoKhachHang { get; set; }
         public DbSet<TChiPhi> TChiPhi { get; set; }
         public DbSet<TChiTietChuyenHangDonHang> TChiTietChuyenHangDonHang { get; set; }
@@ -996,7 +861,5 @@ namespace Server.Entities
         public DbSet<TToaHang> TToaHang { get; set; }
         public DbSet<TTonKho> TTonKho { get; set; }
         public DbSet<ThamSoNgay> ThamSoNgay { get; set; }
-        public DbSet<User> User { get; set; }
-        public DbSet<UserGroup> UserGroup { get; set; }
     }
 }

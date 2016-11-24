@@ -11,8 +11,8 @@ namespace Server.Entities
             TNhapNguyenLieuMaNhaCungCapNavigation = new HashSet<TNhapNguyenLieu>();
         }
 
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public string TenNhaCungCap { get; set; }
 
         public ICollection<TNhapHang> TNhapHangMaNhaCungCapNavigation { get; set; }

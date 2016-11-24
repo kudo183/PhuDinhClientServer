@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override RNuocDto ConvertToDto(RNuoc entity)
         {
             var dto = new RNuocDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.TenNuoc = entity.TenNuoc;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -23,7 +24,8 @@ namespace Server.Controllers
         public override RNuoc ConvertToEntity(RNuocDto dto)
         {
             var entity = new RNuoc();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.TenNuoc = dto.TenNuoc;
 
             ConvertToEntityPartial(ref entity, dto);

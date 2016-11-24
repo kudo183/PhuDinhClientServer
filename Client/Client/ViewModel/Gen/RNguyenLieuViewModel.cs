@@ -13,21 +13,21 @@ namespace Client.ViewModel
         partial void ProcessNewAddedDtoPartial(RNguyenLieuDto dto);
 
         HeaderFilterBaseModel _DuongKinhFilter;
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaLoaiNguyenLieuFilter;
 
         public RNguyenLieuViewModel() : base()
         {
             _DuongKinhFilter = new HeaderTextFilterModel(TextManager.RNguyenLieu_DuongKinh, nameof(RNguyenLieuDto.DuongKinh), typeof(int));
 
-            _MaFilter = new HeaderTextFilterModel(TextManager.RNguyenLieu_Ma, nameof(RNguyenLieuDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.RNguyenLieu_ID, nameof(RNguyenLieuDto.ID), typeof(int));
 
             _MaLoaiNguyenLieuFilter = new HeaderComboBoxFilterModel(
                 TextManager.RNguyenLieu_MaLoaiNguyenLieu, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(RNguyenLieuDto.MaLoaiNguyenLieu),
                 typeof(int),
                 nameof(RLoaiNguyenLieuDto.TenHienThi),
-                nameof(RLoaiNguyenLieuDto.Ma))
+                nameof(RLoaiNguyenLieuDto.ID))
             {
                 AddCommand = new SimpleCommand("MaLoaiNguyenLieuAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -38,7 +38,7 @@ namespace Client.ViewModel
             InitFilterPartial();
 
             AddHeaderFilter(_DuongKinhFilter);
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaLoaiNguyenLieuFilter);
         }
 
@@ -62,9 +62,9 @@ namespace Client.ViewModel
             {
                 dto.DuongKinh = (int)_DuongKinhFilter.FilterValue;
             }
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaLoaiNguyenLieuFilter.FilterValue != null)
             {

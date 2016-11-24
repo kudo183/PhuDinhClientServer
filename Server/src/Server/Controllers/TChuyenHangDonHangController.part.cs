@@ -15,7 +15,7 @@ namespace Server.Controllers
             dto.TChuyenHang.Ngay = entity.MaChuyenHangNavigation.Ngay;
             dto.TChuyenHang.Gio = entity.MaChuyenHangNavigation.Gio;
             dto.TDonHang = new TDonHangDto();
-            dto.TDonHang.Ma = entity.MaDonHangNavigation.Ma;
+            dto.TDonHang.ID = entity.MaDonHangNavigation.ID;
             dto.TDonHang.MaKhachHang = entity.MaDonHangNavigation.MaKhachHang;
             dto.TDonHang.MaKhoHang = entity.MaDonHangNavigation.MaKhoHang;
             dto.TDonHang.Ngay = entity.MaDonHangNavigation.Ngay;

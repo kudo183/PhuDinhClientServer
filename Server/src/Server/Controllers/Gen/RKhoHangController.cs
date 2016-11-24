@@ -12,7 +12,8 @@ namespace Server.Controllers
         public override RKhoHangDto ConvertToDto(RKhoHang entity)
         {
             var dto = new RKhoHangDto();
-            dto.Ma = entity.Ma;
+            dto.GroupID = entity.GroupID;
+            dto.ID = entity.ID;
             dto.TenKho = entity.TenKho;
             dto.TrangThai = entity.TrangThai;
 
@@ -24,7 +25,8 @@ namespace Server.Controllers
         public override RKhoHang ConvertToEntity(RKhoHangDto dto)
         {
             var entity = new RKhoHang();
-            entity.Ma = dto.Ma;
+            entity.GroupID = dto.GroupID;
+            entity.ID = dto.ID;
             entity.TenKho = dto.TenKho;
             entity.TrangThai = dto.TrangThai;
 

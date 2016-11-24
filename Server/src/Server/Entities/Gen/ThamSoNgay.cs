@@ -10,8 +10,8 @@ namespace Server.Entities
         }
 
         public System.DateTime GiaTri { get; set; }
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public string Ten { get; set; }
 
 

@@ -13,7 +13,7 @@ namespace Client.ViewModel
         partial void ProcessNewAddedDtoPartial(TChiTietToaHangDto dto);
 
         HeaderFilterBaseModel _GiaTienFilter;
-        HeaderFilterBaseModel _MaFilter;
+        HeaderFilterBaseModel _IDFilter;
         HeaderFilterBaseModel _MaChiTietDonHangFilter;
         HeaderFilterBaseModel _MaToaHangFilter;
 
@@ -21,14 +21,14 @@ namespace Client.ViewModel
         {
             _GiaTienFilter = new HeaderTextFilterModel(TextManager.TChiTietToaHang_GiaTien, nameof(TChiTietToaHangDto.GiaTien), typeof(int));
 
-            _MaFilter = new HeaderTextFilterModel(TextManager.TChiTietToaHang_Ma, nameof(TChiTietToaHangDto.Ma), typeof(int));
+            _IDFilter = new HeaderTextFilterModel(TextManager.TChiTietToaHang_ID, nameof(TChiTietToaHangDto.ID), typeof(int));
 
             _MaChiTietDonHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChiTietToaHang_MaChiTietDonHang, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TChiTietToaHangDto.MaChiTietDonHang),
                 typeof(int),
                 nameof(TChiTietDonHangDto.TenHienThi),
-                nameof(TChiTietDonHangDto.Ma))
+                nameof(TChiTietDonHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaChiTietDonHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -41,7 +41,7 @@ namespace Client.ViewModel
                 nameof(TChiTietToaHangDto.MaToaHang),
                 typeof(int),
                 nameof(TToaHangDto.TenHienThi),
-                nameof(TToaHangDto.Ma))
+                nameof(TToaHangDto.ID))
             {
                 AddCommand = new SimpleCommand("MaToaHangAddCommand",
                     () => base.ProccessHeaderAddCommand(
@@ -52,7 +52,7 @@ namespace Client.ViewModel
             InitFilterPartial();
 
             AddHeaderFilter(_GiaTienFilter);
-            AddHeaderFilter(_MaFilter);
+            AddHeaderFilter(_IDFilter);
             AddHeaderFilter(_MaChiTietDonHangFilter);
             AddHeaderFilter(_MaToaHangFilter);
         }
@@ -79,9 +79,9 @@ namespace Client.ViewModel
             {
                 dto.GiaTien = (int)_GiaTienFilter.FilterValue;
             }
-            if (_MaFilter.FilterValue != null)
+            if (_IDFilter.FilterValue != null)
             {
-                dto.Ma = (int)_MaFilter.FilterValue;
+                dto.ID = (int)_IDFilter.FilterValue;
             }
             if (_MaChiTietDonHangFilter.FilterValue != null)
             {

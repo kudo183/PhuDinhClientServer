@@ -12,8 +12,8 @@ namespace Server.Entities
         }
 
         public int DuongKinh { get; set; }
-        public int Ma { get; set; }
-        public int MaGroup { get; set; }
+        public int GroupID { get; set; }
+        public int ID { get; set; }
         public int MaLoaiNguyenLieu { get; set; }
 
         public ICollection<RMatHangNguyenLieu> RMatHangNguyenLieuMaNguyenLieuNavigation { get; set; }
