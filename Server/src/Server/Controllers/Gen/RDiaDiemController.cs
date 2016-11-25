@@ -13,7 +13,7 @@ namespace Server.Controllers
         {
             var dto = new RDiaDiemDto();
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.MaNuoc = entity.MaNuoc;
             dto.Tinh = entity.Tinh;
 
@@ -26,7 +26,7 @@ namespace Server.Controllers
         {
             var entity = new RDiaDiem();
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.MaNuoc = dto.MaNuoc;
             entity.Tinh = dto.Tinh;
 

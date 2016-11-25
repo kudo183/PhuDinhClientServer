@@ -17,7 +17,7 @@ namespace Server.Entities
         {
             modelBuilder.Entity<RBaiXe>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rBaiXe");
 
                 entity.ToTable("rBaiXe");
@@ -31,7 +31,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RCanhBaoTonKho>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rCanhBaoTonKho");
 
                 entity.ToTable("rCanhBaoTonKho");
@@ -54,7 +54,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RChanh>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rChanh");
 
                 entity.ToTable("rChanh");
@@ -74,7 +74,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RDiaDiem>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rDiaDiem");
 
                 entity.ToTable("rDiaDiem");
@@ -94,7 +94,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RKhachHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rKhachHang");
 
                 entity.ToTable("rKhachHang");
@@ -120,7 +120,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RKhachHangChanh>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rKhachHangChanh");
 
                 entity.ToTable("rKhachHangChanh");
@@ -145,7 +145,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RKhoHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rKhoHang");
 
                 entity.ToTable("rKhoHang");
@@ -161,7 +161,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RLoaiChiPhi>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rLoaiChiPhi");
 
                 entity.ToTable("rLoaiChiPhi");
@@ -175,7 +175,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RLoaiHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rProductType");
 
                 entity.ToTable("rLoaiHang");
@@ -191,7 +191,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RLoaiNguyenLieu>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rLoaiNguyenLieu");
 
                 entity.ToTable("rLoaiNguyenLieu");
@@ -205,7 +205,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RMatHangNguyenLieu>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rMatHangNguyenLieu");
 
                 entity.ToTable("rMatHangNguyenLieu");
@@ -228,7 +228,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RNuoc>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rNuoc");
 
                 entity.ToTable("rNuoc");
@@ -242,7 +242,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RNguyenLieu>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_rNguyenLieu");
 
                 entity.ToTable("rNguyenLieu");
@@ -259,7 +259,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RNhaCungCap>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_NhaCungCap");
 
                 entity.ToTable("rNhaCungCap");
@@ -273,7 +273,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RNhanVien>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_NhanVienGiaoHang");
 
                 entity.ToTable("rNhanVien");
@@ -293,7 +293,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<RPhuongTien>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_LoaiPhuongTien");
 
                 entity.ToTable("rPhuongTien");
@@ -353,7 +353,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TCongNoKhachHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tCongNoKhachHang");
 
                 entity.ToTable("tCongNoKhachHang");
@@ -370,7 +370,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiPhi>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_ChiPhiNhanVienGiaoHang");
 
                 entity.ToTable("tChiPhi");
@@ -393,7 +393,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietChuyenHangDonHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tChiTietChuyenHangDonHang");
 
                 entity.ToTable("tChiTietChuyenHangDonHang");
@@ -418,7 +418,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietChuyenKho>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tChiTietChuyenKho");
 
                 entity.ToTable("tChiTietChuyenKho");
@@ -441,7 +441,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietDonHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tChiTietDonHang");
 
                 entity.ToTable("tChiTietDonHang");
@@ -466,7 +466,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietNhapHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_NhapMatHang");
 
                 entity.ToTable("tChiTietNhapHang");
@@ -489,7 +489,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChiTietToaHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tChiTietToaHang");
 
                 entity.ToTable("tChiTietToaHang");
@@ -512,7 +512,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChuyenHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_ChuyenHang");
 
                 entity.ToTable("tChuyenHang");
@@ -537,7 +537,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChuyenHangDonHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tChuyenHangDonHang");
 
                 entity.ToTable("tChuyenHangDonHang");
@@ -564,7 +564,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TChuyenKho>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tChuyenKho");
 
                 entity.ToTable("tChuyenKho");
@@ -593,7 +593,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TDonHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_DonHang");
 
                 entity.ToTable("tDonHang");
@@ -628,7 +628,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TGiamTruKhachHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tGiamTruKhachHang");
 
                 entity.ToTable("tGiamTruKhachHang");
@@ -648,7 +648,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TMatHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_Product");
 
                 entity.ToTable("tMatHang");
@@ -682,7 +682,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TNhanTienKhachHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tNhanTienKhachHang");
 
                 entity.ToTable("tNhanTienKhachHang");
@@ -699,7 +699,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TNhapHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tNhapHang");
 
                 entity.ToTable("tNhapHang");
@@ -728,7 +728,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TNhapNguyenLieu>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_NhapNguyenLieu");
 
                 entity.ToTable("tNhapNguyenLieu");
@@ -751,7 +751,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TPhuThuKhachHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tPhuThuKhachHang");
 
                 entity.ToTable("tPhuThuKhachHang");
@@ -771,7 +771,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TToaHang>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tToaHang");
 
                 entity.ToTable("tToaHang");
@@ -788,7 +788,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<TTonKho>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_tTonKho");
 
                 entity.ToTable("tTonKho");
@@ -811,7 +811,7 @@ namespace Server.Entities
             });
             modelBuilder.Entity<ThamSoNgay>(entity =>
             {
-                entity.HasKey(e => e.ID)
+                entity.HasKey(e => e.Ma)
                     .HasName("PK_ThamSoNgay");
 
                 entity.Property(e => e.GroupID).HasDefaultValueSql("(1)");

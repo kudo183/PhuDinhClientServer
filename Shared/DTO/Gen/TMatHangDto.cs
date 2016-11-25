@@ -6,7 +6,7 @@ namespace DTO
     public partial class TMatHangDto : IDto, INotifyPropertyChanged
     {
         int oGroupID;
-        int oID;
+        int oMa;
         int oMaLoai;
         int oSoKy;
         int oSoMet;
@@ -15,7 +15,7 @@ namespace DTO
         string oTenMatHangIn;
 
         int _GroupID;
-        int _ID;
+        int _Ma;
         int _MaLoai;
         int _SoKy;
         int _SoMet;
@@ -26,7 +26,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(1)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public int MaLoai { get { return _MaLoai; } set { _MaLoai = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -43,7 +43,7 @@ namespace DTO
         public void SetCurrentValueAsOriginalValue()
         {
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oMaLoai = MaLoai;
             oSoKy = SoKy;
             oSoMet = SoMet;
@@ -55,14 +55,13 @@ namespace DTO
         public bool HasChange()
         {
             return (oGroupID != GroupID)
-            || (oID != ID)
+            || (oMa != Ma)
             || (oMaLoai != MaLoai)
             || (oSoKy != SoKy)
             || (oSoMet != SoMet)
             || (oTenMatHang != TenMatHang)
             || (oTenMatHangDayDu != TenMatHangDayDu)
-            || (oTenMatHangIn != TenMatHangIn)
-;
+            || (oTenMatHangIn != TenMatHangIn);
         }
 
         object _MaLoaiSources;
@@ -75,5 +74,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

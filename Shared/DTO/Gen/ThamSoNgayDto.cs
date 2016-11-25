@@ -7,12 +7,12 @@ namespace DTO
     {
         System.DateTime oGiaTri;
         int oGroupID;
-        int oID;
+        int oMa;
         string oTen;
 
         System.DateTime _GiaTri;
         int _GroupID;
-        int _ID;
+        int _Ma;
         string _Ten;
 
         [ProtoBuf.ProtoMember(1)]
@@ -20,7 +20,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(2)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
         public string Ten { get { return _Ten; } set { _Ten = value; OnPropertyChanged(); } }
 
@@ -28,7 +28,7 @@ namespace DTO
         {
             oGiaTri = GiaTri;
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oTen = Ten;
         }
 
@@ -36,9 +36,8 @@ namespace DTO
         {
             return (oGiaTri != GiaTri)
             || (oGroupID != GroupID)
-            || (oID != ID)
-            || (oTen != Ten)
-;
+            || (oMa != Ma)
+            || (oTen != Ten);
         }
 
 
@@ -48,5 +47,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

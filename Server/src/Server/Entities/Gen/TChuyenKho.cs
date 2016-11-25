@@ -11,7 +11,7 @@ namespace Server.Entities
         }
 
         public int GroupID { get; set; }
-        public int ID { get; set; }
+        public int Ma { get; set; }
         public int MaKhoHangNhap { get; set; }
         public int MaKhoHangXuat { get; set; }
         public int MaNhanVien { get; set; }
@@ -22,5 +22,8 @@ namespace Server.Entities
         public RKhoHang MaKhoHangNhapNavigation { get; set; }
         public RKhoHang MaKhoHangXuatNavigation { get; set; }
         public RNhanVien MaNhanVienNavigation { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

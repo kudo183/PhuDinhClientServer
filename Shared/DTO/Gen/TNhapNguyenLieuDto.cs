@@ -6,14 +6,14 @@ namespace DTO
     public partial class TNhapNguyenLieuDto : IDto, INotifyPropertyChanged
     {
         int oGroupID;
-        int oID;
+        int oMa;
         int oMaNguyenLieu;
         int oMaNhaCungCap;
         System.DateTime oNgay;
         int oSoLuong;
 
         int _GroupID;
-        int _ID;
+        int _Ma;
         int _MaNguyenLieu;
         int _MaNhaCungCap;
         System.DateTime _Ngay;
@@ -22,7 +22,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(1)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public int MaNguyenLieu { get { return _MaNguyenLieu; } set { _MaNguyenLieu = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -35,7 +35,7 @@ namespace DTO
         public void SetCurrentValueAsOriginalValue()
         {
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oMaNguyenLieu = MaNguyenLieu;
             oMaNhaCungCap = MaNhaCungCap;
             oNgay = Ngay;
@@ -45,12 +45,11 @@ namespace DTO
         public bool HasChange()
         {
             return (oGroupID != GroupID)
-            || (oID != ID)
+            || (oMa != Ma)
             || (oMaNguyenLieu != MaNguyenLieu)
             || (oMaNhaCungCap != MaNhaCungCap)
             || (oNgay != Ngay)
-            || (oSoLuong != SoLuong)
-;
+            || (oSoLuong != SoLuong);
         }
 
         object _MaNguyenLieuSources;
@@ -66,5 +65,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

@@ -10,7 +10,7 @@ namespace Server.Entities
         }
 
         public int GroupID { get; set; }
-        public int ID { get; set; }
+        public int Ma { get; set; }
         public int MaNguyenLieu { get; set; }
         public int MaNhaCungCap { get; set; }
         public System.DateTime Ngay { get; set; }
@@ -19,5 +19,8 @@ namespace Server.Entities
 
         public RNguyenLieu MaNguyenLieuNavigation { get; set; }
         public RNhaCungCap MaNhaCungCapNavigation { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

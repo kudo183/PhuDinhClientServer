@@ -13,7 +13,7 @@ namespace Client.ViewModel
         partial void ProcessNewAddedDtoPartial(TChiPhiDto dto);
 
         HeaderFilterBaseModel _GhiChuFilter;
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _MaLoaiChiPhiFilter;
         HeaderFilterBaseModel _MaNhanVienGiaoHangFilter;
         HeaderFilterBaseModel _NgayFilter;
@@ -23,7 +23,7 @@ namespace Client.ViewModel
         {
             _GhiChuFilter = new HeaderTextFilterModel(TextManager.TChiPhi_GhiChu, nameof(TChiPhiDto.GhiChu), typeof(string));
 
-            _IDFilter = new HeaderTextFilterModel(TextManager.TChiPhi_ID, nameof(TChiPhiDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.TChiPhi_Ma, nameof(TChiPhiDto.Ma), typeof(int));
 
             _MaLoaiChiPhiFilter = new HeaderComboBoxFilterModel(
                 TextManager.TChiPhi_MaLoaiChiPhi, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -58,7 +58,7 @@ namespace Client.ViewModel
             InitFilterPartial();
 
             AddHeaderFilter(_GhiChuFilter);
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_MaLoaiChiPhiFilter);
             AddHeaderFilter(_MaNhanVienGiaoHangFilter);
             AddHeaderFilter(_NgayFilter);
@@ -87,9 +87,9 @@ namespace Client.ViewModel
             {
                 dto.GhiChu = (string)_GhiChuFilter.FilterValue;
             }
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_MaLoaiChiPhiFilter.FilterValue != null)
             {

@@ -12,11 +12,14 @@ namespace Server.Entities
         }
 
         public int GroupID { get; set; }
-        public int ID { get; set; }
+        public int Ma { get; set; }
         public string TenNhaCungCap { get; set; }
 
         public ICollection<TNhapHang> TNhapHangMaNhaCungCapNavigation { get; set; }
         public ICollection<TNhapNguyenLieu> TNhapNguyenLieuMaNhaCungCapNavigation { get; set; }
 
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

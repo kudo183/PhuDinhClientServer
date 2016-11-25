@@ -13,7 +13,7 @@ namespace Server.Controllers
         {
             var dto = new RNuocDto();
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.TenNuoc = entity.TenNuoc;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -25,7 +25,7 @@ namespace Server.Controllers
         {
             var entity = new RNuoc();
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.TenNuoc = dto.TenNuoc;
 
             ConvertToEntityPartial(ref entity, dto);

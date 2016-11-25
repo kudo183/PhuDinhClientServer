@@ -9,7 +9,7 @@
     xmlns:Abstraction="clr-namespace:Client.Abstraction;assembly=Client.Abstraction">
     <SimpleDataGrid:EditableGridView>
         <SimpleDataGrid:EditableGridView.Columns>
-            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="ID" IsReadOnly="True" Binding="{Binding ID, Mode=OneWay}"/>
+            <SimpleDataGrid:DataGridTextColumnExt Width="80" Header="Ma" IsReadOnly="True" Binding="{Binding Ma, Mode=OneWay}"/>
             <SimpleDataGrid:DataGridComboBoxColumnExt Header="MaChiTietDonHang"
                 SelectedValuePath="ID"
                 DisplayMemberPath="TenHienThi"

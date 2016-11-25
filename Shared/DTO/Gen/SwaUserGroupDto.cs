@@ -37,8 +37,7 @@ namespace DTO
             return (oGroupID != GroupID)
             || (oID != ID)
             || (oIsGroupOwner != IsGroupOwner)
-            || (oUserID != UserID)
-;
+            || (oUserID != UserID);
         }
 
         object _GroupIDSources;

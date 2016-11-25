@@ -7,13 +7,13 @@ namespace DTO
     {
         int oGiaTien;
         int oGroupID;
-        int oID;
+        int oMa;
         int oMaChiTietDonHang;
         int oMaToaHang;
 
         int _GiaTien;
         int _GroupID;
-        int _ID;
+        int _Ma;
         int _MaChiTietDonHang;
         int _MaToaHang;
 
@@ -22,7 +22,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(2)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
         public int MaChiTietDonHang { get { return _MaChiTietDonHang; } set { _MaChiTietDonHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(5)]
@@ -32,7 +32,7 @@ namespace DTO
         {
             oGiaTien = GiaTien;
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oMaChiTietDonHang = MaChiTietDonHang;
             oMaToaHang = MaToaHang;
         }
@@ -41,10 +41,9 @@ namespace DTO
         {
             return (oGiaTien != GiaTien)
             || (oGroupID != GroupID)
-            || (oID != ID)
+            || (oMa != Ma)
             || (oMaChiTietDonHang != MaChiTietDonHang)
-            || (oMaToaHang != MaToaHang)
-;
+            || (oMaToaHang != MaToaHang);
         }
 
         object _MaChiTietDonHangSources;
@@ -60,5 +59,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

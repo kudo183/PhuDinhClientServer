@@ -6,14 +6,14 @@ namespace DTO
     public partial class TChiTietChuyenHangDonHangDto : IDto, INotifyPropertyChanged
     {
         int oGroupID;
-        int oID;
+        int oMa;
         int oMaChiTietDonHang;
         int oMaChuyenHangDonHang;
         int oSoLuong;
         int oSoLuongTheoDonHang;
 
         int _GroupID;
-        int _ID;
+        int _Ma;
         int _MaChiTietDonHang;
         int _MaChuyenHangDonHang;
         int _SoLuong;
@@ -22,7 +22,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(1)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public int MaChiTietDonHang { get { return _MaChiTietDonHang; } set { _MaChiTietDonHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -35,7 +35,7 @@ namespace DTO
         public void SetCurrentValueAsOriginalValue()
         {
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oMaChiTietDonHang = MaChiTietDonHang;
             oMaChuyenHangDonHang = MaChuyenHangDonHang;
             oSoLuong = SoLuong;
@@ -45,12 +45,11 @@ namespace DTO
         public bool HasChange()
         {
             return (oGroupID != GroupID)
-            || (oID != ID)
+            || (oMa != Ma)
             || (oMaChiTietDonHang != MaChiTietDonHang)
             || (oMaChuyenHangDonHang != MaChuyenHangDonHang)
             || (oSoLuong != SoLuong)
-            || (oSoLuongTheoDonHang != SoLuongTheoDonHang)
-;
+            || (oSoLuongTheoDonHang != SoLuongTheoDonHang);
         }
 
         object _MaChiTietDonHangSources;
@@ -66,5 +65,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

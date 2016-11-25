@@ -14,7 +14,7 @@ namespace Server.Controllers
             var dto = new RLoaiHangDto();
             dto.GroupID = entity.GroupID;
             dto.HangNhaLam = entity.HangNhaLam;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.TenLoai = entity.TenLoai;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -27,7 +27,7 @@ namespace Server.Controllers
             var entity = new RLoaiHang();
             entity.GroupID = dto.GroupID;
             entity.HangNhaLam = dto.HangNhaLam;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.TenLoai = dto.TenLoai;
 
             ConvertToEntityPartial(ref entity, dto);

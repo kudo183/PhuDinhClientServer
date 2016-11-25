@@ -13,7 +13,7 @@ namespace Server.Controllers
         {
             var dto = new RNhanVienDto();
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.MaPhuongTien = entity.MaPhuongTien;
             dto.TenNhanVien = entity.TenNhanVien;
 
@@ -26,7 +26,7 @@ namespace Server.Controllers
         {
             var entity = new RNhanVien();
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.MaPhuongTien = dto.MaPhuongTien;
             entity.TenNhanVien = dto.TenNhanVien;
 

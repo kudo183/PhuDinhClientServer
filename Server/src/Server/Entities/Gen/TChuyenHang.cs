@@ -12,7 +12,7 @@ namespace Server.Entities
 
         public System.TimeSpan? Gio { get; set; }
         public int GroupID { get; set; }
-        public int ID { get; set; }
+        public int Ma { get; set; }
         public int MaNhanVienGiaoHang { get; set; }
         public System.DateTime Ngay { get; set; }
         public int TongDonHang { get; set; }
@@ -22,5 +22,8 @@ namespace Server.Entities
         public ICollection<TChuyenHangDonHang> TChuyenHangDonHangMaChuyenHangNavigation { get; set; }
 
         public RNhanVien MaNhanVienGiaoHangNavigation { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

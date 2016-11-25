@@ -12,13 +12,13 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RDiaDiemDto dto);
         partial void ProcessNewAddedDtoPartial(RDiaDiemDto dto);
 
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _MaNuocFilter;
         HeaderFilterBaseModel _TinhFilter;
 
         public RDiaDiemViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.RDiaDiem_ID, nameof(RDiaDiemDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.RDiaDiem_Ma, nameof(RDiaDiemDto.Ma), typeof(int));
 
             _MaNuocFilter = new HeaderComboBoxFilterModel(
                 TextManager.RDiaDiem_MaNuoc, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -37,7 +37,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_MaNuocFilter);
             AddHeaderFilter(_TinhFilter);
         }
@@ -58,9 +58,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RDiaDiemDto dto)
         {
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_MaNuocFilter.FilterValue != null)
             {

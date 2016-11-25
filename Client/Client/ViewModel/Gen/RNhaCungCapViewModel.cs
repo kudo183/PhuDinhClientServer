@@ -11,18 +11,18 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RNhaCungCapDto dto);
         partial void ProcessNewAddedDtoPartial(RNhaCungCapDto dto);
 
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _TenNhaCungCapFilter;
 
         public RNhaCungCapViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.RNhaCungCap_ID, nameof(RNhaCungCapDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.RNhaCungCap_Ma, nameof(RNhaCungCapDto.Ma), typeof(int));
 
             _TenNhaCungCapFilter = new HeaderTextFilterModel(TextManager.RNhaCungCap_TenNhaCungCap, nameof(RNhaCungCapDto.TenNhaCungCap), typeof(string));
 
             InitFilterPartial();
 
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_TenNhaCungCapFilter);
         }
 
@@ -34,9 +34,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RNhaCungCapDto dto)
         {
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_TenNhaCungCapFilter.FilterValue != null)
             {

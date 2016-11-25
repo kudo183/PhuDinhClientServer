@@ -13,7 +13,7 @@ namespace Server.Controllers
         {
             var dto = new RPhuongTienDto();
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.TenPhuongTien = entity.TenPhuongTien;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -25,7 +25,7 @@ namespace Server.Controllers
         {
             var entity = new RPhuongTien();
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.TenPhuongTien = dto.TenPhuongTien;
 
             ConvertToEntityPartial(ref entity, dto);

@@ -12,21 +12,21 @@ namespace Client.ViewModel
         partial void ProcessNewAddedDtoPartial(RLoaiHangDto dto);
 
         HeaderFilterBaseModel _HangNhaLamFilter;
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _TenLoaiFilter;
 
         public RLoaiHangViewModel() : base()
         {
             _HangNhaLamFilter = new HeaderCheckFilterModel(TextManager.RLoaiHang_HangNhaLam, nameof(RLoaiHangDto.HangNhaLam), typeof(bool));
 
-            _IDFilter = new HeaderTextFilterModel(TextManager.RLoaiHang_ID, nameof(RLoaiHangDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.RLoaiHang_Ma, nameof(RLoaiHangDto.Ma), typeof(int));
 
             _TenLoaiFilter = new HeaderTextFilterModel(TextManager.RLoaiHang_TenLoai, nameof(RLoaiHangDto.TenLoai), typeof(string));
 
             InitFilterPartial();
 
             AddHeaderFilter(_HangNhaLamFilter);
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_TenLoaiFilter);
         }
 
@@ -42,9 +42,9 @@ namespace Client.ViewModel
             {
                 dto.HangNhaLam = (bool)_HangNhaLamFilter.FilterValue;
             }
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_TenLoaiFilter.FilterValue != null)
             {

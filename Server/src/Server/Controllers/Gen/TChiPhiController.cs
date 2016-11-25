@@ -14,7 +14,7 @@ namespace Server.Controllers
             var dto = new TChiPhiDto();
             dto.GhiChu = entity.GhiChu;
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.MaLoaiChiPhi = entity.MaLoaiChiPhi;
             dto.MaNhanVienGiaoHang = entity.MaNhanVienGiaoHang;
             dto.Ngay = entity.Ngay;
@@ -30,7 +30,7 @@ namespace Server.Controllers
             var entity = new TChiPhi();
             entity.GhiChu = dto.GhiChu;
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.MaLoaiChiPhi = dto.MaLoaiChiPhi;
             entity.MaNhanVienGiaoHang = dto.MaNhanVienGiaoHang;
             entity.Ngay = dto.Ngay;

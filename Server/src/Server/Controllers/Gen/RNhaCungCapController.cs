@@ -13,7 +13,7 @@ namespace Server.Controllers
         {
             var dto = new RNhaCungCapDto();
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.TenNhaCungCap = entity.TenNhaCungCap;
 
             ConvertToDtoPartial(ref dto, entity);
@@ -25,7 +25,7 @@ namespace Server.Controllers
         {
             var entity = new RNhaCungCap();
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.TenNhaCungCap = dto.TenNhaCungCap;
 
             ConvertToEntityPartial(ref entity, dto);

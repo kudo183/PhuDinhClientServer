@@ -13,7 +13,7 @@ namespace Server.Controllers
         {
             var dto = new TToaHangDto();
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.MaKhachHang = entity.MaKhachHang;
             dto.Ngay = entity.Ngay;
 
@@ -26,7 +26,7 @@ namespace Server.Controllers
         {
             var entity = new TToaHang();
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.MaKhachHang = dto.MaKhachHang;
             entity.Ngay = dto.Ngay;
 

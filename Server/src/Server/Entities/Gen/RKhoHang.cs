@@ -16,7 +16,7 @@ namespace Server.Entities
         }
 
         public int GroupID { get; set; }
-        public int ID { get; set; }
+        public int Ma { get; set; }
         public string TenKho { get; set; }
         public bool TrangThai { get; set; }
 
@@ -27,5 +27,8 @@ namespace Server.Entities
         public ICollection<TNhapHang> TNhapHangMaKhoHangNavigation { get; set; }
         public ICollection<TTonKho> TTonKhoMaKhoHangNavigation { get; set; }
 
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

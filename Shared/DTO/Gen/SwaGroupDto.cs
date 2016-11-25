@@ -31,8 +31,7 @@ namespace DTO
         {
             return (oCreateDate != CreateDate)
             || (oGroupName != GroupName)
-            || (oID != ID)
-;
+            || (oID != ID);
         }
 
 

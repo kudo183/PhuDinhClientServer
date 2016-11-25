@@ -10,7 +10,7 @@ namespace Server.Entities
         }
 
         public int GroupID { get; set; }
-        public int ID { get; set; }
+        public int Ma { get; set; }
         public int MaChuyenKho { get; set; }
         public int MaMatHang { get; set; }
         public int SoLuong { get; set; }
@@ -18,5 +18,8 @@ namespace Server.Entities
 
         public TChuyenKho MaChuyenKhoNavigation { get; set; }
         public TMatHang MaMatHangNavigation { get; set; }
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

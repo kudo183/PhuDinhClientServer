@@ -11,13 +11,13 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RKhoHangDto dto);
         partial void ProcessNewAddedDtoPartial(RKhoHangDto dto);
 
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _TenKhoFilter;
         HeaderFilterBaseModel _TrangThaiFilter;
 
         public RKhoHangViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.RKhoHang_ID, nameof(RKhoHangDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.RKhoHang_Ma, nameof(RKhoHangDto.Ma), typeof(int));
 
             _TenKhoFilter = new HeaderTextFilterModel(TextManager.RKhoHang_TenKho, nameof(RKhoHangDto.TenKho), typeof(string));
 
@@ -25,7 +25,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_TenKhoFilter);
             AddHeaderFilter(_TrangThaiFilter);
         }
@@ -38,9 +38,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RKhoHangDto dto)
         {
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_TenKhoFilter.FilterValue != null)
             {

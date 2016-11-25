@@ -13,7 +13,7 @@ namespace Server.Controllers
         {
             var dto = new RKhoHangDto();
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.TenKho = entity.TenKho;
             dto.TrangThai = entity.TrangThai;
 
@@ -26,7 +26,7 @@ namespace Server.Controllers
         {
             var entity = new RKhoHang();
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.TenKho = dto.TenKho;
             entity.TrangThai = dto.TrangThai;
 

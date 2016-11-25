@@ -13,7 +13,7 @@ namespace Server.Controllers
         {
             var dto = new TChiTietDonHangDto();
             dto.GroupID = entity.GroupID;
-            dto.ID = entity.ID;
+            dto.Ma = entity.Ma;
             dto.MaDonHang = entity.MaDonHang;
             dto.MaMatHang = entity.MaMatHang;
             dto.SoLuong = entity.SoLuong;
@@ -28,7 +28,7 @@ namespace Server.Controllers
         {
             var entity = new TChiTietDonHang();
             entity.GroupID = dto.GroupID;
-            entity.ID = dto.ID;
+            entity.Ma = dto.Ma;
             entity.MaDonHang = dto.MaDonHang;
             entity.MaMatHang = dto.MaMatHang;
             entity.SoLuong = dto.SoLuong;

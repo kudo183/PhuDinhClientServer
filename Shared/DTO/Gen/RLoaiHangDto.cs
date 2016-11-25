@@ -7,12 +7,12 @@ namespace DTO
     {
         int oGroupID;
         bool oHangNhaLam;
-        int oID;
+        int oMa;
         string oTenLoai;
 
         int _GroupID;
         bool _HangNhaLam;
-        int _ID;
+        int _Ma;
         string _TenLoai;
 
         [ProtoBuf.ProtoMember(1)]
@@ -20,7 +20,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(2)]
         public bool HangNhaLam { get { return _HangNhaLam; } set { _HangNhaLam = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
         public string TenLoai { get { return _TenLoai; } set { _TenLoai = value; OnPropertyChanged(); } }
 
@@ -28,7 +28,7 @@ namespace DTO
         {
             oGroupID = GroupID;
             oHangNhaLam = HangNhaLam;
-            oID = ID;
+            oMa = Ma;
             oTenLoai = TenLoai;
         }
 
@@ -36,9 +36,8 @@ namespace DTO
         {
             return (oGroupID != GroupID)
             || (oHangNhaLam != HangNhaLam)
-            || (oID != ID)
-            || (oTenLoai != TenLoai)
-;
+            || (oMa != Ma)
+            || (oTenLoai != TenLoai);
         }
 
 
@@ -48,5 +47,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

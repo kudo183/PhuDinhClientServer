@@ -12,10 +12,13 @@ namespace Server.Entities
 
         public int GroupID { get; set; }
         public bool HangNhaLam { get; set; }
-        public int ID { get; set; }
+        public int Ma { get; set; }
         public string TenLoai { get; set; }
 
         public ICollection<TMatHang> TMatHangMaLoaiNavigation { get; set; }
 
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

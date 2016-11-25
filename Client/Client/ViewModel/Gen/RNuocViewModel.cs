@@ -11,18 +11,18 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RNuocDto dto);
         partial void ProcessNewAddedDtoPartial(RNuocDto dto);
 
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _TenNuocFilter;
 
         public RNuocViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.RNuoc_ID, nameof(RNuocDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.RNuoc_Ma, nameof(RNuocDto.Ma), typeof(int));
 
             _TenNuocFilter = new HeaderTextFilterModel(TextManager.RNuoc_TenNuoc, nameof(RNuocDto.TenNuoc), typeof(string));
 
             InitFilterPartial();
 
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_TenNuocFilter);
         }
 
@@ -34,9 +34,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RNuocDto dto)
         {
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_TenNuocFilter.FilterValue != null)
             {

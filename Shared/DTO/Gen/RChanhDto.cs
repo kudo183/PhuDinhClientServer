@@ -6,19 +6,19 @@ namespace DTO
     public partial class RChanhDto : IDto, INotifyPropertyChanged
     {
         int oGroupID;
-        int oID;
+        int oMa;
         int oMaBaiXe;
         string oTenChanh;
 
         int _GroupID;
-        int _ID;
+        int _Ma;
         int _MaBaiXe;
         string _TenChanh;
 
         [ProtoBuf.ProtoMember(1)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public int MaBaiXe { get { return _MaBaiXe; } set { _MaBaiXe = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
@@ -27,7 +27,7 @@ namespace DTO
         public void SetCurrentValueAsOriginalValue()
         {
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oMaBaiXe = MaBaiXe;
             oTenChanh = TenChanh;
         }
@@ -35,10 +35,9 @@ namespace DTO
         public bool HasChange()
         {
             return (oGroupID != GroupID)
-            || (oID != ID)
+            || (oMa != Ma)
             || (oMaBaiXe != MaBaiXe)
-            || (oTenChanh != TenChanh)
-;
+            || (oTenChanh != TenChanh);
         }
 
         object _MaBaiXeSources;
@@ -51,5 +50,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

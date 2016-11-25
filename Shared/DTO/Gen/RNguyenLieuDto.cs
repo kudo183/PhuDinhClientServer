@@ -7,12 +7,12 @@ namespace DTO
     {
         int oDuongKinh;
         int oGroupID;
-        int oID;
+        int oMa;
         int oMaLoaiNguyenLieu;
 
         int _DuongKinh;
         int _GroupID;
-        int _ID;
+        int _Ma;
         int _MaLoaiNguyenLieu;
 
         [ProtoBuf.ProtoMember(1)]
@@ -20,7 +20,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(2)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
         public int MaLoaiNguyenLieu { get { return _MaLoaiNguyenLieu; } set { _MaLoaiNguyenLieu = value; OnPropertyChanged(); } }
 
@@ -28,7 +28,7 @@ namespace DTO
         {
             oDuongKinh = DuongKinh;
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oMaLoaiNguyenLieu = MaLoaiNguyenLieu;
         }
 
@@ -36,9 +36,8 @@ namespace DTO
         {
             return (oDuongKinh != DuongKinh)
             || (oGroupID != GroupID)
-            || (oID != ID)
-            || (oMaLoaiNguyenLieu != MaLoaiNguyenLieu)
-;
+            || (oMa != Ma)
+            || (oMaLoaiNguyenLieu != MaLoaiNguyenLieu);
         }
 
         object _MaLoaiNguyenLieuSources;
@@ -51,5 +50,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

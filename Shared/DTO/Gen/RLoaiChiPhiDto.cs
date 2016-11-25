@@ -6,33 +6,32 @@ namespace DTO
     public partial class RLoaiChiPhiDto : IDto, INotifyPropertyChanged
     {
         int oGroupID;
-        int oID;
+        int oMa;
         string oTenLoaiChiPhi;
 
         int _GroupID;
-        int _ID;
+        int _Ma;
         string _TenLoaiChiPhi;
 
         [ProtoBuf.ProtoMember(1)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(2)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
         public string TenLoaiChiPhi { get { return _TenLoaiChiPhi; } set { _TenLoaiChiPhi = value; OnPropertyChanged(); } }
 
         public void SetCurrentValueAsOriginalValue()
         {
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oTenLoaiChiPhi = TenLoaiChiPhi;
         }
 
         public bool HasChange()
         {
             return (oGroupID != GroupID)
-            || (oID != ID)
-            || (oTenLoaiChiPhi != TenLoaiChiPhi)
-;
+            || (oMa != Ma)
+            || (oTenLoaiChiPhi != TenLoaiChiPhi);
         }
 
 
@@ -42,5 +41,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

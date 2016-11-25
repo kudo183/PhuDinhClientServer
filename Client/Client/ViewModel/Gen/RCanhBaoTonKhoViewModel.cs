@@ -12,7 +12,7 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RCanhBaoTonKhoDto dto);
         partial void ProcessNewAddedDtoPartial(RCanhBaoTonKhoDto dto);
 
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _MaKhoHangFilter;
         HeaderFilterBaseModel _MaMatHangFilter;
         HeaderFilterBaseModel _TonCaoNhatFilter;
@@ -20,7 +20,7 @@ namespace Client.ViewModel
 
         public RCanhBaoTonKhoViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.RCanhBaoTonKho_ID, nameof(RCanhBaoTonKhoDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.RCanhBaoTonKho_Ma, nameof(RCanhBaoTonKhoDto.Ma), typeof(int));
 
             _MaKhoHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.RCanhBaoTonKho_MaKhoHang, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -54,7 +54,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_MaKhoHangFilter);
             AddHeaderFilter(_MaMatHangFilter);
             AddHeaderFilter(_TonCaoNhatFilter);
@@ -79,9 +79,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RCanhBaoTonKhoDto dto)
         {
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_MaKhoHangFilter.FilterValue != null)
             {

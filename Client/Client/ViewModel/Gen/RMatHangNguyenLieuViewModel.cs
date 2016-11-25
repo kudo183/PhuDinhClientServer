@@ -12,13 +12,13 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RMatHangNguyenLieuDto dto);
         partial void ProcessNewAddedDtoPartial(RMatHangNguyenLieuDto dto);
 
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _MaMatHangFilter;
         HeaderFilterBaseModel _MaNguyenLieuFilter;
 
         public RMatHangNguyenLieuViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.RMatHangNguyenLieu_ID, nameof(RMatHangNguyenLieuDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.RMatHangNguyenLieu_Ma, nameof(RMatHangNguyenLieuDto.Ma), typeof(int));
 
             _MaMatHangFilter = new HeaderComboBoxFilterModel(
                 TextManager.RMatHangNguyenLieu_MaMatHang, HeaderComboBoxFilterModel.ComboBoxFilter,
@@ -48,7 +48,7 @@ namespace Client.ViewModel
 
             InitFilterPartial();
 
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_MaMatHangFilter);
             AddHeaderFilter(_MaNguyenLieuFilter);
         }
@@ -71,9 +71,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RMatHangNguyenLieuDto dto)
         {
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_MaMatHangFilter.FilterValue != null)
             {

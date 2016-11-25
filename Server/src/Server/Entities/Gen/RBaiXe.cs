@@ -12,9 +12,12 @@ namespace Server.Entities
 
         public string DiaDiemBaiXe { get; set; }
         public int GroupID { get; set; }
-        public int ID { get; set; }
+        public int Ma { get; set; }
 
         public ICollection<RChanh> RChanhMaBaiXeNavigation { get; set; }
 
+
+        [System.ComponentModel.DataAnnotations.Schema.NotMapped]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

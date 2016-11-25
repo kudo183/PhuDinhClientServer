@@ -7,7 +7,7 @@ namespace DTO
     {
         System.TimeSpan? oGio;
         int oGroupID;
-        int oID;
+        int oMa;
         int oMaNhanVienGiaoHang;
         System.DateTime oNgay;
         int oTongDonHang;
@@ -16,7 +16,7 @@ namespace DTO
 
         System.TimeSpan? _Gio;
         int _GroupID;
-        int _ID;
+        int _Ma;
         int _MaNhanVienGiaoHang;
         System.DateTime _Ngay;
         int _TongDonHang;
@@ -28,7 +28,7 @@ namespace DTO
         [ProtoBuf.ProtoMember(2)]
         public int GroupID { get { return _GroupID; } set { _GroupID = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(3)]
-        public int ID { get { return _ID; } set { _ID = value; OnPropertyChanged(); } }
+        public int Ma { get { return _Ma; } set { _Ma = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(4)]
         public int MaNhanVienGiaoHang { get { return _MaNhanVienGiaoHang; } set { _MaNhanVienGiaoHang = value; OnPropertyChanged(); } }
         [ProtoBuf.ProtoMember(5)]
@@ -44,7 +44,7 @@ namespace DTO
         {
             oGio = Gio;
             oGroupID = GroupID;
-            oID = ID;
+            oMa = Ma;
             oMaNhanVienGiaoHang = MaNhanVienGiaoHang;
             oNgay = Ngay;
             oTongDonHang = TongDonHang;
@@ -56,13 +56,12 @@ namespace DTO
         {
             return (oGio != Gio)
             || (oGroupID != GroupID)
-            || (oID != ID)
+            || (oMa != Ma)
             || (oMaNhanVienGiaoHang != MaNhanVienGiaoHang)
             || (oNgay != Ngay)
             || (oTongDonHang != TongDonHang)
             || (oTongSoLuongTheoDonHang != TongSoLuongTheoDonHang)
-            || (oTongSoLuongThucTe != TongSoLuongThucTe)
-;
+            || (oTongSoLuongThucTe != TongSoLuongThucTe);
         }
 
         object _MaNhanVienGiaoHangSources;
@@ -75,5 +74,8 @@ namespace DTO
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ID { get { return Ma; } set { Ma = value;} }
     }
 }

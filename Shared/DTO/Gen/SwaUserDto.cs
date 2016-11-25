@@ -37,8 +37,7 @@ namespace DTO
             return (oCreateDate != CreateDate)
             || (oEmail != Email)
             || (oID != ID)
-            || (oPasswordHash != PasswordHash)
-;
+            || (oPasswordHash != PasswordHash);
         }
 
 

@@ -11,18 +11,18 @@ namespace Client.ViewModel
         partial void ProcessDtoBeforeAddToEntitiesPartial(RLoaiChiPhiDto dto);
         partial void ProcessNewAddedDtoPartial(RLoaiChiPhiDto dto);
 
-        HeaderFilterBaseModel _IDFilter;
+        HeaderFilterBaseModel _MaFilter;
         HeaderFilterBaseModel _TenLoaiChiPhiFilter;
 
         public RLoaiChiPhiViewModel() : base()
         {
-            _IDFilter = new HeaderTextFilterModel(TextManager.RLoaiChiPhi_ID, nameof(RLoaiChiPhiDto.ID), typeof(int));
+            _MaFilter = new HeaderTextFilterModel(TextManager.RLoaiChiPhi_Ma, nameof(RLoaiChiPhiDto.Ma), typeof(int));
 
             _TenLoaiChiPhiFilter = new HeaderTextFilterModel(TextManager.RLoaiChiPhi_TenLoaiChiPhi, nameof(RLoaiChiPhiDto.TenLoaiChiPhi), typeof(string));
 
             InitFilterPartial();
 
-            AddHeaderFilter(_IDFilter);
+            AddHeaderFilter(_MaFilter);
             AddHeaderFilter(_TenLoaiChiPhiFilter);
         }
 
@@ -34,9 +34,9 @@ namespace Client.ViewModel
 
         protected override void ProcessNewAddedDto(RLoaiChiPhiDto dto)
         {
-            if (_IDFilter.FilterValue != null)
+            if (_MaFilter.FilterValue != null)
             {
-                dto.ID = (int)_IDFilter.FilterValue;
+                dto.Ma = (int)_MaFilter.FilterValue;
             }
             if (_TenLoaiChiPhiFilter.FilterValue != null)
             {
