@@ -107,7 +107,7 @@ namespace Client.Abstraction
             {
                 nextDataGrid.FocusCell(
                     nextDataGrid.Items.Count - 1,
-                    nextDataGrid.FindFirstEditableColumnIndex(0, nextDataGrid));
+                    nextDataGrid.FindFirstEditableColumn());
             };
         }
     }
