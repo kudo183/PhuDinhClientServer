@@ -21,5 +21,21 @@ namespace Server.Controllers
             var q = base.GetQuery();
             return q.Include(p => p.MaDonHangNavigation);
         }
+
+        protected override void AfterSave()
+        {
+            //because sql trigger updated SoLuong of TTonKho
+            TTonKhoController.IncreaseVersionNumber();
+            //because sql trigger updated TongSoLuong, Xong of TDonHang
+            TDonHangController.IncreaseVersionNumber();
+            //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHang
+            TChuyenHangController.IncreaseVersionNumber();
+            //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHangDonHang
+            TChuyenHangDonHangController.IncreaseVersionNumber();
+            //because sql trigger updated SoLuongTheoDonHang of TChiTietChuyenHangDonHang
+            TChiTietChuyenHangDonHangController.IncreaseVersionNumber();
+            //because sql trigger updated SoTien of TCongNoKhachHang
+            TCongNoKhachHangController.IncreaseVersionNumber();
+        }
     }
 }

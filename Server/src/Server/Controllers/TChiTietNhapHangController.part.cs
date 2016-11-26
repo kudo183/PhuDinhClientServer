@@ -21,5 +21,11 @@ namespace Server.Controllers
             var q = base.GetQuery();
             return q.Include(p => p.MaNhapHangNavigation);
         }
+
+        protected override void AfterSave()
+        {
+            //because sql trigger updated SoLuong of TTonKho
+            TTonKhoController.IncreaseVersionNumber();
+        }
     }
 }

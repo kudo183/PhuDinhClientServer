@@ -36,5 +36,17 @@ namespace Server.Controllers
                 .Include(p => p.MaChiTietDonHangNavigation.MaDonHangNavigation)
                 .Include(p => p.MaChiTietDonHangNavigation.MaMatHangNavigation);
         }
+
+        protected override void AfterSave()
+        {
+            //because sql trigger updated TongSoLuongThucTe of TChuyenHang
+            TChuyenHangController.IncreaseVersionNumber();
+            //because sql trigger updated TongSoLuongThucTe of TChuyenHangDonHang
+            TChuyenHangDonHangController.IncreaseVersionNumber();
+            //because sql trigger updated Xong of TChiTietDonHang
+            TChiTietDonHangController.IncreaseVersionNumber();
+            //because sql trigger updated Xong of TDonHang
+            TDonHangController.IncreaseVersionNumber();
+        }
     }
 }

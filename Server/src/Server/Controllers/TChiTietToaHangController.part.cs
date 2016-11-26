@@ -29,5 +29,10 @@ namespace Server.Controllers
                 .Include(p => p.MaChiTietDonHangNavigation.MaDonHangNavigation)
                 .Include(p => p.MaChiTietDonHangNavigation.MaMatHangNavigation);
         }
+        protected override void AfterSave()
+        {
+            //because sql trigger updated SoTien of TCongNoKhachHang
+            TCongNoKhachHangController.IncreaseVersionNumber();
+        }
     }
 }
