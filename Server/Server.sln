@@ -1,6 +1,6 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Express 14 for Web
+# Visual Studio 14
 VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{5316C814-37B7-4163-8B6A-CDB83ACC2131}"
@@ -19,6 +19,8 @@ EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "huypq.Crypto", "..\..\huypq.Crypto\src\huypq.Crypto\huypq.Crypto.xproj", "{BCCC97BE-543A-435A-85DC-FA43BACD1D4E}"
 EndProject
 Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "DTO", "..\Shared\DTO\DTO.xproj", "{9B7200FC-139C-4FEA-B080-3C360E163BAE}"
+EndProject
+Project("{8BB2217D-0F2D-49D1-97BC-3654ED321F3B}") = "Website", "src\Website\Website.xproj", "{537C440B-CFAD-452C-A47E-ECE6EDE384EA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -46,11 +48,16 @@ Global
 		{9B7200FC-139C-4FEA-B080-3C360E163BAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9B7200FC-139C-4FEA-B080-3C360E163BAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9B7200FC-139C-4FEA-B080-3C360E163BAE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{537C440B-CFAD-452C-A47E-ECE6EDE384EA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{537C440B-CFAD-452C-A47E-ECE6EDE384EA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{537C440B-CFAD-452C-A47E-ECE6EDE384EA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{537C440B-CFAD-452C-A47E-ECE6EDE384EA}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
 		{20DB26AF-0404-4603-A12B-414B35D83199} = {5316C814-37B7-4163-8B6A-CDB83ACC2131}
+		{537C440B-CFAD-452C-A47E-ECE6EDE384EA} = {5316C814-37B7-4163-8B6A-CDB83ACC2131}
 	EndGlobalSection
 EndGlobal

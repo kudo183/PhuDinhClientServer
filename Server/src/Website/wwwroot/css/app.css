@@ -1,0 +1,18 @@
+﻿body {
+    padding-top:35px;
+}
+span {
+    white-space: pre;
+}
+
+.underlineText {
+    text-decoration: underline;
+}
+
+.warningUpper {
+    color: blue;
+}
+
+.warningLower {
+    color: red;
+}
