@@ -133,7 +133,7 @@ namespace Client.Abstraction
             qe.OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
             {
                 IsAscending = true,
-                PropertyPath = nameof(DTO.IDto.ID)
+                PropertyPath = "Ma"
             });
 
             result = DataService.Get(qe);

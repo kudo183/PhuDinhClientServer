@@ -17,6 +17,8 @@ namespace DTO
         public long VersionNumber { get; set; }
         [ProtoBuf.ProtoMember(6)]
         public string ErrorMsg { get; set; }
+        [ProtoBuf.ProtoMember(7)]
+        public long ServerStartTime { get; set; }
 
         public PagingResultDto()
         {
