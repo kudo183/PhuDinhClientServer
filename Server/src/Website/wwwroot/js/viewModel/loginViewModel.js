@@ -32,5 +32,5 @@
             }
         };
         return viewModel;
-    };
+    }
 })(window.app.webApi);

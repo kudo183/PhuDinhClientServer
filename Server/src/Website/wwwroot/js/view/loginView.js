@@ -9,7 +9,7 @@
     function show() {
         $("#loginView").show();
         $("#mainView").hide();
-    };
+    }
 
     function init() {
         createViewContent("#loginView");
@@ -24,5 +24,5 @@
         $(viewId).append(utilsDOM.createElement("input", { type: "text", placeholder: "Group" }, "textInput: group"));
         $(viewId).append(utilsDOM.createElement("button", {}, "click: signInAction", "Sign in"));
         $(viewId).append(utilsDOM.createElement("button", {}, "click: registerAction", "Register"));
-    };
+    }
 })(window.huypq.control.utilsDOM);
