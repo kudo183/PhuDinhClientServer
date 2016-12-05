@@ -23,7 +23,7 @@ namespace Server
         {
             loggerFactory.AddConsole();
 
-            app.UseCors(builder => builder.WithOrigins("http://localhost").AllowAnyHeader().AllowAnyMethod());
+            app.UseCors(builder => builder.WithOrigins("http://localhost", "http://luoithepvinhphat.com", "http://gaucon.net").AllowAnyHeader().AllowAnyMethod());
 
             app.UseSwaWithTokenAuthentication("Server");
             //app.UseSwa("Server");

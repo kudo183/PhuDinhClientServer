@@ -9,6 +9,9 @@
     function show() {
         $("#mainView").show();
         $("#loginView").hide();
+
+        var view = window.params.v || "tonKhoView";
+        viewManager.setCurrentView(view);
     }
 
     function init() {
@@ -38,8 +41,5 @@
         };
 
         viewManager.init("#headerContent", "#mainContent", headerMenuViewModel);
-
-        var view = window.params.v || "tonKhoView";
-        viewManager.setCurrentView(view);
     }
 })(window.app.view.viewManager);

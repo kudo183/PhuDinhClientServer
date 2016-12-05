@@ -1,2 +1,2 @@
 set ASPNETCORE_ENVIRONMENT=Development
-dotnet run
+dotnet run http://gaucon.net:80

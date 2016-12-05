@@ -8,7 +8,7 @@
     function create() {
         var viewModel = {
             email: ko.observable("huy"),
-            password: ko.observable("nobita"),
+            password: ko.observable(),
             group: ko.observable("vinhphat"),
             signInAction: function (model) {
                 webApi.user.token({ user: model.email(), pass: model.password(), group: model.group() })
