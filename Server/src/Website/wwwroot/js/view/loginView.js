@@ -2,27 +2,32 @@
 
     var loginView = {
         show: show,
-        init: init
+        init: init,
+        viewModel: {}
     };
     return loginView;
 
     function show() {
         $("#loginView").show();
         $("#mainView").hide();
+
+        loginView.viewModel.password(undefined);
+        loginView.viewModel.groupList(undefined);
+        loginView.viewModel.group(undefined);
     }
 
     function init() {
         createViewContent("#loginView");
-        var viewModel = window.app.viewModel.loginViewModel.create();
+        loginView.viewModel = window.app.viewModel.loginViewModel.create();
 
-        ko.applyBindings(viewModel, $("#loginView")[0]);
+        ko.applyBindings(loginView.viewModel, $("#loginView")[0]);
     }
 
     function createViewContent(viewId) {
-        $(viewId).append(utilsDOM.createElement("input", { type: "text", placeholder: "Email" }, "textInput: email"));
-        $(viewId).append(utilsDOM.createElement("input", { type: "password", placeholder: "Password" }, "textInput: password"));
-        $(viewId).append(utilsDOM.createElement("input", { type: "text", placeholder: "Group" }, "textInput: group"));
-        $(viewId).append(utilsDOM.createElement("button", {}, "click: signInAction", "Sign in"));
-        $(viewId).append(utilsDOM.createElement("button", {}, "click: registerAction", "Register"));
+        $(viewId).append(utilsDOM.createElement("input", { id:"email", type: "text", placeholder: "Email" }, "textInput: email"));
+        $(viewId).append(utilsDOM.createElement("input", { id:"password", type: "password", placeholder: "Password" }, "textInput: password"));
+        $(viewId).append(utilsDOM.createElement("button", {}, "click: loginAction", "Login"));
+        $(viewId).append(utilsDOM.createElement("div", {}, "cbSelectedValue: group, cbItems: groupList, cbItemText: 'text', cbItemValue: 'text'"));
+        $(viewId).append(utilsDOM.createElement("button", {}, "click: okAction", "Ok"));
     }
 })(window.huypq.control.utilsDOM);

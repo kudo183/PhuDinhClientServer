@@ -18,19 +18,6 @@ namespace Client
 
         public string Token { get; set; }
 
-        public DTO.PagingResultDto<T> Get<T>(string controller, string action)
-            where T : DTO.IDto
-        {
-            var uri = GetUri(controller, action);
-
-            var pagingResult = FromBytes<DTO.PagingResultDto<T>>(Get(uri));
-            foreach (var item in pagingResult.Items)
-            {
-                item.SetCurrentValueAsOriginalValue();
-            }
-            return pagingResult;
-        }
-
         public string[] GetGroups(string user)
         {
             var uri = GetUri("user", "getgroups");
@@ -38,37 +25,41 @@ namespace Client
             var data = new NameValueCollection();
             data["user"] = user;
 
-            var client = new MyWebClient();
-
             //choose json response type because when respone is a string, json is better than protobuf
-            client.Headers["response"] = "json";
+            var response = PostValues(uri, data, "json");
 
-            var response = client.UploadValues(uri, data);
-            var text = System.Text.Encoding.UTF8.GetString(response, 1, response.Length - 2);
+            var text = GetStringFromBytes(response);
 
             var groups = text.Split(new string[] { "*&*" }, StringSplitOptions.RemoveEmptyEntries);
 
             return groups;
         }
 
-        public void Login(string user, string pass, string group)
+        public void Login(string user, string pass)
         {
-            var uri = GetUri("user", "token");
+            var uri = GetUri("user", "login");
 
             var data = new NameValueCollection();
             data["user"] = user;
             data["pass"] = pass;
-            data["group"] = group;
-
-            var client = new MyWebClient();
 
             //choose json response type because when respone is a string, json is better than protobuf
-            client.Headers["response"] = "json";
+            var token = PostValues(uri, data, "json");
 
-            var token = client.UploadValues(uri, data);
+            Token = GetStringFromBytes(token);
+        }
 
-            //skip begin end double quote
-            Token = System.Text.Encoding.UTF8.GetString(token, 1, token.Length - 2);
+        public void AccessToken(string group)
+        {
+            var uri = GetUri("user", "accesstoken");
+
+            var data = new NameValueCollection();
+            data["group"] = group;
+
+            //choose json response type because when respone is a string, json is better than protobuf
+            var token = PostValues(uri, data, "json");
+
+            Token = GetStringFromBytes(token);
         }
 
         public byte[] Post<T>(string controller, string action, QueryExpression qe) where T : DTO.IDto
@@ -89,10 +80,13 @@ namespace Client
 
         public byte[] Report(string action, NameValueCollection reportParameters)
         {
-            var uri = GetUri("report", action);
+            return PostValues(GetUri("report", action), reportParameters, "protobuf");
+        }
 
+        private byte[] PostValues(string uri, NameValueCollection reportParameters, string responseType)
+        {
             var client = new MyWebClient();
-            client.Headers["response"] = "protobuf";
+            client.Headers["response"] = responseType;
             client.Headers["token"] = Token;
 
             return client.UploadValues(uri, reportParameters);
@@ -106,17 +100,6 @@ namespace Client
 
                 return r;
             }
-        }
-
-        private byte[] Get(string uri)
-        {
-            var client = new MyWebClient();
-            client.Headers["response"] = "protobuf";
-            client.Headers["token"] = Token;
-
-            var response = client.DownloadData(uri);
-
-            return response;
         }
 
         private byte[] Post(string uri, byte[] data)
@@ -138,6 +121,12 @@ namespace Client
                 ProtoBuf.Serializer.Serialize(ms, data);
                 return ms.ToArray();
             }
+        }
+
+        private string GetStringFromBytes(byte[] bytes)
+        {
+            //skip begin, end double quote
+            return System.Text.Encoding.UTF8.GetString(bytes, 1, bytes.Length - 2);
         }
 
         private string GetUri(string controller, string action)

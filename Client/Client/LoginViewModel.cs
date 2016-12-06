@@ -8,6 +8,20 @@ namespace Client.ViewModel
 {
     public class LoginViewModel : INotifyPropertyChanged
     {
+        private bool _isLoggedIn;
+        public bool IsLoggedIn
+        {
+            get { return _isLoggedIn; }
+            set
+            {
+                if (_isLoggedIn != value)
+                {
+                    _isLoggedIn = value;
+                    OnPropertyChanged();
+                }
+            }
+        }
+
         private string _user;
         public string User
         {
@@ -18,7 +32,7 @@ namespace Client.ViewModel
                 {
                     _user = value;
                     OnPropertyChanged();
-                    OkCommand.RaiseCanExecuteChanged();
+                    LoginCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -33,7 +47,7 @@ namespace Client.ViewModel
                 {
                     _pass = value;
                     OnPropertyChanged();
-                    OkCommand.RaiseCanExecuteChanged();
+                    LoginCommand.RaiseCanExecuteChanged();
                 }
             }
         }
@@ -106,32 +120,34 @@ namespace Client.ViewModel
         {
             _window = window;
 
+            LoginCommand = new SimpleCommand("LoginCommand",
+                () => { LoginButtonClick(); },
+                () =>
+                {
+                    return (string.IsNullOrEmpty(_user) == false
+                    && string.IsNullOrEmpty(_pass) == false);
+                }
+            );
+
             OkCommand = new SimpleCommand("OkCommand",
                 () => { OkButtonClick(); },
                 () =>
                 {
-                    return (string.IsNullOrEmpty(_user) == false
-                    && string.IsNullOrEmpty(_pass) == false
-                    && string.IsNullOrEmpty(selectedGroup) == false);
-                }
-            );
-
-            GetGroupsCommand = new SimpleCommand("GetGroupsCommand",
-                () => { GetGroupsClick(); },
-                () =>
-                {
-                    return (string.IsNullOrEmpty(_user) == false);
+                    return (string.IsNullOrEmpty(SelectedGroup) == false);
                 }
             );
         }
 
-        void GetGroupsClick()
+        void OkButtonClick()
         {
             try
             {
                 Msg = "";
+                ProtobufWebClient.Instance.AccessToken(SelectedGroup);
 
-                GroupList = ProtobufWebClient.Instance.GetGroups(User);
+                var w = new MainWindow();
+                w.Show();
+                _window.Close();
             }
             catch (WebException ex)
             {
@@ -145,19 +161,17 @@ namespace Client.ViewModel
             }
         }
 
-        void OkButtonClick()
+        void LoginButtonClick()
         {
             try
             {
                 Msg = "";
 
-                ProtobufWebClient.Instance.Login(User, Pass, SelectedGroup);
+                ProtobufWebClient.Instance.Login(User, Pass);
+                
+                GroupList = ProtobufWebClient.Instance.GetGroups(User);
 
-                Pass = string.Empty;
-
-                var w = new MainWindow();
-                w.Show();
-                _window.Close();
+                IsLoggedIn = true;
             }
             catch (WebException ex)
             {
@@ -176,7 +190,7 @@ namespace Client.ViewModel
 
         public SimpleCommand OkCommand { get; private set; }
 
-        public SimpleCommand GetGroupsCommand { get; private set; }
+        public SimpleCommand LoginCommand { get; private set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
 

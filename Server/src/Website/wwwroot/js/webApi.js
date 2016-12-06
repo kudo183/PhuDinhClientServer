@@ -1,15 +1,16 @@
 ﻿window.app.webApi = (function () {
-    var log = window.huypq.log || function (text) { };
-    //var log = console.log;
-    var info = console.log;
-
     var webApi = {
+        log: window.huypq.log || function (text) { },
+        info: console.log,
         user: {
-            register: function (params) {
-                return postParams(apiUrl("user", "register"), params);
+            login: function (params) {
+                return postParams(apiUrl("user", "login"), params);
             },
-            token: function (params) {
-                return postParams(apiUrl("user", "token"), params);
+            accesstoken: function (params) {
+                return postParams(apiUrl("user", "accesstoken"), params);
+            },
+            getgroups: function (params) {
+                return postParams(apiUrl("user", "getgroups"), params);
             }
         },
         getData: getData,
@@ -30,7 +31,7 @@
         var deferred = new $.Deferred();
 
         var cacheKey = controller + '_' + jsonString;
-        log("webApi cacheKey: " + cacheKey);
+        webApi.log("webApi cacheKey: " + cacheKey);
 
         var cacheData = webApi._cache[cacheKey];
         var versionNumber = 0;
@@ -48,11 +49,11 @@
         postJson(url, jsonString)
             .done(function (data, textStatus, jqXHR) {
                 if (versionNumber === data.versionNumber && serverStartTime === data.serverStartTime) {
-                    info("webApi cache hit " + controller + "   " + versionNumber);
+                    webApi.info("webApi cache hit " + controller + "   " + versionNumber);
 
                     deferred.resolve(JSON.parse(cacheData.jsonStringData), cacheData.textStatus, cacheData.jqXHR);
                 } else {
-                    info("webApi cache miss " + controller + "   " + data.versionNumber);
+                    webApi.info("webApi cache miss " + controller + "   " + data.versionNumber);
                     webApi._cache[cacheKey] = {
                         serverStartTime: data.serverStartTime,
                         versionNumber: data.versionNumber,
@@ -72,7 +73,7 @@
     }
 
     function postJson(url, jsonString) {
-        info("webApi postJson: " + url + " " + jsonString);
+        webApi.info("webApi postJson: " + url + " " + jsonString);
         var options = {
             dataType: "json",
             contentType: "application/json",
@@ -92,7 +93,7 @@
     }
 
     function postParams(url, params) {
-        info("webApi postParams: " + url + " " + JSON.stringify(params));
+        webApi.info("webApi postParams: " + url + " " + JSON.stringify(params));
         var options = {
             dataType: "json",
             contentType: "application/x-www-form-urlencoded",

@@ -9,25 +9,38 @@
         var viewModel = {
             email: ko.observable("huy"),
             password: ko.observable(),
-            group: ko.observable("vinhphat"),
-            signInAction: function (model) {
-                webApi.user.token({ user: model.email(), pass: model.password(), group: model.group() })
+            groupList: ko.observableArray(),
+            group: ko.observable(),
+            loginAction: function (model) {
+                webApi.user.login({ user: model.email(), pass: model.password() })
                     .done(function (token) {
                         window.localStorage.setItem(window.tokenKey, token);
-                        window.app.view.mainView.show();
-                        window.app.view.viewManager.loadCurrentView();
+                        webApi.user.getgroups({ user: model.email() })
+                        .done(function (text) {
+                            var t = text.split("*&*");
+                            var arr = [];
+                            for (var i = 0; i < t.length - 1; i++) {
+                                arr.push({ text: t[i] });
+                            }
+                            model.groupList(arr);
+                            model.group(t[0]);
+                        })
+                        .fail(function (msg) {
+                            console.log("fail: " + JSON.stringify(msg));
+                        });
                     })
                     .fail(function (msg) {
                         console.log("fail: " + JSON.stringify(msg));
                     });
             },
-            registerAction: function (model) {
-                webApi.user.register({ user: model.email(), password: model.password() })
-                    .done(function (msg) {
-                        console.log(msg);
+            okAction: function (model) {
+                webApi.user.accesstoken({ group: model.group() })
+                    .done(function (token) {
+                        window.localStorage.setItem(window.tokenKey, token);
+                        window.app.view.mainView.show();
                     })
                     .fail(function (msg) {
-                        console.log(msg);
+                        console.log("fail: " + JSON.stringify(msg));
                     });
             }
         };

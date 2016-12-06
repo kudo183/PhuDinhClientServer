@@ -18,18 +18,12 @@
             <TextBlock Text="{x:Static Client:TextManager.LoginWindow_TxtPassword}" Width="130" Margin="5" VerticalAlignment="Center"/>
             <PasswordBox x:Name="passbox" PasswordChar="*" PasswordChanged="passbox_PasswordChanged" Width="250" Margin="5"/>
         </StackPanel>
-        <StackPanel Orientation="Horizontal">
+        <Button Content="{x:Static Client:TextManager.LoginWindow_BtnLogin}" IsDefault="True" Command="{Binding LoginCommand}" Margin="5" HorizontalAlignment="Center"/>
+        <StackPanel Orientation="Horizontal" IsEnabled="{Binding IsLoggedIn}">
             <TextBlock Text="{x:Static Client:TextManager.LoginWindow_TxtGroupList}" Width="130" Margin="5" VerticalAlignment="Center"/>
             <ComboBox ItemsSource="{Binding GroupList}" IsEnabled="{Binding GroupListEnabled}" SelectedItem="{Binding SelectedGroup}" Width="190" Margin="5"/>
-            <Button Content="{x:Static Client:TextManager.LoginWindow_BtnGetGroupList}" Command="{Binding GetGroupsCommand}" Width="50" Margin="5"/>
+            <Button Content="{x:Static Client:TextManager.Button_Ok}" Command="{Binding OkCommand}" Width="50" Margin="5"/>
         </StackPanel>
-        <StackPanel>
-            <TextBlock Text="{Binding Msg}" Foreground="Red" Margin="5" TextWrapping="Wrap"/>
-            <StackPanel
-                    HorizontalAlignment="Right"
-                    VerticalAlignment="Bottom">
-                <Button Content="{x:Static Client:TextManager.Button_Ok}" IsDefault="True" Command="{Binding OkCommand}" Margin="5" Width="75"/>
-            </StackPanel>
-        </StackPanel>
+        <TextBlock Text="{Binding Msg}" Foreground="Red" Margin="5" TextWrapping="Wrap"/>
     </StackPanel>
 </Window>
