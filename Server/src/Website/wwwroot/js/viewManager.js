@@ -1,8 +1,13 @@
-﻿window.app.view.viewManager = (function () {
-    var log = window.huypq.log || function (text) { };
-    //var log = console.log;
-    var info = console.log;
+﻿window.app.view.viewManagerLog = window.app.view.viewManagerLog || function (logLevel, msg) {
+    if (logLevel === "INFO") {
+        console.log(msg);
+    } else if (typeof (window.huypq.log) !== "undefined") {
+        window.huypq.log(msg);
+    }
+};
 
+window.app.view.viewManager = (function (logger) {
+    
     var viewManager = {
         _headerMenuViewModel: {},
         _currentViewName: "",
@@ -22,7 +27,7 @@
 
         window.onpopstate = function (event) {
             viewManager.setCurrentView(event.state.selectedView);
-            log("onpopstate: " + JSON.stringify(event.state));
+            logger("onpopstate: " + JSON.stringify(event.state));
         };
     }
 
@@ -56,7 +61,7 @@
         }
 
         viewManager._currentViewName = selectedItemValue;
-        info("viewManager currentViewName: " + viewManager._currentViewName)
+        logger("INFO", "viewManager currentViewName: " + viewManager._currentViewName)
 
         if (window.app.view[viewManager._currentViewName] === undefined) {
             throw new Error("View not exist: " + viewManager._currentViewName);
@@ -73,7 +78,7 @@
 
         if (viewManager._isSkipPushState === false) {
             window.history.pushState({ selectedView: selectedItemValue }, "", "?v=" + selectedItemValue);
-            log("pushState: " + JSON.stringify(selectedItemValue));
+            logger("pushState: " + JSON.stringify(selectedItemValue));
         }
     }
 
@@ -88,4 +93,4 @@
         }
         return selectedIndex;
     }
-})();
+})(window.app.view.viewManagerLog);

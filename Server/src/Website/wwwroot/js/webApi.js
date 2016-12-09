@@ -1,7 +1,13 @@
-﻿window.app.webApi = (function () {
+﻿window.app.webApiLog = window.app.webApiLog || function (logLevel, msg) {
+    if (logLevel === "INFO") {
+        console.log(msg);
+    } else if (typeof(window.huypq.log) !== "undefined") {
+        window.huypq.log(msg);
+    }
+};
+
+window.app.webApi = (function (logger) {
     var webApi = {
-        log: window.huypq.log || function (text) { },
-        info: console.log,
         user: {
             login: function (params) {
                 return postParams(apiUrl("user", "login"), params);
@@ -31,7 +37,7 @@
         var deferred = new $.Deferred();
 
         var cacheKey = controller + '_' + jsonString;
-        webApi.log("webApi cacheKey: " + cacheKey);
+        logger("webApi cacheKey: " + cacheKey);
 
         var cacheData = webApi._cache[cacheKey];
         var versionNumber = 0;
@@ -49,11 +55,11 @@
         postJson(url, jsonString)
             .done(function (data, textStatus, jqXHR) {
                 if (versionNumber === data.versionNumber && serverStartTime === data.serverStartTime) {
-                    webApi.info("webApi cache hit " + controller + "   " + versionNumber);
+                    logger("INFO", "webApi cache hit " + controller + "   " + versionNumber);
 
                     deferred.resolve(JSON.parse(cacheData.jsonStringData), cacheData.textStatus, cacheData.jqXHR);
                 } else {
-                    webApi.info("webApi cache miss " + controller + "   " + data.versionNumber);
+                    logger("INFO", "webApi cache miss " + controller + "   " + data.versionNumber);
                     webApi._cache[cacheKey] = {
                         serverStartTime: data.serverStartTime,
                         versionNumber: data.versionNumber,
@@ -73,7 +79,7 @@
     }
 
     function postJson(url, jsonString) {
-        webApi.info("webApi postJson: " + url + " " + jsonString);
+        logger("INFO", "webApi postJson: " + url + " " + jsonString);
         var options = {
             dataType: "json",
             contentType: "application/json",
@@ -93,7 +99,7 @@
     }
 
     function postParams(url, params) {
-        webApi.info("webApi postParams: " + url + " " + JSON.stringify(params));
+        logger("INFO", "webApi postParams: " + url + " " + JSON.stringify(params));
         var options = {
             dataType: "json",
             contentType: "application/x-www-form-urlencoded",
@@ -111,4 +117,4 @@
         }
         return $.ajax(url, options);
     }
-})();
+})(window.app.webApiLog);

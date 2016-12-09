@@ -1,7 +1,12 @@
-﻿window.app.referenceDataManager = (function (webApi) {
-    var log = window.huypq.log || function (text) { };
-    //var log = console.log;
-    var info = console.log;
+﻿window.app.referenceDataManagerLog = window.app.referenceDataManagerLog || function (logLevel, msg) {
+    if (logLevel === "INFO") {
+        console.log(msg);
+    } else if (typeof (window.huypq.log) !== "undefined") {
+        window.huypq.log(msg);
+    }
+};
+
+window.app.referenceDataManager = (function (webApi, logger) {
 
     var referenceDataManager = {
         _cache: {}
@@ -12,12 +17,12 @@
 
         var cacheData = referenceDataManager._cache[name];
         if (cacheData !== undefined) {
-            info("referenceDataManager cache hit: " + name);
+            logger("INFO", "referenceDataManager cache hit: " + name);
             deferred.resolve(cacheData.data, cacheData.textStatus, cacheData.jqXHR);
         } else {
             webApi.getData(name, filter)
                 .done(function (data, textStatus, jqXHR) {
-                    info("referenceDataManager cache miss: " + name);
+                    logger("INFO", "referenceDataManager cache miss: " + name);
                     referenceDataManager._cache[name] = {
                         data: data,
                         textStatus: textStatus,
@@ -34,4 +39,4 @@
     }
 
     return referenceDataManager;
-})(window.app.webApi);
+})(window.app.webApi, window.app.referenceDataManagerLog);
