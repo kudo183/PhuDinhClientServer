@@ -213,6 +213,9 @@
     <Compile Include="..\..\DTO\RPhuongTienDto.part.cs">
       <Link>RPhuongTienDto.part.cs</Link>
     </Compile>
+    <Compile Include="..\..\DTO\SwaGroupDto.part.cs">
+      <Link>SwaGroupDto.part.cs</Link>
+    </Compile>
     <Compile Include="..\..\DTO\TChiTietChuyenHangDonHangDto.part.cs">
       <Link>TChiTietChuyenHangDonHangDto.part.cs</Link>
     </Compile>
@@ -256,7 +259,6 @@
     <Compile Include="Gen\SwaUserDto.cs" />
     <Compile Include="Gen\SwaUserGroupDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SwaGroupDto.part.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
