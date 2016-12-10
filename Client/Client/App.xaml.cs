@@ -31,11 +31,8 @@ namespace Client
             //new System.Globalization.CultureInfo("en-us");
             new System.Globalization.CultureInfo("vi-vn");
 
-            Settings.Instance.UriRoot = "http://localhost:5000";
-            ProtobufWebClient.Instance.Token = "CfDJ8P0zsQbbuUlBkhS-elYKeAfjZ9eWq9RVEEe2-hZfSUT5_wMlGY0tWTYYkstPkx8dB-ajk9jq5I-u9nDI-i3EBPpiIEyjByvmk_km_JWfdFZ7wJrtIIx_-VrB0AonB8cX9oBbYlmeJ8K_DSeudEozvaI";
-            //Settings.Instance.UriRoot = "http://luoithepvinhphat.com:5000";
-            //ProtobufWebClient.Instance.Token = "CfDJ8H_g2vT3aWpLtytO4ZkizGgngqxMZZ2L4Kt_WsOUSUad1IB-r_h2C5BXqz3v7DpgaGi7REme7WIj5TJkNokTmEMKCMEXq823fkZTQXkWFvxJ2ZZoDiiCX4-XFhrqWpYpPb3Z6nYHPulWoEqxlcUsg-I";
-            //StartupUri = new System.Uri("AllView.xaml", System.UriKind.Relative);
+            Settings.Instance.UriRoot = "http://gaucon.net:5000";
+            ProtobufWebClient.Instance.Token = "CfDJ8HgnTw785jZNmXvqKl3VWKEKSOcZaDX4ivr-A9SMmbD1SABQMO_1tODxmD1K6AThNhcfaIFTbb5Eo90j0_bqJqCkDVkqdHUaL5bb8rV_PLSSswlVc4eK5xGya9rIGWmMxJJYh3P1-6fJuvI15BSn41Q";
             StartupUri = new System.Uri("MainWindow.xaml", System.UriKind.Relative);
 #endif
 
@@ -57,11 +54,25 @@ namespace Client
             {
                 DefaultValue = System.Windows.Markup.XmlLanguage.GetLanguage(System.Threading.Thread.CurrentThread.CurrentUICulture.Name)
             });
+
+            InitReferenceDataManager();
         }
 
         private void App_Exit(object sender, ExitEventArgs e)
         {
             Settings.Instance.SaveSettings();
+        }
+
+        private void InitReferenceDataManager()
+        {
+            ReferenceDataManager<DTO.RKhachHangDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            {
+                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath= nameof(DTO.RKhachHangDto.TenKhachHang), IsAscending=true }
+            });
+            ReferenceDataManager<DTO.TMatHangDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            {
+                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath= nameof(DTO.TMatHangDto.TenMatHang), IsAscending=true }
+            });
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Client.Abstraction;
+﻿using System;
+using Client.Abstraction;
 using DTO;
 using SimpleDataGrid.ViewModel;
 
@@ -24,6 +25,11 @@ namespace Client.ViewModel
                 dto.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == dto.TDonHang.MaKhoHang);
                 dto.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.ID == dto.TDonHang.MaKhachHang);
             }
+        }
+
+        partial void ProcessNewAddedDtoPartial(TChiTietDonHangDto dto)
+        {
+            dto.Xong = false;
         }
     }
 }

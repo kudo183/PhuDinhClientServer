@@ -31,6 +31,16 @@ namespace Client.ViewModel
 
         partial void ProcessDtoBeforeAddToEntitiesPartial(TDonHangDto dto)
         {
+            if (dto.MaKhoHang == 0)
+            {
+                dto.MaKhoHang = 1;
+            }
+
+            if (dto.MaKhachHang == 0)
+            {
+                dto.MaKhachHang = 4;
+            }
+
             UpdateChanhs(dto);
 
             dto.PropertyChanged += Dto_PropertyChanged;

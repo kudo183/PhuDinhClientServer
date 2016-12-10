@@ -18,7 +18,7 @@ namespace Client.Abstraction
         public Action ActionMoveFocusToNextView { get; set; }
 
         public EditableGridView GridView { get; set; }
-        private IEditableGridViewModel<T> _viewModel;
+        public IEditableGridViewModel<T> _viewModel;
 
         private IViewModelFactory _viewModelFactory;
         public IViewModelFactory ViewModelFactory

@@ -19,6 +19,8 @@ namespace Client.View
                     Mode = System.Windows.Data.BindingMode.OneWay
                 }
             };
+
+            datagrid.dataGrid.Columns[4].IsReadOnly = true;
         }
     }
 }

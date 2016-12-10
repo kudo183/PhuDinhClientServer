@@ -31,13 +31,22 @@ namespace Client.Abstraction
             = new ObservableCollectionEx<T>();
 
         private readonly List<T> _datasList = new List<T>();
+        private readonly QueryBuilder.QueryExpression _qe = new QueryBuilder.QueryExpression() { PageIndex = -1 };
+
+        public void SetOrderByOptions(List<QueryBuilder.OrderByExpression.OrderOption> orderOptions)
+        {
+            _qe.OrderOptions = orderOptions;
+        }
+
+        public void SetWhereOptions(List<QueryBuilder.WhereExpression.IWhereOption> whereOptions)
+        {
+            _qe.WhereOptions = whereOptions;
+        }
 
         public void Load()
         {
-            var qe = new QueryBuilder.QueryExpression();
-            qe.PageIndex = 0;
             _datasList.Clear();
-            _datasList.AddRange(DataService.Get(qe).Items);
+            _datasList.AddRange(DataService.Get(_qe).Items);
             _datas.Reset(_datasList);
         }
 
@@ -57,11 +66,6 @@ namespace Client.Abstraction
                 Load();
             }
             return _datasList;
-        }
-
-        public void Reset(IEnumerable<T> data)
-        {
-            _datas.Reset(data);
         }
     }
 }
