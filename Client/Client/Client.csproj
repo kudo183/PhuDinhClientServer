@@ -65,6 +65,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="CustomControl\MessageBox2.xaml.cs">
+      <DependentUpon>MessageBox2.xaml</DependentUpon>
+    </Compile>
     <Compile Include="LoginViewModel.cs" />
     <Compile Include="ProtoBufDataService.cs" />
     <Compile Include="ProtoBufReportService.cs" />
@@ -282,6 +285,10 @@
     <Page Include="AllView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="CustomControl\MessageBox2.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
     </Page>
     <Page Include="View\complexChuyenHangView.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -48,6 +48,40 @@ namespace Client.View
 
         private void BtnTonKho_Click(object sender, System.Windows.RoutedEventArgs e)
         {
+            if (GridView.dataGrid.SelectedItem == null)
+                return;
+
+            var donHang = GridView.dataGrid.SelectedItem as DTO.TDonHangDto; ;            
+            var qe = new QueryBuilder.QueryExpression();
+            qe.AddWhereOption<QueryBuilder.WhereExpression.WhereOptionInt, int>(
+                QueryBuilder.WhereExpression.Equal, nameof(DTO.TChiTietDonHangDto.MaDonHang), donHang.ID);
+
+            var tChiTietDonHangs = ServiceLocator.Instance.GetInstance<IDataService<DTO.TChiTietDonHangDto>>().Get(qe).Items;
+
+            var maMatHangs = tChiTietDonHangs.Select(p => p.MaMatHang).ToList();
+
+            qe = new QueryBuilder.QueryExpression();
+            qe.AddWhereOption<QueryBuilder.WhereExpression.WhereOptionInt, int>(
+                QueryBuilder.WhereExpression.Equal, nameof(DTO.TTonKhoDto.MaKhoHang), donHang.MaKhoHang);
+            qe.AddWhereOption<QueryBuilder.WhereExpression.WhereOptionDate, System.DateTime>(
+                QueryBuilder.WhereExpression.Equal, nameof(DTO.TTonKhoDto.Ngay), donHang.Ngay);
+            qe.AddWhereOption<QueryBuilder.WhereExpression.WhereOptionIntList, List<int>>(
+                QueryBuilder.WhereExpression.In, nameof(DTO.TTonKhoDto.MaMatHang), maMatHangs);
+            
+            var tTonKhoes = ServiceLocator.Instance.GetInstance<IDataService<DTO.TTonKhoDto>>().Get(qe).Items;
+
+            var data = new List<CustomControl.MessageBox2.MessageBox2Data>();
+
+            foreach (var tTonKho in tTonKhoes)
+            {
+                data.Add(new CustomControl.MessageBox2.MessageBox2Data
+                {
+                    Title = ReferenceDataManager<DTO.TMatHangDto>.Instance.GetList().Find(p => p.ID == tTonKho.MaMatHang).TenMatHangDayDu,
+                    Content = tTonKho.SoLuong.ToString("N0")
+                });
+            }
+
+            CustomControl.MessageBox2.Show("Ton Kho", data);
         }
 
         private void BtnPrintAll_Click(object sender, System.Windows.RoutedEventArgs e)
