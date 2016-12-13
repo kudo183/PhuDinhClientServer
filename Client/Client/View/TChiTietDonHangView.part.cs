@@ -1,4 +1,6 @@
 ﻿using Client.Abstraction;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Client.View
 {
@@ -21,6 +23,14 @@ namespace Client.View
             };
 
             datagrid.dataGrid.Columns[4].IsReadOnly = true;
+            var tb = new TextBlock()
+            {
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                FontSize = 14,
+                Foreground = Brushes.Blue
+            };
+            tb.SetBinding(TextBlock.TextProperty, "Msg");
+            datagrid.CustomMenuItems.Add(tb);
         }
     }
 }

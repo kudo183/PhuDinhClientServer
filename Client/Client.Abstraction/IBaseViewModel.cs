@@ -1,14 +1,16 @@
 ﻿using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
+using System.ComponentModel;
 
 namespace Client.Abstraction
 {
-    public interface IBaseViewModel
+    public interface IBaseViewModel : INotifyPropertyChanged
     {
         bool IsValid { get; set; }
         void Load();
         void Save();
         void LoadReferenceData();
+        string Msg { get; set; }
         List<HeaderFilterBaseModel> HeaderFilters { get; set; }
         System.Action<object> ActionSelectedValueChanged { get; set; }
     }

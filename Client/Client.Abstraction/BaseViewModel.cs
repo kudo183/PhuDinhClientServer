@@ -5,6 +5,7 @@ using System.Linq;
 using System.Windows;
 using SimpleDataGrid;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Client.Abstraction
 {
@@ -84,14 +85,42 @@ namespace Client.Abstraction
 
         }
 
+        protected virtual void AfterLoad()
+        {
+
+        }
+
         #region IBaseViewModel interface
         public bool IsValid { get; set; }
 
         public ObservableCollectionEx<T> Entities { get; set; }
 
+        private string msg;
+
+        public string Msg
+        {
+            get { return msg; }
+            set
+            {
+                if (msg == value)
+                    return;
+
+                msg = value;
+                OnPropertyChanged();
+            }
+        }
+
+
         public string SelectedValuePath { get; set; }
 
         private object _selectedValue;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         public object SelectedValue
         {
@@ -150,6 +179,8 @@ namespace Client.Abstraction
 
             PagerViewModel.ItemCount = Entities.Count;
             PagerViewModel.PageCount = result.PageCount;
+
+            AfterLoad();
         }
 
         public void Save()
