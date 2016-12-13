@@ -6,9 +6,7 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            var datagrid = Content as SimpleDataGrid.EditableGridView;
-
-            foreach (var column in datagrid.Columns)
+            foreach (var column in GridView.Columns)
             {
                 var header = column.Header as SimpleDataGrid.ViewModel.HeaderFilterBaseModel;
                 switch (header.PropertyName)
@@ -27,15 +25,20 @@ namespace Client.View
                         break;
                     case nameof(DTO.TChuyenHangDto.TongDonHang):
                         column.DisplayIndex = 4;
+                        column.IsReadOnly = true;
                         break;
                     case nameof(DTO.TChuyenHangDto.TongSoLuongTheoDonHang):
                         column.DisplayIndex = 5;
+                        column.IsReadOnly = true;
                         break;
                     case nameof(DTO.TChuyenHangDto.TongSoLuongThucTe):
                         column.DisplayIndex = 6;
+                        column.IsReadOnly = true;
                         break;
                 }
             }
+
+            GridView.dataGrid.SkippedColumnIndex.Add(1);
         }
     }
 }

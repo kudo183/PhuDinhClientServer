@@ -1,6 +1,7 @@
 ﻿using Client.Abstraction;
 using DTO;
 using SimpleDataGrid.ViewModel;
+using System.Text;
 
 namespace Client.ViewModel
 {
@@ -23,6 +24,33 @@ namespace Client.ViewModel
                 dto.TChuyenKho.RKhoHangXuat = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == dto.TChuyenKho.MaKhoHangXuat);
                 dto.TChuyenKho.RKhoHangNhap = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == dto.TChuyenKho.MaKhoHangNhap);
             }
+        }
+
+        protected override void AfterLoad()
+        {
+            var tongSoKg = 0;
+            var sb = new StringBuilder();
+            sb.Append(", ");
+            foreach (var item in Entities)
+            {
+                item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetList().Find(p => p.Ma == item.MaMatHang);
+                if (item.TMatHang == null)
+                    continue;
+
+                if (item.TMatHang.SoKy == 0)
+                {
+                    sb.Append(item.TMatHang.TenMatHang);
+                    sb.Append(", ");
+                }
+                else
+                {
+                    tongSoKg += item.SoLuong * item.TMatHang.SoKy;
+                }
+            }
+
+            tongSoKg = tongSoKg / 10;
+
+            Msg = string.Format("Tong trong luong: {0:N0} kg{1}", tongSoKg, sb.ToString(0, sb.Length - 2));
         }
     }
 }

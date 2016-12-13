@@ -1,4 +1,6 @@
 ﻿using Client.Abstraction;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Client.View
 {
@@ -6,19 +8,26 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            var datagrid = Content as SimpleDataGrid.EditableGridView;
-
-            datagrid.dataGrid.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
+            GridView.dataGrid.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 250,
                 IsReadOnly = true,
-                Header = datagrid.dataGrid.Columns[1].Header,
+                Header = GridView.dataGrid.Columns[1].Header,
                 Binding = new System.Windows.Data.Binding()
                 {
                     Path = new System.Windows.PropertyPath(nameof(DTO.TChiTietChuyenKhoDto.TChuyenKho) + "." + nameof(DTO.TChuyenKhoDto.TenHienThi)),
                     Mode = System.Windows.Data.BindingMode.OneWay
                 }
             };
+
+            var tb = new TextBlock()
+            {
+                VerticalAlignment = System.Windows.VerticalAlignment.Center,
+                FontSize = 14,
+                Foreground = Brushes.Blue
+            };
+            tb.SetBinding(TextBlock.TextProperty, "Msg");
+            GridView.CustomMenuItems.Add(tb);
         }
     }
 }
