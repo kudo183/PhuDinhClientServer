@@ -64,7 +64,7 @@ namespace Client.ViewModel
             var chanhs = new System.Collections.Generic.List<DTO.RChanhDto>();
             foreach (var item in khachHangChanhs)
             {
-                var chanh = ReferenceDataManager<RChanhDto>.Instance.GetList().First(p => p.ID == item.MaChanh);
+                var chanh = ReferenceDataManager<RChanhDto>.Instance.GetByID(item.MaChanh);
                 if (item.LaMacDinh == true)
                 {
                     chanhs.Insert(0, chanh);

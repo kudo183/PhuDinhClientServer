@@ -39,7 +39,7 @@ namespace Client.ViewModel
         {
             if (dto.TToaHang != null)
             {
-                dto.TToaHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.ID == dto.TToaHang.MaKhachHang);
+                dto.TToaHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetByID(dto.TToaHang.MaKhachHang);
             }
 
             var chiTietDonHangs = new List<TChiTietDonHangDto>();
@@ -53,10 +53,10 @@ namespace Client.ViewModel
             {
                 if (item.TDonHang != null)
                 {
-                    item.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.ID == item.TDonHang.MaKhachHang);
-                    item.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == item.TDonHang.MaKhoHang);
+                    item.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetByID(item.TDonHang.MaKhachHang);
+                    item.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetByID(item.TDonHang.MaKhoHang);
                 }
-                item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetList().Find(p => p.ID == item.MaMatHang);
+                item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetByID(item.MaMatHang);
             }
             dto.MaChiTietDonHangSources = chiTietDonHangs;
         }

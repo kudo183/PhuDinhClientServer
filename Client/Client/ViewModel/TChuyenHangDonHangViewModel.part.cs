@@ -41,7 +41,7 @@ namespace Client.ViewModel
         {
             if (dto.TChuyenHang != null)
             {
-                dto.TChuyenHang.RNhanVien = ReferenceDataManager<RNhanVienDto>.Instance.GetList().Find(p => p.ID == dto.TChuyenHang.MaNhanVienGiaoHang);
+                dto.TChuyenHang.RNhanVien = ReferenceDataManager<RNhanVienDto>.Instance.GetByID(dto.TChuyenHang.MaNhanVienGiaoHang);
             }
 
             var donHangs = new List<TDonHangDto>();
@@ -53,8 +53,8 @@ namespace Client.ViewModel
 
             foreach (var item in donHangs)
             {
-                item.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetList().Find(p => p.ID == item.MaKhachHang);
-                item.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == item.MaKhoHang);
+                item.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetByID(item.MaKhachHang);
+                item.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetByID(item.MaKhoHang);
             }
             dto.MaDonHangSources = donHangs;
         }

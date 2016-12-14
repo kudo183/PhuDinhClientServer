@@ -22,8 +22,8 @@ namespace Client.ViewModel
         {
             if (dto.TNhapHang != null)
             {
-                dto.TNhapHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetList().Find(p => p.ID == dto.TNhapHang.MaKhoHang);
-                dto.TNhapHang.RNhaCungCap = ReferenceDataManager<RNhaCungCapDto>.Instance.GetList().Find(p => p.ID == dto.TNhapHang.MaNhaCungCap);
+                dto.TNhapHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetByID(dto.TNhapHang.MaKhoHang);
+                dto.TNhapHang.RNhaCungCap = ReferenceDataManager<RNhaCungCapDto>.Instance.GetByID(dto.TNhapHang.MaNhaCungCap);
             }
         }
 
@@ -34,7 +34,7 @@ namespace Client.ViewModel
             sb.Append(", ");
             foreach (var item in Entities)
             {
-                item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetList().Find(p => p.Ma == item.MaMatHang);
+                item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetByID(item.MaMatHang);
                 if (item.TMatHang == null)
                     continue;
 

@@ -67,5 +67,10 @@ namespace Client.Abstraction
             }
             return _datasList;
         }
+
+        public T GetByID(int id)
+        {
+            return _datasList.Find(p => p.ID == id);
+        }
     }
 }
