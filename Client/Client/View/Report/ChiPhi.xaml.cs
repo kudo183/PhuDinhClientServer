@@ -38,7 +38,14 @@ namespace Client.View.Report
         {
             if (e.PropertyName == nameof(ChiPhiViewModel.SelectedItem))
             {
-                vm.DetailItems = chiPhis.Where(p => p.MaLoaiChiPhi == vm.SelectedItem.MaLoaiChiPhi).ToList();
+                if (vm.SelectedItem != null)
+                {
+                    vm.DetailItems = chiPhis.Where(p => p.MaLoaiChiPhi == vm.SelectedItem.MaLoaiChiPhi).ToList();
+                }
+                else
+                {
+                    vm.DetailItems = new List<DTO.Report.ChiPhiReportDto>();
+                }
             }
         }
 

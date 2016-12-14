@@ -27,13 +27,13 @@
                 <TextBlock Text="{Binding Msg}" Foreground="Blue" VerticalAlignment="Center" Margin="5"/>
             </StackPanel>
         </Grid>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding Items}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single">
-            <DataGrid.Columns>
+        <CustomControl:DataGridExt Grid.Row="1" ItemsSourceEx="{Binding Items}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single">
+            <CustomControl:DataGridExt.Columns>
                 <DataGridTextColumn Binding="{Binding TenKho}" Header="Kho Hang" Width="100"/>
                 <DataGridTextColumn Binding="{Binding TenKhachHang}" Header="Ten Khach Hang" Width="200"/>
                 <DataGridTextColumn Binding="{Binding TenMatHang}" Header="Ten Mat Hang" Width="350"/>
                 <DataGridTextColumn Binding="{Binding SoLuongString}" Header="So Luong" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
+            </CustomControl:DataGridExt.Columns>
+        </CustomControl:DataGridExt>
     </Grid>
 </UserControl>

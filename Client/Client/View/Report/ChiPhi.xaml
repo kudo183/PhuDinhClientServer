@@ -25,21 +25,21 @@
             <Button Content="Ok" Margin="5" Width="50" Click="Button_OkClick"/>
             <TextBlock Text="{Binding Msg}" Foreground="Blue" VerticalAlignment="Center" Margin="5"/>
         </StackPanel>
-        <DataGrid Grid.Row="1" ItemsSource="{Binding GroupByLoaiChiPhiItems}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single">
-            <DataGrid.Columns>
+        <CustomControl:DataGridExt Grid.Row="1" ItemsSourceEx="{Binding GroupByLoaiChiPhiItems}" SelectedItem="{Binding SelectedItem}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single">
+            <CustomControl:DataGridExt.Columns>
                 <DataGridTextColumn Binding="{Binding TenLoaiChiPhi}" Header="Loai Chi Phi" Width="250"/>
                 <DataGridTextColumn Binding="{Binding SoTien, StringFormat=\{0:N0\}}" Header="So Tien" Width="100"/>
-            </DataGrid.Columns>
-        </DataGrid>
+            </CustomControl:DataGridExt.Columns>
+        </CustomControl:DataGridExt>
 
-        <DataGrid Grid.Row="2" ItemsSource="{Binding DetailItems}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single">
-            <DataGrid.Columns>
+        <CustomControl:DataGridExt Grid.Row="2" ItemsSourceEx="{Binding DetailItems}" AutoGenerateColumns="False" EnableRowVirtualization="True" SelectionMode="Single">
+            <CustomControl:DataGridExt.Columns>
                 <DataGridTextColumn Binding="{Binding Ngay, StringFormat=\{0:d\}}" Header="Ngay" Width="100"/>
                 <DataGridTextColumn Binding="{Binding TenNhanVien}" Header="Nhan Vien" Width="150"/>
                 <DataGridTextColumn Binding="{Binding SoTien, StringFormat=\{0:N0\}}" Header="So Tien" Width="100"/>
                 <DataGridTextColumn Binding="{Binding GhiChu}" Header="Ghi Chu" Width="250"/>
-            </DataGrid.Columns>
-        </DataGrid>
+            </CustomControl:DataGridExt.Columns>
+        </CustomControl:DataGridExt>
 
         <GridSplitter HorizontalAlignment="Stretch" Height="5" VerticalAlignment="Bottom" Grid.Row="1"/>
     </Grid>
