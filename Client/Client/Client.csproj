@@ -113,6 +113,9 @@
     <Compile Include="ViewModel\Report\HangNgayViewModel.cs" />
     <Compile Include="ViewModel\Report\XuatViewModel.cs" />
     <Compile Include="ViewModel\TChuyenKhoViewModel.part.cs" />
+    <Compile Include="ViewModel\TToaHangViewModel.part.cs" />
+    <Compile Include="ViewModel\TTonKhoViewModel.part.cs" />
+    <Compile Include="ViewModel\TChiPhiViewModel.part.cs" />
     <Compile Include="ViewModel\TNhapHangViewModel.part.cs" />
     <Compile Include="ViewModel\TNhapNguyenLieuViewModel.part.cs" />
     <Compile Include="ViewModel\TChiTietChuyenHangDonHangViewModel.part.cs" />
