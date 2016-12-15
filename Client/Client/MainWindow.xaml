@@ -43,13 +43,13 @@
         </StackPanel>
         <StackPanel Width="280" Orientation="Vertical" Background="Red">
             <Button Height="80" Content="Thong Ke Xuat" Tag="Xuat"/>
-            <Button Height="80" Content="Thong Ke Theo Khach Hang"/>
+            <Button Height="80" Content="Thong Ke Theo Khach Hang" Tag="KhachHang"/>
             <Button Height="80" Content="Thong Ke Hang Ngay" Tag="HangNgay"/>
             <Button Height="80" Content="Thong Ke Chi Phi" Tag="ChiPhi"/>
         </StackPanel>
         <StackPanel Width="280" Orientation="Vertical" Background="Blue">
-            <Button Height="80" Content="Thong Ke Nhap Hang"/>
-            <Button Height="80" Content="Thong Ke Nhap Nguyen Lieu"/>
+            <Button Height="80" Content="Thong Ke Nhap Hang" IsEnabled="False"/>
+            <Button Height="80" Content="Thong Ke Nhap Nguyen Lieu" IsEnabled="False"/>
         </StackPanel>
     </StackPanel>
 </Window>

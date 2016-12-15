@@ -38,6 +38,12 @@ namespace Server.Controllers
                     dateTo = ParseDateFromString(parameter["dateTo"].ToString());
                     result = Xuat(dateFrom, dateTo);
                     break;
+                case "khachhang":
+                    dateFrom = ParseDateFromString(parameter["dateFrom"].ToString());
+                    dateTo = ParseDateFromString(parameter["dateTo"].ToString());
+                    var maKhachHang = int.Parse(parameter["maKhachHang"].ToString());
+                    result = KhachHang(dateFrom, dateTo, maKhachHang);
+                    break;
                 default:
                     break;
             }
@@ -147,6 +153,41 @@ namespace Server.Controllers
                 }
 
                 result.Add(xuat);
+            }
+
+            return CreateObjectResult(result);
+        }
+
+        public SwaActionResult KhachHang(DateTime dateFrom, DateTime dateTo, int maKhachHang)
+        {
+            var q = GetQuery<TDonHang>().Where(p => p.MaKhachHang == maKhachHang && p.Ngay >= dateFrom && p.Ngay <= dateTo)
+                .Include(p => p.MaKhoHangNavigation)
+                .Include(p => p.TChiTietDonHangMaDonHangNavigation)
+                .ThenInclude(p => p.MaMatHangNavigation);
+
+            var result = new List<DTO.Report.KhachHangDto>();
+
+            foreach (var donHang in q)
+            {
+                var khachHang = new DTO.Report.KhachHangDto()
+                {
+                    MaKho = donHang.MaKhoHang,
+                    TenKho = donHang.MaKhoHangNavigation.TenKho,
+                    Ngay = donHang.Ngay,
+                    ChiTiet = new List<DTO.Report.ChiTietKhachHangDto>()
+                };
+
+                foreach (var ctDonHang in donHang.TChiTietDonHangMaDonHangNavigation)
+                {
+                    khachHang.ChiTiet.Add(new DTO.Report.ChiTietKhachHangDto()
+                    {
+                        MaMatHang = ctDonHang.MaMatHang,
+                        TenMatHang = ctDonHang.MaMatHangNavigation.TenMatHangDayDu,
+                        SoLuong = ctDonHang.SoLuong
+                    });
+                }
+
+                result.Add(khachHang);
             }
 
             return CreateObjectResult(result);

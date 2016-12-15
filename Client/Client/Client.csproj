@@ -111,6 +111,7 @@
     <Compile Include="ViewModel\Gen\TTonKhoViewModel.cs" />
     <Compile Include="ViewModel\Report\ChiPhiViewModel.cs" />
     <Compile Include="ViewModel\Report\HangNgayViewModel.cs" />
+    <Compile Include="ViewModel\Report\KhachHangViewModel.cs" />
     <Compile Include="ViewModel\Report\XuatViewModel.cs" />
     <Compile Include="ViewModel\TChuyenKhoViewModel.part.cs" />
     <Compile Include="ViewModel\TToaHangViewModel.part.cs" />
@@ -255,6 +256,9 @@
     <Compile Include="ProtobufWebClient.cs" />
     <Compile Include="Settings.cs" />
     <Compile Include="View\RBaiXeView.part.cs" />
+    <Compile Include="View\Report\KhachHang.xaml.cs">
+      <DependentUpon>KhachHang.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\Report\Xuat.xaml.cs">
       <DependentUpon>Xuat.xaml</DependentUpon>
     </Compile>
@@ -475,6 +479,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="View\Gen\TTonKhoView.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="View\Report\KhachHang.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

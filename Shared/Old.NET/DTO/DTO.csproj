@@ -180,6 +180,9 @@
     <Compile Include="..\..\DTO\Report\DailyReportDto.cs">
       <Link>Report\DailyReportDto.cs</Link>
     </Compile>
+    <Compile Include="..\..\DTO\Report\KhachHangDto.cs">
+      <Link>Report\KhachHangDto.cs</Link>
+    </Compile>
     <Compile Include="..\..\DTO\Report\XuatDto.cs">
       <Link>Report\XuatDto.cs</Link>
     </Compile>
