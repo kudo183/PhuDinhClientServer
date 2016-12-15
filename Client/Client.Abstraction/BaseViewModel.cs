@@ -35,6 +35,7 @@ namespace Client.Abstraction
 
             LoadReferenceData();
 
+            OrderOptions = new List<QueryBuilder.OrderByExpression.OrderOption>();
             Entities = new ObservableCollectionEx<T>();
             Entities.CollectionChanged += Entities_CollectionChanged;
             HeaderFilters = new List<HeaderFilterBaseModel>();
@@ -144,6 +145,8 @@ namespace Client.Abstraction
 
         public PagerViewModel PagerViewModel { get; set; }
 
+        public List<QueryBuilder.OrderByExpression.OrderOption> OrderOptions { get; set; }
+
         public SimpleCommand LoadCommand { get; set; }
 
         public SimpleCommand SaveCommand { get; set; }
@@ -158,13 +161,11 @@ namespace Client.Abstraction
             qe.PageIndex = PagerViewModel.IsEnablePaging ? PagerViewModel.CurrentPageIndex : 0;
 
             qe.WhereOptions = FromHeaderFilter(HeaderFilters);
-
-            qe.OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
+            qe.OrderOptions = OrderOptions;
+            if (qe.OrderOptions.Count == 0)
             {
-                IsAscending = true,
-                PropertyPath = "Ma"
-            });
-
+                qe.AddOrderByOption("Ma", true);
+            }
             result = DataService.Get(qe);
 
             _originalEntities.Clear();

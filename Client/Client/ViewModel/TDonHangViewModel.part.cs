@@ -22,6 +22,12 @@ namespace Client.ViewModel
                     new View.RKhachHangChanhView(), "Khach Hang Chanh", AfterKhachHangChanhDialog)),
                 ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get()
             };
+
+            OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
+            {
+                PropertyPath = nameof(TDonHangDto.Ngay),
+                IsAscending = false
+            });
         }
 
         partial void LoadReferenceDataPartial()
