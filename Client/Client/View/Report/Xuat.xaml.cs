@@ -26,11 +26,14 @@ namespace Client.View.Report
             InitializeComponent();
 
             vm = new XuatViewModel();
-            vm.PropertyChanged += Vm_PropertyChanged;
-            parameters.Add("dateFrom", DateToString(vm.DateFrom));
-            parameters.Add("dateTo", DateToString(vm.DateTo));
+            vm.DateRangePickerViewModel = new huypq.wpf.controls.DateRangePickerViewModel();
 
+            vm.PropertyChanged += Vm_PropertyChanged;
+            
             DataContext = vm;
+
+            parameters.Add("dateFrom", DateToString(vm.DateRangePickerViewModel.DateFrom));
+            parameters.Add("dateTo", DateToString(vm.DateRangePickerViewModel.DateTo));
 
             Report();
         }
@@ -50,8 +53,8 @@ namespace Client.View.Report
 
         private void Report()
         {
-            parameters["dateFrom"] = DateToString(vm.DateFrom);
-            parameters["dateTo"] = DateToString(vm.DateTo);
+            parameters["dateFrom"] = DateToString(vm.DateRangePickerViewModel.DateFrom);
+            parameters["dateTo"] = DateToString(vm.DateRangePickerViewModel.DateTo);
             xuats = reportService.Report<DTO.Report.XuatDto>("xuat", parameters);
 
             CalculateItem();
@@ -357,46 +360,6 @@ namespace Client.View.Report
         private string DateToString(DateTime date)
         {
             return string.Format("{0:0000}{1:00}{2:00}", date.Year, date.Month, date.Day);
-        }
-
-        private void DatePicker_CalendarOpened(object sender, RoutedEventArgs e)
-        {
-            var datepicker = sender as DatePicker;
-            if (datepicker != null)
-            {
-                var popup = datepicker.Template.FindName(
-                    "PART_Popup", datepicker) as Popup;
-                if (popup != null && popup.Child is Calendar)
-                {
-                    ((Calendar)popup.Child).DisplayMode = CalendarMode.Year;
-                }
-            }
-        }
-
-        private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var datepicker = sender as DatePicker;
-            if (datepicker == null || datepicker.SelectedDate == null)
-                return;
-
-            var date = datepicker.SelectedDate.Value;
-
-            vm.DateFrom = new DateTime(date.Year, date.Month, 1);
-
-            var temp = vm.DateFrom.AddMonths(1).Subtract(new TimeSpan(1, 0, 0, 0));
-
-            vm.DateTo = new DateTime(date.Year, date.Month, temp.Day);
-        }
-
-        private void ComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            var comboBox = sender as ComboBox;
-            if (comboBox == null || comboBox.SelectedItem == null)
-                return;
-
-            var year = (int)comboBox.SelectedItem;
-            vm.DateFrom = new DateTime(year, 1, 1);
-            vm.DateTo = new DateTime(year, 12, 31);
         }
 
         private void DataGridExt_AutoGeneratingColumn(object sender, DataGridAutoGeneratingColumnEventArgs e)

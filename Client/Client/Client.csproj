@@ -512,6 +512,10 @@
       <Project>{9cfa4fe9-01d0-4bd1-aa8a-bca4b4a60375}</Project>
       <Name>SimpleDataGrid</Name>
     </ProjectReference>
+    <ProjectReference Include="..\..\..\huypq.wpf.controls\huypq.wpf.controls\huypq.wpf.controls.csproj">
+      <Project>{2a2ba72b-c536-419c-8741-a09e21ed70c7}</Project>
+      <Name>huypq.wpf.controls</Name>
+    </ProjectReference>
     <ProjectReference Include="..\..\..\QueryBuilder\old.NET\QueryBuilder\QueryBuilder\QueryBuilder.csproj">
       <Project>{e9fbfac6-4189-4eb2-bea0-d81d78687c17}</Project>
       <Name>QueryBuilder</Name>

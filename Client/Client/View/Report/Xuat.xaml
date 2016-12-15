@@ -4,6 +4,7 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:Client.View.Report"
+             xmlns:controls="clr-namespace:huypq.wpf.controls;assembly=huypq.wpf.controls"
              xmlns:CustomControl="clr-namespace:SimpleDataGrid;assembly=SimpleDataGrid"
              mc:Ignorable="d">
     <Grid>
@@ -12,16 +13,7 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <StackPanel>
-            <StackPanel Orientation="Horizontal">
-                <TextBlock Text="Nam: " Margin="5" VerticalAlignment="Center"/>
-                <ComboBox ItemsSource="{Binding Nams}" SelectionChanged="ComboBox_SelectionChanged" Margin="5" Width="60"/>
-                <TextBlock Text="Thang: " Margin="5" VerticalAlignment="Center"/>
-                <DatePicker CalendarOpened="DatePicker_CalendarOpened" SelectedDateChanged="DatePicker_SelectedDateChanged" Width="30" Margin="5"/>
-                <TextBlock Text="Tu Ngay: " Margin="5" VerticalAlignment="Center"/>
-                <CustomControl:CustomDatePicker SelectedDateBinding="{Binding DateFrom}" Margin="5" Width="160"/>
-                <TextBlock Text="Den Ngay: " Margin="5" VerticalAlignment="Center"/>
-                <CustomControl:CustomDatePicker SelectedDateBinding="{Binding DateTo}" Margin="5" Width="160"/>
-            </StackPanel>
+            <controls:DateRangePicker DataContext="{Binding DateRangePickerViewModel}"/>
             <StackPanel Orientation="Horizontal">
                 <ComboBox ItemsSource="{Binding GroupBys}" SelectedIndex="{Binding GroupByIndex}" Margin="5" Width="110"/>
                 <Button Content="Ok" Margin="5" Width="50" Click="Button_OkClick"/>
