@@ -8,7 +8,6 @@ namespace Client.ViewModel
 {
     public partial class TChiTietChuyenHangDonHangViewModel : BaseViewModel<TChiTietChuyenHangDonHangDto>
     {
-        QueryExpression qe;
         IDataService<TChiTietDonHangDto> _chiTietDonHangDataService = ServiceLocator.Instance.GetInstance<IDataService<TChiTietDonHangDto>>();
         List<TChiTietDonHangDto> chiTietDonHangsChuaXong;
 
@@ -24,18 +23,6 @@ namespace Client.ViewModel
             ReferenceDataManager<RKhoHangDto>.Instance.Load();
             ReferenceDataManager<RKhachHangDto>.Instance.Load();
             ReferenceDataManager<TMatHangDto>.Instance.Load();
-
-            if (qe == null)
-            {
-                qe = new QueryExpression();
-                qe.WhereOptions.Add(new WhereExpression.WhereOptionBool()
-                {
-                    Predicate = "=",
-                    PropertyPath = nameof(TChiTietDonHangDto.Xong),
-                    Value = false
-                });
-            }
-            chiTietDonHangsChuaXong = _chiTietDonHangDataService.Get(qe).Items;
         }
 
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietChuyenHangDonHangDto dto)
@@ -47,14 +34,40 @@ namespace Client.ViewModel
                 dto.TChuyenHangDonHang.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetByID(dto.TChuyenHangDonHang.TDonHang.MaKhoHang);
             }
 
-            var chiTietDonHangs = new List<TChiTietDonHangDto>();
-            if (dto.TChiTietDonHang != null)
+            if (dto.TChiTietDonHang != null && dto.TChiTietDonHang.Xong == true)
             {
-                chiTietDonHangs.Add(dto.TChiTietDonHang);
-            }
-            chiTietDonHangs.AddRange(chiTietDonHangsChuaXong);
+                dto.TChiTietDonHang.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>
+                    .Instance.GetByID(dto.TChiTietDonHang.TDonHang.MaKhachHang);
+                dto.TChiTietDonHang.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>
+                    .Instance.GetByID(dto.TChiTietDonHang.TDonHang.MaKhoHang);
 
-            foreach (var item in chiTietDonHangs)
+                dto.TChiTietDonHang.TMatHang = ReferenceDataManager<TMatHangDto>
+                    .Instance.GetByID(dto.TChiTietDonHang.MaMatHang);
+
+                var chiTietDonHangs = new List<TChiTietDonHangDto>();
+                chiTietDonHangs.Add(dto.TChiTietDonHang);
+                dto.MaChiTietDonHangSources = chiTietDonHangs;
+            }
+            else
+            {
+                dto.MaChiTietDonHangSources = chiTietDonHangsChuaXong;
+            }
+        }
+
+        protected override void BeforeLoad()
+        {
+            var qe = new QueryExpression();
+            var chdh = ParentItem as TChuyenHangDonHangDto;
+            if (chdh != null)
+            {
+                qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
+                    WhereExpression.Equal, nameof(TChiTietDonHangDto.MaDonHang), chdh.MaDonHang);
+            }
+            qe.AddWhereOption<WhereExpression.WhereOptionBool, bool>(
+                  WhereExpression.Equal, nameof(TChiTietDonHangDto.Xong), false);
+            chiTietDonHangsChuaXong = _chiTietDonHangDataService.Get(qe).Items;
+
+            foreach (var item in chiTietDonHangsChuaXong)
             {
                 if (item.TDonHang != null)
                 {
@@ -63,7 +76,6 @@ namespace Client.ViewModel
                 }
                 item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetByID(item.MaMatHang);
             }
-            dto.MaChiTietDonHangSources = chiTietDonHangs;
         }
     }
 }

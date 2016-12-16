@@ -67,11 +67,15 @@ namespace Client
         {
             ReferenceDataManager<DTO.RKhachHangDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
             {
-                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath= nameof(DTO.RKhachHangDto.TenKhachHang), IsAscending=true }
+                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.RKhachHangDto.TenKhachHang), IsAscending = true }
+            });
+            ReferenceDataManager<DTO.RNhanVienDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            {
+                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.RNhanVienDto.TenNhanVien), IsAscending = true }
             });
             ReferenceDataManager<DTO.TMatHangDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
             {
-                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath= nameof(DTO.TMatHangDto.TenMatHang), IsAscending=true }
+                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.TMatHangDto.TenMatHang), IsAscending = true }
             });
         }
     }

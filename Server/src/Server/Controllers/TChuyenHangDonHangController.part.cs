@@ -19,6 +19,7 @@ namespace Server.Controllers
             dto.TDonHang.MaKhachHang = entity.MaDonHangNavigation.MaKhachHang;
             dto.TDonHang.MaKhoHang = entity.MaDonHangNavigation.MaKhoHang;
             dto.TDonHang.Ngay = entity.MaDonHangNavigation.Ngay;
+            dto.TDonHang.Xong = entity.MaDonHangNavigation.Xong;
         }
 
         protected override IQueryable<TChuyenHangDonHang> GetQuery()

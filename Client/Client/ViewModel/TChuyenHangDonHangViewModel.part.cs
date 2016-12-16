@@ -8,7 +8,6 @@ namespace Client.ViewModel
 {
     public partial class TChuyenHangDonHangViewModel : BaseViewModel<TChuyenHangDonHangDto>
     {
-        QueryExpression qe;
         IDataService<TDonHangDto> _donHangDataService = ServiceLocator.Instance.GetInstance<IDataService<TDonHangDto>>();
         List<TDonHangDto> donHangsChuaXong;
 
@@ -23,18 +22,6 @@ namespace Client.ViewModel
             ReferenceDataManager<RNhanVienDto>.Instance.Load();
             ReferenceDataManager<RKhoHangDto>.Instance.Load();
             ReferenceDataManager<RKhachHangDto>.Instance.Load();
-
-            if (qe == null)
-            {
-                qe = new QueryExpression();
-                qe.WhereOptions.Add(new WhereExpression.WhereOptionBool()
-                {
-                    Predicate = "=",
-                    PropertyPath = nameof(TDonHangDto.Xong),
-                    Value = false
-                });
-            }
-            donHangsChuaXong = _donHangDataService.Get(qe).Items;
         }
 
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChuyenHangDonHangDto dto)
@@ -44,19 +31,36 @@ namespace Client.ViewModel
                 dto.TChuyenHang.RNhanVien = ReferenceDataManager<RNhanVienDto>.Instance.GetByID(dto.TChuyenHang.MaNhanVienGiaoHang);
             }
 
-            var donHangs = new List<TDonHangDto>();
-            if (dto.TDonHang != null)
+            if (dto.TDonHang != null && dto.TDonHang.Xong == true)
             {
+                var donHangs = new List<TDonHangDto>();
+                dto.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetByID(dto.TDonHang.MaKhachHang);
+                dto.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetByID(dto.TDonHang.MaKhoHang);
                 donHangs.Add(dto.TDonHang);
-            }
-            donHangs.AddRange(donHangsChuaXong);
 
-            foreach (var item in donHangs)
+                dto.MaDonHangSources = donHangs;
+            }
+            else
+            {
+                dto.MaDonHangSources = donHangsChuaXong;
+            }
+        }
+
+        protected override void BeforeLoad()
+        {
+            var qe = new QueryExpression();
+            qe.AddWhereOption<WhereExpression.WhereOptionBool, bool>(
+                  WhereExpression.Equal, nameof(TDonHangDto.Xong), false);
+            qe.AddWhereOption<WhereExpression.WhereOptionDate, System.DateTime>(
+                WhereExpression.LessThanOrEqual, "Ngay", System.DateTime.Now.Date);
+            qe.AddOrderByOption("Ngay", false);
+            donHangsChuaXong = _donHangDataService.Get(qe).Items;
+
+            foreach (var item in donHangsChuaXong)
             {
                 item.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetByID(item.MaKhachHang);
                 item.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetByID(item.MaKhoHang);
             }
-            dto.MaDonHangSources = donHangs;
         }
     }
 }
