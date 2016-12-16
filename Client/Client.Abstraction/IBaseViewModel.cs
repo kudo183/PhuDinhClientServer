@@ -11,6 +11,8 @@ namespace Client.Abstraction
         void Save();
         void LoadReferenceData();
         string Msg { get; set; }
+        object ParentItem { get; set; }
+        object SelectedItem { get; set; }
         List<HeaderFilterBaseModel> HeaderFilters { get; set; }
         System.Action<object> ActionSelectedValueChanged { get; set; }
     }

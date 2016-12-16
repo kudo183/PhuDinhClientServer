@@ -3,14 +3,14 @@ using DTO;
 using QueryBuilder;
 using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Client.ViewModel
 {
     public partial class TChiTietToaHangViewModel : BaseViewModel<TChiTietToaHangDto>
     {
-        QueryExpression qe;
         IDataService<TChiTietDonHangDto> _chiTietDonHangDataService = ServiceLocator.Instance.GetInstance<IDataService<TChiTietDonHangDto>>();
-        List<TChiTietDonHangDto> chiTietDonHangsChuaXong;
+        List<TChiTietDonHangDto> chiTietDonHangsGanDay;
 
         partial void InitFilterPartial()
         {
@@ -21,18 +21,7 @@ namespace Client.ViewModel
         {
             ReferenceDataManager<RKhachHangDto>.Instance.Load();
             ReferenceDataManager<RKhoHangDto>.Instance.Load();
-
-            if (qe == null)
-            {
-                qe = new QueryExpression();
-                qe.WhereOptions.Add(new WhereExpression.WhereOptionBool()
-                {
-                    Predicate = "=",
-                    PropertyPath = nameof(TChiTietDonHangDto.Xong),
-                    Value = false
-                });
-            }
-            chiTietDonHangsChuaXong = _chiTietDonHangDataService.Get(qe).Items;
+            ReferenceDataManager<TMatHangDto>.Instance.Load();
         }
 
         partial void ProcessDtoBeforeAddToEntitiesPartial(TChiTietToaHangDto dto)
@@ -42,14 +31,24 @@ namespace Client.ViewModel
                 dto.TToaHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetByID(dto.TToaHang.MaKhachHang);
             }
 
-            var chiTietDonHangs = new List<TChiTietDonHangDto>();
-            if (dto.TChiTietDonHang != null)
-            {
-                chiTietDonHangs.Add(dto.TChiTietDonHang);
-            }
-            chiTietDonHangs.AddRange(chiTietDonHangsChuaXong);
+            dto.MaChiTietDonHangSources = chiTietDonHangsGanDay;
+        }
 
-            foreach (var item in chiTietDonHangs)
+        protected override void BeforeLoad()
+        {
+            var qe = new QueryExpression();
+            var toaHang = ParentItem as TToaHangDto;
+            if (toaHang != null)
+            {
+                qe.AddWhereOption<WhereExpression.WhereOptionInt, int>(
+                  WhereExpression.Equal, "MaDonHangNavigation.MaKhachHang", toaHang.MaKhachHang);
+            }
+            qe.AddWhereOption<WhereExpression.WhereOptionDate, System.DateTime>(
+                WhereExpression.GreaterThanOrEqual, "MaDonHangNavigation.Ngay", System.DateTime.Now.Date.AddDays(-7));
+            qe.AddOrderByOption("MaDonHangNavigation.Ngay", false);
+            chiTietDonHangsGanDay = _chiTietDonHangDataService.Get(qe).Items;
+
+            foreach (var item in chiTietDonHangsGanDay)
             {
                 if (item.TDonHang != null)
                 {
@@ -58,7 +57,6 @@ namespace Client.ViewModel
                 }
                 item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetByID(item.MaMatHang);
             }
-            dto.MaChiTietDonHangSources = chiTietDonHangs;
         }
     }
 }

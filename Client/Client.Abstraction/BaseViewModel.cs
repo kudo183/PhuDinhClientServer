@@ -86,6 +86,11 @@ namespace Client.Abstraction
 
         }
 
+        protected virtual void BeforeLoad()
+        {
+
+        }
+
         protected virtual void AfterLoad()
         {
 
@@ -95,6 +100,8 @@ namespace Client.Abstraction
         public bool IsValid { get; set; }
 
         public ObservableCollectionEx<T> Entities { get; set; }
+
+        public object ParentItem { get; set; }
 
         private string msg;
 
@@ -114,14 +121,14 @@ namespace Client.Abstraction
 
         public string SelectedValuePath { get; set; }
 
-        private object _selectedValue;
-
         public event PropertyChangedEventHandler PropertyChanged;
 
         protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
+        private object _selectedValue;
 
         public object SelectedValue
         {
@@ -136,6 +143,22 @@ namespace Client.Abstraction
                 _selectedValue = value;
 
                 ActionSelectedValueChanged?.Invoke(_selectedValue);
+            }
+        }
+
+        private object _selectedItem;
+
+        public object SelectedItem
+        {
+            get { return _selectedItem; }
+            set
+            {
+                if (_selectedItem == value)
+                {
+                    return;
+                }
+
+                _selectedItem = value;
             }
         }
 
@@ -154,6 +177,8 @@ namespace Client.Abstraction
         public void Load()
         {
             Console.WriteLine(_debugName + " BaseViewModel Load");
+
+            BeforeLoad();
 
             DTO.PagingResultDto<T> result;
 

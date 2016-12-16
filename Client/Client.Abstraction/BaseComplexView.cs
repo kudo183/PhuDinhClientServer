@@ -89,6 +89,7 @@ namespace Client.Abstraction
 
             viewModel.ActionSelectedValueChanged = (selectedValue) =>
             {
+                childViewModel.ParentItem = viewModel.SelectedItem;
                 if (selectedValue == null)
                 {
                     headerFilter.FilterValue = 0;
