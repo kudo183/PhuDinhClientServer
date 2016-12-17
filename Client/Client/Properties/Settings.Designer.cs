@@ -58,5 +58,29 @@ namespace Client.Properties {
                 this["UriRoot"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("1")]
+        public int DefaultMaKhoHang {
+            get {
+                return ((int)(this["DefaultMaKhoHang"]));
+            }
+            set {
+                this["DefaultMaKhoHang"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("4")]
+        public int DefaultMaKhachHang {
+            get {
+                return ((int)(this["DefaultMaKhachHang"]));
+            }
+            set {
+                this["DefaultMaKhachHang"] = value;
+            }
+        }
     }
 }

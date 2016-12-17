@@ -15,7 +15,9 @@ namespace Client
         {
             _pageSize = Properties.Settings.Default.PageSize;
             _fontSize = Properties.Settings.Default.FontSize;
-            UriRoot = Properties.Settings.Default.UriRoot;            
+            UriRoot = Properties.Settings.Default.UriRoot;
+            DefaultMaKhoHang = Properties.Settings.Default.DefaultMaKhoHang;
+            DefaultMaKhachHang = Properties.Settings.Default.DefaultMaKhachHang;
         }
 
         public void SaveSettings()
@@ -23,11 +25,15 @@ namespace Client
             Properties.Settings.Default.PageSize = _pageSize;
             Properties.Settings.Default.FontSize = _fontSize;
             Properties.Settings.Default.UriRoot = UriRoot;
+            Properties.Settings.Default.DefaultMaKhoHang = DefaultMaKhoHang;
+            Properties.Settings.Default.DefaultMaKhachHang = DefaultMaKhachHang;
 
             Properties.Settings.Default.Save();
         }
         
         public string UriRoot { get; set; }
+        public int DefaultMaKhoHang { get; set; }
+        public int DefaultMaKhachHang { get; set; }
 
         private int _pageSize = 20;
         public int PageSize

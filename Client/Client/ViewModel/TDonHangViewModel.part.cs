@@ -39,12 +39,12 @@ namespace Client.ViewModel
         {
             if (dto.MaKhoHang == 0)
             {
-                dto.MaKhoHang = 1;
+                dto.MaKhoHang = Settings.Instance.DefaultMaKhoHang;
             }
 
             if (dto.MaKhachHang == 0)
             {
-                dto.MaKhachHang = 4;
+                dto.MaKhachHang = Settings.Instance.DefaultMaKhachHang;
             }
 
             UpdateChanhs(dto);

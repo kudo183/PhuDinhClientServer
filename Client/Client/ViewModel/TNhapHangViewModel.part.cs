@@ -13,5 +13,13 @@ namespace Client.ViewModel
                 IsAscending = false
             });
         }
+
+        partial void ProcessDtoBeforeAddToEntitiesPartial(TNhapHangDto dto)
+        {
+            if (dto.MaKhoHang == 0)
+            {
+                dto.MaKhoHang = Settings.Instance.DefaultMaKhoHang;
+            }
+        }
     }
 }
