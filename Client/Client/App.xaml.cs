@@ -1,4 +1,6 @@
 ﻿using Client.Abstraction;
+using DTO;
+using QueryBuilder;
 using System;
 using System.Collections.Generic;
 using System.Windows;
@@ -26,16 +28,13 @@ namespace Client
             Settings.Instance.LoadSettings();
 
 #if DEBUG
-            System.Threading.Thread.CurrentThread.CurrentCulture =
-            System.Threading.Thread.CurrentThread.CurrentUICulture =
-            //new System.Globalization.CultureInfo("en-us");
-            new System.Globalization.CultureInfo("vi-vn");
-
             Settings.Instance.UriRoot = "http://gaucon.net:5000";
             ProtobufWebClient.Instance.Token = "CfDJ8HgnTw785jZNmXvqKl3VWKEKSOcZaDX4ivr-A9SMmbD1SABQMO_1tODxmD1K6AThNhcfaIFTbb5Eo90j0_bqJqCkDVkqdHUaL5bb8rV_PLSSswlVc4eK5xGya9rIGWmMxJJYh3P1-6fJuvI15BSn41Q";
             StartupUri = new System.Uri("MainWindow.xaml", System.UriKind.Relative);
 #endif
-
+            System.Threading.Thread.CurrentThread.CurrentUICulture =
+            //new System.Globalization.CultureInfo("en-us");
+            new System.Globalization.CultureInfo("vi-vn");
             ServiceLocator.Instance.Initialize(new Dictionary<Type, Type>()
             {
                 { typeof(IDataService<>), typeof(ProtoBufDataService<>) },
@@ -65,29 +64,37 @@ namespace Client
 
         private void InitReferenceDataManager()
         {
-            ReferenceDataManager<DTO.RKhachHangDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            ReferenceDataManager<RBaiXeDto>.Instance.SetOrderByOptions(new List<OrderByExpression.OrderOption>()
             {
-                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.RKhachHangDto.TenKhachHang), IsAscending = true }
+                new OrderByExpression.OrderOption() {PropertyPath = nameof(RBaiXeDto.DiaDiemBaiXe), IsAscending = true }
             });
-            ReferenceDataManager<DTO.RKhoHangDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            ReferenceDataManager<RChanhDto>.Instance.SetOrderByOptions(new List<OrderByExpression.OrderOption>()
             {
-                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.RKhoHangDto.TenKho), IsAscending = true }
+                new OrderByExpression.OrderOption() {PropertyPath = nameof(RChanhDto.TenChanh), IsAscending = true }
             });
-            ReferenceDataManager<DTO.RLoaiChiPhiDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            ReferenceDataManager<RKhachHangDto>.Instance.SetOrderByOptions(new List<OrderByExpression.OrderOption>()
             {
-                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.RLoaiChiPhiDto.TenLoaiChiPhi), IsAscending = true }
+                new OrderByExpression.OrderOption() {PropertyPath = nameof(RKhachHangDto.TenKhachHang), IsAscending = true }
             });
-            ReferenceDataManager<DTO.RNhaCungCapDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            ReferenceDataManager<RKhoHangDto>.Instance.SetOrderByOptions(new List<OrderByExpression.OrderOption>()
             {
-                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.RNhaCungCapDto.TenNhaCungCap), IsAscending = true }
+                new OrderByExpression.OrderOption() {PropertyPath = nameof(RKhoHangDto.TenKho), IsAscending = true }
             });
-            ReferenceDataManager<DTO.RNhanVienDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            ReferenceDataManager<RLoaiChiPhiDto>.Instance.SetOrderByOptions(new List<OrderByExpression.OrderOption>()
             {
-                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.RNhanVienDto.TenNhanVien), IsAscending = true }
+                new OrderByExpression.OrderOption() {PropertyPath = nameof(RLoaiChiPhiDto.TenLoaiChiPhi), IsAscending = true }
             });
-            ReferenceDataManager<DTO.TMatHangDto>.Instance.SetOrderByOptions(new List<QueryBuilder.OrderByExpression.OrderOption>()
+            ReferenceDataManager<RNhaCungCapDto>.Instance.SetOrderByOptions(new List<OrderByExpression.OrderOption>()
             {
-                new QueryBuilder.OrderByExpression.OrderOption() {PropertyPath = nameof(DTO.TMatHangDto.TenMatHang), IsAscending = true }
+                new OrderByExpression.OrderOption() {PropertyPath = nameof(RNhaCungCapDto.TenNhaCungCap), IsAscending = true }
+            });
+            ReferenceDataManager<RNhanVienDto>.Instance.SetOrderByOptions(new List<OrderByExpression.OrderOption>()
+            {
+                new OrderByExpression.OrderOption() {PropertyPath = nameof(RNhanVienDto.TenNhanVien), IsAscending = true }
+            });
+            ReferenceDataManager<TMatHangDto>.Instance.SetOrderByOptions(new List<OrderByExpression.OrderOption>()
+            {
+                new OrderByExpression.OrderOption() {PropertyPath = nameof(TMatHangDto.TenMatHang), IsAscending = true }
             });
         }
     }

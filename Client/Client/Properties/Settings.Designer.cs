@@ -49,7 +49,7 @@ namespace Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("http://localhost:5000")]
+        [global::System.Configuration.DefaultSettingValueAttribute("http://gaucon.net:5000")]
         public string UriRoot {
             get {
                 return ((string)(this["UriRoot"]));

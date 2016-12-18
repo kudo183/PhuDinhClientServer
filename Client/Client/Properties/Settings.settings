@@ -9,7 +9,7 @@
       <Value Profile="(Default)">30</Value>
     </Setting>
     <Setting Name="UriRoot" Type="System.String" Scope="User">
-      <Value Profile="(Default)">http://localhost:5000</Value>
+      <Value Profile="(Default)">http://gaucon.net:5000</Value>
     </Setting>
     <Setting Name="DefaultMaKhoHang" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">1</Value>

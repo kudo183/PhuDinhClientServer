@@ -14,7 +14,7 @@ namespace Client.ViewModel
                 TextManager.TDonHang_MaChanh, HeaderComboBoxFilterModel.ComboBoxFilter,
                 nameof(TDonHangDto.MaChanh),
                 typeof(int?),
-                nameof(RChanhDto.TenChanh),
+                nameof(RChanhDto.TenHienThi),
                 nameof(RChanhDto.ID))
             {
                 AddCommand = new SimpleCommand("ChanhAddCommand",
@@ -33,6 +33,7 @@ namespace Client.ViewModel
         partial void LoadReferenceDataPartial()
         {
             ReferenceDataManager<RKhachHangChanhDto>.Instance.Load();
+            ReferenceDataManager<RBaiXeDto>.Instance.Load();
         }
 
         partial void ProcessDtoBeforeAddToEntitiesPartial(TDonHangDto dto)
@@ -67,7 +68,7 @@ namespace Client.ViewModel
             var khachHangChanhs = ReferenceDataManager<RKhachHangChanhDto>.Instance.GetList()
                  .Where(p => p.MaKhachHang == dto.MaKhachHang);
 
-            var chanhs = new System.Collections.Generic.List<DTO.RChanhDto>();
+            var chanhs = new System.Collections.Generic.List<RChanhDto>();
             foreach (var item in khachHangChanhs)
             {
                 var chanh = ReferenceDataManager<RChanhDto>.Instance.GetByID(item.MaChanh);
