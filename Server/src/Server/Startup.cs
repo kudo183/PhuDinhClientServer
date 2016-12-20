@@ -15,7 +15,7 @@ namespace Server
         {
             services.AddCors();
 
-            services.AddSwaWithTrustedConnection<PhuDinhServerContext, SwaUser, SwaGroup, SwaUserGroup>("PhuDinh_test", @"C:\keys");
+            services.AddSwaWithTrustedConnection<PhuDinhServerContext, SwaUser, SwaGroup, SwaUserGroup>("PhuDinh", @"C:\keys");
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

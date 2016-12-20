@@ -36,6 +36,8 @@ namespace Server.Controllers
             TChiTietChuyenHangDonHangController.IncreaseVersionNumber();
             //because sql trigger updated SoTien of TCongNoKhachHang
             TCongNoKhachHangController.IncreaseVersionNumber();
+            //because Toa hang include ChiTietDonHang
+            TToaHangController.IncreaseVersionNumber();
         }
     }
 }

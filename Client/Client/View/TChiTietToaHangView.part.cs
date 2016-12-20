@@ -1,4 +1,5 @@
 ﻿using Client.Abstraction;
+using System.Windows.Controls;
 
 namespace Client.View
 {
@@ -39,6 +40,19 @@ namespace Client.View
                         break;
                 }
             }
+
+            datagrid.Columns.Add(new DataGridTextColumn()
+            {
+                Width = 150,
+                IsReadOnly = true,
+                Header = TextManager.TChiTietToaHang_ThanhTien,
+                Binding = new System.Windows.Data.Binding()
+                {
+                    Path = new System.Windows.PropertyPath(nameof(DTO.TChiTietToaHangDto.ThanhTien)),
+                    Mode = System.Windows.Data.BindingMode.OneWay,
+                    StringFormat = "{0:N0}"
+                }
+            });
         }
     }
 }

@@ -31,7 +31,36 @@ namespace Client.ViewModel
                 dto.TToaHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetByID(dto.TToaHang.MaKhachHang);
             }
 
-            dto.MaChiTietDonHangSources = chiTietDonHangsGanDay;
+            var list = new List<TChiTietDonHangDto>(chiTietDonHangsGanDay);
+            var ctdh = dto.TChiTietDonHang;
+            if (ctdh != null && list.Any(p => p.ID == dto.MaChiTietDonHang) == false)
+            {
+                if (ctdh.TDonHang != null)
+                {
+                    ctdh.TDonHang.RKhachHang = ReferenceDataManager<RKhachHangDto>.Instance.GetByID(ctdh.TDonHang.MaKhachHang);
+                    ctdh.TDonHang.RKhoHang = ReferenceDataManager<RKhoHangDto>.Instance.GetByID(ctdh.TDonHang.MaKhoHang);
+                }
+                ctdh.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetByID(ctdh.MaMatHang);
+                list.Add(ctdh);
+            }
+
+            dto.MaChiTietDonHangSources = list;
+            dto.PropertyChanged += Dto_PropertyChanged;
+        }
+
+        void Dto_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            var dto = sender as TChiTietToaHangDto;
+            switch (e.PropertyName)
+            {
+                case nameof(TChiTietToaHangDto.MaChiTietDonHang):
+                    dto.TChiTietDonHang = chiTietDonHangsGanDay.Find(p => p.Ma == dto.MaChiTietDonHang);
+                    dto.OnPropertyChanged(nameof(TChiTietToaHangDto.ThanhTien));
+                    break;
+                case nameof(TChiTietToaHangDto.GiaTien):
+                    dto.OnPropertyChanged(nameof(TChiTietToaHangDto.ThanhTien));
+                    break;
+            }
         }
 
         protected override void BeforeLoad()

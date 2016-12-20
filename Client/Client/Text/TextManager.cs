@@ -205,6 +205,8 @@ namespace Client
         public static string LoginWindow_TxtUser { get { return GetText(); } }
         public static string LoginWindow_TxtGroupList { get { return GetText(); } }
         public static string LoginWindow_BtnLogin { get { return GetText(); } }
+        public static string TToaHang_ThanhTien { get { return GetText(); } }
+        public static string TChiTietToaHang_ThanhTien { get { return GetText(); } }
 
         public static string GetText([CallerMemberName] string textKey = null)
         {
@@ -381,6 +383,8 @@ namespace Client
             _dic.Add("LoginWindow_TxtUser", "Tên đăng nhập:");
             _dic.Add("LoginWindow_TxtGroupList", "Tên tổ chức:");
             _dic.Add("LoginWindow_BtnLogin", "Đăng Nhập");
+            _dic.Add("TToaHang_ThanhTien", "Thành Tiền");
+            _dic.Add("TChiTietToaHang_ThanhTien", "Thành Tiền");
         }
     }
 }

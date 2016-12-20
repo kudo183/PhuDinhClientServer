@@ -16,6 +16,7 @@ namespace Server.Controllers
             dto.TChiTietDonHang = new TChiTietDonHangDto();
             dto.TChiTietDonHang.ID = entity.MaChiTietDonHangNavigation.ID;
             dto.TChiTietDonHang.MaMatHang = entity.MaChiTietDonHangNavigation.MaMatHang;
+            dto.TChiTietDonHang.SoLuong = entity.MaChiTietDonHangNavigation.SoLuong;
             dto.TChiTietDonHang.TDonHang = new TDonHangDto();
             dto.TChiTietDonHang.TDonHang.MaKhachHang = entity.MaChiTietDonHangNavigation.MaDonHangNavigation.MaKhachHang;
             dto.TChiTietDonHang.TDonHang.MaKhoHang = entity.MaChiTietDonHangNavigation.MaDonHangNavigation.MaKhoHang;
@@ -33,6 +34,8 @@ namespace Server.Controllers
         {
             //because sql trigger updated SoTien of TCongNoKhachHang
             TCongNoKhachHangController.IncreaseVersionNumber();
+            //because Toa hang include ChiTietToaHang
+            TToaHangController.IncreaseVersionNumber();
         }
     }
 }

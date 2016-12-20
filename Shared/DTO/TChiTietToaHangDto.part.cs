@@ -17,5 +17,14 @@ namespace DTO
                 return string.Format("{0} {1}", TToaHang.TenHienThi, TChiTietDonHang.TenHienThi);
             }
         }
+
+        [Newtonsoft.Json.JsonIgnore]
+        public int ThanhTien
+        {
+            get
+            {
+                return GiaTien * TChiTietDonHang.SoLuong;
+            }
+        }
     }
 }
