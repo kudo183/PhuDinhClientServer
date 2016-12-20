@@ -146,19 +146,14 @@ namespace Client.Abstraction
             }
         }
 
-        private object _selectedItem;
-
         public object SelectedItem
         {
-            get { return _selectedItem; }
-            set
+            get
             {
-                if (_selectedItem == value)
-                {
-                    return;
-                }
+                if (_selectedValue == null)
+                    return null;
 
-                _selectedItem = value;
+                return Entities.First(p => p.ID == (int)_selectedValue);
             }
         }
 
