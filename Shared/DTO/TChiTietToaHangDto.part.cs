@@ -23,6 +23,9 @@ namespace DTO
         {
             get
             {
+                if (TChiTietDonHang == null)
+                    return 0;
+
                 return GiaTien * TChiTietDonHang.SoLuong;
             }
         }
