@@ -22,7 +22,8 @@ namespace Client
                 sp.Children.Add(new Button()
                 {
                     Content = "Report" + viewType.Name,
-                    Tag = viewType
+                    Tag = viewType,
+                    HorizontalContentAlignment = HorizontalAlignment.Left
                 });
             }
 
@@ -31,7 +32,8 @@ namespace Client
                 sp.Children.Add(new Button()
                 {
                     Content = viewType.Name,
-                    Tag = viewType
+                    Tag = viewType,
+                    HorizontalContentAlignment = HorizontalAlignment.Left
                 });
             }
         }
