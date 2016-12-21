@@ -1,4 +1,5 @@
 ﻿using Client.Abstraction;
+using System.Windows.Controls;
 
 namespace Client.View
 {
@@ -26,6 +27,18 @@ namespace Client.View
 
             datagrid.Columns[4].Width = 80;
             datagrid.Columns[4].IsReadOnly = true;
+
+            datagrid.Columns.Add(new DataGridCheckBoxColumn()
+            {
+                Width = 150,
+                IsReadOnly = true,
+                Header = TextManager.TChiTietDonHang_Xong,
+                Binding = new System.Windows.Data.Binding()
+                {
+                    Path = new System.Windows.PropertyPath(string.Format("{0}.{1}", nameof(DTO.TChiTietChuyenHangDonHangDto.TChiTietDonHang), nameof(DTO.TChiTietDonHangDto.Xong))),
+                    Mode = System.Windows.Data.BindingMode.OneWay
+                }
+            });
         }
     }
 }
