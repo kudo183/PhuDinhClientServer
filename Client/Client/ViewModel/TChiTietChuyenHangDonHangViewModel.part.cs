@@ -77,5 +77,25 @@ namespace Client.ViewModel
                 item.TMatHang = ReferenceDataManager<TMatHangDto>.Instance.GetByID(item.MaMatHang);
             }
         }
+
+        protected override void AfterLoad()
+        {
+            var chdh = ParentItem as TChuyenHangDonHangDto;
+            if (chdh != null && Entities.Count == 0)
+            {
+                foreach (var ctdh in chiTietDonHangsChuaXong)
+                {
+                    var soLuong = ctdh.SoLuongConLai;
+                    var ct = new TChiTietChuyenHangDonHangDto
+                    {
+                        MaChiTietDonHang = ctdh.Ma,
+                        MaChuyenHangDonHang = chdh.Ma,
+                        SoLuong = soLuong
+                    };
+
+                    Entities.Add(ct);
+                }
+            }
+        }
     }
 }

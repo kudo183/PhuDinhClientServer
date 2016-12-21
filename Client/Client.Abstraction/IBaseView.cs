@@ -7,9 +7,8 @@ namespace Client.Abstraction
     {
         IBaseViewModel ViewModel { get; set; }
         EditableGridView GridView { get; set; }
-        event EventHandler AfterSave;
-        event EventHandler AfterCancel;
-
+        Action ActionAfterSave { get; set; }
+        Action ActionAfterLoad { get; set; }
         Action ActionMoveFocusToNextView { get; set; }
     }
 }

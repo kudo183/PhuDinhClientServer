@@ -8,6 +8,8 @@ namespace DTO
         public TDonHangDto TDonHang { get; set; }
         [ProtoBuf.ProtoMember(11)]
         public TMatHangDto TMatHang { get; set; }
+        [ProtoBuf.ProtoMember(12)]
+        public int SoLuongConLai { get; set; }
 
         [Newtonsoft.Json.JsonIgnore]
         public string TenHienThi

@@ -14,12 +14,14 @@ namespace Server.Controllers
             dto.TDonHang.MaKhoHang = entity.MaDonHangNavigation.MaKhoHang;
             dto.TDonHang.MaKhachHang = entity.MaDonHangNavigation.MaKhachHang;
             dto.TDonHang.Ngay = entity.MaDonHangNavigation.Ngay;
+            dto.SoLuongConLai = entity.SoLuong - entity.TChiTietChuyenHangDonHangMaChiTietDonHangNavigation.Sum(p => p.SoLuong);
         }
 
         protected override IQueryable<TChiTietDonHang> GetQuery()
         {
             var q = base.GetQuery();
-            return q.Include(p => p.MaDonHangNavigation);
+            return q.Include(p => p.MaDonHangNavigation)
+                .Include(p => p.TChiTietChuyenHangDonHangMaChiTietDonHangNavigation);
         }
 
         protected override void AfterSave()

@@ -36,8 +36,6 @@ namespace Client.Abstraction
         public static readonly DependencyProperty FilterPropertyProperty =
             DependencyProperty.RegisterAttached("FilterProperty", typeof(string), typeof(BaseComplexView), new PropertyMetadata(string.Empty));
 
-        private readonly Dictionary<int, IBaseView> _views = new Dictionary<int, IBaseView>();
-
         private bool _isDesignTime = true;
 
         public BaseComplexView()
@@ -59,6 +57,8 @@ namespace Client.Abstraction
             }
 
             var panel = Content as Panel;
+
+            var _views = new Dictionary<int, IBaseView>();
             foreach (UIElement item in panel.Children)
             {
                 var level = BaseComplexView.GetViewLevel(item);
@@ -69,47 +69,105 @@ namespace Client.Abstraction
                 }
             }
 
-            for (int i = 0; i < _views.Count - 1; i++)
-            {
-                InitSelectedIndexChangedAction(_views[i], _views[i + 1]);
-                InitMoveFocusAction(_views[i], _views[i + 1]);
-            }
+            if (_views.Count == 0)
+                return;
 
-            InitMoveFocusAction(_views[_views.Count - 1], _views[0]);
+            var viewList = new List<IBaseView>(_views.Count + 2);
+            viewList.Add(_views[_views.Count - 1]);
+            for (int i = 0; i < _views.Count; i++)
+            {
+                viewList.Add(_views[i]);
+            }
+            viewList.Add(_views[0]);
+
+            for (int i = 1; i < viewList.Count - 1; i++)
+            {
+                var previousView = viewList[i - 1];
+                var currentView = viewList[i];
+                var nextView = viewList[i + 1];
+
+                if (i < viewList.Count - 2)
+                {
+                    InitSelectedIndexChangedAction(currentView, nextView);
+                }
+                InitMoveFocusAction(currentView, nextView);
+                InitAfterSave(previousView, currentView, nextView);
+                InitAfterLoad(previousView, currentView, nextView);
+            }
         }
 
-        private void InitSelectedIndexChangedAction(IBaseView parent, IBaseView child)
+        void InitAfterSave(IBaseView previousView, IBaseView currentView, IBaseView nextView)
         {
-            var viewModel = parent.ViewModel;
-            var childViewModel = child.ViewModel;
+            currentView.ActionAfterSave = () =>
+            {
+                OnAfterSave(previousView, currentView, nextView);
+            };
+        }
 
-            var filterProperty = BaseComplexView.GetFilterProperty(child as UIElement);
+        protected virtual void OnAfterSave(IBaseView previousView, IBaseView currentView, IBaseView nextView)
+        {
+            Console.WriteLine("BaseComplexView OnAfterSave " + currentView.GetType().Name);
+        }
+
+        void InitAfterLoad(IBaseView previousView, IBaseView currentView, IBaseView nextView)
+        {
+            currentView.ActionAfterLoad = () =>
+            {
+                OnAfterLoad(previousView, currentView, nextView);
+            };
+        }
+
+        protected virtual void OnAfterLoad(IBaseView previousView, IBaseView currentView, IBaseView nextView)
+        {
+            Console.WriteLine("BaseComplexView OnAfterLoad " + currentView.GetType().Name);
+        }
+
+        private void InitSelectedIndexChangedAction(IBaseView currentView, IBaseView nextView)
+        {
+            currentView.ViewModel.ActionSelectedValueChanged = (selectedValue) =>
+            {
+                OnSelectedIndexChanged(currentView, nextView, selectedValue);
+            };
+        }
+
+        protected virtual void OnSelectedIndexChanged(IBaseView currentView, IBaseView nextView, object selectedValue)
+        {
+            Console.WriteLine("BaseComplexView OnSelectedIndexChanged " + currentView.GetType().Name);
+            var viewModel = currentView.ViewModel;
+            var childViewModel = nextView.ViewModel;
+
+            var filterProperty = BaseComplexView.GetFilterProperty(nextView as UIElement);
             var headerFilter = childViewModel.HeaderFilters.First(p => p.PropertyName == filterProperty);
             headerFilter.DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = 0; });
 
-            viewModel.ActionSelectedValueChanged = (selectedValue) =>
+            childViewModel.ParentItem = viewModel.SelectedItem;
+            if (selectedValue == null)
             {
-                childViewModel.ParentItem = viewModel.SelectedItem;
-                if (selectedValue == null)
-                {
-                    headerFilter.FilterValue = 0;
-                }
-                else
-                {
-                    headerFilter.FilterValue = selectedValue;
-                }
+                headerFilter.FilterValue = 0;
+            }
+            else
+            {
+                headerFilter.FilterValue = selectedValue;
+            }
+        }
+
+        private void InitMoveFocusAction(IBaseView currentView, IBaseView nextView)
+        {
+            currentView.ActionMoveFocusToNextView = () =>
+            {
+                OnMoveFocus(currentView, nextView);
             };
         }
 
-        private void InitMoveFocusAction(IBaseView current, IBaseView next)
+        protected virtual void OnMoveFocus(IBaseView currentView, IBaseView nextView)
         {
-            var nextDataGrid = next.GridView.dataGrid;
-            current.ActionMoveFocusToNextView = () =>
-            {
-                nextDataGrid.FocusCell(
+            Console.WriteLine("BaseComplexView OnMoveFocus " + currentView.GetType().Name);
+            var nextDataGrid = nextView.GridView.dataGrid;
+
+            nextDataGrid.FocusCell(
                     nextDataGrid.Items.Count - 1,
                     nextDataGrid.FindFirstEditableColumn());
-            };
         }
+
     }
 }

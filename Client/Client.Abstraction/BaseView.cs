@@ -13,8 +13,8 @@ namespace Client.Abstraction
 
         public IBaseViewModel ViewModel { get; set; }
 
-        public event EventHandler AfterSave;
-        public event EventHandler AfterCancel;
+        public Action ActionAfterSave { get; set; }
+        public Action ActionAfterLoad { get; set; }
         public Action ActionMoveFocusToNextView { get; set; }
 
         public EditableGridView GridView { get; set; }
@@ -65,10 +65,7 @@ namespace Client.Abstraction
                 Console.WriteLine(_debugName + "Save");
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
                 ViewModel.Save();
-                if (AfterSave != null)
-                {
-                    AfterSave(this, null);
-                }
+                ActionAfterSave?.Invoke();
             });
 
             _viewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
@@ -76,11 +73,7 @@ namespace Client.Abstraction
                 Console.WriteLine(_debugName + "Load");
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
                 ViewModel.Load();
-                ViewModel.LoadReferenceData();
-                if (AfterCancel != null)
-                {
-                    AfterCancel(this, null);
-                }
+                ActionAfterLoad?.Invoke();
             });
 
             DataContext = ViewModel;
@@ -107,10 +100,7 @@ namespace Client.Abstraction
                     break;
                 case Key.F4:
                     _viewModel.SaveCommand.Execute(null);
-                    if (ActionMoveFocusToNextView != null)
-                    {
-                        ActionMoveFocusToNextView();
-                    }
+                    ActionMoveFocusToNextView?.Invoke();
                     break;
                 case Key.F5:
                     _viewModel.LoadCommand.Execute(null);
