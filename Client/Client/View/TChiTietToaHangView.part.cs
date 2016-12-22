@@ -1,5 +1,4 @@
 ﻿using Client.Abstraction;
-using System.Windows.Controls;
 
 namespace Client.View
 {
@@ -41,7 +40,7 @@ namespace Client.View
                 }
             }
 
-            datagrid.Columns.Add(new DataGridTextColumn()
+            datagrid.Columns.Add(new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 150,
                 IsReadOnly = true,

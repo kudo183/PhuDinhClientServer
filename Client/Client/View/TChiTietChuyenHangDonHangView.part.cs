@@ -1,5 +1,4 @@
 ﻿using Client.Abstraction;
-using System.Windows.Controls;
 
 namespace Client.View
 {
@@ -28,7 +27,7 @@ namespace Client.View
             datagrid.Columns[4].Width = 80;
             datagrid.Columns[4].IsReadOnly = true;
 
-            datagrid.Columns.Add(new DataGridCheckBoxColumn()
+            datagrid.Columns.Add(new SimpleDataGrid.DataGridCheckBoxColumnExt()
             {
                 Width = 150,
                 IsReadOnly = true,
