@@ -44,7 +44,6 @@ namespace Client.View
                 var view = currentView as TChiTietChuyenHangDonHangView;
                 var viewModel = view.DataContext as TChiTietChuyenHangDonHangViewModel;
                 var dto = viewModel.ParentItem as TChuyenHangDonHangDto;
-                dto.TongSoLuongTheoDonHang = viewModel.Entities.Sum(p => p.SoLuongTheoDonHang);
                 dto.TongSoLuongThucTe = viewModel.Entities.Sum(p => p.SoLuong);
 
                 var viewCHDH = previousView as TChuyenHangDonHangView;
