@@ -48,6 +48,8 @@ namespace Client.ViewModel
                 dto.MaKhachHang = Settings.Instance.DefaultMaKhachHang;
             }
 
+            dto.Xong = false;
+
             UpdateChanhs(dto);
 
             dto.PropertyChanged += Dto_PropertyChanged;
