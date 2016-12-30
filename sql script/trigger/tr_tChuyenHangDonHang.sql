@@ -1,13 +1,15 @@
 USE [PhuDinh]
 GO
 
+DROP TRIGGER [dbo].[tr_tChuyenHangDonHang]
+GO
+
 /****** Object:  Trigger [dbo].[tr_tChuyenHangDonHang]    Script Date: 29/12/2016 6:39:54 CH ******/
 SET ANSI_NULLS ON
 GO
 
 SET QUOTED_IDENTIFIER ON
 GO
-
 
 CREATE TRIGGER [dbo].[tr_tChuyenHangDonHang]
 	ON [dbo].[tChuyenHangDonHang]

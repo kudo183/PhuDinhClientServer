@@ -1,6 +1,9 @@
 USE [PhuDinh]
 GO
 
+DROP TRIGGER [dbo].[tr_tChiTietDonHang]
+GO
+
 /****** Object:  Trigger [dbo].[tr_tChiTietDonHang]    Script Date: 29/12/2016 6:39:03 CH ******/
 SET ANSI_NULLS ON
 GO

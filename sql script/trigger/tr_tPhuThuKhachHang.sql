@@ -1,6 +1,9 @@
 USE [PhuDinh]
 GO
 
+DROP TRIGGER [dbo].[tr_tPhuThuKhachHang]
+GO
+
 /****** Object:  Trigger [dbo].[tr_tPhuThuKhachHang]    Script Date: 29/12/2016 6:41:21 CH ******/
 SET ANSI_NULLS ON
 GO
@@ -8,8 +11,7 @@ GO
 SET QUOTED_IDENTIFIER ON
 GO
 
-
-create TRIGGER [dbo].[tr_tPhuThuKhachHang]
+CREATE TRIGGER [dbo].[tr_tPhuThuKhachHang]
 	ON [dbo].[tPhuThuKhachHang]
 	after DELETE, INSERT, UPDATE
 	AS
