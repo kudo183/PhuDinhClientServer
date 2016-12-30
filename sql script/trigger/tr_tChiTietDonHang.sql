@@ -13,7 +13,7 @@ GO
 
 CREATE TRIGGER [dbo].[tr_tChiTietDonHang]
 	ON [dbo].[tChiTietDonHang]
-	after UPDATE
+	after insert, delete, UPDATE
 	AS
 	BEGIN
 		SET NOCOUNT ON
@@ -35,11 +35,11 @@ CREATE TRIGGER [dbo].[tr_tChiTietDonHang]
 
 		print('update Xong, TongSoLuong of tDonHang')		
 		update tDonHang
-		set Xong = case when exists(select * from tChiTietDonHang where MaDonHang=Ma and Xong=0)
+		set Xong = case when exists(select * from tChiTietDonHang where MaDonHang=tDonHang.Ma and Xong=0)
 						then 0
 						else 1
 					end
-			,TongSoLuong = (select ISNULL(sum(SoLuong), 0) from tChiTietDonHang where MaDonHang=Ma)
+			,TongSoLuong = (select ISNULL(sum(SoLuong), 0) from tChiTietDonHang where MaDonHang=tDonHang.Ma)
 		where Ma in (select distinct(MaDonHang) from inserted union select distinct(MaDonHang) from deleted)
 
 		print('update SoLuongTheoDonHang of tChiTietChuyenHangDonHang')
@@ -97,7 +97,6 @@ CREATE TRIGGER [dbo].[tr_tChiTietDonHang]
 				SELECT -SoLuong, Ma FROM deleted) as t
 			join tChiTietToaHang ctth on ctth.MaChiTietDonHang=t.Ma
 			join tToaHang th on th.Ma=ctth.MaToaHang
-			join tCongNoKhachHang cn on cn.MaKhachHang=th.MaKhachHang
 			group by th.Ngay, th.MaKhachHang) 
 		update cn
 		set cn.SoTien = cn.SoTien + cte.SoTien

@@ -3,6 +3,7 @@ using DTO;
 using SimpleDataGrid;
 using Client.Abstraction;
 using System.Linq;
+using System;
 
 namespace Client.ViewModel
 {
@@ -36,6 +37,11 @@ namespace Client.ViewModel
             ReferenceDataManager<RBaiXeDto>.Instance.Load();
         }
 
+        partial void ProcessNewAddedDtoPartial(TDonHangDto dto)
+        {
+            dto.Xong = false;
+        }
+
         partial void ProcessDtoBeforeAddToEntitiesPartial(TDonHangDto dto)
         {
             if (dto.MaKhoHang == 0)
@@ -47,8 +53,6 @@ namespace Client.ViewModel
             {
                 dto.MaKhachHang = Settings.Instance.DefaultMaKhachHang;
             }
-
-            dto.Xong = false;
 
             UpdateChanhs(dto);
 
