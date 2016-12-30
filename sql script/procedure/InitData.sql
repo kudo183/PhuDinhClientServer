@@ -1,10 +1,17 @@
-
+USE [PhuDinh]
 GO
-/****** Object:  StoredProcedure [dbo].[InitData]    Script Date: 09/12/2016 2:31:02 CH ******/
+
+/****** Object:  StoredProcedure [dbo].[InitData]    Script Date: 30/12/2016 9:03:14 SA ******/
+DROP PROCEDURE [dbo].[InitData]
+GO
+
+/****** Object:  StoredProcedure [dbo].[InitData]    Script Date: 30/12/2016 9:03:14 SA ******/
 SET ANSI_NULLS ON
 GO
+
 SET QUOTED_IDENTIFIER ON
 GO
+
 -- =============================================
 -- Author:		<Author,,Name>
 -- Create date: <Create Date,,>
@@ -105,3 +112,4 @@ BEGIN
 	delete from tTonKho where Ngay < @MinDate;
 	delete from tCongNoKhachHang where Ngay < @MinDate;
 END
+GO
