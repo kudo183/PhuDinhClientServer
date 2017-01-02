@@ -5,10 +5,12 @@ using System.Windows;
 
 namespace Client
 {
-    public static class TextManager
+    public static partial class TextManager
     {
+        static partial void InitDefaultLanguageDataPartial();
+
         static readonly Dictionary<string, string> _dic = new Dictionary<string, string>();
-        static readonly string DefaultLanguage = "vi-vn";
+        public static string Language;
 
         static TextManager()
         {
@@ -18,11 +20,10 @@ namespace Client
                 return;
             }
 
-            var language = Thread.CurrentThread.CurrentUICulture.Name.ToLower();
-            if (language == DefaultLanguage)
+            var language = Language;
+            if (string.IsNullOrEmpty(language) == true)
             {
-                InitDefaultLanguageData();
-                return;
+                language = Thread.CurrentThread.CurrentUICulture.Name.ToLower();
             }
 
             var fileName = language + ".txt";
@@ -39,6 +40,10 @@ namespace Client
                     line = sr.ReadLine();
                 }
                 sr.Close();
+            }
+            else
+            {
+                InitDefaultLanguageData();
             }
         }
 
@@ -197,16 +202,6 @@ namespace Client
         public static string ThamSoNgay_Ma { get { return GetText(); } }
         public static string ThamSoNgay_Ten { get { return GetText(); } }
         public static string ThamSoNgay_GiaTri { get { return GetText(); } }
-        public static string Button_Ok { get { return GetText(); } }
-        public static string LoginWindow_CannotConnect { get { return GetText(); } }
-        public static string LoginWindow_LoginFailed { get { return GetText(); } }
-        public static string LoginWindow_Title { get { return GetText(); } }
-        public static string LoginWindow_TxtPassword { get { return GetText(); } }
-        public static string LoginWindow_TxtUser { get { return GetText(); } }
-        public static string LoginWindow_TxtGroupList { get { return GetText(); } }
-        public static string LoginWindow_BtnLogin { get { return GetText(); } }
-        public static string TToaHang_ThanhTien { get { return GetText(); } }
-        public static string TChiTietToaHang_ThanhTien { get { return GetText(); } }
 
         public static string GetText([CallerMemberName] string textKey = null)
         {
@@ -375,16 +370,8 @@ namespace Client
             _dic.Add("ThamSoNgay_Ma", "Ma");
             _dic.Add("ThamSoNgay_Ten", "Ten");
             _dic.Add("ThamSoNgay_GiaTri", "GiaTri");
-            _dic.Add("Button_Ok", "OK");
-            _dic.Add("LoginWindow_CannotConnect", "Không kết nối được máy chủ.");
-            _dic.Add("LoginWindow_LoginFailed", "Sai Tên đăng nhập hoặc Mã đăng nhập.");
-            _dic.Add("LoginWindow_Title", "Đăng Nhập");
-            _dic.Add("LoginWindow_TxtPassword", "Mã đăng nhập:");
-            _dic.Add("LoginWindow_TxtUser", "Tên đăng nhập:");
-            _dic.Add("LoginWindow_TxtGroupList", "Tên tổ chức:");
-            _dic.Add("LoginWindow_BtnLogin", "Đăng Nhập");
-            _dic.Add("TToaHang_ThanhTien", "Thành Tiền");
-            _dic.Add("TChiTietToaHang_ThanhTien", "Thành Tiền");
+
+            InitDefaultLanguageDataPartial();
         }
     }
 }

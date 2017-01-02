@@ -72,6 +72,7 @@
     <Compile Include="ProtoBufDataService.cs" />
     <Compile Include="ProtoBufReportService.cs" />
     <Compile Include="Text\TextManager.cs" />
+    <Compile Include="Text\TextManager.part.cs" />
     <Compile Include="ViewModelFactory.cs" />
     <Compile Include="ViewModel\Gen\RBaiXeViewModel.cs" />
     <Compile Include="ViewModel\Gen\RCanhBaoTonKhoViewModel.cs" />
