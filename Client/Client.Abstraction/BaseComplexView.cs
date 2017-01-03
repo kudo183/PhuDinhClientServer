@@ -124,6 +124,11 @@ namespace Client.Abstraction
 
         private void InitSelectedIndexChangedAction(IBaseView currentView, IBaseView nextView)
         {
+            var filterProperty = BaseComplexView.GetFilterProperty(nextView as UIElement);
+            var childViewModel = nextView.ViewModel;
+            var headerFilter = childViewModel.HeaderFilters.First(p => p.PropertyName == filterProperty);
+            headerFilter.DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = 0; });
+
             currentView.ViewModel.ActionSelectedValueChanged = (selectedValue) =>
             {
                 OnSelectedIndexChanged(currentView, nextView, selectedValue);
@@ -135,10 +140,8 @@ namespace Client.Abstraction
             Console.WriteLine("BaseComplexView OnSelectedIndexChanged " + currentView.GetType().Name);
             var viewModel = currentView.ViewModel;
             var childViewModel = nextView.ViewModel;
-
             var filterProperty = BaseComplexView.GetFilterProperty(nextView as UIElement);
             var headerFilter = childViewModel.HeaderFilters.First(p => p.PropertyName == filterProperty);
-            headerFilter.DisableChangedAction(p => { p.IsUsed = true; p.FilterValue = 0; });
 
             childViewModel.ParentItem = viewModel.SelectedItem;
             if (selectedValue == null)
