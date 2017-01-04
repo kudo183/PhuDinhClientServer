@@ -48,6 +48,7 @@
     <Compile Include="IBaseView.cs" />
     <Compile Include="IBaseViewModel.cs" />
     <Compile Include="IDataService.cs" />
+    <Compile Include="Logger.cs" />
     <Compile Include="IReportService.cs" />
     <Compile Include="NameManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

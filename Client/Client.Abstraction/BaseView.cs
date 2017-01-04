@@ -62,7 +62,7 @@ namespace Client.Abstraction
 
             _viewModel.SaveCommand = new SimpleCommand("SaveCommand", () =>
             {
-                Console.WriteLine(_debugName + "Save");
+                Logger.Instance.Info(_debugName + " Save", Logger.Categories.Data);
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
                 ViewModel.Save();
                 ActionAfterSave?.Invoke();
@@ -70,7 +70,7 @@ namespace Client.Abstraction
 
             _viewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
             {
-                Console.WriteLine(_debugName + "Load");
+                Logger.Instance.Info(_debugName + " Load", Logger.Categories.Data);
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
                 ViewModel.Load();
                 ActionAfterLoad?.Invoke();
@@ -82,7 +82,7 @@ namespace Client.Abstraction
             {
                 foreach (var column in GridView.Columns)
                 {
-                    if(column.Header.ToString() == ViewModel.HeaderFilters[i].PropertyName)
+                    if (column.Header.ToString() == ViewModel.HeaderFilters[i].PropertyName)
                     {
                         column.Header = ViewModel.HeaderFilters[i];
                         break;
@@ -113,19 +113,19 @@ namespace Client.Abstraction
 
         protected override void OnInitialized(EventArgs e)
         {
-            Console.WriteLine(_debugName + " OnInitialized");
+            Logger.Instance.Debug(_debugName + " OnInitialized", Logger.Categories.UI);
             InitView();
             base.OnInitialized(e);
         }
 
         public virtual void OnUnloaded(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(_debugName + " Unloaded");
+            Logger.Instance.Debug(_debugName + " Unloaded", Logger.Categories.UI);
         }
 
         public virtual void OnLoaded(object sender, RoutedEventArgs e)
         {
-            Console.WriteLine(_debugName + " Loaded");
+            Logger.Instance.Debug(_debugName + " Loaded", Logger.Categories.UI);
 
             ViewModel.Load();
         }

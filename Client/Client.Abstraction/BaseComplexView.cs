@@ -18,7 +18,7 @@ namespace Client.Abstraction
             obj.SetValue(ViewLevelProperty, value);
         }
 
-        // Using a DependencyProperty as the backing store for ViewLevel.  This enables animation, styling, binding, etc...
+        // Using a DependencyProperty as the backing store for ViewLevel. This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ViewLevelProperty =
             DependencyProperty.RegisterAttached("ViewLevel", typeof(int), typeof(BaseComplexView), new PropertyMetadata(0));
 
@@ -44,7 +44,7 @@ namespace Client.Abstraction
         }
         protected override void OnInitialized(EventArgs e)
         {
-            Console.WriteLine("BaseComplexView OnInitialized");
+            Logger.Instance.Debug("BaseComplexView OnInitialized", Logger.Categories.UI);
             InitView();
             base.OnInitialized(e);
         }
@@ -106,7 +106,7 @@ namespace Client.Abstraction
 
         protected virtual void OnAfterSave(IBaseView previousView, IBaseView currentView, IBaseView nextView)
         {
-            Console.WriteLine("BaseComplexView OnAfterSave " + currentView.GetType().Name);
+            Logger.Instance.Debug("BaseComplexView OnAfterSave " + currentView.GetType().Name, Logger.Categories.UI);
         }
 
         void InitAfterLoad(IBaseView previousView, IBaseView currentView, IBaseView nextView)
@@ -119,7 +119,7 @@ namespace Client.Abstraction
 
         protected virtual void OnAfterLoad(IBaseView previousView, IBaseView currentView, IBaseView nextView)
         {
-            Console.WriteLine("BaseComplexView OnAfterLoad " + currentView.GetType().Name);
+            Logger.Instance.Debug("BaseComplexView OnAfterLoad " + currentView.GetType().Name, Logger.Categories.UI);
         }
 
         private void InitSelectedIndexChangedAction(IBaseView currentView, IBaseView nextView)
@@ -137,7 +137,7 @@ namespace Client.Abstraction
 
         protected virtual void OnSelectedIndexChanged(IBaseView currentView, IBaseView nextView, object selectedValue)
         {
-            Console.WriteLine("BaseComplexView OnSelectedIndexChanged " + currentView.GetType().Name);
+            Logger.Instance.Debug("BaseComplexView OnSelectedIndexChanged " + currentView.GetType().Name, Logger.Categories.UI);
             var viewModel = currentView.ViewModel;
             var childViewModel = nextView.ViewModel;
             var filterProperty = BaseComplexView.GetFilterProperty(nextView as UIElement);
@@ -164,7 +164,7 @@ namespace Client.Abstraction
 
         protected virtual void OnMoveFocus(IBaseView currentView, IBaseView nextView)
         {
-            Console.WriteLine("BaseComplexView OnMoveFocus " + currentView.GetType().Name);
+            Logger.Instance.Debug("BaseComplexView OnMoveFocus " + currentView.GetType().Name, Logger.Categories.UI);
             var nextDataGrid = nextView.GridView.dataGrid;
 
             nextDataGrid.FocusCell(

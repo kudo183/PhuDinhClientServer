@@ -62,7 +62,7 @@ namespace Client
 
             if (string.IsNullOrEmpty(result.ErrorMsg) == false)
             {
-                System.Console.WriteLine(string.Format("Error get: ({0}) {1} ", _controller, result.ErrorMsg));
+                Logger.Instance.Error(string.Format("Error get: ({0}) {1} ", _controller, result.ErrorMsg), Logger.Categories.Data);
             }
 
             foreach (var item in result.Items)
@@ -71,7 +71,7 @@ namespace Client
             }
             sw.Stop();
             var msg = string.Format("{0} get {1:N0} ms {2:N0} bytes {3} {4} {5}", _controller, sw.ElapsedMilliseconds, cache.Data.Length, cache.VersionNumber, cache.ServerStartTime, isChanged);
-            System.Console.WriteLine(msg);
+            Logger.Instance.Info(msg, Logger.Categories.Data);
             return result;
         }
 
@@ -80,7 +80,7 @@ namespace Client
             var sw = new System.Diagnostics.Stopwatch();
             sw.Start();
             var result = ProtobufWebClient.Instance.Save(_controller, "save", changedItems);
-            System.Console.WriteLine(_controller + " " + "save " + sw.ElapsedMilliseconds + "ms");
+            Logger.Instance.Info(_controller + " " + "save " + sw.ElapsedMilliseconds + "ms", Logger.Categories.Data);
             return result;
         }
     }
