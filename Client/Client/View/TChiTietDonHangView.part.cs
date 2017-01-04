@@ -8,21 +8,21 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            var datagrid = Content as SimpleDataGrid.EditableGridView;
-
-            datagrid.dataGrid.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
+            GridView.dataGrid.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 250,
                 IsReadOnly = true,
-                Header = datagrid.dataGrid.Columns[1].Header,
+                Header = GridView.dataGrid.Columns[1].Header,
                 Binding = new System.Windows.Data.Binding()
                 {
                     Path = new System.Windows.PropertyPath(nameof(DTO.TChiTietDonHangDto.TDonHang) + "." + nameof(DTO.TDonHangDto.TenHienThi)),
                     Mode = System.Windows.Data.BindingMode.OneWay
                 }
             };
+            
+            (GridView.dataGrid.Columns[3] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
 
-            datagrid.dataGrid.Columns[4].IsReadOnly = true;
+            GridView.dataGrid.Columns[4].IsReadOnly = true;
             var tb = new TextBlock()
             {
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,
@@ -30,7 +30,7 @@ namespace Client.View
                 Foreground = Brushes.Blue
             };
             tb.SetBinding(TextBlock.TextProperty, "Msg");
-            datagrid.CustomMenuItems.Add(tb);
+            GridView.CustomMenuItems.Add(tb);
         }
     }
 }

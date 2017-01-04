@@ -1,5 +1,6 @@
 ﻿using Client.Abstraction;
 using DTO;
+using System.Linq;
 
 namespace Client.ViewModel
 {
@@ -12,6 +13,11 @@ namespace Client.ViewModel
                 PropertyPath = nameof(TChiPhiDto.Ngay),
                 IsAscending = false
             });
+        }
+
+        protected override void AfterLoad()
+        {
+            Msg = string.Format("Tong so tien: {0:N0}", Entities.Sum(p => p.SoTien));
         }
     }
 }

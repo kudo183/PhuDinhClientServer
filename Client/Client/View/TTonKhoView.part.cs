@@ -6,8 +6,10 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            var datagrid = Content as SimpleDataGrid.EditableGridView;
-            datagrid.Columns[3].DisplayIndex = 1;
+            GridView.Columns[3].DisplayIndex = 1;
+
+            (GridView.Columns[4] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
+            GridView.Columns[5].Visibility = System.Windows.Visibility.Collapsed;
         }
     }
 }

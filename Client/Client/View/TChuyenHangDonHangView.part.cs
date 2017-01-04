@@ -6,13 +6,11 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            var datagrid = Content as SimpleDataGrid.EditableGridView;
-
-            datagrid.dataGrid.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
+            GridView.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 250,
                 IsReadOnly = true,
-                Header = datagrid.dataGrid.Columns[1].Header,
+                Header = GridView.Columns[1].Header,
                 Binding = new System.Windows.Data.Binding()
                 {
                     Path = new System.Windows.PropertyPath(nameof(DTO.TChuyenHangDonHangDto.TChuyenHang) + "." + nameof(DTO.TChuyenHangDto.TenHienThi)),
@@ -20,12 +18,14 @@ namespace Client.View
                 }
             };
 
-            datagrid.dataGrid.Columns[2].Width = 250;
+            GridView.Columns[2].Width = 250;
 
-            datagrid.dataGrid.Columns[3].IsReadOnly = true;
-            datagrid.dataGrid.Columns[4].IsReadOnly = true;
+            GridView.Columns[3].IsReadOnly = true;
+            (GridView.Columns[3] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
+            GridView.dataGrid.Columns[4].IsReadOnly = true;
+            (GridView.Columns[4] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
 
-            datagrid.Columns.Add(new SimpleDataGrid.DataGridCheckBoxColumnExt()
+            GridView.Columns.Add(new SimpleDataGrid.DataGridCheckBoxColumnExt()
             {
                 Width = 150,
                 IsReadOnly = true,

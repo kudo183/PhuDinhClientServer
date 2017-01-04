@@ -6,13 +6,11 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            var datagrid = Content as SimpleDataGrid.EditableGridView;
-
-            datagrid.dataGrid.Columns[3] = new SimpleDataGrid.DataGridTextColumnExt()
+            GridView.Columns[3] = new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 250,
                 IsReadOnly = true,
-                Header = datagrid.dataGrid.Columns[3].Header,
+                Header = GridView.Columns[3].Header,
                 Binding = new System.Windows.Data.Binding()
                 {
                     Path = new System.Windows.PropertyPath(nameof(DTO.TChiTietToaHangDto.TToaHang) + "." + nameof(DTO.TToaHangDto.TenHienThi)),
@@ -20,7 +18,7 @@ namespace Client.View
                 }
             };
             
-            foreach (var column in datagrid.Columns)
+            foreach (var column in GridView.Columns)
             {
                 var header = column.Header as SimpleDataGrid.ViewModel.HeaderFilterBaseModel;
                 switch (header.PropertyName)
@@ -36,11 +34,12 @@ namespace Client.View
                         break;
                     case nameof(DTO.TChiTietToaHangDto.GiaTien):
                         column.DisplayIndex = 3;
+                        (column as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
                         break;
                 }
             }
 
-            datagrid.Columns.Add(new SimpleDataGrid.DataGridTextColumnExt()
+            GridView.Columns.Add(new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 150,
                 IsReadOnly = true,
@@ -48,10 +47,10 @@ namespace Client.View
                 Binding = new System.Windows.Data.Binding()
                 {
                     Path = new System.Windows.PropertyPath(nameof(DTO.TChiTietToaHangDto.ThanhTien)),
-                    Mode = System.Windows.Data.BindingMode.OneWay,
-                    StringFormat = "{0:N0}"
+                    Mode = System.Windows.Data.BindingMode.OneWay
                 }
             });
+            (GridView.Columns[4] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
         }
     }
 }

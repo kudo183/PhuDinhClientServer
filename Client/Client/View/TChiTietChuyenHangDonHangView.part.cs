@@ -6,12 +6,11 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            var datagrid = Content as SimpleDataGrid.EditableGridView;
-            datagrid.dataGrid.Columns[2] = new SimpleDataGrid.DataGridTextColumnExt()
+            GridView.Columns[2] = new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 200,
                 IsReadOnly = true,
-                Header = datagrid.dataGrid.Columns[2].Header,
+                Header = GridView.Columns[2].Header,
                 Binding = new System.Windows.Data.Binding()
                 {
                     Path = new System.Windows.PropertyPath(nameof(DTO.TChiTietChuyenHangDonHangDto.TChuyenHangDonHang) + "." + nameof(DTO.TChuyenHangDonHangDto.TenHienThi)),
@@ -19,15 +18,17 @@ namespace Client.View
                 }
             };
 
-            datagrid.Columns[1].Width = 400;
-            datagrid.Columns[1].DisplayIndex = 2;
+            GridView.Columns[1].Width = 400;
+            GridView.Columns[1].DisplayIndex = 2;
 
-            datagrid.Columns[3].Width = 80;
+            GridView.Columns[3].Width = 80;
+            (GridView.Columns[3] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
 
-            datagrid.Columns[4].Width = 80;
-            datagrid.Columns[4].IsReadOnly = true;
+            GridView.Columns[4].Width = 80;
+            GridView.Columns[4].IsReadOnly = true;
+            (GridView.Columns[4] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
 
-            datagrid.Columns.Add(new SimpleDataGrid.DataGridCheckBoxColumnExt()
+            GridView.Columns.Add(new SimpleDataGrid.DataGridCheckBoxColumnExt()
             {
                 Width = 150,
                 IsReadOnly = true,

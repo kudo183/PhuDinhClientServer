@@ -14,8 +14,10 @@ namespace Client.View
             GridView.Columns[1].DisplayIndex = 4;
 
             GridView.dataGrid.SkippedColumnIndex.Add(1);
-            GridView.dataGrid.Columns[5].IsReadOnly = true;
-            GridView.dataGrid.Columns[6].IsReadOnly = true;
+            GridView.Columns[5].IsReadOnly = true;
+            (GridView.dataGrid.Columns[5] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
+
+            GridView.Columns[6].IsReadOnly = true;
 
             var btnPrintRemain = new Button()
             {

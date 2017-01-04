@@ -1,4 +1,7 @@
 ﻿using Client.Abstraction;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Media;
 
 namespace Client.View
 {
@@ -6,9 +9,7 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            var datagrid = Content as SimpleDataGrid.EditableGridView;
-
-            foreach (var column in datagrid.Columns)
+            foreach (var column in GridView.Columns)
             {
                 var header = column.Header as SimpleDataGrid.ViewModel.HeaderFilterBaseModel;
                 switch (header.PropertyName)
@@ -27,12 +28,22 @@ namespace Client.View
                         break;
                     case nameof(DTO.TChiPhiDto.SoTien):
                         column.DisplayIndex = 4;
+                        (column as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
                         break;
                     case nameof(DTO.TChiPhiDto.GhiChu):
                         column.DisplayIndex = 5;
                         break;
                 }
             }
+            
+            var tb = new TextBlock()
+            {
+                VerticalAlignment = VerticalAlignment.Center,
+                FontSize = 14,
+                Foreground = Brushes.Blue
+            };
+            tb.SetBinding(TextBlock.TextProperty, "Msg");
+            GridView.CustomMenuItems.Add(tb);
         }
     }
 }
