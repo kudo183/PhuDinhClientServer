@@ -8,7 +8,7 @@ namespace Client.View
     {
         partial void InitUIPartial()
         {
-            GridView.dataGrid.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
+            GridView.Columns[1] = new SimpleDataGrid.DataGridTextColumnExt()
             {
                 Width = 250,
                 IsReadOnly = true,
@@ -19,6 +19,8 @@ namespace Client.View
                     Mode = System.Windows.Data.BindingMode.OneWay
                 }
             };
+
+            (GridView.Columns[3] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
 
             var tb = new TextBlock()
             {

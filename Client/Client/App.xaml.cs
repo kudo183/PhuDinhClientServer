@@ -31,6 +31,8 @@ namespace Client
             Settings.Instance.UriRoot = "http://gaucon.net:5000";
             ProtobufWebClient.Instance.Token = "CfDJ8HgnTw785jZNmXvqKl3VWKEKSOcZaDX4ivr-A9SMmbD1SABQMO_1tODxmD1K6AThNhcfaIFTbb5Eo90j0_bqJqCkDVkqdHUaL5bb8rV_PLSSswlVc4eK5xGya9rIGWmMxJJYh3P1-6fJuvI15BSn41Q";
             StartupUri = new System.Uri("MainWindow.xaml", System.UriKind.Relative);
+
+            Logger.Instance.LogLevel = Logger.LogLevelEnum.Debug;
 #endif
             System.Threading.Thread.CurrentThread.CurrentUICulture =
             //new System.Globalization.CultureInfo("en-us");

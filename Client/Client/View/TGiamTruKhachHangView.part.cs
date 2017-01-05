@@ -24,6 +24,7 @@ namespace Client.View
                         break;
                     case nameof(DTO.TGiamTruKhachHangDto.SoTien):
                         column.DisplayIndex = 3;
+                        (column as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
                         break;
                     case nameof(DTO.TGiamTruKhachHangDto.GhiChu):
                         column.DisplayIndex = 4;

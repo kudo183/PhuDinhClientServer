@@ -22,6 +22,8 @@ namespace Client.View
 
             GridView.Columns[1].DisplayIndex = 2;
 
+            (GridView.Columns[3] as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
+
             var tb = new TextBlock()
             {
                 VerticalAlignment = System.Windows.VerticalAlignment.Center,

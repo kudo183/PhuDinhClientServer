@@ -171,7 +171,7 @@ namespace Client.Abstraction
 
         public void Load()
         {
-            Console.WriteLine(_debugName + " BaseViewModel Load");
+            Logger.Instance.Debug(_debugName + " BaseViewModel Load", Logger.Categories.UI);
 
             BeforeLoad();
 

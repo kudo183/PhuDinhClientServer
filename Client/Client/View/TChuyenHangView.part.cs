@@ -26,14 +26,17 @@ namespace Client.View
                     case nameof(DTO.TChuyenHangDto.TongDonHang):
                         column.DisplayIndex = 4;
                         column.IsReadOnly = true;
+                        (column as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
                         break;
                     case nameof(DTO.TChuyenHangDto.TongSoLuongTheoDonHang):
                         column.DisplayIndex = 5;
                         column.IsReadOnly = true;
+                        (column as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
                         break;
                     case nameof(DTO.TChuyenHangDto.TongSoLuongThucTe):
                         column.DisplayIndex = 6;
                         column.IsReadOnly = true;
+                        (column as SimpleDataGrid.DataGridTextColumnExt).SetStyleAsRightAlignIntegerNumber();
                         break;
                 }
             }
