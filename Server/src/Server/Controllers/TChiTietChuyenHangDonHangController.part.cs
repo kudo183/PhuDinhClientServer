@@ -49,5 +49,12 @@ namespace Server.Controllers
             //because sql trigger updated Xong of TDonHang
             TDonHangController.IncreaseVersionNumber();
         }
+
+        protected override void UpdateEntity(PhuDinhServerContext context, TChiTietChuyenHangDonHang entity)
+        {
+            var entry = context.TChiTietChuyenHangDonHang.Attach(entity);
+            entry.Property(p => p.MaChiTietDonHang).IsModified = true;
+            entry.Property(p => p.SoLuong).IsModified = true;
+        }
     }
 }

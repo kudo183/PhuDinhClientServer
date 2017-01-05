@@ -27,5 +27,12 @@ namespace Server.Controllers
             //because sql trigger updated SoLuong of TTonKho
             TTonKhoController.IncreaseVersionNumber();
         }
+
+        protected override void UpdateEntity(PhuDinhServerContext context, TChiTietChuyenKho entity)
+        {
+            var entry = context.TChiTietChuyenKho.Attach(entity);
+            entry.Property(p => p.MaMatHang).IsModified = true;
+            entry.Property(p => p.SoLuong).IsModified = true;
+        }
     }
 }

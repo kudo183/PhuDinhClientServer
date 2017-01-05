@@ -15,5 +15,14 @@ namespace Server.Controllers
             //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHangDonHang
             TChuyenHangDonHangController.IncreaseVersionNumber();
         }
+
+        protected override void UpdateEntity(PhuDinhServerContext context, TDonHang entity)
+        {
+            var entry = context.TDonHang.Attach(entity);
+            entry.Property(p => p.Ngay).IsModified = true;
+            entry.Property(p => p.MaKhachHang).IsModified = true;
+            entry.Property(p => p.MaKhoHang).IsModified = true;
+            entry.Property(p => p.MaChanh).IsModified = true;
+        }
     }
 }

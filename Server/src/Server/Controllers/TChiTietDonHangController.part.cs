@@ -41,5 +41,12 @@ namespace Server.Controllers
             //because Toa hang include ChiTietDonHang
             TToaHangController.IncreaseVersionNumber();
         }
+
+        protected override void UpdateEntity(PhuDinhServerContext context, TChiTietDonHang entity)
+        {
+            var entry = context.TChiTietDonHang.Attach(entity);
+            entry.Property(p => p.MaMatHang).IsModified = true;
+            entry.Property(p => p.SoLuong).IsModified = true;
+        }
     }
 }
