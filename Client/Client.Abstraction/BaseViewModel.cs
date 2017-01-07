@@ -179,6 +179,7 @@ namespace Client.Abstraction
 
             var qe = new QueryBuilder.QueryExpression();
             qe.PageIndex = PagerViewModel.IsEnablePaging ? PagerViewModel.CurrentPageIndex : 0;
+            qe.PageSize = 30;
 
             qe.WhereOptions = FromHeaderFilter(HeaderFilters);
             qe.OrderOptions = OrderOptions;
@@ -200,6 +201,7 @@ namespace Client.Abstraction
 
             PagerViewModel.ItemCount = Entities.Count;
             PagerViewModel.PageCount = result.PageCount;
+            PagerViewModel.SetCurrentPageIndexWithoutAction(result.PageIndex);
 
             AfterLoad();
         }
