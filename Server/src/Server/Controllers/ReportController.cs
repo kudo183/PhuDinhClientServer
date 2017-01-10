@@ -57,12 +57,25 @@ namespace Server.Controllers
                 .Include(p => p.MaKhoHangNavigation)
                 .Include(p => p.MaKhachHangNavigation)
                 .Include(p => p.TChiTietDonHangMaDonHangNavigation)
-                .ThenInclude(p1 => p1.MaMatHangNavigation);
+                .ThenInclude(p1 => p1.MaMatHangNavigation)
+                .Include(p => p.TChuyenHangDonHangMaDonHangNavigation)
+                .ThenInclude(p => p.MaChuyenHangNavigation)
+                .ThenInclude(p => p.MaNhanVienGiaoHangNavigation);
 
             var result = new List<DTO.Report.DailyReportDto>();
 
             foreach (var donHang in q)
             {
+                var sb = new System.Text.StringBuilder();
+                sb.Append(" (");
+                foreach (var chdh in donHang.TChuyenHangDonHangMaDonHangNavigation)
+                {
+                    sb.Append(chdh.MaChuyenHangNavigation.MaNhanVienGiaoHangNavigation.TenNhanVien);
+                    sb.Append(", ");
+                }
+                sb.Remove(sb.Length - 2, 2);
+                sb.Append(")");
+
                 var isFirst = true;
                 foreach (var ctDonHang in donHang.TChiTietDonHangMaDonHangNavigation)
                 {
@@ -71,7 +84,7 @@ namespace Server.Controllers
                         result.Add(new DTO.Report.DailyReportDto()
                         {
                             TenKho = donHang.MaKhoHangNavigation.TenKho,
-                            TenKhachHang = donHang.MaKhachHangNavigation.TenKhachHang,
+                            TenKhachHang = donHang.MaKhachHangNavigation.TenKhachHang + sb.ToString(),
                             TenMatHang = ctDonHang.MaMatHangNavigation.TenMatHangIn,
                             SoLuong = ctDonHang.SoLuong,
                             SoKg = ctDonHang.MaMatHangNavigation.SoKy
