@@ -11,6 +11,11 @@ namespace Client.ViewModel
         IDataService<TDonHangDto> _donHangDataService = ServiceLocator.Instance.GetInstance<IDataService<TDonHangDto>>();
         List<TDonHangDto> donHangsChuaXong;
 
+        public List<TDonHangDto> DonHangsChuaXong
+        {
+            get { return donHangsChuaXong; }
+        }
+
         partial void InitFilterPartial()
         {
             _MaChuyenHangFilter = new HeaderTextFilterModel(TextManager.TChuyenHangDonHang_MaChuyenHang, nameof(TChuyenHangDonHangDto.MaChuyenHang), typeof(int));

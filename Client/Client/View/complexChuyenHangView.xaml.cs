@@ -51,6 +51,19 @@ namespace Client.View
                 var dtoCH = vmCHDH.ParentItem as TChuyenHangDto;
                 dtoCH.TongSoLuongTheoDonHang = vmCHDH.Entities.Sum(p => p.TongSoLuongTheoDonHang);
                 dtoCH.TongSoLuongThucTe = vmCHDH.Entities.Sum(p => p.TongSoLuongThucTe);
+
+                if (viewModel.Entities.Count > 0)
+                {
+                    var dh = viewModel.Entities[0].TChuyenHangDonHang.TDonHang;
+                    if (dh.Xong == true)
+                    {
+                        var index = vmCHDH.DonHangsChuaXong.FindIndex(p => p.ID == dh.ID);
+                        if (index != -1)
+                        {
+                            vmCHDH.DonHangsChuaXong.RemoveAt(index);
+                        }
+                    }
+                }
             }
         }
     }
