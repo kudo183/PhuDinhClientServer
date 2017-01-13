@@ -164,3 +164,4 @@ LoginWindow_BtnLogin		OK
 TToaHang_ThanhTien		Thành Tiền
 TChiTietToaHang_ThanhTien		Thành Tiền
 TChuyenKho_TongSoLuong		Tổng số lượng
+TNhapHang_TongSoLuong		Tổng số lượng
