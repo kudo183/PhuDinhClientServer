@@ -110,6 +110,7 @@
     <Compile Include="ViewModel\Gen\TPhuThuKhachHangViewModel.cs" />
     <Compile Include="ViewModel\Gen\TToaHangViewModel.cs" />
     <Compile Include="ViewModel\Gen\TTonKhoViewModel.cs" />
+    <Compile Include="ViewModel\RKhachHangViewModel.part.cs" />
     <Compile Include="ViewModel\RKhachHangChanhViewModel.part.cs" />
     <Compile Include="ViewModel\RChanhViewModel.part.cs" />
     <Compile Include="ViewModel\Report\ChiPhiViewModel.cs" />
