@@ -4,6 +4,9 @@ namespace DTO
 {
     public partial class TChuyenKhoDto : IDto, INotifyPropertyChanged
     {
+        [ProtoBuf.ProtoMember(10)]
+        public int TongSoLuong { get; set; }
+
         [Newtonsoft.Json.JsonIgnore]
         public RKhoHangDto RKhoHangNhap { get; set; }
 
