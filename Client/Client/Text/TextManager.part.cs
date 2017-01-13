@@ -12,6 +12,7 @@
         public static string LoginWindow_BtnLogin { get { return GetText(); } }
         public static string TToaHang_ThanhTien { get { return GetText(); } }
         public static string TChiTietToaHang_ThanhTien { get { return GetText(); } }
+        public static string TChuyenKho_TongSoLuong { get { return GetText(); } }
 
         static partial void InitDefaultLanguageDataPartial()
         {
@@ -25,6 +26,7 @@
             _dic.Add("LoginWindow_BtnLogin", "Đăng Nhập");
             _dic.Add("TToaHang_ThanhTien", "Thành Tiền");
             _dic.Add("TChiTietToaHang_ThanhTien", "Thành Tiền");
+            _dic.Add("TChuyenKho_TongSoLuong", "Tổng số lượng");
         }
     }
 }

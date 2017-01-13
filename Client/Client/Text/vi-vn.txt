@@ -163,3 +163,4 @@ LoginWindow_TxtGroupList		Tên tổ chức:
 LoginWindow_BtnLogin		OK
 TToaHang_ThanhTien		Thành Tiền
 TChiTietToaHang_ThanhTien		Thành Tiền
+TChuyenKho_TongSoLuong		Tổng số lượng

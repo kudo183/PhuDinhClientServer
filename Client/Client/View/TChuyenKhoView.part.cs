@@ -11,6 +11,20 @@ namespace Client.View
             GridView.Columns[2].DisplayIndex = 3;
 
             GridView.dataGrid.SkippedColumnIndex.Add(1);
+
+            var columnTongSoLuong = new SimpleDataGrid.DataGridTextColumnExt()
+            {
+                Width = 150,
+                IsReadOnly = true,
+                Header = TextManager.TChuyenKho_TongSoLuong,
+                Binding = new System.Windows.Data.Binding()
+                {
+                    Path = new System.Windows.PropertyPath(nameof(DTO.TChuyenKhoDto.TongSoLuong)),
+                    Mode = System.Windows.Data.BindingMode.OneWay
+                }
+            };
+            columnTongSoLuong.SetStyleAsRightAlignIntegerNumber();
+            GridView.Columns.Add(columnTongSoLuong);
         }
     }
 }
