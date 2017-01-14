@@ -9,11 +9,11 @@ namespace Server.Controllers
         protected override void AfterSave()
         {
             //because sql trigger updated MaKhoHang, Ngay of TTonKho
-            TTonKhoController.IncreaseVersionNumber();
+            TTonKhoController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHang
-            TChuyenHangController.IncreaseVersionNumber();
+            TChuyenHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHangDonHang
-            TChuyenHangDonHangController.IncreaseVersionNumber();
+            TChuyenHangDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
         }
 
         protected override void UpdateEntity(PhuDinhServerContext context, TDonHang entity)

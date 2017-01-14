@@ -31,7 +31,7 @@ namespace Server.Controllers
         protected override void AfterSave()
         {
             //because sql trigger updated TongDonHang, TongSoLuongTheoDonHang of TChuyenHang
-            TChuyenHangController.IncreaseVersionNumber();
+            TChuyenHangController.IncreaseVersionNumber(TokenModel.GroupId);
         }
 
         protected override void UpdateEntity(PhuDinhServerContext context, TChuyenHangDonHang entity)

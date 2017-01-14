@@ -9,7 +9,7 @@ namespace Server.Controllers
         protected override void AfterSave()
         {
             //because sql trigger updated SoTien of TCongNoKhachHang
-            TCongNoKhachHangController.IncreaseVersionNumber();
+            TCongNoKhachHangController.IncreaseVersionNumber(TokenModel.GroupId);
         }
     }
 }

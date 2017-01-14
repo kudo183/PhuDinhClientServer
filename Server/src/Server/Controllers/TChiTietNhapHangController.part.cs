@@ -25,7 +25,7 @@ namespace Server.Controllers
         protected override void AfterSave()
         {
             //because sql trigger updated SoLuong of TTonKho
-            TTonKhoController.IncreaseVersionNumber();
+            TTonKhoController.IncreaseVersionNumber(TokenModel.GroupId);
         }
 
         protected override void UpdateEntity(PhuDinhServerContext context, TChiTietNhapHang entity)

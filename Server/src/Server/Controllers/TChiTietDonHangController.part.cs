@@ -27,19 +27,19 @@ namespace Server.Controllers
         protected override void AfterSave()
         {
             //because sql trigger updated SoLuong of TTonKho
-            TTonKhoController.IncreaseVersionNumber();
+            TTonKhoController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated TongSoLuong, Xong of TDonHang
-            TDonHangController.IncreaseVersionNumber();
+            TDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHang
-            TChuyenHangController.IncreaseVersionNumber();
+            TChuyenHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHangDonHang
-            TChuyenHangDonHangController.IncreaseVersionNumber();
+            TChuyenHangDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated SoLuongTheoDonHang of TChiTietChuyenHangDonHang
-            TChiTietChuyenHangDonHangController.IncreaseVersionNumber();
+            TChiTietChuyenHangDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated SoTien of TCongNoKhachHang
-            TCongNoKhachHangController.IncreaseVersionNumber();
+            TCongNoKhachHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because Toa hang include ChiTietDonHang
-            TToaHangController.IncreaseVersionNumber();
+            TToaHangController.IncreaseVersionNumber(TokenModel.GroupId);
         }
 
         protected override void UpdateEntity(PhuDinhServerContext context, TChiTietDonHang entity)

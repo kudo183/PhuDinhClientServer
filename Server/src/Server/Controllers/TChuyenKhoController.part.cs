@@ -23,7 +23,7 @@ namespace Server.Controllers
         protected override void AfterSave()
         {
             //because sql trigger updated MaKhoHangXuat, MaKhoHangNhap, Ngay of TTonKho
-            TTonKhoController.IncreaseVersionNumber();
+            TTonKhoController.IncreaseVersionNumber(TokenModel.GroupId);
         }
     }
 }

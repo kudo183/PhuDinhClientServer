@@ -9,7 +9,7 @@ namespace Server.Controllers
         protected override void AfterSave()
         {
             //because RChanh include RBaiXe
-            RChanhController.IncreaseVersionNumber();
+            RChanhController.IncreaseVersionNumber(TokenModel.GroupId);
         }
     }
 }

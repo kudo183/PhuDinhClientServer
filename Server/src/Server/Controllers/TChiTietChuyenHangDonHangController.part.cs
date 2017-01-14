@@ -43,13 +43,13 @@ namespace Server.Controllers
         protected override void AfterSave()
         {
             //because sql trigger updated TongSoLuongThucTe of TChuyenHang
-            TChuyenHangController.IncreaseVersionNumber();
+            TChuyenHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated TongSoLuongThucTe of TChuyenHangDonHang
-            TChuyenHangDonHangController.IncreaseVersionNumber();
+            TChuyenHangDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated Xong of TChiTietDonHang
-            TChiTietDonHangController.IncreaseVersionNumber();
+            TChiTietDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
             //because sql trigger updated Xong of TDonHang
-            TDonHangController.IncreaseVersionNumber();
+            TDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
         }
 
         protected override void UpdateEntity(PhuDinhServerContext context, TChiTietChuyenHangDonHang entity)
