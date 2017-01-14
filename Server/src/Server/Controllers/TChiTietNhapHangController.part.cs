@@ -26,6 +26,8 @@ namespace Server.Controllers
         {
             //because sql trigger updated SoLuong of TTonKho
             TTonKhoController.IncreaseVersionNumber(TokenModel.GroupId);
+            //because tnhaphang include chitietnhaphang
+            TNhapHangController.IncreaseVersionNumber(TokenModel.GroupId);
         }
 
         protected override void UpdateEntity(PhuDinhServerContext context, TChiTietNhapHang entity)
