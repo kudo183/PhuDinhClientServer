@@ -7,11 +7,7 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
-            {
-                PropertyPath = nameof(TNhapHangDto.Ngay),
-                IsAscending = false
-            });
+            _NgayFilter.IsSorted = false;
         }
 
         partial void ProcessDtoBeforeAddToEntitiesPartial(TNhapHangDto dto)

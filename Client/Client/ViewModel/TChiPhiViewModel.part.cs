@@ -8,11 +8,7 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
-            {
-                PropertyPath = nameof(TChiPhiDto.Ngay),
-                IsAscending = false
-            });
+            _NgayFilter.IsSorted = false;
         }
 
         protected override void AfterLoad()

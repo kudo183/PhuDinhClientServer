@@ -35,7 +35,6 @@ namespace Client.Abstraction
 
             LoadReferenceData();
 
-            OrderOptions = new List<QueryBuilder.OrderByExpression.OrderOption>();
             Entities = new ObservableCollectionEx<T>();
             Entities.CollectionChanged += Entities_CollectionChanged;
             HeaderFilters = new List<HeaderFilterBaseModel>();
@@ -58,6 +57,7 @@ namespace Client.Abstraction
             HeaderFilters.Add(filter);
             filter.ActionFilterValueChanged = Load;
             filter.ActionIsUsedChanged = Load;
+            filter.ActionIsSortedChanged = Load;
         }
 
         protected virtual void ProccessHeaderAddCommand(object view, string title, Action AfterCloseDialogAction)
@@ -162,9 +162,7 @@ namespace Client.Abstraction
         public List<HeaderFilterBaseModel> HeaderFilters { get; set; }
 
         public PagerViewModel PagerViewModel { get; set; }
-
-        public List<QueryBuilder.OrderByExpression.OrderOption> OrderOptions { get; set; }
-
+        
         public SimpleCommand LoadCommand { get; set; }
 
         public SimpleCommand SaveCommand { get; set; }
@@ -181,8 +179,8 @@ namespace Client.Abstraction
             qe.PageIndex = PagerViewModel.IsEnablePaging ? PagerViewModel.CurrentPageIndex : 0;
             qe.PageSize = 30;
 
-            qe.WhereOptions = FromHeaderFilter(HeaderFilters);
-            qe.OrderOptions = OrderOptions;
+            qe.WhereOptions = WhereOptionsFromHeaderFilter(HeaderFilters);
+            qe.OrderOptions = OrderOptionsFromHeaderFilter(HeaderFilters);
             if (qe.OrderOptions.Count == 0)
             {
                 qe.AddOrderByOption("Ma", true);
@@ -266,7 +264,7 @@ namespace Client.Abstraction
         }
         #endregion
 
-        private List<QueryBuilder.WhereExpression.IWhereOption> FromHeaderFilter(
+        private List<QueryBuilder.WhereExpression.IWhereOption> WhereOptionsFromHeaderFilter(
             List<HeaderFilterBaseModel> headerFilters)
         {
             var result = new List<QueryBuilder.WhereExpression.IWhereOption>();
@@ -356,6 +354,26 @@ namespace Client.Abstraction
                             Value = (TimeSpan?)filter.FilterValue
                         });
                     }
+                }
+            }
+
+            return result;
+        }
+
+        private List<QueryBuilder.OrderByExpression.OrderOption> OrderOptionsFromHeaderFilter(
+            List<HeaderFilterBaseModel> headerFilters)
+        {
+            var result = new List<QueryBuilder.OrderByExpression.OrderOption>();
+
+            foreach (var filter in headerFilters)
+            {
+                if (filter.IsSorted.HasValue == true)
+                {
+                    result.Add(new QueryBuilder.OrderByExpression.OrderOption()
+                    {
+                        PropertyPath = filter.SortPropertyName,
+                        IsAscending = filter.IsSorted.Value
+                    });
                 }
             }
 

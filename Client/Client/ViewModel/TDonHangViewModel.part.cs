@@ -24,11 +24,7 @@ namespace Client.ViewModel
                 ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get()
             };
 
-            OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
-            {
-                PropertyPath = nameof(TDonHangDto.Ngay),
-                IsAscending = false
-            });
+            _NgayFilter.IsSorted = false;
         }
 
         partial void LoadReferenceDataPartial()

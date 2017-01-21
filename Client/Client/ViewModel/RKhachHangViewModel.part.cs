@@ -7,11 +7,7 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
-            {
-                PropertyPath = nameof(RKhachHangDto.TenKhachHang),
-                IsAscending = true
-            });
+            _TenKhachHangFilter.IsSorted = true;
         }
 
         partial void ProcessNewAddedDtoPartial(RKhachHangDto dto)

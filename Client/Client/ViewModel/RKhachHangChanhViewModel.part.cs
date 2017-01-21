@@ -7,11 +7,8 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            OrderOptions.Add(new QueryBuilder.OrderByExpression.OrderOption()
-            {
-                PropertyPath = "MaKhachHangNavigation.TenKhachHang",
-                IsAscending = true
-            });
+            _MaKhachHangFilter.IsSorted = true;
+            _MaKhachHangFilter.SortPropertyName = "MaKhachHangNavigation.TenKhachHang";
         }
     }
 }
