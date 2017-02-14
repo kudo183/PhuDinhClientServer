@@ -160,7 +160,7 @@ LoginWindow_Title		Đăng Nhập
 LoginWindow_TxtPassword		Mã đăng nhập:
 LoginWindow_TxtUser		Tên đăng nhập:
 LoginWindow_TxtGroupList		Tên tổ chức:
-LoginWindow_BtnLogin		OK
+LoginWindow_BtnLogin		Đăng Nhập
 TToaHang_ThanhTien		Thành Tiền
 TChiTietToaHang_ThanhTien		Thành Tiền
 TChuyenKho_TongSoLuong		Tổng số lượng
