@@ -1,5 +1,6 @@
 ﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
@@ -7,7 +8,7 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _MaKhachHangFilter.IsSorted = true;
+            _MaKhachHangFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Ascending;
             _MaKhachHangFilter.SortPropertyName = "MaKhachHangNavigation.TenKhachHang";
         }
     }

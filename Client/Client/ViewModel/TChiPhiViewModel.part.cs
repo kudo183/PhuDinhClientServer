@@ -1,5 +1,6 @@
 ﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid.ViewModel;
 using System.Linq;
 
 namespace Client.ViewModel
@@ -8,7 +9,7 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _NgayFilter.IsSorted = false;
+            _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
         }
 
         protected override void AfterLoad()

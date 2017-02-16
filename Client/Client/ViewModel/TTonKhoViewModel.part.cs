@@ -1,5 +1,6 @@
 ﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid.ViewModel;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -11,7 +12,7 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _NgayFilter.IsSorted = false;
+            _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
         }
 
         public void CopyTonKhoToClipboard(bool? isHangNhaLam)

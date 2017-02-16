@@ -1,5 +1,6 @@
 ﻿using Client.Abstraction;
 using DTO;
+using SimpleDataGrid.ViewModel;
 
 namespace Client.ViewModel
 {
@@ -7,9 +8,9 @@ namespace Client.ViewModel
     {
         partial void InitFilterPartial()
         {
-            _MaBaiXeFilter.IsSorted = true;
+            _MaBaiXeFilter.IsSorted =  HeaderFilterBaseModel.SortDirection.Ascending;
             _MaBaiXeFilter.SortPropertyName = "MaBaiXeNavigation.DiaDiemBaiXe";
-            _TenChanhFilter.IsSorted = true;
+            _TenChanhFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Ascending;
         }
     }
 }

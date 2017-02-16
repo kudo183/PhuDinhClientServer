@@ -162,7 +162,7 @@ namespace Client.Abstraction
         public List<HeaderFilterBaseModel> HeaderFilters { get; set; }
 
         public PagerViewModel PagerViewModel { get; set; }
-        
+
         public SimpleCommand LoadCommand { get; set; }
 
         public SimpleCommand SaveCommand { get; set; }
@@ -367,13 +367,22 @@ namespace Client.Abstraction
 
             foreach (var filter in headerFilters)
             {
-                if (filter.IsSorted.HasValue == true)
+                switch (filter.IsSorted)
                 {
-                    result.Add(new QueryBuilder.OrderByExpression.OrderOption()
-                    {
-                        PropertyPath = filter.SortPropertyName,
-                        IsAscending = filter.IsSorted.Value
-                    });
+                    case HeaderFilterBaseModel.SortDirection.Ascending:
+                        result.Add(new QueryBuilder.OrderByExpression.OrderOption()
+                        {
+                            PropertyPath = filter.SortPropertyName,
+                            IsAscending = true
+                        });
+                        break;
+                    case HeaderFilterBaseModel.SortDirection.Descending:
+                        result.Add(new QueryBuilder.OrderByExpression.OrderOption()
+                        {
+                            PropertyPath = filter.SortPropertyName,
+                            IsAscending = false
+                        });
+                        break;
                 }
             }
 

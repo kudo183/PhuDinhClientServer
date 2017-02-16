@@ -24,7 +24,7 @@ namespace Client.ViewModel
                 ItemSource = ReferenceDataManager<RChanhDto>.Instance.Get()
             };
 
-            _NgayFilter.IsSorted = false;
+            _NgayFilter.IsSorted = HeaderFilterBaseModel.SortDirection.Descending;
         }
 
         partial void LoadReferenceDataPartial()
