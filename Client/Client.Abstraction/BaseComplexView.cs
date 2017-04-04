@@ -143,7 +143,7 @@ namespace Client.Abstraction
             var filterProperty = BaseComplexView.GetFilterProperty(nextView as UIElement);
             var headerFilter = childViewModel.HeaderFilters.First(p => p.PropertyName == filterProperty);
 
-            childViewModel.ParentItem = viewModel.SelectedItem;
+            childViewModel.ParentItem = viewModel.GetSelectedItem();
             if (selectedValue == null)
             {
                 headerFilter.FilterValue = 0;

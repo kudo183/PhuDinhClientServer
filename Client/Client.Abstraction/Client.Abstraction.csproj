@@ -46,7 +46,6 @@
     <Compile Include="BaseView.cs" />
     <Compile Include="BaseViewModel.cs" />
     <Compile Include="IBaseView.cs" />
-    <Compile Include="IBaseViewModel.cs" />
     <Compile Include="IDataService.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="IReportService.cs" />

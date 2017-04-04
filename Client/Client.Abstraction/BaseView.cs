@@ -10,15 +10,13 @@ namespace Client.Abstraction
     public class BaseView<T> : UserControl, IBaseView where T : class, DTO.IDto
     {
         protected string _debugName;
-
-        public IBaseViewModel ViewModel { get; set; }
-
+        
         public Action ActionAfterSave { get; set; }
         public Action ActionAfterLoad { get; set; }
         public Action ActionMoveFocusToNextView { get; set; }
 
         public EditableGridView GridView { get; set; }
-        public IEditableGridViewModel<T> _viewModel;
+        public IEditableGridViewModel ViewModel { get; set; }
 
         private IViewModelFactory _viewModelFactory;
         public IViewModelFactory ViewModelFactory
@@ -57,10 +55,9 @@ namespace Client.Abstraction
 
             GridView = Content as EditableGridView;
             var viewModelObject = ViewModelFactory.CreateViewModel<T>();
-            _viewModel = viewModelObject as IEditableGridViewModel<T>;
-            ViewModel = viewModelObject as IBaseViewModel;
+            ViewModel = viewModelObject as IEditableGridViewModel<T>;
 
-            _viewModel.SaveCommand = new SimpleCommand("SaveCommand", () =>
+            ViewModel.SaveCommand = new SimpleCommand("SaveCommand", () =>
             {
                 Logger.Instance.Info(_debugName + " Save", Logger.Categories.Data);
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
@@ -68,7 +65,7 @@ namespace Client.Abstraction
                 ActionAfterSave?.Invoke();
             });
 
-            _viewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
+            ViewModel.LoadCommand = new SimpleCommand("LoadCommand", () =>
             {
                 Logger.Instance.Info(_debugName + " Load", Logger.Categories.Data);
                 GridView.dataGrid.CommitEdit(DataGridEditingUnit.Row, true);
@@ -96,14 +93,14 @@ namespace Client.Abstraction
             switch (e.Key)
             {
                 case Key.F3:
-                    _viewModel.SaveCommand.Execute(null);
+                    ViewModel.SaveCommand.Execute(null);
                     break;
                 case Key.F4:
-                    _viewModel.SaveCommand.Execute(null);
+                    ViewModel.SaveCommand.Execute(null);
                     ActionMoveFocusToNextView?.Invoke();
                     break;
                 case Key.F5:
-                    _viewModel.LoadCommand.Execute(null);
+                    ViewModel.LoadCommand.Execute(null);
                     break;
                 default:
                     base.OnPreviewKeyDown(e);

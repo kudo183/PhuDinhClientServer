@@ -1,11 +1,12 @@
 ﻿using SimpleDataGrid;
+using SimpleDataGrid.ViewModel;
 using System;
 
 namespace Client.Abstraction
 {
     public interface IBaseView
     {
-        IBaseViewModel ViewModel { get; set; }
+        IEditableGridViewModel ViewModel { get; set; }
         EditableGridView GridView { get; set; }
         Action ActionAfterSave { get; set; }
         Action ActionAfterLoad { get; set; }

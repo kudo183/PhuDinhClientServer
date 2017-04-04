@@ -9,7 +9,7 @@ using System.Runtime.CompilerServices;
 
 namespace Client.Abstraction
 {
-    public abstract class BaseViewModel<T> : IBaseViewModel, IEditableGridViewModel<T> where T : class, DTO.IDto
+    public abstract class BaseViewModel<T> : IEditableGridViewModel<T> where T : class, DTO.IDto
     {
         protected string _debugName;
 
@@ -70,10 +70,7 @@ namespace Client.Abstraction
             };
             w.ShowDialog();
 
-            if (AfterCloseDialogAction != null)
-            {
-                AfterCloseDialogAction();
-            }
+            AfterCloseDialogAction?.Invoke();
         }
 
         protected virtual void ProcessDtoBeforeAddToEntities(T dto)
@@ -96,7 +93,7 @@ namespace Client.Abstraction
 
         }
 
-        #region IBaseViewModel interface
+        #region IEditableGridViewModel interface
         public bool IsValid { get; set; }
 
         public ObservableCollectionEx<T> Entities { get; set; }
@@ -146,7 +143,7 @@ namespace Client.Abstraction
             }
         }
 
-        public object SelectedItem
+        public T SelectedItem
         {
             get
             {
@@ -155,6 +152,11 @@ namespace Client.Abstraction
 
                 return Entities.First(p => p.ID == (int)_selectedValue);
             }
+        }
+
+        public object GetSelectedItem()
+        {
+            return SelectedItem;
         }
 
         public Action<object> ActionSelectedValueChanged { get; set; }
