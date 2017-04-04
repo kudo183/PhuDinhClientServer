@@ -30,13 +30,6 @@ namespace Server.Controllers
                 .Include(p => p.MaChiTietDonHangNavigation.MaDonHangNavigation)
                 .Include(p => p.MaChiTietDonHangNavigation.MaMatHangNavigation);
         }
-        protected override void AfterSave()
-        {
-            //because sql trigger updated SoTien of TCongNoKhachHang
-            TCongNoKhachHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because Toa hang include ChiTietToaHang
-            TToaHangController.IncreaseVersionNumber(TokenModel.GroupId);
-        }
 
         protected override void UpdateEntity(PhuDinhServerContext context, TChiTietToaHang entity)
         {

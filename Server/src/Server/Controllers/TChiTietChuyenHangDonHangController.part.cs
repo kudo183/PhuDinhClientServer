@@ -39,19 +39,7 @@ namespace Server.Controllers
                 .Include(p => p.MaChiTietDonHangNavigation.MaDonHangNavigation)
                 .Include(p => p.MaChiTietDonHangNavigation.MaMatHangNavigation);
         }
-
-        protected override void AfterSave()
-        {
-            //because sql trigger updated TongSoLuongThucTe of TChuyenHang
-            TChuyenHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because sql trigger updated TongSoLuongThucTe of TChuyenHangDonHang
-            TChuyenHangDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because sql trigger updated Xong of TChiTietDonHang
-            TChiTietDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because sql trigger updated Xong of TDonHang
-            TDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
-        }
-
+        
         protected override void UpdateEntity(PhuDinhServerContext context, TChiTietChuyenHangDonHang entity)
         {
             var entry = context.TChiTietChuyenHangDonHang.Attach(entity);

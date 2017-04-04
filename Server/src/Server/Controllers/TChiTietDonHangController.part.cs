@@ -23,25 +23,7 @@ namespace Server.Controllers
             return q.Include(p => p.MaDonHangNavigation)
                 .Include(p => p.TChiTietChuyenHangDonHangMaChiTietDonHangNavigation);
         }
-
-        protected override void AfterSave()
-        {
-            //because sql trigger updated SoLuong of TTonKho
-            TTonKhoController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because sql trigger updated TongSoLuong, Xong of TDonHang
-            TDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHang
-            TChuyenHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because sql trigger updated TongSoLuongTheoDonHang of TChuyenHangDonHang
-            TChuyenHangDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because sql trigger updated SoLuongTheoDonHang of TChiTietChuyenHangDonHang
-            TChiTietChuyenHangDonHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because sql trigger updated SoTien of TCongNoKhachHang
-            TCongNoKhachHangController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because Toa hang include ChiTietDonHang
-            TToaHangController.IncreaseVersionNumber(TokenModel.GroupId);
-        }
-
+        
         protected override void UpdateEntity(PhuDinhServerContext context, TChiTietDonHang entity)
         {
             var entry = context.TChiTietDonHang.Attach(entity);

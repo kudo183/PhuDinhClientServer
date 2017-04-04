@@ -19,11 +19,5 @@ namespace Server.Controllers
             var q = base.GetQuery();
             return q.Include(p => p.TChiTietChuyenKhoMaChuyenKhoNavigation);
         }
-
-        protected override void AfterSave()
-        {
-            //because sql trigger updated MaKhoHangXuat, MaKhoHangNhap, Ngay of TTonKho
-            TTonKhoController.IncreaseVersionNumber(TokenModel.GroupId);
-        }
     }
 }

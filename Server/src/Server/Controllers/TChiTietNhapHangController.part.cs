@@ -21,15 +21,7 @@ namespace Server.Controllers
             var q = base.GetQuery();
             return q.Include(p => p.MaNhapHangNavigation);
         }
-
-        protected override void AfterSave()
-        {
-            //because sql trigger updated SoLuong of TTonKho
-            TTonKhoController.IncreaseVersionNumber(TokenModel.GroupId);
-            //because tnhaphang include chitietnhaphang
-            TNhapHangController.IncreaseVersionNumber(TokenModel.GroupId);
-        }
-
+        
         protected override void UpdateEntity(PhuDinhServerContext context, TChiTietNhapHang entity)
         {
             var entry = context.TChiTietNhapHang.Attach(entity);
